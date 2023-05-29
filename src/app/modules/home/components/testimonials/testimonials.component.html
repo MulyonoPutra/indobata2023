@@ -1,0 +1,32 @@
+<section class="text-gray-600 body-font">
+  <div class="container px-5 py-24 mx-auto">
+    <h1>Testimonials</h1>
+    <app-short-line></app-short-line>
+    <marquee behavior="scroll" direction="">
+      <div class="flex flex-nowrap -m-4 mt-4">
+        <div *ngFor="let item of testimonials; let i = index" [ngClass]="{'expanded': i === expandedIndex}">
+          <div class="p-4 md:w-1/2 w-full">
+            <div class="h-full w-[600px] bg-gray-100 p-8 rounded" >
+              <img [src]="quotesIcon" alt=""
+                class="block w-5 h-5 text-gray-400 mb-4">
+              <p class="whitespace-normal leading-relaxed mb-6">
+                {{ i === expandedIndex ? item.comment : (item.comment | slice:0:200) + ' ...' }}</p>
+              <a class="inline-flex items-center">
+                <img alt="testimonial" [src]="item.photo"
+                  class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center">
+                <span class="flex-grow flex flex-col pl-4">
+                  <span class="title-font font-medium text-gray-900">{{item.name}}</span>
+                </span>
+              </a>
+              <br>
+              <button *ngIf="item.comment.length > 200" (click)="toggleExpansion(i)">
+                {{ isExpanded ? 'Read Less' : 'Read More' }}
+                <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+            </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </marquee>
+  </div>
+</section>

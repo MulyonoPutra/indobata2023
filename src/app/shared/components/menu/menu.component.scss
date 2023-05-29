@@ -1,0 +1,7 @@
+ul {
+    @apply lg:flex font-semibold text-[#455268] text-lg gap-8 xl:gap-7;
+    
+    li {
+        @apply p-3 border-t lg:border-0;
+    }
+}

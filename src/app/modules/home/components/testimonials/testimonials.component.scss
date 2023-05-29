@@ -1,0 +1,7 @@
+button {
+    @apply inline-flex justify-center items-center py-3 text-base font-medium text-center text-gray-600 rounded-lg  focus:ring-4;
+}
+
+h1 {
+    @apply text-center sm:text-3xl text-2xl font-bold text-gray-900 mb-4;
+}

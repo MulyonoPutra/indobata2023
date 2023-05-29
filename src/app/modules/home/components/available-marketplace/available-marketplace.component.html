@@ -1,0 +1,13 @@
+<div class="bg-white">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <h2>Available on Marketplace</h2>
+    <app-short-line></app-short-line>
+    <div class="wrapper">
+      <div *ngFor="let item of logo; trackByFn">
+        <a (click)="navigate(item.url)">
+          <img class="size cursor-pointer" [src]="item.images" alt={{item.name}} width="158" height="48">
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
