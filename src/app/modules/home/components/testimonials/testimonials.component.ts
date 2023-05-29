@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Testimonials } from '../../models/testimonials';
+import { pathAssets } from 'src/app/configs/path-assets';
 
 @Component({
   selector: 'app-testimonials',
@@ -11,7 +12,7 @@ export class TestimonialsComponent {
 
   protected isExpanded = false;
   protected expandedIndex: number | undefined;
-  protected quotesIcon: string = '../../../../../assets/images/svg/icon-quotes.svg';
+  protected quotesIcon = pathAssets.iconQuotes;
 
   toggleExpansion(index: number): void {
     if (this.expandedIndex === index) {

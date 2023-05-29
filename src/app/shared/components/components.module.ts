@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { SocialIconsComponent } from '../../modules/components/social-icons/social-icons.component';
 import { AuthLinkComponent } from './auth-link/auth-link.component';
 import { ButtonComponent } from './button/button.component';
 import { CardProductComponent } from './card-product/card-product.component';
@@ -17,7 +16,6 @@ import { SocialIconComponent } from './social-icon/social-icon.component';
   declarations: [
     HeaderComponent,
     FooterComponent,
-    SocialIconsComponent,
     PhoneComponent,
     EmailComponent,
     MenuComponent,
@@ -31,7 +29,6 @@ import { SocialIconComponent } from './social-icon/social-icon.component';
   exports: [
     HeaderComponent,
     FooterComponent,
-    SocialIconsComponent,
     PhoneComponent,
     EmailComponent,
     MenuComponent,

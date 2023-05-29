@@ -1,5 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 import { MenuItems } from 'src/app/configs/menu-items';
+import { pathAssets } from 'src/app/configs/path-assets';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +8,11 @@ import { MenuItems } from 'src/app/configs/menu-items';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  isMenuScrolled = false;
-  isSidebarShowing = false;
-
+  protected isMenuScrolled:   boolean = false;
+  protected isSidebarShowing: boolean = false;
+  protected iconOpen =    pathAssets.iconOpened;
+  protected iconClosed =  pathAssets.iconClosed;
+  protected iconArrowUp = pathAssets.iconArrowUp;
   menuitems = MenuItems;
 
   @HostListener('window:scroll', ['$event'])
