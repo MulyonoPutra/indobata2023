@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { pathAssets } from 'src/app/configs/path-assets';
 import { Product } from 'src/app/modules/home/models/product';
 
 @Component({
@@ -8,4 +9,5 @@ import { Product } from 'src/app/modules/home/models/product';
 })
 export class CardProductComponent {
   @Input() product!: Product;
+  protected iconArrowLeft = pathAssets.iconArrowLeft;
 }

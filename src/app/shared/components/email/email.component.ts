@@ -1,19 +1,19 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { pathAssets } from 'src/app/configs/path-assets';
 
 @Component({
   selector: 'app-email',
   templateUrl: './email.component.html',
   styleUrls: ['./email.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EmailComponent implements OnInit {
-
   @Input('align')
   align = 'center';
 
-  constructor() { }
+  protected iconEmail = pathAssets.iconEmail;
 
-  ngOnInit(): void {
-  }
+  constructor() {}
 
+  ngOnInit(): void {}
+  
 }
