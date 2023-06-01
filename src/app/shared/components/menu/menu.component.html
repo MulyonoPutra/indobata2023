@@ -1,5 +1,5 @@
 <ul>
-    <li *ngFor="let item of items; trackBy: trackByFn">
-        <a [routerLink]="item.route">{{item.title}}</a>
+    <li *ngFor="let item of items; trackBy: trackByFn"  class="different">
+        <a [routerLink]="item.route" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">{{item.title}}</a>
     </li>
 </ul>

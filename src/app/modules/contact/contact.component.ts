@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-contact-section',
-  templateUrl: './contact-section.component.html',
-  styleUrls: ['./contact-section.component.scss'],
+  selector: 'app-contact',
+  templateUrl: './contact.component.html',
+  styleUrls: ['./contact.component.scss']
 })
-export class ContactSectionComponent implements OnInit {
+export class ContactComponent implements OnInit {
+
   protected form!: FormGroup;
   isSubmitting = false;
 
@@ -46,4 +47,5 @@ export class ContactSectionComponent implements OnInit {
       console.log(this.formCtrlValue);
     }, 2000);
   }
+
 }
