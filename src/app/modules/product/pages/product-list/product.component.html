@@ -1,0 +1,7 @@
+<section class="mx-auto w-fit p-12">
+  <div class="grid grid-cols-4 gap-4">
+    <ng-container *ngFor="let product of products">
+      <app-card-product-hover [product]="product"></app-card-product-hover>
+    </ng-container>
+  </div>
+</section>

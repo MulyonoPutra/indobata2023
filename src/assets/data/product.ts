@@ -5,7 +5,7 @@ export const products: Product[] = [
         id: '1',
         name: 'Genteng Beton',
         images: '../../../../../assets/images/genteng1.jpg',
-        description: 'lorem ipsum dolor sit amet, consectetur adipis'
+        description: 'lorem ipsum dolor sit amet, consectetur adipis',
     },
     {
         id: '2',

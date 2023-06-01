@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { pathAssets } from 'src/app/configs/path-assets';
+import { Product } from 'src/app/modules/home/models/product';
 
 @Component({
   selector: 'app-card-product-hover',
@@ -8,4 +9,7 @@ import { pathAssets } from 'src/app/configs/path-assets';
 })
 export class CardProductHoverComponent {
   protected iconArrowLeft = pathAssets.iconArrowLeft;
+
+  @Input() product!: Product;
+  
 }

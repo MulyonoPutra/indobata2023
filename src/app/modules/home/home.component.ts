@@ -14,7 +14,7 @@ import { Hero } from './models/hero';
   providers: [HomeService],
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  
+
   protected features!: Features;
   protected products!: Product[];
   protected logo: Marketplace[] = [];
@@ -54,7 +54,6 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.homeService.getFeatures().subscribe({
         next: (data: Features) => {
           this.features = data;
-          console.log(data);
         },
         error: () => {
           console.log('error');
