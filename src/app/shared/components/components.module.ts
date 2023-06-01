@@ -3,6 +3,7 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AuthLinkComponent } from './auth-link/auth-link.component';
 import { ButtonComponent } from './button/button.component';
+import { CardProductHoverComponent } from './card-product-hover/card-product-hover.component';
 import { CardProductComponent } from './card-product/card-product.component';
 import { EmailComponent } from './email/email.component';
 import { FooterComponent } from './footer/footer.component';
@@ -24,6 +25,7 @@ import { SocialIconComponent } from './social-icon/social-icon.component';
     CardProductComponent,
     ShortLineComponent,
     SocialIconComponent,
+    CardProductHoverComponent,
   ],
   imports: [CommonModule, RouterModule],
   exports: [
@@ -37,6 +39,7 @@ import { SocialIconComponent } from './social-icon/social-icon.component';
     CardProductComponent,
     ShortLineComponent,
     SocialIconComponent,
+    CardProductHoverComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

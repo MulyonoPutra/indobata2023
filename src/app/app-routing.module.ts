@@ -27,7 +27,7 @@ const routes: Routes = [
       {
         path: 'product',
         loadChildren: () =>
-          import('./modules/product/product.module').then(
+          import('./modules/product/product-list/product.module').then(
             (m) => m.ProductModule
           ),
       },
@@ -36,6 +36,13 @@ const routes: Routes = [
         loadChildren: () =>
           import('./modules/project/project.module').then(
             (m) => m.ProjectModule
+          ),
+      },
+      {
+        path: 'product-detail',
+        loadChildren: () =>
+          import('./modules/product/product-detail/product-detail.module').then(
+            (m) => m.ProductDetailModule
           ),
       },
     ],
