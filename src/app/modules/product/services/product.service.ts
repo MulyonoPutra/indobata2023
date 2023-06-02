@@ -1,27 +1,34 @@
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of, catchError, throwError } from 'rxjs';
-import { products } from 'src/assets/data/product';
-import { Product } from '../../home/models/product';
+import { Observable, catchError, map, throwError } from 'rxjs';
+import { Product, ProductsType } from '../models/product';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProductService {
+  private mockProduct = 'assets/data/product.json';
 
-  private mockProduct = products
+  constructor(private http: HttpClient) {}
 
-  constructor() { }
-
-  getProducts(): Observable<Product[]> {
-    return of(this.mockProduct).pipe(
-      catchError((error) => {
-        console.error('Error occurred:', error);
-        return throwError(() => error);
-      })
-    );
+  getProducts(): Observable<ProductsType> {
+    return this.http
+      .get<Product[]>(this.mockProduct)
+      .pipe(catchError(this.handleError));
   }
 
-  getProductById(id: string) {
-    return this.mockProduct.find(product => product.id === id)
+  getProductById(id: string): Observable<Product> {
+    return this.http
+      .get<Product[]>(this.mockProduct)
+      .pipe(
+        map(
+          (products) => products.find((product: Product) => product.id === id)!
+        )
+      );
+  }
+
+  private handleError(res: HttpErrorResponse | any) {
+    console.error(res.error || res.body.error);
+    return throwError(() => new Error('Internal Server Error'));
   }
 }

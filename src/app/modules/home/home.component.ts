@@ -1,11 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { ProductsType } from '../product/models/product';
 import { Features } from './models/features';
-import { Marketplace } from './models/marketplace';
-import { Product } from './models/product';
-import { HomeService } from './services/home.service';
-import { Testimonials } from './models/testimonials';
 import { Hero } from './models/hero';
+import { Marketplace } from './models/marketplace';
+import { Testimonials } from './models/testimonials';
+import { HomeService } from './services/home.service';
 
 @Component({
   selector: 'app-home',
@@ -14,9 +14,8 @@ import { Hero } from './models/hero';
   providers: [HomeService],
 })
 export class HomeComponent implements OnInit, OnDestroy {
-
   protected features!: Features;
-  protected products!: Product[];
+  protected products!: ProductsType;
   protected logo: Marketplace[] = [];
   protected heros: Hero[] = [];
   protected testimonials: Testimonials[] = [];
@@ -65,7 +64,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   getProducts(): void {
     this.subscriptions.push(
       this.homeService.getProducts().subscribe({
-        next: (data: Product[]) => {
+        next: (data: ProductsType) => {
           this.products = data;
         },
         error: () => {

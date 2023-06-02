@@ -1,14 +1,14 @@
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, of, throwError } from 'rxjs';
 import { features } from 'src/assets/data/features';
 import { hero } from 'src/assets/data/hero';
 import { marketplace } from 'src/assets/data/marketplace';
-import { products } from 'src/assets/data/product';
 import { testimonials } from 'src/assets/data/testimonials';
+import { ProductsType } from '../../product/models/product';
 import { Features } from '../models/features';
 import { Hero } from '../models/hero';
 import { Marketplace } from '../models/marketplace';
-import { Product } from '../models/product';
 import { Testimonials } from '../models/testimonials';
 
 @Injectable({
@@ -16,12 +16,12 @@ import { Testimonials } from '../models/testimonials';
 })
 export class HomeService {
   private mockFeatures = features;
-  private mockProduct = products;
+  private mockProduct = 'assets/data/product.json';
   private mockLogo = marketplace;
   private mockTestimonials = testimonials;
   private mockHeros = hero;
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   getHeroSection(): Observable<Hero[]> {
     return of(this.mockHeros).pipe(
@@ -41,13 +41,10 @@ export class HomeService {
     );
   }
 
-  getProducts(): Observable<Product[]> {
-    return of(this.mockProduct).pipe(
-      catchError((error) => {
-        console.error('Error occurred:', error);
-        return throwError(() => error);
-      })
-    );
+  getProducts(): Observable<ProductsType> {
+    return this.http
+      .get<ProductsType>(this.mockProduct)
+      .pipe(catchError(this.handleError));
   }
 
   getMarketplaceLogo(): Observable<Marketplace[]> {
@@ -66,5 +63,10 @@ export class HomeService {
         return throwError(() => error);
       })
     );
+  }
+
+  private handleError(res: HttpErrorResponse | any) {
+    console.error(res.error || res.body.error);
+    return throwError(() => new Error('Internal Server Error'));
   }
 }

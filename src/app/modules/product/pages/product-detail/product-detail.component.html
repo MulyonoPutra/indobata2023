@@ -1,1 +1,61 @@
-<p>product-detail works!</p>
+<!-- component -->
+<div class="md:flex items-start justify-center py-12 2xl:px-20 md:px-6 px-4">
+  <!--- more free and premium Tailwind CSS components at https://tailwinduikit.com/ --->
+
+  <div class="xl:w-2/6 lg:w-2/5 w-80 md:block hidden">
+    <img class="w-full" alt="image of a girl posing" src="https://i.ibb.co/QMdWfzX/component-image-one.png" />
+    <img class="mt-6 w-full" alt="image of a girl posing" src="https://i.ibb.co/qxkRXSq/component-image-two.png" />
+  </div>
+  <div class="md:hidden">
+    <img class="w-full" alt="image of a girl posing" src="https://i.ibb.co/QMdWfzX/component-image-one.png" />
+    <div class="flex items-center justify-between mt-3 space-x-4 md:space-x-0">
+      <img alt="image-tag-one" class="md:w-48 md:h-48 w-full" src="https://i.ibb.co/cYDrVGh/Rectangle-245.png" />
+      <img alt="image-tag-one" class="md:w-48 md:h-48 w-full" src="https://i.ibb.co/f17NXrW/Rectangle-244.png" />
+      <img alt="image-tag-one" class="md:w-48 md:h-48 w-full" src="https://i.ibb.co/cYDrVGh/Rectangle-245.png" />
+      <img alt="image-tag-one" class="md:w-48 md:h-48 w-full" src="https://i.ibb.co/f17NXrW/Rectangle-244.png" />
+    </div>
+  </div>
+  <div class="xl:w-2/5 md:w-1/2 lg:ml-8 md:ml-6 md:mt-0 mt-6">
+    <div class="border-b border-gray-200 pb-6">
+      <p class="text-sm leading-none text-gray-600 dark:text-gray-300 ">
+        {{ product?.category }}
+      </p>
+      <h1 class="lg:text-2xl text-xl font-semibold lg:leading-6 leading-7 text-gray-800 dark:text-white mt-2">
+        {{ product?.name }}
+      </h1>
+    </div>
+
+    <div>
+      <div *ngFor="let item of accordions; let i = index" class="border-t border-b py-4 mt-2 border-gray-200">
+        <div class="flex justify-between cursor-pointer" (click)="toggleItem(i)">
+          <span class="text-base font-bold leading-4 text-gray-800">{{ item.title }}</span>
+          <div class="transform transition-all accordion-content" [class.rotate]="item.open">
+            <button
+              class="cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 rounded"
+              role="button" aria-label="show or hide">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path [attr.d]="item.open ? 'M19 9l-7 7-7-7' : 'M5 15l7-7 7 7'" stroke-linecap="round"
+                  stroke-linejoin="round" stroke-width="2" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div *ngIf="item.open" class="mt-2 text-sm leading-none text-gray-600 dark:text-gray-300">
+          <div *ngIf="isString(item.content)">
+            {{ item.content }}
+          </div>
+          <div *ngIf="isArray(item.content)">
+            <ul class="list-disc leading-normal ml-4">
+              <li *ngFor="let item of item.content">{{ item }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <button class="stock" (click)="isAvailable(product!.stock)">
+        Check availability in stock
+      </button>
+    </div>
+
+  </div>
+</div>

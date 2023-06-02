@@ -4,15 +4,16 @@
             <h1 class="sm:text-3xl text-2xl font-bold title-font text-gray-900 mb-4">Our Products</h1>
             <app-short-line></app-short-line>
             <div class="bg-white">
-                <div class="mx-auto max-w-2xl px-4 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+                <div class="mx-auto max-w-2xl px-4 sm:px-6 sm:py-8 lg:max-w-7xl lg:px-8">
                     <div class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-                        <div *ngFor="let product of products">
+                        <div *ngFor="let product of products | slice: 0:4">
                             <div>
                                 <app-card-product [product]="product"></app-card-product>
                             </div>
                         </div>
                     </div>
                 </div>
+                <app-more-button [label]="'Learn'" [url]="'/product'"></app-more-button>
             </div>
         </div>
     </div>

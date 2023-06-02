@@ -1,33 +1,4 @@
-import { Product } from "src/app/modules/home/models/product";
-
-export const products: Product[] = [
-    {
-        id: '1',
-        name: 'Genteng Beton',
-        images: '../../../../../assets/images/genteng1.jpg',
-        description: 'lorem ipsum dolor sit amet, consectetur adipis',
-    },
-    {
-        id: '2',
-        name: 'Genteng Beton',
-        images: '../../../../../assets/images/genteng1.jpg',
-        description: 'lorem ipsum dolor sit amet, consectetur adipis'
-    },
-    {
-        id: '3',
-        name: 'Genteng Beton',
-        images: '../../../../../assets/images/genteng1.jpg',
-        description: 'lorem ipsum dolor sit amet, consectetur adipis'
-    },
-    {
-        id: '4',
-        name: 'Genteng Beton',
-        images: '../../../../../assets/images/genteng1.jpg',
-        description: 'lorem ipsum dolor sit amet, consectetur adipis'
-    },
-]
-
-export const product = [
+[
   {
     "id": "1",
     "name": "Concrete Mix",
@@ -62,10 +33,9 @@ export const product = [
       "Maximum Aggregate Size": "20 mm"
     },
     "images": [
-      "concrete1.jpg",
-      "concrete2.jpg",
-      "concrete3.jpg"
-    ]
+      "../../../../../assets/images/genteng1.jpg"
+    ],
+    "stock": 0
   },
   {
     "id": "2",
@@ -96,11 +66,11 @@ export const product = [
       "Surface Finish": "Smooth or textured"
     },
     "images": [
-      "pavers1.jpg",
-      "pavers2.jpg",
-      "pavers3.jpg"
-    ]
+      "../../../../../assets/images/genteng1.jpg"
+    ],
+    "stock": 10
   },
+
   {
     "id": "3",
     "name": "Fiber-Reinforced Concrete",
@@ -135,10 +105,9 @@ export const product = [
       "Maximum Aggregate Size": "25 mm"
     },
     "images": [
-      "fiberconcrete1.jpg",
-      "fiberconcrete2.jpg",
-      "fiberconcrete3.jpg"
-    ]
+      "../../../../../assets/images/genteng1.jpg"
+    ],
+    "stock": 10
   },
   {
     "id": "4",
@@ -170,10 +139,9 @@ export const product = [
       "VOC Content": "Low VOC emissions"
     },
     "images": [
-      "selfleveling1.jpg",
-      "selfleveling2.jpg",
-      "selfleveling3.jpg"
-    ]
+      "../../../../../assets/images/genteng1.jpg"
+    ],
+    "stock": 10
   },
   {
     "id": "5",
@@ -205,10 +173,9 @@ export const product = [
       "Compressive Strength": "25-30 MPa"
     },
     "images": [
-      "stampedconcrete1.jpg",
-      "stampedconcrete2.jpg",
-      "stampedconcrete3.jpg"
-    ]
+      "../../../../../assets/images/genteng1.jpg"
+    ],
+    "stock": 10
   },
   {
     "id": "6",
@@ -242,10 +209,9 @@ export const product = [
       "Effect on Air Content": "Varies based on the admixture"
     },
     "images": [
-      "admixtures1.jpg",
-      "admixtures2.jpg",
-      "admixtures3.jpg"
-    ]
+      "../../../../../assets/images/genteng1.jpg"
+    ],
+    "stock": 10
   },
   {
     "id": "7",
@@ -279,10 +245,9 @@ export const product = [
       "Number of Reuses": "Depends on formwork quality and maintenance"
     },
     "images": [
-      "formwork1.jpg",
-      "formwork2.jpg",
-      "formwork3.jpg"
-    ]
+      "../../../../../assets/images/genteng1.jpg"
+    ],
+    "stock": 10
   },
   {
     "id": "8",
@@ -316,10 +281,9 @@ export const product = [
       "Coverage Area": "Depends on product and surface porosity"
     },
     "images": [
-      "sealers1.jpg",
-      "sealers2.jpg",
-      "sealers3.jpg"
-    ]
+      "../../../../../assets/images/genteng1.jpg"
+    ],
+    "stock": 10
   },
   {
     "id": "9",
@@ -353,10 +317,9 @@ export const product = [
       "Carbon Fiber Sheet Thickness": "Depends on structural needs"
     },
     "images": [
-      "reinforcement1.jpg",
-      "reinforcement2.jpg",
-      "reinforcement3.jpg"
-    ]
+      "../../../../../assets/images/genteng1.jpg"
+    ],
+    "stock": 10
   },
   {
     "id": "10",
@@ -388,9 +351,8 @@ export const product = [
       "VOC Content": "Low VOC emissions"
     },
     "images": [
-      "curing1.jpg",
-      "curing2.jpg",
-      "curing3.jpg"
-    ]
+      "../../../../../assets/images/genteng1.jpg"
+    ],
+    "stock": 10
   }
 ]

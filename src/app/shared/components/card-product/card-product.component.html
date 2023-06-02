@@ -7,7 +7,7 @@
       <p class="description">
         {{ product.description }}
       </p>
-      <a>
+      <a [routerLink]="['/product-detail', product.id]">
         <span class="read-more">
           <p>
             Read More

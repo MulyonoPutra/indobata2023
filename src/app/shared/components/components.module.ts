@@ -9,6 +9,7 @@ import { EmailComponent } from './email/email.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { MenuComponent } from './menu/menu.component';
+import { MoreButtonComponent } from './more-button/more-button.component';
 import { PhoneComponent } from './phone/phone.component';
 import { ShortLineComponent } from './short-line/short-line.component';
 import { SocialIconComponent } from './social-icon/social-icon.component';
@@ -26,6 +27,7 @@ import { SocialIconComponent } from './social-icon/social-icon.component';
     ShortLineComponent,
     SocialIconComponent,
     CardProductHoverComponent,
+    MoreButtonComponent,
   ],
   imports: [CommonModule, RouterModule],
   exports: [
@@ -39,6 +41,7 @@ import { SocialIconComponent } from './social-icon/social-icon.component';
     CardProductComponent,
     ShortLineComponent,
     SocialIconComponent,
+    MoreButtonComponent,
     CardProductHoverComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

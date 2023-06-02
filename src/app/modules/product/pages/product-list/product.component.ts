@@ -1,37 +1,34 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { pathAssets } from 'src/app/configs/path-assets';
-import { ProductService } from '../../services/product.service';
-import { Product } from 'src/app/modules/home/models/product';
 import { Subscription } from 'rxjs';
+import { pathAssets } from 'src/app/configs/path-assets';
+import { ProductsType } from '../../models/product';
+import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrls: ['./product.component.scss']
+  styleUrls: ['./product.component.scss'],
 })
 export class ProductComponent implements OnInit, OnDestroy {
-
   protected iconArrowLeft = pathAssets.iconArrowLeft;
-  protected products!: Product[];
+  protected products!: ProductsType;
   protected subscriptions: Subscription[] = [];
 
-  constructor(private productService: ProductService){}
+  constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-    this.getProducts()
+    this.getProducts();
   }
 
   getProducts(): void {
-    this.productService.getProducts().subscribe(
-      {
-        next: (data: Product[]) => {
-          this.products = data
-        },
-        error: (error) => {
-          console.log(error);
-        }
-      }
-    );
+    this.productService.getProducts().subscribe({
+      next: (data: ProductsType) => {
+        this.products = data;
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
   }
 
   ngOnDestroy(): void {
@@ -39,5 +36,4 @@ export class ProductComponent implements OnInit, OnDestroy {
       subs.unsubscribe();
     });
   }
-
 }
