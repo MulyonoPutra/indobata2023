@@ -15,11 +15,17 @@
                     you may have. Please feel free to reach out to us using the contact information provided below or by
                     filling out the contact form.
                 </p>
-                <div class="relative mb-4">
+                <!-- <div class="relative mb-4">
                     <label for="fullname" class="leading-7 text-sm text-gray-600">Fullname</label>
                     <input type="text" id="fullname" name="fullname" formControlName="fullname"
                         class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-                </div>
+                </div> -->
+
+                <app-form-field
+                label="Name"
+                [control]="getFormControl('fullname')"
+                controlName="fullname"
+              ></app-form-field>
                 <div class="relative mb-4">
                     <label for="phone" class="leading-7 text-sm text-gray-600">Phone Number</label>
                     <input type="text" id="phone" name="phone" formControlName="phone"
@@ -35,14 +41,17 @@
                     <textarea id="message" name="message" formControlName="message"
                         class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
                 </div>
-                
-                <button (click)="save()" [disabled]="!form.valid" class="btn-submit flex items-center justify-center">
+
+
+                <!-- <button (click)="save()" [disabled]="!form.valid" class="btn-submit flex items-center justify-center">
                 <span *ngIf="!isSubmitting">Save</span>
                 <div *ngIf="isSubmitting">
                    <div class="spinner"></div>
                 </div>
                 <span *ngIf="isSubmitting">Submitting...</span>
-                </button>
+                </button> -->
+
+                <app-submit-button [isLoading]="isSubmitting" (click)="save()" [label]="'Save'"></app-submit-button>
             </div>
         </form>
     </div>

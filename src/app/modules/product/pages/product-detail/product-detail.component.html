@@ -1,7 +1,5 @@
 <!-- component -->
 <div class="md:flex items-start justify-center py-12 2xl:px-20 md:px-6 px-4">
-  <!--- more free and premium Tailwind CSS components at https://tailwinduikit.com/ --->
-
   <div class="xl:w-2/6 lg:w-2/5 w-80 md:block hidden">
     <img class="w-full" alt="image of a girl posing" src="https://i.ibb.co/QMdWfzX/component-image-one.png" />
     <img class="mt-6 w-full" alt="image of a girl posing" src="https://i.ibb.co/qxkRXSq/component-image-two.png" />
@@ -52,9 +50,7 @@
           </div>
         </div>
       </div>
-      <button class="stock" (click)="isAvailable(product!.stock)">
-        Check availability in stock
-      </button>
+      <app-submit-button (clicked)="isAvailable(product!.stock)" [label]="'Check availability in stock'"></app-submit-button>
     </div>
 
   </div>

@@ -1,0 +1,15 @@
+<div class="form-field">
+  <label class="block mb-2" [for]="controlName">{{ label }}</label>
+  <input
+    [id]="controlName"
+    class="form-input w-full"
+    [formControl]="control"
+    [class.border-red-500]="control.invalid && control.touched"
+  >
+  <div class="error-message" *ngIf="control.invalid && control.touched">
+    <span *ngIf="control.hasError('required')">Field is required</span>
+    <span *ngIf="control.hasError('minlength')">Minimum length is {{ control.getError('minlength').requiredLength }}</span>
+    <span *ngIf="control.hasError('maxlength')">Maximum length is {{ control.getError('maxlength').requiredLength }}</span>
+    <!-- Add more validation messages for other validators if needed -->
+  </div>
+</div>

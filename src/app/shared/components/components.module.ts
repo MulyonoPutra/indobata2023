@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AuthLinkComponent } from './auth-link/auth-link.component';
 import { ButtonComponent } from './button/button.component';
@@ -7,12 +8,14 @@ import { CardProductHoverComponent } from './card-product-hover/card-product-hov
 import { CardProductComponent } from './card-product/card-product.component';
 import { EmailComponent } from './email/email.component';
 import { FooterComponent } from './footer/footer.component';
+import { FormFieldComponent } from './form-field/form-field.component';
 import { HeaderComponent } from './header/header.component';
 import { MenuComponent } from './menu/menu.component';
 import { MoreButtonComponent } from './more-button/more-button.component';
 import { PhoneComponent } from './phone/phone.component';
 import { ShortLineComponent } from './short-line/short-line.component';
 import { SocialIconComponent } from './social-icon/social-icon.component';
+import { SubmitButtonComponent } from './submit-button/submit-button.component';
 
 @NgModule({
   declarations: [
@@ -28,8 +31,10 @@ import { SocialIconComponent } from './social-icon/social-icon.component';
     SocialIconComponent,
     CardProductHoverComponent,
     MoreButtonComponent,
+    SubmitButtonComponent,
+    FormFieldComponent,
   ],
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule],
   exports: [
     HeaderComponent,
     FooterComponent,
@@ -43,6 +48,8 @@ import { SocialIconComponent } from './social-icon/social-icon.component';
     SocialIconComponent,
     MoreButtonComponent,
     CardProductHoverComponent,
+    SubmitButtonComponent,
+    FormFieldComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-contact-section',
@@ -34,16 +39,21 @@ export class ContactSectionComponent implements OnInit {
     };
   }
 
+  getFormControl(fullname: string): FormControl {
+    return this.form.get(fullname) as FormControl;
+  }
+
   protected save(): void {
     if (this.form.invalid) {
       return;
     }
 
     this.isSubmitting = true;
+
     setTimeout(() => {
       this.isSubmitting = false;
+      console.log(this.formCtrlValue.email);
       this.form.reset();
-      console.log(this.formCtrlValue);
     }, 2000);
   }
 }

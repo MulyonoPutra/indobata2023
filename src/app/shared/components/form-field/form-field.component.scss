@@ -1,0 +1,23 @@
+.form-field {
+  margin-bottom: 1.5rem;
+}
+
+.form-input {
+  border-width: 1px;
+  border-color: #e2e8f0;
+  padding: 0.5rem;
+  transition: border-color 0.2s ease-in-out;
+  border-radius: 15px;
+}
+
+.form-input.border-red-500 {
+  border-color: #e53e3e;
+  border-width: 2px;
+  border-radius: 15px;
+}
+
+.error-message {
+  color: #e53e3e;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
