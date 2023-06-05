@@ -5,6 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LayoutComponent } from './modules/layout/layout.component';
 import { ComponentsModule } from './shared/components/components.module';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { ProjectEffects } from './modules/project/state/effects/project.effects';
+import { projectReducer } from './modules/project/state/reducers/project.reducer';
 
 @NgModule({
   declarations: [AppComponent, LayoutComponent],
@@ -13,6 +18,9 @@ import { ComponentsModule } from './shared/components/components.module';
     AppRoutingModule,
     ComponentsModule,
     HttpClientModule,
+    StoreModule.forRoot({ projects: projectReducer }),
+    EffectsModule.forRoot([ProjectEffects]),
+    StoreDevtoolsModule.instrument({}),
   ],
   exports: [AppComponent, LayoutComponent],
   providers: [],

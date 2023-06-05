@@ -1,1 +1,8 @@
-<p>project works!</p>
+<div *ngIf="loading$ | async">Loading...</div>
+<div *ngIf="error$ | async as error">{{ error }}</div>
+
+<ul>
+  <li *ngFor="let project of projects$ | async">
+    {{ project.title }} ({{ project.description }})
+  </li>
+</ul>
