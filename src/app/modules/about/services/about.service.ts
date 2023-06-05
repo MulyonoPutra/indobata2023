@@ -1,23 +1,24 @@
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable, catchError, throwError } from 'rxjs';
 import { About } from '../models/about';
-import { about } from 'src/assets/data/about';
-import { Observable, catchError, of, throwError } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AboutService {
+  private mockData = 'assets/data/about.json';
 
-  private mockData = about;
-
-  constructor() { }
+  constructor(private http: HttpClient) {}
 
   getAboutSection(): Observable<About> {
-    return of(this.mockData).pipe(
-      catchError((error) => {
-        console.error('Error occurred:', error);
-        return throwError(() => error);
-      })
-    );
+    return this.http
+      .get<About>(this.mockData)
+      .pipe(catchError(this.handleError));
+  }
+
+  private handleError(res: HttpErrorResponse | any) {
+    console.error(res.error || res.body.error);
+    return throwError(() => new Error('Internal Server Error'));
   }
 }

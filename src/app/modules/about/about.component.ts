@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { AboutService } from './services/about.service';
+import { Subject, takeUntil } from 'rxjs';
 import { About } from './models/about';
+import { AboutService } from './services/about.service';
 
 @Component({
   selector: 'app-about',
@@ -9,7 +9,7 @@ import { About } from './models/about';
   styleUrls: ['./about.component.scss'],
 })
 export class AboutComponent implements OnInit, OnDestroy {
-  protected subscriptions: Subscription[] = [];
+  private destroy$ = new Subject<void>();
   protected about!: About;
 
   constructor(private aboutService: AboutService) {}
@@ -19,17 +19,16 @@ export class AboutComponent implements OnInit, OnDestroy {
   }
 
   getAboutSections(): void {
-    this.subscriptions.push(this.aboutService.getAboutSection().subscribe(
-        {
-          next: (response: About) => this.about = response
-        },
-      )
-    );
+    this.aboutService
+      .getAboutSection()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (response: About) => (this.about = response),
+      });
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.forEach((subs) => {
-      subs.unsubscribe();
-    });
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }
