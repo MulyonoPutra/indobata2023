@@ -25,7 +25,7 @@ export class ContactSectionComponent implements OnInit {
     this.form = this.fb.group({
       fullname: ['', Validators.required],
       phone: ['', Validators.required],
-      email: ['', Validators.required],
+      email: ['', [ Validators.required, Validators.email ]],
       message: ['', Validators.required],
     });
   }
