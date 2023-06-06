@@ -1,62 +1,62 @@
 [
-  {
-    "id": 1,
-    "title": "Residential Building Foundation",
-    "image": "residential_building.jpg",
-    "description": "Supplying and pouring concrete for the foundation of a residential building project."
-  },
-  {
-    "id": 2,
-    "title": "Commercial Warehouse Flooring",
-    "image": "commercial_warehouse.jpg",
-    "description": "Installation of high-quality concrete flooring for a commercial warehouse facility."
-  },
-  {
-    "id": 3,
-    "title": "Municipal Road Construction",
-    "image": "municipal_road.jpg",
-    "description": "Providing concrete for the construction of a new municipal road infrastructure."
-  },
-  {
-    "id": 4,
-    "title": "Industrial Facility Expansion",
-    "image": "industrial_facility.jpg",
-    "description": "Concrete supply and pouring services for an expansion project at an industrial facility."
-  },
-  {
-    "id": 5,
-    "title": "Bridge Construction",
-    "image": "bridge_construction.jpg",
-    "description": "Supplying reinforced concrete for the construction of a new bridge over a river."
-  },
-  {
-    "id": 6,
-    "title": "Parking Lot Reconstruction",
-    "image": "parking_lot.jpg",
-    "description": "Demolition and replacement of old concrete for a parking lot reconstruction project."
-  },
-  {
-    "id": 7,
-    "title": "School Playground Installation",
-    "image": "school_playground.jpg",
-    "description": "Installing safe and durable concrete flooring for a school playground area."
-  },
-  {
-    "id": 8,
-    "title": "Sports Stadium Renovation",
-    "image": "sports_stadium.jpg",
-    "description": "Renovation of concrete structures in a sports stadium to enhance spectator experience."
-  },
-  {
-    "id": 9,
-    "title": "Hospital Building Construction",
-    "image": "hospital_building.jpg",
-    "description": "Providing concrete solutions for the construction of a new hospital building."
-  },
-  {
-    "id": 10,
-    "title": "Airport Runway Expansion",
-    "image": "airport_runway.jpg",
-    "description": "Concrete paving services for the expansion of an airport runway."
-  }
+	{
+		"id": 1,
+		"title": "Residential Building Foundation",
+		"image": "residential_building.jpg",
+		"description": "Supplying and pouring concrete for the foundation of a residential building project."
+	},
+	{
+		"id": 2,
+		"title": "Commercial Warehouse Flooring",
+		"image": "commercial_warehouse.jpg",
+		"description": "Installation of high-quality concrete flooring for a commercial warehouse facility."
+	},
+	{
+		"id": 3,
+		"title": "Municipal Road Construction",
+		"image": "municipal_road.jpg",
+		"description": "Providing concrete for the construction of a new municipal road infrastructure."
+	},
+	{
+		"id": 4,
+		"title": "Industrial Facility Expansion",
+		"image": "industrial_facility.jpg",
+		"description": "Concrete supply and pouring services for an expansion project at an industrial facility."
+	},
+	{
+		"id": 5,
+		"title": "Bridge Construction",
+		"image": "bridge_construction.jpg",
+		"description": "Supplying reinforced concrete for the construction of a new bridge over a river."
+	},
+	{
+		"id": 6,
+		"title": "Parking Lot Reconstruction",
+		"image": "parking_lot.jpg",
+		"description": "Demolition and replacement of old concrete for a parking lot reconstruction project."
+	},
+	{
+		"id": 7,
+		"title": "School Playground Installation",
+		"image": "school_playground.jpg",
+		"description": "Installing safe and durable concrete flooring for a school playground area."
+	},
+	{
+		"id": 8,
+		"title": "Sports Stadium Renovation",
+		"image": "sports_stadium.jpg",
+		"description": "Renovation of concrete structures in a sports stadium to enhance spectator experience."
+	},
+	{
+		"id": 9,
+		"title": "Hospital Building Construction",
+		"image": "hospital_building.jpg",
+		"description": "Providing concrete solutions for the construction of a new hospital building."
+	},
+	{
+		"id": 10,
+		"title": "Airport Runway Expansion",
+		"image": "airport_runway.jpg",
+		"description": "Concrete paving services for the expansion of an airport runway."
+	}
 ]

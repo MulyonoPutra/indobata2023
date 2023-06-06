@@ -1,0 +1,108 @@
+[
+	{
+		"title": "The Importance of Quality Concrete in Construction",
+		"author": "John Smith",
+		"date": "2023-05-15",
+		"content": "Quality concrete is a vital component in any construction project...",
+		"tags": ["construction", "concrete quality", "building materials"],
+		"images": ["image1.jpg", "image2.jpg"],
+		"category": "Construction"
+	},
+	{
+		"title": "Advancements in Concrete Technology",
+		"author": "Sarah Johnson",
+		"date": "2023-04-28",
+		"content": "Concrete technology continues to evolve, bringing new possibilities and advancements to the construction industry...",
+		"tags": ["concrete technology", "innovations", "sustainability"],
+		"images": ["image3.jpg", "image4.jpg"],
+		"category": "Technology"
+	},
+	{
+		"title": "Benefits of Precast Concrete in Large-scale Projects",
+		"author": "David Wilson",
+		"date": "2023-03-12",
+		"content": "In large-scale construction projects, precast concrete offers numerous advantages that improve efficiency and streamline the building process...",
+		"tags": ["precast concrete", "large-scale projects", "efficiency"],
+		"images": ["image5.jpg", "image6.jpg"],
+		"category": "Construction"
+	},
+	{
+		"title": "The Role of Concrete in Sustainable Construction",
+		"author": "Emily Brown",
+		"date": "2023-02-05",
+		"content": "Concrete plays a significant role in sustainable construction practices...",
+		"tags": ["sustainable construction", "concrete", "recycled aggregates"],
+		"images": ["image7.jpg"],
+		"category": "Sustainability"
+	},
+	{
+		"title": "The Importance of Curing Concrete Properly",
+		"author": "Michael Thompson",
+		"date": "2023-01-18",
+		"content": "Proper curing is essential for achieving strong and durable concrete structures...",
+		"tags": ["concrete curing", "construction practices", "durability"],
+		"images": ["image8.jpg"],
+		"category": "Construction"
+	},
+	{
+		"title": "Innovative Uses of Decorative Concrete",
+		"author": "Sophia Adams",
+		"date": "2022-12-07",
+		"content": "Decorative concrete offers a wide range of creative possibilities for enhancing the aesthetics of various spaces...",
+		"tags": ["decorative concrete", "aesthetics", "interior design"],
+		"images": ["image9.jpg", "image10.jpg"],
+		"category": "Design"
+	},
+	{
+		"title": "Concrete Maintenance Tips for Longevity",
+		"author": "Robert Davis",
+		"date": "2022-11-21",
+		"content": "Proper maintenance is crucial for extending the lifespan and preserving the appearance of concrete surfaces...",
+		"tags": [
+			"concrete maintenance",
+			"surface preservation",
+			"cleaning tips"
+		],
+		"images": ["image11.jpg"],
+		"category": "Maintenance"
+	},
+	{
+		"title": "The Role of Concrete in Sustainable Infrastructure",
+		"author": "Olivia Wilson",
+		"date": "2022-10-30",
+		"content": "Concrete plays a vital role in building sustainable infrastructure that meets the demands of growing populations...",
+		"tags": [
+			"sustainable infrastructure",
+			"concrete applications",
+			"environmental impact"
+		],
+		"images": ["image12.jpg", "image13.jpg"],
+		"category": "Sustainability"
+	},
+	{
+		"title": "Exploring Concrete Finishes for Architectural Projects",
+		"author": "Daniel Lee",
+		"date": "2022-09-12",
+		"content": "Concrete finishes offer architects a versatile and visually appealing solution for architectural projects...",
+		"tags": [
+			"concrete finishes",
+			"architectural design",
+			"surface treatments"
+		],
+		"images": ["image14.jpg"],
+		"category": "Design"
+	},
+	{
+		"title": "The Future of Concrete: Sustainable and Smart Solutions",
+		"author": "Laura Mitchell",
+		"date": "2022-08-25",
+		"content": "The future of concrete lies in sustainable and smart solutions that address environmental concerns and improve efficiency...",
+		"tags": [
+			"future of concrete",
+			"sustainable solutions",
+			"smart construction"
+		],
+		"images": ["image15.jpg", "image16.jpg"],
+		"category": "Technology"
+	}
+]

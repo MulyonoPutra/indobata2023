@@ -10,29 +10,29 @@ import { TestimonialsComponent } from './components/testimonials/testimonials.co
 import { HomeComponent } from './home.component';
 
 describe('HomeComponent', () => {
-  let component: HomeComponent;
-  let fixture: ComponentFixture<HomeComponent>;
+	let component: HomeComponent;
+	let fixture: ComponentFixture<HomeComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [
-        HomeComponent,
-        HeroComponent,
-        AboutSectionComponent,
-        FeaturesComponent,
-        OurProductComponent,
-        AvailableMarketplaceComponent,
-        TestimonialsComponent,
-        ContactComponent,
-      ],
-    }).compileComponents();
+	beforeEach(async () => {
+		await TestBed.configureTestingModule({
+			declarations: [
+				HomeComponent,
+				HeroComponent,
+				AboutSectionComponent,
+				FeaturesComponent,
+				OurProductComponent,
+				AvailableMarketplaceComponent,
+				TestimonialsComponent,
+				ContactComponent,
+			],
+		}).compileComponents();
 
-    fixture = TestBed.createComponent(HomeComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+		fixture = TestBed.createComponent(HomeComponent);
+		component = fixture.componentInstance;
+		fixture.detectChanges();
+	});
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+	it('should create', () => {
+		expect(component).toBeTruthy();
+	});
 });

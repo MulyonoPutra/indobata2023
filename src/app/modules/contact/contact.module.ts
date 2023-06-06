@@ -5,16 +5,13 @@ import { ContactRoutingModule } from './contact-routing.module';
 import { ContactComponent } from './contact.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-
 @NgModule({
-  declarations: [
-    ContactComponent
-  ],
-  imports: [
-    CommonModule,
-    ContactRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-  ]
+	declarations: [ContactComponent],
+	imports: [
+		CommonModule,
+		ContactRoutingModule,
+		FormsModule,
+		ReactiveFormsModule,
+	],
 })
-export class ContactModule { }
+export class ContactModule {}

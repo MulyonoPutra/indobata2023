@@ -1,6 +1,6 @@
 export interface Testimonials {
-  id: string;
-  name: string;
-  photo: string;
-  comment: string;
+	id: string;
+	name: string;
+	photo: string;
+	comment: string;
 }

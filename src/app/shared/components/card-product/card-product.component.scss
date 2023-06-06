@@ -1,31 +1,32 @@
 .arrow {
-    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(193deg) brightness(106%) contrast(101%);
+	filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(193deg)
+		brightness(106%) contrast(101%);
 }
 
 .wrapper {
-    @apply relative overflow-hidden transition duration-200 transform rounded shadow-lg hover:-translate-y-2 hover:shadow-2xl;
+	@apply relative overflow-hidden transition duration-200 transform rounded shadow-lg hover:-translate-y-2 hover:shadow-2xl;
 
-    .card-content {
-        @apply absolute bottom-0 left-0 p-6 bg-black bg-opacity-25 w-full inset-x-0 px-6 py-4;
+	.card-content {
+		@apply absolute bottom-0 left-0 p-6 bg-black bg-opacity-25 w-full inset-x-0 px-6 py-4;
 
-        .title {
-            @apply text-xl font-semibold text-white capitalize;
-        }
+		.title {
+			@apply text-xl font-semibold text-white capitalize;
+		}
 
-        .description {
-            @apply text-base leading-4 text-white mt-2 text-left;
-        }
+		.description {
+			@apply text-base leading-4 text-white mt-2 text-left;
+		}
 
-        .read-more {
-            @apply focus:outline-none focus:underline flex items-center mt-4 cursor-pointer text-white hover:text-gray-200 hover:underline;
+		.read-more {
+			@apply focus:outline-none focus:underline flex items-center mt-4 cursor-pointer text-white hover:text-gray-200 hover:underline;
 
-            p {
-                @apply pr-2 text-sm font-medium leading-none cursor-pointer;
-            }
-        }
-    }
+			p {
+				@apply pr-2 text-sm font-medium leading-none cursor-pointer;
+			}
+		}
+	}
 
-    .card-images {
-        @apply object-cover w-full lg:w-[300px] h-56 md:h-64 xl:h-80 bg-gray-300;
-    }
+	.card-images {
+		@apply object-cover w-full lg:w-[300px] h-56 md:h-64 xl:h-80 bg-gray-300;
+	}
 }

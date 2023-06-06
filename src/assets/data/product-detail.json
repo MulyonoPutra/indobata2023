@@ -1,39 +1,23 @@
 {
-  "id": "1",
-  "name": "Concrete Mix",
-  "description": "A versatile concrete mix suitable for various construction projects.",
-  "category": "General Purpose",
-  "ingredients": [
-    "Portland cement",
-    "Sand",
-    "Gravel",
-    "Water",
-    "Additives"
-  ],
-  "features": [
-    "High strength",
-    "Excellent workability",
-    "Durable",
-    "Fast setting",
-    "Suitable for both indoor and outdoor applications"
-  ],
-  "applications": [
-    "Foundations",
-    "Slabs",
-    "Columns",
-    "Walls",
-    "Pathways"
-  ],
-  "technicalSpecifications": {
-    "Compressive Strength": "30 MPa",
-    "Setting Time": "Approximately 2 hours",
-    "Water-Cement Ratio": "0.45",
-    "Density": "2400 kg/m³",
-    "Maximum Aggregate Size": "20 mm"
-  },
-  "images": [
-    "concrete1.jpg",
-    "concrete2.jpg",
-    "concrete3.jpg"
-  ]
+	"id": "1",
+	"name": "Concrete Mix",
+	"description": "A versatile concrete mix suitable for various construction projects.",
+	"category": "General Purpose",
+	"ingredients": ["Portland cement", "Sand", "Gravel", "Water", "Additives"],
+	"features": [
+		"High strength",
+		"Excellent workability",
+		"Durable",
+		"Fast setting",
+		"Suitable for both indoor and outdoor applications"
+	],
+	"applications": ["Foundations", "Slabs", "Columns", "Walls", "Pathways"],
+	"technicalSpecifications": {
+		"Compressive Strength": "30 MPa",
+		"Setting Time": "Approximately 2 hours",
+		"Water-Cement Ratio": "0.45",
+		"Density": "2400 kg/m³",
+		"Maximum Aggregate Size": "20 mm"
+	},
+	"images": ["concrete1.jpg", "concrete2.jpg", "concrete3.jpg"]
 }

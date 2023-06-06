@@ -12,19 +12,19 @@ import { ProjectEffects } from './modules/project/state/effects/project.effects'
 import { projectReducer } from './modules/project/state/reducers/project.reducer';
 
 @NgModule({
-  declarations: [AppComponent, LayoutComponent],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ComponentsModule,
-    HttpClientModule,
-    StoreModule.forRoot({ projects: projectReducer }),
-    EffectsModule.forRoot([ProjectEffects]),
-    StoreDevtoolsModule.instrument({}),
-  ],
-  exports: [AppComponent, LayoutComponent],
-  providers: [],
-  bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+	declarations: [AppComponent, LayoutComponent],
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		ComponentsModule,
+		HttpClientModule,
+		StoreModule.forRoot({ projects: projectReducer }),
+		EffectsModule.forRoot([ProjectEffects]),
+		StoreDevtoolsModule.instrument({}),
+	],
+	exports: [AppComponent, LayoutComponent],
+	providers: [],
+	bootstrap: [AppComponent],
+	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}

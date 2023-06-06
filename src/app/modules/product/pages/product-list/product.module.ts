@@ -6,13 +6,7 @@ import { ProductComponent } from './product.component';
 import { ComponentsModule } from 'src/app/shared/components/components.module';
 
 @NgModule({
-  declarations: [
-    ProductComponent
-  ],
-  imports: [
-    CommonModule,
-    ProductRoutingModule,
-    ComponentsModule
-  ]
+	declarations: [ProductComponent],
+	imports: [CommonModule, ProductRoutingModule, ComponentsModule],
 })
-export class ProductModule { }
+export class ProductModule {}

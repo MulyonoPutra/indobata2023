@@ -30,6 +30,9 @@
           <label for="fullname" class="leading-7 text-sm text-gray-600">Fullname</label>
           <input type="text" id="fullname" name="fullname" formControlName="fullname"
             class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+            <div *ngIf="form.controls['fullname'].invalid && form.controls['fullname'].touched">
+              <div *ngIf="form.controls['fullname'].errors?.['required']">Name is required</div>
+            </div>
         </div>
         <div class="relative mb-4">
           <label for="phone" class="leading-7 text-sm text-gray-600">Phone Number</label>

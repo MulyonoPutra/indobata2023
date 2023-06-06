@@ -1,4 +1,4 @@
-<button [disabled]="isLoading" (click)="onClick()">
+<button [disabled]="isLoading" (click)="onClick()" [disabled]="isDisabled">
   <span *ngIf="isLoading" class="spinner"></span>
   <span *ngIf="isLoading">Submitting...</span>
   <span *ngIf="!isLoading">{{ label }}</span>

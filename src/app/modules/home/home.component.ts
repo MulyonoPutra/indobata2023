@@ -8,101 +8,101 @@ import { Testimonials } from './models/testimonials';
 import { HomeService } from './services/home.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
-  providers: [HomeService],
+	selector: 'app-home',
+	templateUrl: './home.component.html',
+	styleUrls: ['./home.component.scss'],
+	providers: [HomeService],
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  protected features!: Features;
-  protected products!: ProductsType;
-  protected logo: Marketplace[] = [];
-  protected heros: Hero[] = [];
-  protected testimonials: Testimonials[] = [];
-  protected subscriptions: Subscription[] = [];
+	protected features!: Features;
+	protected products!: ProductsType;
+	protected logo: Marketplace[] = [];
+	protected heros: Hero[] = [];
+	protected testimonials: Testimonials[] = [];
+	protected subscriptions: Subscription[] = [];
 
-  constructor(private homeService: HomeService) {}
+	constructor(private homeService: HomeService) {}
 
-  ngOnInit(): void {
-    this.fetchMockData();
-  }
+	ngOnInit(): void {
+		this.fetchMockData();
+	}
 
-  fetchMockData(): void {
-    this.getHero();
-    this.getFeatures();
-    this.getProducts();
-    this.getLogo();
-    this.getTestimonials();
-  }
+	fetchMockData(): void {
+		this.getHero();
+		this.getFeatures();
+		this.getProducts();
+		this.getLogo();
+		this.getTestimonials();
+	}
 
-  getHero(): void {
-    this.subscriptions.push(
-      this.homeService.getHeroSection().subscribe({
-        next: (data: Hero[]) => {
-          this.heros = data;
-        },
-        error: () => {
-          console.log('error');
-        },
-      })
-    );
-  }
+	getHero(): void {
+		this.subscriptions.push(
+			this.homeService.getHeroSection().subscribe({
+				next: (data: Hero[]) => {
+					this.heros = data;
+				},
+				error: () => {
+					console.log('error');
+				},
+			})
+		);
+	}
 
-  getFeatures(): void {
-    this.subscriptions.push(
-      this.homeService.getFeatures().subscribe({
-        next: (data: Features) => {
-          this.features = data;
-        },
-        error: () => {
-          console.log('error');
-        },
-      })
-    );
-  }
+	getFeatures(): void {
+		this.subscriptions.push(
+			this.homeService.getFeatures().subscribe({
+				next: (data: Features) => {
+					this.features = data;
+				},
+				error: () => {
+					console.log('error');
+				},
+			})
+		);
+	}
 
-  getProducts(): void {
-    this.subscriptions.push(
-      this.homeService.getProducts().subscribe({
-        next: (data: ProductsType) => {
-          this.products = data;
-        },
-        error: () => {
-          console.log('error');
-        },
-      })
-    );
-  }
+	getProducts(): void {
+		this.subscriptions.push(
+			this.homeService.getProducts().subscribe({
+				next: (data: ProductsType) => {
+					this.products = data;
+				},
+				error: () => {
+					console.log('error');
+				},
+			})
+		);
+	}
 
-  getLogo(): void {
-    this.subscriptions.push(
-      this.homeService.getMarketplaceLogo().subscribe({
-        next: (data: Marketplace[]) => {
-          this.logo = data;
-        },
-        error: () => {
-          console.log('error');
-        },
-      })
-    );
-  }
+	getLogo(): void {
+		this.subscriptions.push(
+			this.homeService.getMarketplaceLogo().subscribe({
+				next: (data: Marketplace[]) => {
+					this.logo = data;
+				},
+				error: () => {
+					console.log('error');
+				},
+			})
+		);
+	}
 
-  getTestimonials(): void {
-    this.subscriptions.push(
-      this.homeService.getTestimonials().subscribe({
-        next: (data: Testimonials[]) => {
-          this.testimonials = data;
-        },
-        error: () => {
-          console.log('error');
-        },
-      })
-    );
-  }
+	getTestimonials(): void {
+		this.subscriptions.push(
+			this.homeService.getTestimonials().subscribe({
+				next: (data: Testimonials[]) => {
+					this.testimonials = data;
+				},
+				error: () => {
+					console.log('error');
+				},
+			})
+		);
+	}
 
-  ngOnDestroy(): void {
-    this.subscriptions.forEach((subs) => {
-      subs.unsubscribe();
-    });
-  }
+	ngOnDestroy(): void {
+		this.subscriptions.forEach((subs) => {
+			subs.unsubscribe();
+		});
+	}
 }

@@ -1,7 +1,7 @@
-import { Content } from "./content";
+import { Content } from './content';
 
 export interface About {
-  header: string;
-  images: string[];
-  content: Content;
+	header: string;
+	images: string[];
+	content: Content;
 }

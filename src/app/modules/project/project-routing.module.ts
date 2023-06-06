@@ -5,7 +5,7 @@ import { ProjectComponent } from './project.component';
 const routes: Routes = [{ path: '', component: ProjectComponent }];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+	imports: [RouterModule.forChild(routes)],
+	exports: [RouterModule],
 })
-export class ProjectRoutingModule { }
+export class ProjectRoutingModule {}

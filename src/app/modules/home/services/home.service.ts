@@ -12,61 +12,61 @@ import { Marketplace } from '../models/marketplace';
 import { Testimonials } from '../models/testimonials';
 
 @Injectable({
-  providedIn: 'root',
+	providedIn: 'root',
 })
 export class HomeService {
-  private mockFeatures = features;
-  private mockProduct = 'assets/data/product.json';
-  private mockLogo = marketplace;
-  private mockTestimonials = testimonials;
-  private mockHeros = hero;
+	private mockFeatures = features;
+	private mockProduct = 'assets/data/product.json';
+	private mockLogo = marketplace;
+	private mockTestimonials = testimonials;
+	private mockHeros = hero;
 
-  constructor(private http: HttpClient) {}
+	constructor(private http: HttpClient) {}
 
-  getHeroSection(): Observable<Hero[]> {
-    return of(this.mockHeros).pipe(
-      catchError((error) => {
-        console.error('Error occurred:', error);
-        return throwError(() => error);
-      })
-    );
-  }
+	getHeroSection(): Observable<Hero[]> {
+		return of(this.mockHeros).pipe(
+			catchError((error) => {
+				console.error('Error occurred:', error);
+				return throwError(() => error);
+			})
+		);
+	}
 
-  getFeatures(): Observable<Features> {
-    return of(this.mockFeatures).pipe(
-      catchError((error) => {
-        console.error('Error occurred:', error);
-        return throwError(() => error);
-      })
-    );
-  }
+	getFeatures(): Observable<Features> {
+		return of(this.mockFeatures).pipe(
+			catchError((error) => {
+				console.error('Error occurred:', error);
+				return throwError(() => error);
+			})
+		);
+	}
 
-  getProducts(): Observable<ProductsType> {
-    return this.http
-      .get<ProductsType>(this.mockProduct)
-      .pipe(catchError(this.handleError));
-  }
+	getProducts(): Observable<ProductsType> {
+		return this.http
+			.get<ProductsType>(this.mockProduct)
+			.pipe(catchError(this.handleError));
+	}
 
-  getMarketplaceLogo(): Observable<Marketplace[]> {
-    return of(this.mockLogo).pipe(
-      catchError((error) => {
-        console.error('Error occurred:', error);
-        return throwError(() => error);
-      })
-    );
-  }
+	getMarketplaceLogo(): Observable<Marketplace[]> {
+		return of(this.mockLogo).pipe(
+			catchError((error) => {
+				console.error('Error occurred:', error);
+				return throwError(() => error);
+			})
+		);
+	}
 
-  getTestimonials(): Observable<Testimonials[]> {
-    return of(this.mockTestimonials).pipe(
-      catchError((error) => {
-        console.error('Error occurred:', error);
-        return throwError(() => error);
-      })
-    );
-  }
+	getTestimonials(): Observable<Testimonials[]> {
+		return of(this.mockTestimonials).pipe(
+			catchError((error) => {
+				console.error('Error occurred:', error);
+				return throwError(() => error);
+			})
+		);
+	}
 
-  private handleError(res: HttpErrorResponse | any) {
-    console.error(res.error || res.body.error);
-    return throwError(() => new Error('Internal Server Error'));
-  }
+	private handleError(res: HttpErrorResponse | any) {
+		console.error(res.error || res.body.error);
+		return throwError(() => new Error('Internal Server Error'));
+	}
 }

@@ -1,0 +1,22 @@
+[
+	{
+		"id": 1,
+		"name": "Construction"
+	},
+	{
+		"id": 2,
+		"name": "Technology"
+	},
+	{
+		"id": 3,
+		"name": "Sustainability"
+	},
+	{
+		"id": 4,
+		"name": "Design"
+	},
+	{
+		"id": 5,
+		"name": "Maintenance"
+	}
+]

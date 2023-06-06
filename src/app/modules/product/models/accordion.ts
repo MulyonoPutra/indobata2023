@@ -1,5 +1,5 @@
 export interface Accordion {
-  title: string;
-  content: string | string[];
-  open: boolean;
+	title: string;
+	content: string | string[];
+	open: boolean;
 }

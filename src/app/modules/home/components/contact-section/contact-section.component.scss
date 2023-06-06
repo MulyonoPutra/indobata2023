@@ -1,9 +1,9 @@
 .btn-submit {
-    @apply inline-flex items-center justify-center px-4 py-2 text-white bg-[#455268] rounded-md hover:bg-[#313C53]  focus:outline-none focus:bg-blue-600;
-  }
-  
-  .spinner {
-    @apply animate-spin h-5 w-5 border-t-2 border-b-2 border-white rounded-full mr-2;
-    border-left-color: transparent;
-    border-right-color: transparent;
-  }
+	@apply inline-flex items-center justify-center px-4 py-2 text-white bg-[#455268] rounded-md hover:bg-[#313C53]  focus:outline-none focus:bg-blue-600;
+}
+
+.spinner {
+	@apply animate-spin h-5 w-5 border-t-2 border-b-2 border-white rounded-full mr-2;
+	border-left-color: transparent;
+	border-right-color: transparent;
+}

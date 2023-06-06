@@ -1,11 +1,11 @@
 .wrapper {
-    @apply bg-cover bg-center bg-white dark:bg-gray-900 bg-gradient-to-b from-gray-900 to-transparent;
+	@apply bg-cover bg-center bg-white dark:bg-gray-900 bg-gradient-to-b from-gray-900 to-transparent;
 
-    .title {
-        @apply mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-100 md:text-5xl lg:text-6xl dark:text-white;
-    }
+	.title {
+		@apply mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-100 md:text-5xl lg:text-6xl dark:text-white;
+	}
 
-    .desc {
-        @apply mb-8 text-lg font-normal text-gray-200 lg:text-xl sm:px-16 xl:px-48;
-    }
+	.desc {
+		@apply mb-8 text-lg font-normal text-gray-200 lg:text-xl sm:px-16 xl:px-48;
+	}
 }
