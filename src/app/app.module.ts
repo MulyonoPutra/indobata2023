@@ -1,15 +1,15 @@
 import { HttpClientModule } from '@angular/common/http';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { LayoutComponent } from './modules/layout/layout.component';
-import { ComponentsModule } from './shared/components/components.module';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { LayoutComponent } from './modules/layout/layout.component';
 import { ProjectEffects } from './modules/project/state/effects/project.effects';
 import { projectReducer } from './modules/project/state/reducers/project.reducer';
+import { ComponentsModule } from './shared/components/components.module';
 
 @NgModule({
 	declarations: [AppComponent, LayoutComponent],

@@ -22,6 +22,7 @@ import { ShortLineComponent } from './short-line/short-line.component';
 import { SocialIconComponent } from './social-icon/social-icon.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { SubmitButtonComponent } from './submit-button/submit-button.component';
+import { ShortenerTextPipe } from '../pipes/shortener-text.pipe';
 
 @NgModule({
 	declarations: [
@@ -44,6 +45,7 @@ import { SubmitButtonComponent } from './submit-button/submit-button.component';
 		PaginationComponent,
 		BrandLogoComponent,
 		SpinnerComponent,
+    ShortenerTextPipe
 	],
 	imports: [
 		CommonModule,
@@ -51,6 +53,7 @@ import { SubmitButtonComponent } from './submit-button/submit-button.component';
 		FormsModule,
 		ReactiveFormsModule,
 		LazyLoadImageModule,
+
 	],
 	exports: [
 		HeaderComponent,
