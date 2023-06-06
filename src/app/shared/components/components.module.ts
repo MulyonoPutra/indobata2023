@@ -20,6 +20,7 @@ import { PaginationComponent } from './pagination/pagination.component';
 import { PhoneComponent } from './phone/phone.component';
 import { ShortLineComponent } from './short-line/short-line.component';
 import { SocialIconComponent } from './social-icon/social-icon.component';
+import { SpinnerComponent } from './spinner/spinner.component';
 import { SubmitButtonComponent } from './submit-button/submit-button.component';
 
 @NgModule({
@@ -42,6 +43,7 @@ import { SubmitButtonComponent } from './submit-button/submit-button.component';
 		CardBlogComponent,
 		PaginationComponent,
 		BrandLogoComponent,
+		SpinnerComponent,
 	],
 	imports: [
 		CommonModule,
@@ -69,6 +71,7 @@ import { SubmitButtonComponent } from './submit-button/submit-button.component';
 		CardBlogComponent,
 		PaginationComponent,
 		BrandLogoComponent,
+		SpinnerComponent,
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
