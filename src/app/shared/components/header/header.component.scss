@@ -6,3 +6,7 @@
 .scrolling {
 	@apply flex text-white transition-all duration-300 fixed bottom-5 right-5 w-10 h-10 bg-gray-600 hover:bg-slate-800 rounded-full mb-11;
 }
+
+.login-btn {
+	@apply p-2 lg:px-4 md:mx-2 text-green-600 text-center border border-solid border-green-600 rounded hover:bg-green-600 hover:text-white transition-colors duration-300 mt-1 md:mt-0 md:ml-1;
+}

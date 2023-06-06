@@ -2,7 +2,9 @@ import { CommonModule } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { AuthLinkComponent } from './auth-link/auth-link.component';
+import { BrandLogoComponent } from './brand-logo/brand-logo.component';
 import { ButtonComponent } from './button/button.component';
 import { CardBlogComponent } from './card-blog/card-blog.component';
 import { CardProductHoverComponent } from './card-product-hover/card-product-hover.component';
@@ -39,8 +41,15 @@ import { SubmitButtonComponent } from './submit-button/submit-button.component';
 		CardProjectComponent,
 		CardBlogComponent,
 		PaginationComponent,
+		BrandLogoComponent,
 	],
-	imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule],
+	imports: [
+		CommonModule,
+		RouterModule,
+		FormsModule,
+		ReactiveFormsModule,
+		LazyLoadImageModule,
+	],
 	exports: [
 		HeaderComponent,
 		FooterComponent,
@@ -59,6 +68,7 @@ import { SubmitButtonComponent } from './submit-button/submit-button.component';
 		CardProjectComponent,
 		CardBlogComponent,
 		PaginationComponent,
+		BrandLogoComponent,
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

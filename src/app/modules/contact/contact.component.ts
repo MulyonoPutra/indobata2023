@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {
+	FormBuilder,
+	FormControl,
+	FormGroup,
+	Validators,
+} from '@angular/forms';
+import { timer, take } from 'rxjs';
+import { ValidatorsService } from 'src/app/shared/services/validators.service';
 
 @Component({
 	selector: 'app-contact',
@@ -10,7 +17,10 @@ export class ContactComponent implements OnInit {
 	protected form!: FormGroup;
 	isSubmitting = false;
 
-	constructor(private fb: FormBuilder) {}
+	constructor(
+		private fb: FormBuilder,
+		private validator: ValidatorsService
+	) {}
 
 	ngOnInit(): void {
 		this.initForms();
@@ -19,7 +29,10 @@ export class ContactComponent implements OnInit {
 	protected initForms(): void {
 		this.form = this.fb.group({
 			fullname: ['', Validators.required],
-			phone: ['', Validators.required],
+			phone: [
+				'',
+				[Validators.required, this.validator.indonesianPhoneNumber()],
+			],
 			email: ['', [Validators.required, Validators.email]],
 			message: ['', [Validators.required, Validators.minLength(6)]],
 		});
@@ -34,14 +47,19 @@ export class ContactComponent implements OnInit {
 		};
 	}
 
+	getFormControl(form: string): FormControl {
+		return this.form.get(form) as FormControl;
+	}
+
 	protected save(): void {
 		if (this.form.valid) {
 			this.isSubmitting = true;
-			setTimeout(() => {
-				this.isSubmitting = false;
-				this.form.reset();
-				console.log(this.formCtrlValue);
-			}, 2000);
+			timer(2000)
+				.pipe(take(1))
+				.subscribe(() => {
+					this.isSubmitting = false;
+					this.form.reset();
+				});
 		} else {
 			this.markAllFormControlsAsTouched(this.form);
 		}

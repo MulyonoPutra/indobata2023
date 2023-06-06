@@ -26,37 +26,16 @@
         Your feedback is essential in helping us provide you with the best possible experience.</p>
 
       <form [formGroup]="form">
-        <div class="relative mb-4">
-          <label for="fullname" class="leading-7 text-sm text-gray-600">Fullname</label>
-          <input type="text" id="fullname" name="fullname" formControlName="fullname"
-            class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-            <div *ngIf="form.controls['fullname'].invalid && form.controls['fullname'].touched">
-              <div *ngIf="form.controls['fullname'].errors?.['required']">Name is required</div>
-            </div>
-        </div>
-        <div class="relative mb-4">
-          <label for="phone" class="leading-7 text-sm text-gray-600">Phone Number</label>
-          <input type="text" id="phone" name="phone" formControlName="phone"
-            class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-        </div>
-        <div class="relative mb-4">
-          <label for="email" class="leading-7 text-sm text-gray-600">Email</label>
-          <input type="email" id="email" name="email" formControlName="email"
-            class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-        </div>
+        <app-form-field label="Name" [control]="getFormControl('fullname')" controlName="fullname"></app-form-field>
+        <app-form-field label="Phone" [control]="getFormControl('phone')" controlName="phone"></app-form-field>
+        <app-form-field label="Email" [control]="getFormControl('email')" controlName="email"></app-form-field>
         <div class="relative mb-4">
           <label for="message" class="leading-7 text-sm text-gray-600">Message</label>
           <textarea id="message" name="message" formControlName="message"
             class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
         </div>
 
-        <button (click)="save()" [disabled]="!form.valid" class="btn-submit w-full flex items-center justify-center">
-          <span *ngIf="!isSubmitting">Save</span>
-          <div *ngIf="isSubmitting">
-            <div class="spinner"></div>
-          </div>
-          <span *ngIf="isSubmitting">Submitting...</span>
-        </button>
+        <app-submit-button [isLoading]="isSubmitting" (click)="save()" [label]="'Save'" [isDisabled]="form.invalid"></app-submit-button>
       </form>
     </div>
   </div>

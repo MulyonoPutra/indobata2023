@@ -4,6 +4,20 @@ import { LayoutComponent } from './modules/layout/layout.component';
 
 const routes: Routes = [
 	{
+		path: 'login',
+		loadChildren: () =>
+			import('./modules/authentication/login/login.module').then(
+				(m) => m.LoginModule
+			),
+	},
+	{
+		path: 'register',
+		loadChildren: () =>
+			import('./modules/authentication/register/register.module').then(
+				(m) => m.RegisterModule
+			),
+	},
+	{
 		path: '',
 		component: LayoutComponent,
 		children: [

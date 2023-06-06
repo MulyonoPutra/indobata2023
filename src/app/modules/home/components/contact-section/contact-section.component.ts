@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {
-	AbstractControl,
 	FormBuilder,
 	FormControl,
 	FormGroup,
-	ValidatorFn,
 	Validators,
 } from '@angular/forms';
-import { timer, take } from 'rxjs';
+import { take, timer } from 'rxjs';
+import { ValidatorsService } from 'src/app/shared/services/validators.service';
 
 @Component({
 	selector: 'app-contact-section',
@@ -18,7 +17,10 @@ export class ContactSectionComponent implements OnInit {
 	protected form!: FormGroup;
 	isSubmitting = false;
 
-	constructor(private fb: FormBuilder) {}
+	constructor(
+		private fb: FormBuilder,
+		private validator: ValidatorsService
+	) {}
 
 	ngOnInit(): void {
 		this.initForms();
@@ -26,22 +28,14 @@ export class ContactSectionComponent implements OnInit {
 
 	protected initForms(): void {
 		this.form = this.fb.group({
-			fullname: ['', Validators.required],
+			fullname: ['', [Validators.required, Validators.minLength(3)]],
 			phone: [
 				'',
-				[Validators.required, this.indonesianPhoneNumberValidator()],
+				[Validators.required, this.validator.indonesianPhoneNumber()],
 			],
 			email: ['', [Validators.required, Validators.email]],
 			message: ['', Validators.required],
 		});
-	}
-
-	indonesianPhoneNumberValidator(): ValidatorFn {
-		return (control: AbstractControl): { [key: string]: any } | null => {
-			const phoneNumberPattern = /^0\d{9,15}$/; // Indonesian phone number pattern with "0" as the starting digit
-			const valid = phoneNumberPattern.test(control.value);
-			return valid ? null : { invalidPhoneNumber: true };
-		};
 	}
 
 	get formCtrlValue() {

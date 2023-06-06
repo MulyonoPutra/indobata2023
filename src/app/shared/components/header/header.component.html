@@ -50,14 +50,12 @@
     <div class="py-5 px-2 flex items-center justify-between container {{
         isMenuScrolled ? '' : 'border'
       }} border-gray-500 border-opacity-30">
-      <a routerLink="/">
-        <img src="../assets/images/indobata-logo.png" alt="Logo" height="70" width="70" />
-      </a>
+      <app-brand-logo></app-brand-logo>
       <div class="lg:hidden">
-        <img [src]="iconOpen" alt="hamburger" (click)="this.openSideBar()"  class="w-8 h-8">
+        <img [src]="iconOpen" alt="hamburger" (click)="this.openSideBar()" class="w-8 h-8">
       </div>
       <app-menu class="hidden lg:block" [items]="menuitems"></app-menu>
-      <app-social-icon class="hidden lg:block lg:invisible"></app-social-icon>
+      <a routerLink="/login" class="login-btn">Login</a>
     </div>
   </div>
 </header>

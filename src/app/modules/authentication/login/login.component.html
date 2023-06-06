@@ -1,0 +1,38 @@
+<section class="bg-gray-200">
+  <div class="flex justify-center min-h-screen">
+    <div class="flex items-center w-full max-w-3xl p-8 mx-auto lg:px-12 lg:w-2/5">
+      <div class="w-full">
+        <div class="flex justify-center flex-col space-y-2 mb-4">
+          <div class="flex justify-center mb-4">
+            <app-brand-logo [height]="100" [width]="100"></app-brand-logo>
+          </div>
+          <p class="text-[#213a5c] text-base font-semibold text-center">
+            Finding your passion is down to trying new things,
+            seeing what you like, and doing more of it until that's
+            all that you would do for a living. So, let we share our
+            passion here.
+          </p>
+        </div>
+
+        <!-- Forms here -->
+        <form [formGroup]="form">
+          <app-form-field label="Email" [control]="getFormControl('email')" controlName="email"></app-form-field>
+          <app-form-field label="Password" [control]="getFormControl('password')" controlName="password">
+          </app-form-field>
+          <app-submit-button [isLoading]="isSubmitting" (click)="save()" [label]="'Login'" [isDisabled]="form.invalid">
+          </app-submit-button>
+        </form>
+        <p class="mt-6 text-sm text-center text-gray-400">
+          Don&#x27;t have an account yet?
+          <span class="sign-up-word">
+            <a routerLink="/register" class="underline text-[#213a5c] font-semibold">
+              Sign up
+            </a>
+          </span>
+          .
+        </p>
+      </div>
+    </div>
+    <img class="hidden bg-cover lg:block lg:w-2/3" [lazyLoad]='bgCover' />
+  </div>
+</section>
