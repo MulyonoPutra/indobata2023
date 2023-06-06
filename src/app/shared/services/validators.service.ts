@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ValidatorFn, AbstractControl } from '@angular/forms';
+import { ValidatorFn, AbstractControl, FormGroup } from '@angular/forms';
 
 @Injectable({
 	providedIn: 'root',
@@ -13,5 +13,16 @@ export class ValidatorsService {
 			const valid = phoneNumberPattern.test(control.value);
 			return valid ? null : { invalidPhoneNumber: true };
 		};
+	}
+
+  passwordMatchValidator(formGroup: FormGroup) {
+		const password = formGroup.get('password')!;
+		const confirmPassword = formGroup.get('confirmPassword')!;
+
+		if (password.value !== confirmPassword.value) {
+			confirmPassword.setErrors({ mustMatch: true });
+		} else {
+			confirmPassword.setErrors(null);
+		}
 	}
 }

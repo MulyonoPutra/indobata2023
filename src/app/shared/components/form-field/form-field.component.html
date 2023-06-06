@@ -10,6 +10,6 @@
       }}</span>
     <span *ngIf="control.hasError('email')">Email is invalid</span>
     <div *ngIf="control.hasError('invalidPhoneNumber')">Invalid phone number format</div>
-    <!-- Add more validation messages for other validators if needed -->
-  </div>
+    <div *ngIf="control.hasError('mustMatch')">Passwords must match.</div>
+
 </div>

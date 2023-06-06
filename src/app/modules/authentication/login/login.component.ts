@@ -6,7 +6,8 @@ import {
 	Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { timer, take } from 'rxjs';
+import { take, timer } from 'rxjs';
+import { ValidatorsService } from 'src/app/shared/services/validators.service';
 
 @Component({
 	selector: 'app-login',
@@ -19,17 +20,25 @@ export class LoginComponent implements OnInit {
 	protected bgCover =
 		'https://www.hsimagazine.com/wp-content/uploads/2020/01/iStock-1028568006.jpg';
 
-	constructor(private fb: FormBuilder, private router: Router) {}
+	constructor(
+		private fb: FormBuilder,
+		private router: Router,
+		private validations: ValidatorsService
+	) {}
 
 	ngOnInit(): void {
 		this.initForm();
 	}
 
 	initForm(): void {
-		this.form = this.fb.group({
-			email: ['', [Validators.required, Validators.email]],
-			password: ['', Validators.required],
-		});
+		this.form = this.fb.group(
+			{
+				email: ['', [Validators.required, Validators.email]],
+				password: ['', Validators.required],
+				confirmPassword: ['', [Validators.required]],
+			},
+			{ validator: this.validations.passwordMatchValidator }
+		);
 	}
 
 	get formCtrlValue() {
@@ -55,6 +64,8 @@ export class LoginComponent implements OnInit {
 	protected save(): void {
 		if (this.form.valid) {
 			this.isSubmitting = true;
+			console.log(this.formCtrlValue);
+
 			this.onDelay();
 		} else {
 			this.markAllFormControlsAsTouched(this.form);
