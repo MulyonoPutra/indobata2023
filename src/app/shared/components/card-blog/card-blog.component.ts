@@ -6,6 +6,15 @@ import { Component } from '@angular/core';
 	styleUrls: ['./card-blog.component.scss'],
 })
 export class CardBlogComponent {
+	showTooltipFlag = false;
 	word =
 		'loremipsum dolor sit amet, consectetur adipis text, sed do eius maxim venenatis vel aug tellus et dolore magna aliqu';
+
+	showTooltip() {
+		this.showTooltipFlag = true;
+	}
+
+	hideTooltip() {
+		this.showTooltipFlag = false;
+	}
 }

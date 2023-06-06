@@ -45,7 +45,8 @@ import { ShortenerTextPipe } from '../pipes/shortener-text.pipe';
 		PaginationComponent,
 		BrandLogoComponent,
 		SpinnerComponent,
-    ShortenerTextPipe
+    ShortenerTextPipe,
+    
 	],
 	imports: [
 		CommonModule,
