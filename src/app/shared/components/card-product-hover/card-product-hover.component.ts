@@ -12,7 +12,7 @@ export class CardProductHoverComponent {
 	showTooltipFlag = false;
 	@Input() product!: Product;
 
-  showTooltip() {
+	showTooltip() {
 		this.showTooltipFlag = true;
 	}
 

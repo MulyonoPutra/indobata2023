@@ -1,5 +1,4 @@
-import { Hero } from "src/app/core/domain/hero";
-
+import { Hero } from 'src/app/core/domain/hero';
 
 export const hero: Hero[] = [
 	{

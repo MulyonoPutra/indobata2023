@@ -52,12 +52,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 		this.subscriptions.push(
 			this.homeService.getFeatures().subscribe({
 				next: (response: FeaturesArrayType) => {
-					console.log(response);
-
 					this.features = response;
 				},
-				error: () => {
-					console.log('error');
+				error: (error) => {
+					console.error(error);
 				},
 			})
 		);

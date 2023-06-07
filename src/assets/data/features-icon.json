@@ -1,20 +1,20 @@
 [
-  {
-    "icon": "../../../../../assets/icons/icon-custom.svg"
-  },
-  {
-    "icon": "../../../../../assets/icons/icon-mix.svg"
-  },
-  {
-    "icon": "../../../../../assets/icons/icon-special.svg"
-  },
-  {
-    "icon": "../../../../../assets/icons/icon-testing.svg"
-  },
-  {
-    "icon": "../../../../../assets/icons/icon-delivery.svg"
-  },
-  {
-    "icon": "../../../../../assets/icons/icon-support.svg"
-  }
+	{
+		"icon": "../../../../../assets/icons/icon-custom.svg"
+	},
+	{
+		"icon": "../../../../../assets/icons/icon-mix.svg"
+	},
+	{
+		"icon": "../../../../../assets/icons/icon-special.svg"
+	},
+	{
+		"icon": "../../../../../assets/icons/icon-testing.svg"
+	},
+	{
+		"icon": "../../../../../assets/icons/icon-delivery.svg"
+	},
+	{
+		"icon": "../../../../../assets/icons/icon-support.svg"
+	}
 ]

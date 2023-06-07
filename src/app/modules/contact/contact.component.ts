@@ -23,7 +23,7 @@ export class ContactComponent implements OnInit {
 	constructor(
 		private fb: FormBuilder,
 		private validator: ValidatorsService,
-    private feedback: ContactService
+		private feedback: ContactService
 	) {}
 
 	ngOnInit(): void {
@@ -55,33 +55,31 @@ export class ContactComponent implements OnInit {
 		return this.form.get(form) as FormControl;
 	}
 
-  private submit(): void {
-    this.feedback.submitFeedback(this.formCtrlValue).subscribe(
-      {
-        next: (response: HttpResponseEntity<Contact>) => {
-          console.log(response.message);
-        },
-        error: (error) => {
-          console.error(error);
-        }
-      }
-    );
-  }
+	private submit(): void {
+		this.feedback.submitFeedback(this.formCtrlValue).subscribe({
+			next: (response: HttpResponseEntity<Contact>) => {
+				console.log(response.message);
+			},
+			error: (error) => {
+				console.error(error);
+			},
+		});
+	}
 
-  private delay(): void {
-    timer(2000)
-    .pipe(take(1))
-    .subscribe(() => {
-      this.isSubmitting = false;
-      this.form.reset();
-    });
-  }
+	private delay(): void {
+		timer(2000)
+			.pipe(take(1))
+			.subscribe(() => {
+				this.isSubmitting = false;
+				this.form.reset();
+			});
+	}
 
 	protected save(): void {
 		if (this.form.valid) {
 			this.isSubmitting = true;
-      this.submit()
-      this.delay()
+			this.submit();
+			this.delay();
 		} else {
 			this.markAllFormControlsAsTouched(this.form);
 		}
