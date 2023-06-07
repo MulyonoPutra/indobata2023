@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import {  Features, FeaturesArrayType } from '../../models/features';
+import { Features, FeaturesArrayType } from '../../../../core/domain/features';
 
 @Component({
 	selector: 'app-features',

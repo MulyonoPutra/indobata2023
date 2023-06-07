@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { pathAssets } from 'src/app/configs/path-assets';
-import { Product } from 'src/app/modules/product/models/product';
+import { Product } from 'src/app/core/domain/product';
 
 @Component({
 	selector: 'app-card-product',

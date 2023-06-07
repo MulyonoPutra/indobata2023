@@ -1,12 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { ProductsType } from '../product/models/product';
-import { Features, FeaturesArrayType } from './models/features';
-import { Hero } from './models/hero';
-import { Marketplace } from './models/marketplace';
-import { Testimonials } from './models/testimonials';
-import { HomeService } from './services/home.service';
-import { HttpResponseEntity } from 'src/app/core/domain/http-response-entity';
+import { Features, FeaturesArrayType } from '../../core/domain/features';
+import { HomeService } from '../../core/services/home.service';
+import { Hero } from 'src/app/core/domain/hero';
+import { Marketplace } from 'src/app/core/domain/marketplace';
+import { ProductsType } from 'src/app/core/domain/product';
+import { Testimonials } from 'src/app/core/domain/testimonials';
 
 @Component({
 	selector: 'app-home',
@@ -53,7 +52,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 		this.subscriptions.push(
 			this.homeService.getFeatures().subscribe({
 				next: (response: FeaturesArrayType) => {
-          console.log(response);
+					console.log(response);
 
 					this.features = response;
 				},

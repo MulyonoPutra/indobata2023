@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Project } from '../../models/project';
+import { Project } from '../../domain/project';
 
 export const loadProjects = createAction('[Project] Load Projects');
 export const loadProjectById = createAction(

@@ -13,11 +13,11 @@ import { hero } from 'src/assets/data/hero';
 import { marketplace } from 'src/assets/data/marketplace';
 import { testimonials } from 'src/assets/data/testimonials';
 import { environment } from 'src/environments/environment.development';
-import { ProductsType } from '../../product/models/product';
-import { Features, FeaturesArrayType } from '../models/features';
-import { Hero } from '../models/hero';
-import { Marketplace } from '../models/marketplace';
-import { Testimonials } from '../models/testimonials';
+import { Features, FeaturesArrayType } from '../domain/features';
+import { Hero } from '../domain/hero';
+import { Marketplace } from '../domain/marketplace';
+import { Testimonials } from '../domain/testimonials';
+import { ProductsType } from '../domain/product';
 
 @Injectable({
 	providedIn: 'root',

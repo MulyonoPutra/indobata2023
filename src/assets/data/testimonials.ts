@@ -1,4 +1,4 @@
-import { Testimonials } from 'src/app/modules/home/models/testimonials';
+import { Testimonials } from 'src/app/core/domain/testimonials';
 
 export const testimonials: Testimonials[] = [
 	{

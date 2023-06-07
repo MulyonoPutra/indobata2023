@@ -1,31 +1,27 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BlogArrayType } from '../domain/blog';
 import { Observable, catchError, map, throwError } from 'rxjs';
-import { Product, ProductsType } from '../models/product';
+import { Blog } from '../domain/blog';
 
 @Injectable({
 	providedIn: 'root',
 })
-export class ProductService {
-	private mockProduct = 'assets/data/product.json';
+export class BlogService {
+	private mockData = 'assets/data/blog.json';
 
 	constructor(private http: HttpClient) {}
 
-	getProducts(): Observable<ProductsType> {
+	loadAll(): Observable<BlogArrayType> {
 		return this.http
-			.get<Product[]>(this.mockProduct)
+			.get<BlogArrayType>(this.mockData)
 			.pipe(catchError(this.handleError));
 	}
 
-	getProductById(id: string): Observable<Product> {
+	loadBlogById(id: string): Observable<Blog> {
 		return this.http
-			.get<Product[]>(this.mockProduct)
-			.pipe(
-				map(
-					(products) =>
-						products.find((product: Product) => product.id === id)!
-				)
-			);
+			.get<BlogArrayType>(this.mockData)
+			.pipe(map((blogs) => blogs.find((blog: Blog) => blog.id === id)!));
 	}
 
 	private handleError(res: HttpErrorResponse | any) {

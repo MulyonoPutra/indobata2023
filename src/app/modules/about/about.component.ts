@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
-import { About } from './models/about';
-import { AboutService } from './services/about.service';
+import { About } from '../../core/domain/about';
+import { AboutService } from '../../core/services/about.service';
 
 @Component({
 	selector: 'app-about',

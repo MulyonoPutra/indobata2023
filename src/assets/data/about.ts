@@ -1,4 +1,4 @@
-import { About } from 'src/app/modules/about/models/about';
+import { About } from 'src/app/core/domain/about';
 
 export const about: About = {
 	header: 'Welcome to Indobata, a leading provider of high-quality concrete products. With decades of experience in the industry, we take pride in delivering exceptional solutions for all your construction needs.',

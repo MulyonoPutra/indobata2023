@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Marketplace } from '../../models/marketplace';
+import { Marketplace } from 'src/app/core/domain/marketplace';
 
 @Component({
 	selector: 'app-available-marketplace',

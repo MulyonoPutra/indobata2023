@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { Testimonials } from '../../models/testimonials';
 import { pathAssets } from 'src/app/configs/path-assets';
+import { Testimonials } from 'src/app/core/domain/testimonials';
 
 @Component({
 	selector: 'app-testimonials',

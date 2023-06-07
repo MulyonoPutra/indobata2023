@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Accordion } from '../../models/accordion';
-import { Product } from '../../models/product';
-import { ProductService } from '../../services/product.service';
+import { ProductService } from '../../../../core/services/product.service';
+import { Accordion } from '../../../../core/domain/accordion';
+import { Product } from 'src/app/core/domain/product';
 
 @Component({
 	selector: 'app-product-detail',

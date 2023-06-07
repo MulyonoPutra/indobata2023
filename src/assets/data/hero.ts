@@ -1,4 +1,5 @@
-import { Hero } from 'src/app/modules/home/models/hero';
+import { Hero } from "src/app/core/domain/hero";
+
 
 export const hero: Hero[] = [
 	{

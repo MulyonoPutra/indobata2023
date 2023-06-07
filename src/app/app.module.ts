@@ -6,9 +6,9 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ProjectEffects } from './core/state/effects/project.effects';
+import { projectReducer } from './core/state/reducers/project.reducer';
 import { LayoutComponent } from './modules/layout/layout.component';
-import { ProjectEffects } from './modules/project/state/effects/project.effects';
-import { projectReducer } from './modules/project/state/reducers/project.reducer';
 import { ComponentsModule } from './shared/components/components.module';
 
 @NgModule({

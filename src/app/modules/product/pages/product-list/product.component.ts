@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { pathAssets } from 'src/app/configs/path-assets';
-import { ProductsType } from '../../models/product';
-import { ProductService } from '../../services/product.service';
+import { ProductService } from '../../../../core/services/product.service';
+import { ProductsType } from 'src/app/core/domain/product';
 
 @Component({
 	selector: 'app-product',

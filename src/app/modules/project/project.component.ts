@@ -2,8 +2,8 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, map } from 'rxjs';
 import { AppState } from 'src/app/app.state';
-import { Project } from './models/project';
-import * as ProjectActions from './state/actions/project.actions';
+import { Project } from '../../core/domain/project';
+import * as ProjectActions from '../../core/state/actions/project.actions';
 
 @Component({
 	selector: 'app-project',

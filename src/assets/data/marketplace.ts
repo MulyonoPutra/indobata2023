@@ -1,4 +1,5 @@
-import { Marketplace } from 'src/app/modules/home/models/marketplace';
+import { Marketplace } from "src/app/core/domain/marketplace";
+
 
 export const marketplace: Marketplace[] = [
 	{
