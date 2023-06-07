@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Content, Features } from '../../models/features';
+import {  Features, FeaturesArrayType } from '../../models/features';
 
 @Component({
 	selector: 'app-features',
@@ -7,9 +7,9 @@ import { Content, Features } from '../../models/features';
 	styleUrls: ['./features.component.scss'],
 })
 export class FeaturesComponent {
-	@Input() features!: Features;
+	@Input() features!: FeaturesArrayType;
 
-	trackByFn(index: number, item: Content): number {
+	trackByFn(index: number, item: Features): number {
 		// Use a unique identifier for each item
 		return item.id;
 	}

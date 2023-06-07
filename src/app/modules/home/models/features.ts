@@ -1,12 +1,8 @@
-export interface Features {
-	headerTitle: string;
-	headerDescription: string;
-	content: Content[];
-}
+export type FeaturesArrayType = Features[];
 
-export interface Content {
+export interface Features {
 	id: number;
-	icon: string;
+	icon?: string;
 	title: string;
 	description: string;
 }

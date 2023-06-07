@@ -1,12 +1,12 @@
 <section class="text-gray-600 body-font p-6">
     <div class="container px-5 mx-auto">
         <div class="text-center mb-20">
-            <h1 class="sm:text-3xl text-2xl font-bold title-font text-gray-900 mb-4">{{features.headerTitle}}</h1>
-            <p class="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto text-gray-500s">{{features.headerDescription}}</p>
+            <h1 class="sm:text-3xl text-2xl font-bold title-font text-gray-900 mb-4">Our Services</h1>
+            <p class="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto text-gray-500s">At Indobata, we specialize in delivering top-quality concrete services that meet the unique needs of our clients. Our team of experienced professionals is dedicated to providing exceptional craftsmanship, superior customer service, and reliable solutions for all your concrete projects. Whether you are a homeowner, a contractor, or a property manager, we have the expertise to handle your concrete needs. Our services include:</p>
             <app-short-line></app-short-line>
         </div>
         <div class="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4 md:space-y-0 space-y-6">
-            <div class="p-4 md:w-1/3 flex flex-col text-center items-center" *ngFor="let item of features.content; trackBy: trackByFn">
+            <div class="p-4 md:w-1/3 flex flex-col text-center items-center" *ngFor="let item of features; trackBy: trackByFn">
                 <div
                     class="w-20 h-20 inline-flex items-center justify-center rounded-full bg-[#455268] text-indigo-500 mb-5 flex-shrink-0">
                     <img [src]="item.icon" class="icon" alt="icon" height="44" width="44">

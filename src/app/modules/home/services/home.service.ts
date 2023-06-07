@@ -1,12 +1,20 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, of, throwError } from 'rxjs';
-import { features } from 'src/assets/data/features';
+import {
+	Observable,
+	catchError,
+	combineLatest,
+	map,
+	of,
+	throwError,
+} from 'rxjs';
+import { HttpResponseEntity } from 'src/app/core/domain/http-response-entity';
 import { hero } from 'src/assets/data/hero';
 import { marketplace } from 'src/assets/data/marketplace';
 import { testimonials } from 'src/assets/data/testimonials';
+import { environment } from 'src/environments/environment.development';
 import { ProductsType } from '../../product/models/product';
-import { Features } from '../models/features';
+import { Features, FeaturesArrayType } from '../models/features';
 import { Hero } from '../models/hero';
 import { Marketplace } from '../models/marketplace';
 import { Testimonials } from '../models/testimonials';
@@ -15,11 +23,13 @@ import { Testimonials } from '../models/testimonials';
 	providedIn: 'root',
 })
 export class HomeService {
-	private mockFeatures = features;
 	private mockProduct = 'assets/data/product.json';
+	private iconPath = 'assets/data/features-icon.json';
 	private mockLogo = marketplace;
 	private mockTestimonials = testimonials;
 	private mockHeros = hero;
+
+	private env = environment.apiUrl;
 
 	constructor(private http: HttpClient) {}
 
@@ -32,11 +42,21 @@ export class HomeService {
 		);
 	}
 
-	getFeatures(): Observable<Features> {
-		return of(this.mockFeatures).pipe(
-			catchError((error) => {
-				console.error('Error occurred:', error);
-				return throwError(() => error);
+	getFeatures(): Observable<Features[]> {
+		const icons = this.http.get(this.iconPath);
+		const features = this.http.get<HttpResponseEntity<FeaturesArrayType>>(
+			`${this.env}/features`
+		);
+
+		return combineLatest([icons, features]).pipe(
+			map(([icons, response]) => {
+				const iconsArray = Object.values(icons);
+				return response.data.map((item, index) => {
+					return {
+						...item,
+						icon: iconsArray[index]?.icon || '',
+					};
+				});
 			})
 		);
 	}
