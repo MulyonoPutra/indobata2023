@@ -13,6 +13,7 @@ export class ProductComponent implements OnInit, OnDestroy {
 	protected iconArrowLeft = pathAssets.iconArrowLeft;
 	protected products!: ProductsType;
 	protected subscriptions: Subscription[] = [];
+	protected showDropdown: boolean = false;
 
 	constructor(private productService: ProductService) {}
 
@@ -29,6 +30,10 @@ export class ProductComponent implements OnInit, OnDestroy {
 				console.log(error);
 			},
 		});
+	}
+
+	toggleDropdown() {
+		this.showDropdown = !this.showDropdown;
 	}
 
 	ngOnDestroy(): void {

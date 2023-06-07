@@ -10,7 +10,7 @@
     </a>
     <a href="#!">
       <div
-        class="text-xs absolute top-0 right-0 bg-indigo-600 px-4 py-2 text-white mt-3 mr-3 hover:bg-white hover:text-indigo-600 transition duration-500 ease-in-out">
+        class="text-xs absolute top-0 right-0 bg-green-600 px-4 py-2 text-white mt-3 mr-3 hover:bg-white hover:text-green-600 transition duration-500 ease-in-out">
         Cooking
       </div>
     </a>
@@ -25,9 +25,7 @@
       <p class="text-gray-500 text-sm focus:outline-none cursor-pointer" (mouseenter)="showTooltip()" (mouseleave)="hideTooltip()">
         {{ word | shortenerText: 20 }}
       </p>
-      <div class="tooltip bg-gray-800 text-white text-sm rounded py-1 px-2 -mt-2 absolute z-10" [class.hidden]="!showTooltipFlag">
-        {{ word }}
-      </div>
+      <app-tooltip [flag]="!showTooltipFlag" [text]="word"></app-tooltip>
     </div>
 
   </div>

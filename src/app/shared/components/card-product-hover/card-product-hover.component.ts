@@ -9,6 +9,14 @@ import { Product } from 'src/app/modules/product/models/product';
 })
 export class CardProductHoverComponent {
 	protected iconArrowLeft = pathAssets.iconArrowLeft;
-
+	showTooltipFlag = false;
 	@Input() product!: Product;
+
+  showTooltip() {
+		this.showTooltipFlag = true;
+	}
+
+	hideTooltip() {
+		this.showTooltipFlag = false;
+	}
 }

@@ -15,7 +15,7 @@ export class ValidatorsService {
 		};
 	}
 
-  passwordMatchValidator(formGroup: FormGroup) {
+	passwordMatchValidator(formGroup: FormGroup) {
 		const password = formGroup.get('password')!;
 		const confirmPassword = formGroup.get('confirmPassword')!;
 

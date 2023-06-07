@@ -3,6 +3,7 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { ShortenerTextPipe } from '../pipes/shortener-text.pipe';
 import { AuthLinkComponent } from './auth-link/auth-link.component';
 import { BrandLogoComponent } from './brand-logo/brand-logo.component';
 import { ButtonComponent } from './button/button.component';
@@ -22,7 +23,7 @@ import { ShortLineComponent } from './short-line/short-line.component';
 import { SocialIconComponent } from './social-icon/social-icon.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { SubmitButtonComponent } from './submit-button/submit-button.component';
-import { ShortenerTextPipe } from '../pipes/shortener-text.pipe';
+import { TooltipComponent } from './tooltip/tooltip.component';
 
 @NgModule({
 	declarations: [
@@ -45,8 +46,8 @@ import { ShortenerTextPipe } from '../pipes/shortener-text.pipe';
 		PaginationComponent,
 		BrandLogoComponent,
 		SpinnerComponent,
-    ShortenerTextPipe,
-    
+		ShortenerTextPipe,
+		TooltipComponent,
 	],
 	imports: [
 		CommonModule,
@@ -54,7 +55,6 @@ import { ShortenerTextPipe } from '../pipes/shortener-text.pipe';
 		FormsModule,
 		ReactiveFormsModule,
 		LazyLoadImageModule,
-
 	],
 	exports: [
 		HeaderComponent,
@@ -76,6 +76,7 @@ import { ShortenerTextPipe } from '../pipes/shortener-text.pipe';
 		PaginationComponent,
 		BrandLogoComponent,
 		SpinnerComponent,
+		TooltipComponent,
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

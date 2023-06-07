@@ -1,13 +1,13 @@
 <div class="w-72 h-fit group border-4 border-gray-200">
   <div class="relative overflow-hidden">
-    <img class="h-96 w-full object-cover" [lazyLoad]="product.images[0]" alt="">
+    <img class="h-[300px] w-full object-cover" [lazyLoad]="product.images[0]" alt="">
     <div class="absolute h-full w-full bg-black/20 flex items-center justify-center -bottom-10 group-hover:bottom-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
       <div class="card-content">
         <h2 class="title">
           {{ product.name }}
         </h2>
         <p class="description">
-          {{ product.description }}
+          {{ product.description | shortenerText: 30 }}
         </p>
         <a [routerLink]="['/product-detail', product.id]">
           <span class="read-more">
