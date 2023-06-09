@@ -5,7 +5,12 @@ import { HomeService } from '../../core/services/home.service';
 import { Hero } from 'src/app/core/domain/hero';
 import { Marketplace } from 'src/app/core/domain/marketplace';
 import { ProductsType } from 'src/app/core/domain/product';
-import { Testimonials } from 'src/app/core/domain/testimonials';
+import {
+	Testimonials,
+	TestimonialsArrayType,
+} from 'src/app/core/domain/testimonials';
+import { HttpResponseEntity } from 'src/app/core/domain/http-response-entity';
+import { TestimonialsService } from 'src/app/core/services/testimonials.service';
 
 @Component({
 	selector: 'app-home',
@@ -18,10 +23,13 @@ export class HomeComponent implements OnInit, OnDestroy {
 	protected products!: ProductsType;
 	protected logo: Marketplace[] = [];
 	protected heros: Hero[] = [];
-	protected testimonials: Testimonials[] = [];
+	protected testimonials!: TestimonialsArrayType;
 	protected subscriptions: Subscription[] = [];
 
-	constructor(private homeService: HomeService) {}
+	constructor(
+		private homeService: HomeService,
+		private testimonialService: TestimonialsService
+	) {}
 
 	ngOnInit(): void {
 		this.fetchMockData();
@@ -67,8 +75,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 				next: (data: ProductsType) => {
 					this.products = data;
 				},
-				error: () => {
-					console.log('error');
+				error: (error) => {
+					console.log(error);
 				},
 			})
 		);
@@ -80,8 +88,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 				next: (data: Marketplace[]) => {
 					this.logo = data;
 				},
-				error: () => {
-					console.log('error');
+				error: (error) => {
+					console.log(error);
 				},
 			})
 		);
@@ -89,12 +97,12 @@ export class HomeComponent implements OnInit, OnDestroy {
 
 	getTestimonials(): void {
 		this.subscriptions.push(
-			this.homeService.getTestimonials().subscribe({
-				next: (data: Testimonials[]) => {
-					this.testimonials = data;
+			this.testimonialService.loadAll().subscribe({
+				next: (response: HttpResponseEntity<TestimonialsArrayType>) => {
+					this.testimonials = response.data;
 				},
-				error: () => {
-					console.log('error');
+				error: (error) => {
+					console.log(error);
 				},
 			})
 		);

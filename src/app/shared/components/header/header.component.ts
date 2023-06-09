@@ -40,4 +40,3 @@ export class HeaderComponent {
 	}
 }
 
-// Color Combination: https://www.colorcombos.com/color-schemes/221/ColorCombo221.html

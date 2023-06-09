@@ -12,7 +12,7 @@
               <p class="whitespace-normal leading-relaxed mb-6">
                 {{ i === expandedIndex ? item.comment : (item.comment | slice:0:200) + ' ...' }}</p>
               <a class="inline-flex items-center">
-                <img alt="testimonial" [src]="item.photo"
+                <img alt="testimonial" [src]="avatar"
                   class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center">
                 <span class="flex-grow flex flex-col pl-4">
                   <span class="title-font font-medium text-gray-900">{{item.name}}</span>

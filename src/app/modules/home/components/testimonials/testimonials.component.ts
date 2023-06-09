@@ -13,6 +13,7 @@ export class TestimonialsComponent {
 	protected isExpanded = false;
 	protected expandedIndex: number | undefined;
 	protected quotesIcon = pathAssets.iconQuotes;
+  protected avatar = 'https://t3.ftcdn.net/jpg/02/43/51/48/360_F_243514868_XDIMJHNNJYKLRST05XnnTj0MBpC4hdT5.jpg'
 
 	toggleExpansion(index: number): void {
 		if (this.expandedIndex === index) {
