@@ -1,13 +1,21 @@
-<section class="bg-white dark:bg-gray-900">
+<section class="bg-white dark:bg-gray-900" *ngIf="overview">
   <div class="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
     <div class="font-light text-gray-500 sm:text-lg dark:text-gray-400">
-      <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900">{{hero.title}}</h2>
-      <p class="mb-4">{{hero.description}}</p>
-      <app-more-button [label]="'Read'" [url]="'/about'"></app-more-button>
+      <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900">
+        Professional Concrete Manufacturing
+      </h2>
+      <p class="mb-4">{{overview.content}}</p>
+      <app-more-button
+        [label]="'Read'"
+        [url]="'/about'">
+      </app-more-button>
     </div>
     <div class="grid grid-cols-2 gap-4 mt-8">
-      <img class="w-full rounded-lg" [lazyLoad]="hero.images[0]" alt="office content 1">
-      <img class="mt-4 w-full lg:mt-10 rounded-lg" [lazyLoad]="hero.images[1]" alt="office content 2">
+      <img class="w-full rounded-lg"
+        *ngFor="let image of overview?.images; let i = index"
+        [lazyLoad]="image"
+        [alt]="(i+1)"
+        [ngClass]="{'lg:mt-10 mt-4': i === 1}" />
     </div>
   </div>
 </section>

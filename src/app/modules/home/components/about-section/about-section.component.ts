@@ -1,22 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Hero } from 'src/app/core/domain/hero';
+import { Component, Input } from '@angular/core';
+import { OverviewSection } from 'src/app/core/domain/overview';
 
 @Component({
 	selector: 'app-about-section',
 	templateUrl: './about-section.component.html',
 	styleUrls: ['./about-section.component.scss'],
 })
-export class AboutSectionComponent implements OnInit {
-	@Input() heros!: Hero[];
-	hero!: Hero;
-
-	ngOnInit(): void {
-		this.getAboutData();
-	}
-
-	getAboutData() {
-		if (this.heros && this.heros.length > 0) {
-			this.hero = this.heros.find((element) => element.id === '2')!;
-		}
-	}
+export class AboutSectionComponent {
+	@Input() overview!: OverviewSection;
 }

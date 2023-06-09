@@ -1,16 +1,15 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Features, FeaturesArrayType } from '../../core/domain/features';
-import { HomeService } from '../../core/services/home.service';
 import { Hero } from 'src/app/core/domain/hero';
+import { HttpResponseEntity } from 'src/app/core/domain/http-response-entity';
 import { Marketplace } from 'src/app/core/domain/marketplace';
 import { ProductsType } from 'src/app/core/domain/product';
-import {
-	Testimonials,
-	TestimonialsArrayType,
-} from 'src/app/core/domain/testimonials';
-import { HttpResponseEntity } from 'src/app/core/domain/http-response-entity';
+import { TestimonialsArrayType } from 'src/app/core/domain/testimonials';
+import { OverviewService } from 'src/app/core/services/overview.service';
 import { TestimonialsService } from 'src/app/core/services/testimonials.service';
+import { Features, FeaturesArrayType } from '../../core/domain/features';
+import { HomeService } from '../../core/services/home.service';
+import { OverviewSection } from 'src/app/core/domain/overview';
 
 @Component({
 	selector: 'app-home',
@@ -24,11 +23,13 @@ export class HomeComponent implements OnInit, OnDestroy {
 	protected logo: Marketplace[] = [];
 	protected heros: Hero[] = [];
 	protected testimonials!: TestimonialsArrayType;
+  protected overview!: OverviewSection;
 	protected subscriptions: Subscription[] = [];
 
 	constructor(
 		private homeService: HomeService,
-		private testimonialService: TestimonialsService
+		private testimonialService: TestimonialsService,
+		private overviewService: OverviewService
 	) {}
 
 	ngOnInit(): void {
@@ -41,6 +42,22 @@ export class HomeComponent implements OnInit, OnDestroy {
 		this.getProducts();
 		this.getLogo();
 		this.getTestimonials();
+		this.getOverview();
+	}
+
+	getOverview(): void {
+		this.subscriptions.push(
+      this.overviewService.loadOverview().subscribe({
+        next: (overview: OverviewSection) => {
+          console.log(overview);
+
+          this.overview = overview
+        },
+        error: (error) => {
+          console.error(error);
+        }
+      })
+    )
 	}
 
 	getHero(): void {
