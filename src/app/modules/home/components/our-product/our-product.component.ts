@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ProductsType } from 'src/app/core/domain/product';
+import { ProductsArrayType } from 'src/app/core/domain/product';
 
 @Component({
 	selector: 'app-our-product',
@@ -7,5 +7,5 @@ import { ProductsType } from 'src/app/core/domain/product';
 	styleUrls: ['./our-product.component.scss'],
 })
 export class OurProductComponent {
-	@Input() products!: ProductsType;
+	@Input() products!: ProductsArrayType;
 }

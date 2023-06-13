@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ProductService } from '../../../../core/services/product.service';
-import { Accordion } from '../../../../core/domain/accordion';
 import { Product } from 'src/app/core/domain/product';
+import { Accordion } from '../../../../core/domain/accordion';
+import { ProductService } from '../../../../core/services/product.service';
+import { HttpResponseEntity } from 'src/app/core/domain/http-response-entity';
 
 @Component({
 	selector: 'app-product-detail',
@@ -11,7 +12,7 @@ import { Product } from 'src/app/core/domain/product';
 	styleUrls: ['./product-detail.component.scss'],
 })
 export class ProductDetailComponent implements OnInit {
-	protected product: Product | undefined;
+	protected product!: Product;
 	protected subscriptions: Subscription[] = [];
 	protected opened!: boolean;
 	protected accordions: Accordion[] = [];
@@ -22,22 +23,24 @@ export class ProductDetailComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
-		this.getProductById();
+    this.getProductById()
 	}
 
 	protected accordionToggle(): void {
 		this.opened = true;
 	}
 
-	protected getProductById() {
-		const id = this.route.snapshot.paramMap.get('id')!;
-		this.productService.getProductById(id).subscribe({
-			next: (product: Product) => {
-				this.product = product;
-				this.accordionData(product);
-			},
-		});
-	}
+	protected getProductById(): void {
+    const id = this.route.snapshot.paramMap.get('id') ?? '';
+    this.productService.findById(id).subscribe(
+      {
+        next: (response: HttpResponseEntity<Product>) => {
+          this.product = response.data;
+          this.accordionData(this.product);
+        }
+      }
+    )
+  }
 
 	protected accordionData(product: Product): void {
 		this.accordions = [
@@ -82,8 +85,10 @@ export class ProductDetailComponent implements OnInit {
 	}
 
 	protected isAvailable(data: number): void {
-		if (data >= 0) {
+		if (data === 0) {
 			alert('Product is not available');
-		}
+		} else {
+      alert('Product is available');
+    }
 	}
 }

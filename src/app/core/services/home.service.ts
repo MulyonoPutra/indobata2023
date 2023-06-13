@@ -17,7 +17,6 @@ import { Features, FeaturesArrayType } from '../domain/features';
 import { Hero } from '../domain/hero';
 import { Marketplace } from '../domain/marketplace';
 import { Testimonials } from '../domain/testimonials';
-import { ProductsType } from '../domain/product';
 
 @Injectable({
 	providedIn: 'root',
@@ -59,12 +58,6 @@ export class HomeService {
 				});
 			})
 		);
-	}
-
-	getProducts(): Observable<ProductsType> {
-		return this.http
-			.get<ProductsType>(this.mockProduct)
-			.pipe(catchError(this.handleError));
 	}
 
 	getMarketplaceLogo(): Observable<Marketplace[]> {

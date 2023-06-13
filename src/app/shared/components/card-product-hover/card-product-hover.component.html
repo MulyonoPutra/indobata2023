@@ -9,7 +9,7 @@
         <p class="description">
           {{ product.description | shortenerText: 30 }}
         </p>
-        <a [routerLink]="['/product-detail', product.id]">
+        <a [routerLink]="['/product-detail', product._id]">
           <span class="read-more">
             <p>
               Read More

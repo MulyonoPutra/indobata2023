@@ -1,32 +1,30 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, map, throwError } from 'rxjs';
-import { ProductsType, Product } from '../domain/product';
+import { Observable, catchError, throwError } from 'rxjs';
+import { environment } from 'src/environments/environment.development';
+import { HttpResponseEntity } from '../domain/http-response-entity';
+import { Product, ProductsArrayType } from '../domain/product';
+
+export type ProductResponseEntity = HttpResponseEntity<ProductsArrayType>;
 
 @Injectable({
 	providedIn: 'root',
 })
 export class ProductService {
-	private mockProduct = 'assets/data/product.json';
+	private env = environment.apiUrl;
 
 	constructor(private http: HttpClient) {}
 
-	getProducts(): Observable<ProductsType> {
+	loadAll(): Observable<ProductResponseEntity> {
 		return this.http
-			.get<Product[]>(this.mockProduct)
+			.get<ProductResponseEntity>(`${this.env}/product`)
 			.pipe(catchError(this.handleError));
 	}
 
-	getProductById(id: string): Observable<Product> {
-		return this.http
-			.get<Product[]>(this.mockProduct)
-			.pipe(
-				map(
-					(products) =>
-						products.find((product: Product) => product.id === id)!
-				)
-			);
-	}
+  findById(id: string): Observable<HttpResponseEntity<Product>> {
+    return this.http.get<HttpResponseEntity<Product>>(`${this.env}/product/${id}`)
+    .pipe(catchError(this.handleError));
+  }
 
 	private handleError(res: HttpErrorResponse | any) {
 		console.error(res.error || res.body.error);

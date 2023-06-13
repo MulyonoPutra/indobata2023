@@ -32,7 +32,7 @@
 			"Density": "2400 kg/m³",
 			"Maximum Aggregate Size": "20 mm"
 		},
-		"images": ["../../../../../assets/images/genteng1.jpg"],
+		"images": ["../../../../../assets/images/genteng1.jpg", "../../../../../assets/images/genteng1.jpg"],
 		"stock": 0
 	},
 	{

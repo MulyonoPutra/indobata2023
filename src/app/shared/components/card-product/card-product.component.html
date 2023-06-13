@@ -7,7 +7,7 @@
       <p class="description">
         {{ product.description }}
       </p>
-      <a [routerLink]="['/product-detail', product.id]">
+      <a [routerLink]="['/product-detail', product._id]">
         <span class="read-more">
           <p>
             Read More
@@ -17,5 +17,5 @@
       </a>
     </div>
   </div>
-  <img class="card-images" [src]='product.images' />
+  <img class="card-images" [src]='product.images[1]' />
 </div>
