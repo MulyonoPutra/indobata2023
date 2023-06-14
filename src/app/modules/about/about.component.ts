@@ -15,7 +15,8 @@ export class AboutComponent implements OnInit, OnDestroy {
 	private destroy$ = new Subject<void>();
 	protected overview!: Overview;
 
-  protected title: string = 'Welcome to Indobata, a leading provider of high-quality concrete products. With decades of experience in the industry, we take pride in delivering exceptional solutions for all your construction needs.'
+	protected title: string =
+		'Welcome to Indobata, a leading provider of high-quality concrete products. With decades of experience in the industry, we take pride in delivering exceptional solutions for all your construction needs.';
 
 	constructor(private overviewService: OverviewService) {}
 

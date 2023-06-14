@@ -1,7 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { pathAssets } from 'src/app/configs/path-assets';
-import { ProductResponseEntity, ProductService } from '../../../../core/services/product.service';
+import {
+	ProductResponseEntity,
+	ProductService,
+} from '../../../../core/services/product.service';
 import { ProductsArrayType } from 'src/app/core/domain/product';
 
 @Component({
@@ -25,7 +28,7 @@ export class ProductComponent implements OnInit, OnDestroy {
 		this.subscriptions.push(
 			this.productService.loadAll().subscribe({
 				next: (response: ProductResponseEntity) => {
-					this.products = response.data
+					this.products = response.data;
 				},
 				error: (error) => {
 					console.log(error);

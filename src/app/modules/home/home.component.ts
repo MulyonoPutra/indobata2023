@@ -9,7 +9,10 @@ import { OverviewService } from 'src/app/core/services/overview.service';
 import { TestimonialsService } from 'src/app/core/services/testimonials.service';
 import { Features, FeaturesArrayType } from '../../core/domain/features';
 import { HomeService } from '../../core/services/home.service';
-import { ProductResponseEntity, ProductService } from 'src/app/core/services/product.service';
+import {
+	ProductResponseEntity,
+	ProductService,
+} from 'src/app/core/services/product.service';
 import { ProductsArrayType } from 'src/app/core/domain/product';
 
 @Component({
@@ -31,7 +34,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 		private homeService: HomeService,
 		private testimonialService: TestimonialsService,
 		private overviewService: OverviewService,
-    private productService: ProductService
+		private productService: ProductService
 	) {}
 
 	ngOnInit(): void {
@@ -92,7 +95,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 		this.subscriptions.push(
 			this.productService.loadAll().subscribe({
 				next: (response: ProductResponseEntity) => {
-					this.products = response.data
+					this.products = response.data;
 				},
 				error: (error) => {
 					console.log(error);

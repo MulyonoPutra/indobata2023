@@ -21,10 +21,11 @@ export class ProductService {
 			.pipe(catchError(this.handleError));
 	}
 
-  findById(id: string): Observable<HttpResponseEntity<Product>> {
-    return this.http.get<HttpResponseEntity<Product>>(`${this.env}/product/${id}`)
-    .pipe(catchError(this.handleError));
-  }
+	findById(id: string): Observable<HttpResponseEntity<Product>> {
+		return this.http
+			.get<HttpResponseEntity<Product>>(`${this.env}/product/${id}`)
+			.pipe(catchError(this.handleError));
+	}
 
 	private handleError(res: HttpErrorResponse | any) {
 		console.error(res.error || res.body.error);

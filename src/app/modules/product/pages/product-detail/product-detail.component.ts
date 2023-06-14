@@ -23,7 +23,7 @@ export class ProductDetailComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
-    this.getProductById()
+		this.getProductById();
 	}
 
 	protected accordionToggle(): void {
@@ -31,16 +31,14 @@ export class ProductDetailComponent implements OnInit {
 	}
 
 	protected getProductById(): void {
-    const id = this.route.snapshot.paramMap.get('id') ?? '';
-    this.productService.findById(id).subscribe(
-      {
-        next: (response: HttpResponseEntity<Product>) => {
-          this.product = response.data;
-          this.accordionData(this.product);
-        }
-      }
-    )
-  }
+		const id = this.route.snapshot.paramMap.get('id') ?? '';
+		this.productService.findById(id).subscribe({
+			next: (response: HttpResponseEntity<Product>) => {
+				this.product = response.data;
+				this.accordionData(this.product);
+			},
+		});
+	}
 
 	protected accordionData(product: Product): void {
 		this.accordions = [
@@ -88,7 +86,7 @@ export class ProductDetailComponent implements OnInit {
 		if (data === 0) {
 			alert('Product is not available');
 		} else {
-      alert('Product is available');
-    }
+			alert('Product is available');
+		}
 	}
 }

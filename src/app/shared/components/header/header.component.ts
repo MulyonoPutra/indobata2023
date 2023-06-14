@@ -39,4 +39,3 @@ export class HeaderComponent {
 			: 'pt-2 lg:pt-0 md:lg-0';
 	}
 }
-
