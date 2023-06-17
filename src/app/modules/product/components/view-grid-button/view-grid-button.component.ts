@@ -6,7 +6,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 	styleUrls: ['./view-grid-button.component.scss'],
 })
 export class ViewGridButtonComponent {
-  @Output() clicked = new EventEmitter<void>();
+	@Output() clicked = new EventEmitter<void>();
 
 	onClick(): void {
 		this.clicked.emit();

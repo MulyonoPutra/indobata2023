@@ -1,54 +1,54 @@
 {
-  "message": "Successfully retrieved!",
-  "data": [
-      {
-          "technicalSpecifications": {
-              "compressiveStrength": "50 MPa",
-              "settingTime": "Approximately 12 hours",
-              "waterCementRatio": "0.4",
-              "density": "2400 kg/m³",
-              "maximumAggregateSize": "20 mm"
-          },
-          "_id": "648c3258906d80b4954319c2",
-          "name": "Precast Concrete Beam",
-          "description": "Factory-made concrete beams used to support loads in various structural applications, offering strength and efficiency.",
-          "ingredients": [
-              "Portland cement",
-              "Coarse aggregates",
-              "Admixtures",
-              "Fibers",
-              "Water",
-              "Fine aggregates"
-          ],
-          "features": [
-              "High load-bearing capacity",
-              "Customizable lengths and cross-sections",
-              "Time and cost-efficient",
-              "Reduced construction time"
-          ],
-          "applications": [
-              "Building construction",
-              "Bridge construction",
-              "Infrastructure projects",
-              "Industrial facilities"
-          ],
-          "images": [
-              "https://res.cloudinary.com/dmekba1mm/image/upload/v1686909525/indobata/product/mqoruk3oc2zmqfehef3u.png",
-              "https://res.cloudinary.com/dmekba1mm/image/upload/v1686909526/indobata/product/s9715fazbfscn9gun6ow.png"
-          ],
-          "category": {
-              "_id": "648c24164550ee39534111a9",
-              "name": "Structural",
-              "description": "Products used for structural purposes, providing strength and support in construction projects.",
-              "__v": 0
-          },
-          "stock": 18,
-          "price": 500000,
-          "createdAt": "2023-06-16T09:58:48.403Z",
-          "updatedAt": "2023-06-16T09:58:48.403Z"
-      }
-  ],
-  "page": 1,
-  "totalPages": 11,
-  "totalItems": 11
+	"message": "Successfully retrieved!",
+	"data": [
+		{
+			"technicalSpecifications": {
+				"compressiveStrength": "50 MPa",
+				"settingTime": "Approximately 12 hours",
+				"waterCementRatio": "0.4",
+				"density": "2400 kg/m³",
+				"maximumAggregateSize": "20 mm"
+			},
+			"_id": "648c3258906d80b4954319c2",
+			"name": "Precast Concrete Beam",
+			"description": "Factory-made concrete beams used to support loads in various structural applications, offering strength and efficiency.",
+			"ingredients": [
+				"Portland cement",
+				"Coarse aggregates",
+				"Admixtures",
+				"Fibers",
+				"Water",
+				"Fine aggregates"
+			],
+			"features": [
+				"High load-bearing capacity",
+				"Customizable lengths and cross-sections",
+				"Time and cost-efficient",
+				"Reduced construction time"
+			],
+			"applications": [
+				"Building construction",
+				"Bridge construction",
+				"Infrastructure projects",
+				"Industrial facilities"
+			],
+			"images": [
+				"https://res.cloudinary.com/dmekba1mm/image/upload/v1686909525/indobata/product/mqoruk3oc2zmqfehef3u.png",
+				"https://res.cloudinary.com/dmekba1mm/image/upload/v1686909526/indobata/product/s9715fazbfscn9gun6ow.png"
+			],
+			"category": {
+				"_id": "648c24164550ee39534111a9",
+				"name": "Structural",
+				"description": "Products used for structural purposes, providing strength and support in construction projects.",
+				"__v": 0
+			},
+			"stock": 18,
+			"price": 500000,
+			"createdAt": "2023-06-16T09:58:48.403Z",
+			"updatedAt": "2023-06-16T09:58:48.403Z"
+		}
+	],
+	"page": 1,
+	"totalPages": 11,
+	"totalItems": 11
 }

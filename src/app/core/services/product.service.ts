@@ -23,7 +23,9 @@ export class ProductService {
 
 	loadAll(page: number, limit: number): Observable<ProductResponseEntity> {
 		return this.http
-			.get<ProductResponseEntity>(`${this.env}/product?page=${page}&limit=${limit}`)
+			.get<ProductResponseEntity>(
+				`${this.env}/product?page=${page}&limit=${limit}`
+			)
 			.pipe(catchError(this.handleError));
 	}
 
@@ -47,22 +49,25 @@ export class ProductService {
 			.pipe(catchError(this.handleError));
 	}
 
-  private handleError(error: HttpErrorResponse | any) {
-    console.log('Caught an error: ', error);
+	private handleError(error: HttpErrorResponse | any) {
+		console.log('Caught an error: ', error);
 
-    let errorMessage: string;
-    if (error instanceof HttpErrorResponse && error.error instanceof ErrorEvent) {
-      // Client-side error
-      errorMessage = `An error occurred: ${error.error.message}`;
-    } else if (error instanceof HttpErrorResponse && error.status === 400) {
-      // Server-side error with status code 400
-      errorMessage = error.error; // Assuming the error message is sent as a string
-    } else {
-      // Other types of errors
-      errorMessage = 'An unexpected error occurred.';
-    }
+		let errorMessage: string;
+		if (
+			error instanceof HttpErrorResponse &&
+			error.error instanceof ErrorEvent
+		) {
+			// Client-side error
+			errorMessage = `An error occurred: ${error.error.message}`;
+		} else if (error instanceof HttpErrorResponse && error.status === 400) {
+			// Server-side error with status code 400
+			errorMessage = error.error; // Assuming the error message is sent as a string
+		} else {
+			// Other types of errors
+			errorMessage = 'An unexpected error occurred.';
+		}
 
-    console.error(errorMessage);
-    return throwError(() => errorMessage);
-  }
+		console.error(errorMessage);
+		return throwError(() => errorMessage);
+	}
 }

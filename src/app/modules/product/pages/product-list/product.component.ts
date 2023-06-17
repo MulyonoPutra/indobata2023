@@ -32,7 +32,6 @@ export class ProductComponent implements OnInit, OnDestroy {
 	protected totalPages!: number;
 	protected totalItems!: number;
 	protected limit: number = 6;
-  
 
 	constructor(private productService: ProductService) {}
 
