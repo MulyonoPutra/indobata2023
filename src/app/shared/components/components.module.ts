@@ -79,6 +79,7 @@ import { TooltipComponent } from './tooltip/tooltip.component';
 		BrandLogoComponent,
 		SpinnerComponent,
 		TooltipComponent,
+		ShortenerTextPipe,
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

@@ -1,4 +1,8 @@
-<div class="bg-white">
+<div *ngIf="(loadingService.loading$ | async)" class="loading-indicator">
+  <app-spinner [loadingIndicator]="!loadingIndicator"></app-spinner>
+</div>
+
+<div *ngIf="!(loadingService.loading$ | async)" class="bg-white">
   <app-sidebar-filter [icon]="iconClose" [isFilterShown]="isFilterShown" [categories]="categories"
     (clicked)="showFilters()" (categoryId)="onReceive($event)">
   </app-sidebar-filter>

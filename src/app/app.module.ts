@@ -6,6 +6,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CoreModule } from './core/core.module';
 import { ProjectEffects } from './core/state/effects/project.effects';
 import { projectReducer } from './core/state/reducers/project.reducer';
 import { LayoutComponent } from './modules/layout/layout.component';
@@ -17,13 +18,13 @@ import { ComponentsModule } from './shared/components/components.module';
 		BrowserModule,
 		AppRoutingModule,
 		ComponentsModule,
+		CoreModule,
 		HttpClientModule,
 		StoreModule.forRoot({ projects: projectReducer }),
 		EffectsModule.forRoot([ProjectEffects]),
 		StoreDevtoolsModule.instrument({}),
 	],
 	exports: [AppComponent, LayoutComponent],
-	providers: [],
 	bootstrap: [AppComponent],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

@@ -12,6 +12,7 @@ import {
 	ProductResponseEntity,
 	ProductService,
 } from '../../../../core/services/product.service';
+import { LoadingService } from 'src/app/core/services/loading.service';
 
 @Component({
 	selector: 'app-product',
@@ -33,7 +34,12 @@ export class ProductComponent implements OnInit, OnDestroy {
 	protected totalItems!: number;
 	protected limit: number = 6;
 
-	constructor(private productService: ProductService) {}
+	loadingIndicator: boolean = false;
+
+	constructor(
+		private productService: ProductService,
+		public loadingService: LoadingService
+	) {}
 
 	ngOnInit(): void {
 		this.fetch();
@@ -61,7 +67,9 @@ export class ProductComponent implements OnInit, OnDestroy {
 
 	protected onPageChanged(page: number): void {
 		this.page = page;
-		this.getProducts();
+    console.log(this.products.length);
+
+    this.getProducts();
 	}
 
 	protected getProductCategories(): void {
@@ -91,9 +99,11 @@ export class ProductComponent implements OnInit, OnDestroy {
 
 	protected getProductsByCategoryId(id: string): void {
 		this.subscriptions.push(
-			this.productService.findProductsByCategoryId(id).subscribe({
+			this.productService.findProductsByCategoryId(id, this.page, this.limit).subscribe({
 				next: (response: ProductResponseEntity) => {
 					this.products = response.data;
+          this.totalPages = response.totalPages!;
+					this.totalItems = response.totalItems!;
 				},
 				error: (error: HttpErrorResponse) => {
 					alert(error.message);
