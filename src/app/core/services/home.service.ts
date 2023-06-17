@@ -22,7 +22,6 @@ import { Testimonials } from '../domain/testimonials';
 	providedIn: 'root',
 })
 export class HomeService {
-	private mockProduct = 'assets/data/product.json';
 	private iconPath = 'assets/data/features-icon.json';
 	private mockLogo = marketplace;
 	private mockTestimonials = testimonials;

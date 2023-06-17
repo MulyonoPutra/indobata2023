@@ -10,4 +10,6 @@ export const pathAssets = {
 	iconFacebook: '../../../../assets/icons/icon-facebook.svg',
 	iconInstagram: '../../../../assets/icons/icon-instagram.svg',
 	iconTwitter: '../../../../assets/icons/icon-twitter.svg',
+	iconViewGrid: '../../../../assets/icons/icon-view-grid.svg',
+	iconFilter: '../../../../assets/icons/icon-filter.svg',
 };

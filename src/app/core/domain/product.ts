@@ -1,4 +1,5 @@
 export type ProductsArrayType = Product[];
+export type ProductCategoriesType = Category[];
 
 export interface Product {
 	technicalSpecifications: TechnicalSpecifications;

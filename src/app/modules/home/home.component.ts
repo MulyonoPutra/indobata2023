@@ -93,7 +93,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
 	getProducts(): void {
 		this.subscriptions.push(
-			this.productService.loadAll().subscribe({
+			this.productService.loadAll(1, 10).subscribe({
 				next: (response: ProductResponseEntity) => {
 					this.products = response.data;
 				},

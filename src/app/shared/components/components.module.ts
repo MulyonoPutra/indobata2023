@@ -3,6 +3,7 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { ShortenerTextPipe } from '../pipes/shortener-text.pipe';
 import { AuthLinkComponent } from './auth-link/auth-link.component';
 import { BrandLogoComponent } from './brand-logo/brand-logo.component';
@@ -55,6 +56,7 @@ import { TooltipComponent } from './tooltip/tooltip.component';
 		FormsModule,
 		ReactiveFormsModule,
 		LazyLoadImageModule,
+		NgxPaginationModule,
 	],
 	exports: [
 		HeaderComponent,
