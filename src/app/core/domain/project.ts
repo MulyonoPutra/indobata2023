@@ -1,6 +1,8 @@
+export type ProjectsArrayType = Project[];
+
 export interface Project {
-	id: number;
+	id?: string;
 	title: string;
-	image: string;
+	images: string;
 	description: string;
 }

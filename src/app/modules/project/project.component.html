@@ -1,7 +1,7 @@
-<div *ngIf="loading$ | async">Loading...</div>
-<div *ngIf="error$ | async as error">{{ error }}</div>
+<!-- <div *ngIf="loading$ | async">Loading...</div>
+<div *ngIf="error$ | async as error">{{ error }}</div> -->
 
-<div class="bg-gray-100 py-8">
+<!-- <div class="bg-gray-100 py-8">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
       <ng-container *ngFor="let project of projects$ | async">
@@ -9,5 +9,20 @@
       </ng-container>
     </div>
   </div>
+</div> -->
+
+
+<div class="bg-gray-100 py-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <ng-container *ngFor="let project of projects | paginate: { itemsPerPage: limit, currentPage: page,  totalItems: totalItems }">
+        <app-card-project [project]="project"></app-card-project>
+      </ng-container>
+    </div>
+    <pagination-controls (pageChange)="onPageChanged($event)"></pagination-controls>
+  </div>
 </div>
+
+
+
 

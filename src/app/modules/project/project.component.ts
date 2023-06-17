@@ -2,7 +2,11 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, map } from 'rxjs';
 import { AppState } from 'src/app/app.state';
-import { Project } from '../../core/domain/project';
+import {
+	ProjectResponseEntity,
+	ProjectService,
+} from 'src/app/core/services/project.service';
+import { Project, ProjectsArrayType } from '../../core/domain/project';
 import * as ProjectActions from '../../core/state/actions/project.actions';
 
 @Component({
@@ -15,10 +19,20 @@ export class ProjectComponent implements OnInit {
 	loading$!: Observable<boolean>;
 	error$!: Observable<any>;
 
-	constructor(@Inject(Store<AppState>) private store: Store<AppState>) {}
+	protected projects!: ProjectsArrayType;
+	protected page: number = 0;
+	protected totalPages!: number;
+	protected totalItems!: number;
+	protected limit: number = 6;
+
+	constructor(
+		@Inject(Store<AppState>) private store: Store<AppState>,
+		private projectService: ProjectService
+	) {}
 
 	ngOnInit(): void {
-		this.loadProjects();
+		this.loadAll();
+		// this.loadProjects();
 	}
 
 	private loadProjects() {
@@ -29,5 +43,23 @@ export class ProjectComponent implements OnInit {
 		this.error$ = this.store.select((state) => state.projects.error);
 
 		this.store.dispatch(ProjectActions.loadProjects());
+	}
+
+	loadAll() {
+		this.projectService.loadAll(this.page, this.limit).subscribe({
+			next: (response: ProjectResponseEntity) => {
+				this.projects = response.data;
+				this.totalPages = response.totalPages!;
+				this.totalItems = response.totalItems!;
+			},
+			error: (error) => {
+				console.log(error);
+			},
+		});
+	}
+
+	protected onPageChanged(page: number): void {
+		this.page = page;
+		this.loadAll();
 	}
 }

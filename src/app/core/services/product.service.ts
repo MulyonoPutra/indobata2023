@@ -43,9 +43,15 @@ export class ProductService {
 			.pipe(catchError(this.handleError));
 	}
 
-	findProductsByCategoryId(id: string, page: number, limit: number): Observable<ProductResponseEntity> {
+	findProductsByCategoryId(
+		id: string,
+		page: number,
+		limit: number
+	): Observable<ProductResponseEntity> {
 		return this.http
-			.get<ProductResponseEntity>(`${this.env}/product/category/${id}?page=${page}&limit=${limit}`)
+			.get<ProductResponseEntity>(
+				`${this.env}/product/category/${id}?page=${page}&limit=${limit}`
+			)
 			.pipe(catchError(this.handleError));
 	}
 
