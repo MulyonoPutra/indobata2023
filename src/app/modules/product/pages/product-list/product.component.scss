@@ -3,10 +3,6 @@
 		brightness(91%) contrast(93%);
 }
 
-::ng-deep.ngx-pagination {
-	margin-top: 20px;
-}
-
 ::ng-deep.ngx-pagination .current {
 	z-index: 10;
 	background-color: #4f46e5 !important;
@@ -16,6 +12,7 @@
 }
 
 ::ng-deep.ngx-pagination {
+  margin-top: 20px;
 	position: relative;
 	display: inline-flex;
 	align-items: center;
