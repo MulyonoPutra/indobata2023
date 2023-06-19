@@ -1,27 +1,16 @@
-<div class="mt-4 flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
-  <div class="flex flex-1 justify-between sm:hidden">
-    <a href="#" class="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50" (click)="onPageChange(currentPage - 1)">Previous</a>
-    <a href="#" class="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50" (click)="onPageChange(currentPage + 1)">Next</a>
-  </div>
+<div class="flex items-center justify-between border-t border-gray-200 bg-white px-4 mt-4 sm:px-6">
   <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
     <div>
       <p class="text-sm text-gray-700">
         Showing
-        <span class="font-medium">{{ currentPage }}</span>
-        to
-        <span class="font-medium">{{ currentPage * limit }}</span>
+        <span class="font-bold">{{page}}</span>
         of
-        <span class="font-medium">{{ totalItems }}</span>
+        <span class="font-bold">{{totalItems}}</span>
         results
       </p>
     </div>
     <div>
-      <pagination-controls
-        [previousLabel]="'Previous'"
-        [nextLabel]="'Next'"
-        [boundaryLinks]="true"
-        (pageChange)="onPageChange($event)"
-      ></pagination-controls>
+      <pagination-controls (pageChange)="onPageChanged($event)"></pagination-controls>
     </div>
   </div>
 </div>

@@ -41,8 +41,7 @@
               <app-card-product-hover [product]="product"></app-card-product-hover>
             </ng-container>
           </div>
-          <pagination-controls (pageChange)="onPageChanged($event)"></pagination-controls>
-
+          <app-pagination (pageChange)="onPageChanged($event)" [page]="products.length" [totalItems]="totalItems"></app-pagination>
         </div>
       </div>
     </section>
