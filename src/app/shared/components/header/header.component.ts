@@ -1,7 +1,6 @@
-import { Component, HostListener, ViewChild } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { MenuItems } from 'src/app/configs/menu-items';
 import { pathAssets } from 'src/app/configs/path-assets';
-import { ProductComponent } from 'src/app/modules/product/pages/product-list/product.component';
 
 @Component({
 	selector: 'app-header',
@@ -11,7 +10,7 @@ import { ProductComponent } from 'src/app/modules/product/pages/product-list/pro
 export class HeaderComponent {
 	protected isMenuScrolled: boolean = false;
 	protected isSidebarShowing: boolean = false;
-  protected showDropdown!: boolean;
+	protected showDropdown!: boolean;
 	protected iconOpen = pathAssets.iconOpened;
 	protected iconClosed = pathAssets.iconClosed;
 	protected iconArrowUp = pathAssets.iconArrowUp;
@@ -19,7 +18,7 @@ export class HeaderComponent {
 
 	@HostListener('window:scroll', ['$event'])
 	scrollCheck() {
-		if (window.pageYOffset > 100) this.isMenuScrolled = true;
+		if (window.scrollY > 100) this.isMenuScrolled = true;
 		else this.isMenuScrolled = false;
 	}
 
@@ -38,7 +37,6 @@ export class HeaderComponent {
 	public toggleDropdown() {
 		this.showDropdown = !this.showDropdown;
 	}
-
 
 	scrolledStyled() {
 		this.isMenuScrolled
