@@ -10,9 +10,9 @@ export class SortComponent {
 	@Input() showDropdown!: boolean;
 	@Output() clicked = new EventEmitter<void>();
 
-  iconArrowDown = pathAssets.iconArrowDown;
+	iconArrowDown = pathAssets.iconArrowDown;
 
-  menuItems = ['Newest', 'Price: Low to High', 'Price: High to Low']
+	menuItems = ['Newest', 'Price: Low to High', 'Price: High to Low'];
 
 	onClick(): void {
 		this.clicked.emit();

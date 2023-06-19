@@ -17,11 +17,11 @@ export class ProductDetailComponent implements OnInit {
 	protected subscriptions: Subscription[] = [];
 	protected opened!: boolean;
 	protected accordions: Accordion[] = [];
-  protected loadingIndicator: boolean = false;
+	protected loadingIndicator: boolean = false;
 
 	constructor(
 		private productService: ProductService,
-    public loadingService: LoadingService,
+		public loadingService: LoadingService,
 		private route: ActivatedRoute
 	) {}
 
