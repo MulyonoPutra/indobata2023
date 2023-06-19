@@ -12,6 +12,7 @@ import { CardBlogComponent } from './card-blog/card-blog.component';
 import { CardProductHoverComponent } from './card-product-hover/card-product-hover.component';
 import { CardProductComponent } from './card-product/card-product.component';
 import { CardProjectComponent } from './card-project/card-project.component';
+import { DropdownProfileComponent } from './dropdown-profile/dropdown-profile.component';
 import { EmailComponent } from './email/email.component';
 import { FooterComponent } from './footer/footer.component';
 import { FormFieldComponent } from './form-field/form-field.component';
@@ -28,6 +29,7 @@ import { TooltipComponent } from './tooltip/tooltip.component';
 
 @NgModule({
 	declarations: [
+		ShortenerTextPipe,
 		HeaderComponent,
 		FooterComponent,
 		PhoneComponent,
@@ -47,8 +49,8 @@ import { TooltipComponent } from './tooltip/tooltip.component';
 		PaginationComponent,
 		BrandLogoComponent,
 		SpinnerComponent,
-		ShortenerTextPipe,
 		TooltipComponent,
+		DropdownProfileComponent,
 	],
 	imports: [
 		CommonModule,
@@ -59,6 +61,7 @@ import { TooltipComponent } from './tooltip/tooltip.component';
 		NgxPaginationModule,
 	],
 	exports: [
+		ShortenerTextPipe,
 		HeaderComponent,
 		FooterComponent,
 		PhoneComponent,
@@ -79,7 +82,7 @@ import { TooltipComponent } from './tooltip/tooltip.component';
 		BrandLogoComponent,
 		SpinnerComponent,
 		TooltipComponent,
-		ShortenerTextPipe,
+		DropdownProfileComponent,
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

@@ -1,0 +1,25 @@
+<div>
+  <div class="avatar">
+    <button type="button" (click)="onClick()">
+      <span class="sr-only">Open user menu</span>
+      <img [src]="avatar" alt="Avatar" />
+    </button>
+  </div>
+
+  <!-- Dropdown menu -->
+  <div *ngIf="showDropdown" class="dropdown">
+    <div class="username">
+      <div>Bonnie Green</div>
+    </div>
+    <ul class="py-2 text-sm text-gray-700">
+      <li *ngFor="let menu of menuItems">
+        <a [routerLink]="menu.route"
+          class="block px-4 py-2 hover:bg-gray-100 hover:font-bold">
+          {{ menu.title }}</a>
+      </li>
+    </ul>
+    <div class="py-2">
+      <button type="button" class="block px-4 py-2 text-sm text-gray-700">Sign out</button>
+    </div>
+  </div>
+</div>

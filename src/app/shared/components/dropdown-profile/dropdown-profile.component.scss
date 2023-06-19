@@ -1,0 +1,18 @@
+.avatar {
+  button {
+    @apply flex mx-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-600;
+
+    img {
+      @apply w-12 h-12 rounded-full flex-shrink-0 object-cover object-center;
+    }
+  }
+}
+
+
+.dropdown {
+  @apply absolute right-2 mt-2 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44;
+
+  .username {
+    @apply px-4 py-3 text-sm text-gray-900;
+  }
+}

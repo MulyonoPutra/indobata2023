@@ -1,6 +1,7 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, ViewChild } from '@angular/core';
 import { MenuItems } from 'src/app/configs/menu-items';
 import { pathAssets } from 'src/app/configs/path-assets';
+import { ProductComponent } from 'src/app/modules/product/pages/product-list/product.component';
 
 @Component({
 	selector: 'app-header',
@@ -10,6 +11,7 @@ import { pathAssets } from 'src/app/configs/path-assets';
 export class HeaderComponent {
 	protected isMenuScrolled: boolean = false;
 	protected isSidebarShowing: boolean = false;
+  protected showDropdown!: boolean;
 	protected iconOpen = pathAssets.iconOpened;
 	protected iconClosed = pathAssets.iconClosed;
 	protected iconArrowUp = pathAssets.iconArrowUp;
@@ -32,6 +34,11 @@ export class HeaderComponent {
 	scrollToTop() {
 		document.body.scrollIntoView({ behavior: 'smooth' });
 	}
+
+	public toggleDropdown() {
+		this.showDropdown = !this.showDropdown;
+	}
+
 
 	scrolledStyled() {
 		this.isMenuScrolled

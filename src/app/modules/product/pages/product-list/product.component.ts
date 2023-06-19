@@ -7,12 +7,12 @@ import {
 	ProductCategoriesType,
 	ProductsArrayType,
 } from 'src/app/core/domain/product';
+import { LoadingService } from 'src/app/core/services/loading.service';
 import {
 	ProductCategoriesResponseEntity,
 	ProductResponseEntity,
 	ProductService,
 } from '../../../../core/services/product.service';
-import { LoadingService } from 'src/app/core/services/loading.service';
 
 @Component({
 	selector: 'app-product',
@@ -24,7 +24,7 @@ export class ProductComponent implements OnInit, OnDestroy {
 	protected products!: ProductsArrayType;
 	protected categories!: ProductCategoriesType;
 	protected subscriptions: Subscription[] = [];
-	protected showDropdown: boolean = false;
+	public showDropdown: boolean = false;
 	protected isFilterShown: boolean = false;
 	protected iconFilter: string = pathAssets.iconFilter;
 	protected iconClose: string = pathAssets.iconClosed;
@@ -118,7 +118,7 @@ export class ProductComponent implements OnInit, OnDestroy {
 		this.isFilterShown = !this.isFilterShown;
 	}
 
-	protected toggleDropdown() {
+	public toggleDropdown() {
 		this.showDropdown = !this.showDropdown;
 	}
 

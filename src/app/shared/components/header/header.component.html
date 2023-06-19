@@ -55,7 +55,8 @@
         <img [src]="iconOpen" alt="hamburger" (click)="this.openSideBar()" class="w-8 h-8">
       </div>
       <app-menu class="hidden lg:block" [items]="menuitems"></app-menu>
-      <a routerLink="/login" class="login-btn">Login</a>
+      <!-- <a routerLink="/login" class="login-btn">Login</a> -->
+      <app-dropdown-profile [showDropdown]="showDropdown" (clicked)="toggleDropdown()"></app-dropdown-profile>
     </div>
   </div>
 </header>
