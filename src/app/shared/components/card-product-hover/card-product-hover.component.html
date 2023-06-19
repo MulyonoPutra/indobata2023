@@ -4,10 +4,10 @@
     <div class="absolute h-full w-full bg-black/20 flex items-center justify-center -bottom-10 group-hover:bottom-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
       <div class="card-content">
         <h2 class="title">
-          {{ product.name }}
+          {{ product.name | shortenerText: 18 }}
         </h2>
         <p class="description">
-          {{ product.description | shortenerText: 30 }}
+          {{ product.description | shortenerText: 25 }}
         </p>
         <a [routerLink]="['/product-detail', product._id]">
           <span class="read-more">

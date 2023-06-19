@@ -5,6 +5,7 @@ import { Product } from 'src/app/core/domain/product';
 import { Accordion } from '../../../../core/domain/accordion';
 import { ProductService } from '../../../../core/services/product.service';
 import { HttpResponseEntity } from 'src/app/core/domain/http-response-entity';
+import { LoadingService } from 'src/app/core/services/loading.service';
 
 @Component({
 	selector: 'app-product-detail',
@@ -16,9 +17,11 @@ export class ProductDetailComponent implements OnInit {
 	protected subscriptions: Subscription[] = [];
 	protected opened!: boolean;
 	protected accordions: Accordion[] = [];
+  protected loadingIndicator: boolean = false;
 
 	constructor(
 		private productService: ProductService,
+    public loadingService: LoadingService,
 		private route: ActivatedRoute
 	) {}
 

@@ -3,6 +3,7 @@ export const pathAssets = {
 	iconClosed: '../../../../assets/icons/icon-close-sidebar.svg',
 	iconOpened: '../../../../assets/icons/icon-hamburger.svg',
 	iconArrowUp: '../../../../assets/icons/arrow-up.svg',
+  iconArrowDown: '../../../../assets/icons/arrow-down.svg',
 	iconArrowLeft: '../../../../assets/icons/icon-arrow-left.svg',
 	iconEmail: '../../../../assets/icons/icon-email.svg',
 	iconLinkedin: '../../../../assets/icons/icon-linkedin.svg',
