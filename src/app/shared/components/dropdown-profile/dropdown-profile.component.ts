@@ -13,7 +13,7 @@ export class DropdownProfileComponent {
 
 	protected avatar = pathAssets.emptyAvatar;
 
-	menuItems = [
+	menuItems: MenuItem[] = [
 		{
 			id: '1',
 			title: 'Profile',
