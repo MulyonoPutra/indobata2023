@@ -38,9 +38,9 @@ export class HeaderComponent {
 		this.showDropdown = !this.showDropdown;
 	}
 
-  handleClickOutside() {
-    this.showDropdown = false;
-  }
+	handleClickOutside() {
+		this.showDropdown = false;
+	}
 
 	scrolledStyled() {
 		this.isMenuScrolled

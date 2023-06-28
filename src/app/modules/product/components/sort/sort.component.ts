@@ -24,7 +24,7 @@ export class SortComponent {
 		this.clicked.emit();
 	}
 
-  chooseMenu(id?: string): void {
-    this.choose.emit(id);
-  }
+	chooseMenu(id?: string): void {
+		this.choose.emit(id);
+	}
 }

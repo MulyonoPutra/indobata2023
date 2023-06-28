@@ -1,11 +1,11 @@
 button {
-  @apply inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900;
+	@apply inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900;
 }
 
 .list {
-  @apply absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none;
+	@apply absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none;
 
-  .items {
-    @apply cursor-pointer font-medium text-gray-900 block px-4 py-2 text-sm hover:font-bold;
-  }
+	.items {
+		@apply cursor-pointer font-medium text-gray-900 block px-4 py-2 text-sm hover:font-bold;
+	}
 }

@@ -26,12 +26,12 @@ export class ProjectComponent implements OnInit {
 	protected totalItems!: number;
 	protected limit: number = 6;
 
-  protected loadingIndicator: boolean = false;
+	protected loadingIndicator: boolean = false;
 
 	constructor(
 		@Inject(Store<AppState>) private store: Store<AppState>,
 		private projectService: ProjectService,
-    public loadingService: LoadingService
+		public loadingService: LoadingService
 	) {}
 
 	ngOnInit(): void {
@@ -39,7 +39,7 @@ export class ProjectComponent implements OnInit {
 		// this.loadProjects();
 	}
 
-  // load all the projects usng ngrx and mock data
+	// load all the projects usng ngrx and mock data
 	private loadProjects() {
 		this.projects$ = this.store
 			.select((state) => Object.values(state.projects.entities))

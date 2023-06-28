@@ -21,7 +21,7 @@ import { SharedModule } from './shared/shared.module';
 		ComponentsModule,
 		CoreModule,
 		HttpClientModule,
-    SharedModule,
+		SharedModule,
 		StoreModule.forRoot({ projects: projectReducer }),
 		EffectsModule.forRoot([ProjectEffects]),
 		StoreDevtoolsModule.instrument({}),

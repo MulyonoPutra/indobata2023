@@ -65,9 +65,9 @@ export class ProductComponent implements OnInit, OnDestroy {
 		);
 	}
 
-  handleClickOutside() {
-    this.showDropdown = false;
-  }
+	handleClickOutside() {
+		this.showDropdown = false;
+	}
 
 	protected onPageChanged(page: number): void {
 		this.page = page;
