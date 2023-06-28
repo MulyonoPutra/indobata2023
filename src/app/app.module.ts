@@ -11,6 +11,7 @@ import { ProjectEffects } from './core/state/effects/project.effects';
 import { projectReducer } from './core/state/reducers/project.reducer';
 import { LayoutComponent } from './modules/layout/layout.component';
 import { ComponentsModule } from './shared/components/components.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
 	declarations: [AppComponent, LayoutComponent],
@@ -20,6 +21,7 @@ import { ComponentsModule } from './shared/components/components.module';
 		ComponentsModule,
 		CoreModule,
 		HttpClientModule,
+    SharedModule,
 		StoreModule.forRoot({ projects: projectReducer }),
 		EffectsModule.forRoot([ProjectEffects]),
 		StoreDevtoolsModule.instrument({}),

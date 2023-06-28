@@ -9,12 +9,22 @@ import { pathAssets } from 'src/app/configs/path-assets';
 export class SortComponent {
 	@Input() showDropdown!: boolean;
 	@Output() clicked = new EventEmitter<void>();
+	@Output() choose = new EventEmitter<string>();
 
 	iconArrowDown = pathAssets.iconArrowDown;
 
-	menuItems = ['Newest', 'Price: Low to High', 'Price: High to Low'];
+	menuItems = [
+		{ name: 'Refresh', id: '1' },
+		{ name: 'Newest', id: '2' },
+		{ name: 'Price: Low to High', id: '3' },
+		{ name: 'Price: High to Low', id: '4' },
+	];
 
 	onClick(): void {
 		this.clicked.emit();
 	}
+
+  chooseMenu(id?: string): void {
+    this.choose.emit(id);
+  }
 }

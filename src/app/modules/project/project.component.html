@@ -1,6 +1,10 @@
-<div class="bg-gray-100 py-8">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+<div *ngIf="(loadingService.loading$ | async)" class="loading-indicator">
+  <app-spinner [loadingIndicator]="!loadingIndicator"></app-spinner>
+</div>
+
+<div *ngIf="!(loadingService.loading$ | async)" class="py-8">
+  <div class="wrapper">
+    <div>
       <ng-container *ngFor="let project of projects | paginate: { itemsPerPage: limit, currentPage: page,  totalItems: totalItems }">
         <app-card-project [project]="project"></app-card-project>
       </ng-container>

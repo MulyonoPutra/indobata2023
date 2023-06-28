@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { ShortenerTextPipe } from '../pipes/shortener-text.pipe';
+import { SharedModule } from '../shared.module';
 import { AuthLinkComponent } from './auth-link/auth-link.component';
 import { BrandLogoComponent } from './brand-logo/brand-logo.component';
 import { ButtonComponent } from './button/button.component';
@@ -29,7 +29,6 @@ import { TooltipComponent } from './tooltip/tooltip.component';
 
 @NgModule({
 	declarations: [
-		ShortenerTextPipe,
 		HeaderComponent,
 		FooterComponent,
 		PhoneComponent,
@@ -59,9 +58,9 @@ import { TooltipComponent } from './tooltip/tooltip.component';
 		ReactiveFormsModule,
 		LazyLoadImageModule,
 		NgxPaginationModule,
+		SharedModule,
 	],
 	exports: [
-		ShortenerTextPipe,
 		HeaderComponent,
 		FooterComponent,
 		PhoneComponent,

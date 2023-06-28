@@ -1,4 +1,4 @@
-<!-- <div class="max-w-4xl mx-auto">
+<div class="max-w-4xl mx-auto">
   <h2 class="text-2xl font-semibold mb-4">Create Blog Post</h2>
   <form [formGroup]="blogPostForm" (ngSubmit)="onSubmit()">
     <div class="mb-4">
@@ -10,17 +10,5 @@
       <ckeditor [(ngModel)]="contents" [config]="editorConfig" [editor]="Editor" formControlName="content"></ckeditor>
     </div>
     <button type="submit" [disabled]="blogPostForm.invalid" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">Create</button>
-  </form>
-</div> -->
-
-<div class="container mx-auto py-4">
-  <form (ngSubmit)="submitFilter()">
-    <div class="grid grid-cols-2 gap-4">
-      <div *ngFor="let option of filterOptions" class="flex items-center">
-        <input type="checkbox" id="{{ option.id }}" [(ngModel)]="option.selected" [ngModelOptions]="{standalone: true}" class="mr-2">
-        <label for="{{ option.id }}">{{ option.label }}</label>
-      </div>
-    </div>
-    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-4">Submit</button>
   </form>
 </div>

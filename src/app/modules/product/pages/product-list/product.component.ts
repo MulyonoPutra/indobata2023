@@ -65,10 +65,12 @@ export class ProductComponent implements OnInit, OnDestroy {
 		);
 	}
 
+  handleClickOutside() {
+    this.showDropdown = false;
+  }
+
 	protected onPageChanged(page: number): void {
 		this.page = page;
-		console.log(this.products.length);
-
 		this.getProducts();
 	}
 
@@ -120,6 +122,12 @@ export class ProductComponent implements OnInit, OnDestroy {
 
 	public toggleDropdown() {
 		this.showDropdown = !this.showDropdown;
+	}
+
+	public chooseMenu(id: string) {
+		if (id === '1') {
+			this.getProducts();
+		}
 	}
 
 	ngOnDestroy(): void {

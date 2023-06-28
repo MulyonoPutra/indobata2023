@@ -2,7 +2,7 @@
   <div>
     <div class="card-content">
       <h2 class="title">
-        {{ product.name }}
+        {{ product.name | shortenerText: 18 }}
       </h2>
       <p class="description">
         {{ product.description | shortenerText: 30 }}

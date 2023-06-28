@@ -38,6 +38,10 @@ export class HeaderComponent {
 		this.showDropdown = !this.showDropdown;
 	}
 
+  handleClickOutside() {
+    this.showDropdown = false;
+  }
+
 	scrolledStyled() {
 		this.isMenuScrolled
 			? 'fixed top-0 w-full bg-white shadow-xl animate-slideInDown animate-faster'

@@ -115,24 +115,4 @@ export class BlogCreateComponent implements OnInit {
 			console.log('Invalid form');
 		}
 	}
-
-	filterOptions: FilterOption[] = [
-		{ id: 'option1', label: 'Option 1', selected: false },
-		{ id: 'option2', label: 'Option 2', selected: false },
-		{ id: 'option3', label: 'Option 3', selected: false },
-		// Add more options if needed
-	];
-
-	submitFilter() {
-		const selectedOptions = this.filterOptions.filter(
-			(option) => option.selected
-		);
-		console.log(selectedOptions); // Replace with your desired logic
-	}
-}
-
-interface FilterOption {
-	id: string;
-	label: string;
-	selected: boolean;
 }

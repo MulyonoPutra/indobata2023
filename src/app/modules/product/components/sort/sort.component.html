@@ -1,21 +1,16 @@
 <div class="relative inline-block text-left">
   <div>
-    <button type="button" (click)="onClick()"
-      class="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900" id="menu-button"
-      aria-expanded="false" aria-haspopup="true">
+    <button type="button" (click)="onClick()" id="menu-button" aria-expanded="false" aria-haspopup="true">
       Sort
       <img [src]="iconArrowDown" height="18" width="18" alt="" class="ml-2 icon-gray">
     </button>
   </div>
 
-  <div *ngIf="showDropdown"
-    class="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none"
-    role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+  <div *ngIf="showDropdown" class="list" role="menu" aria-orientation="vertical" aria-labelledby="menu-button"
+    tabindex="-1">
     <div class="py-1" role="none">
       <ng-container *ngFor="let item of menuItems">
-        <a href="#" class="font-medium text-gray-900 block px-4 py-2 text-sm hover:font-bold" role="menuitem" tabindex="-1"
-          id="menu-item-0">{{item}}</a>
+        <a (click)="chooseMenu(item.id)" class="items" role="menuitem" tabindex="-1" id="menu-item-0">{{item.name}}</a>
       </ng-container>
-
+    </div>
   </div>
-</div>

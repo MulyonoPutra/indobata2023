@@ -10,8 +10,9 @@
   <main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-4">
       <app-view-grid-button (clicked)="getProducts()"></app-view-grid-button>
-      <div class="flex items-center">
-        <app-sort [showDropdown]="showDropdown" (clicked)="toggleDropdown()"> </app-sort>
+      <div class="flex items-center" #container clickOutside (clickOutside)="handleClickOutside()">
+        <app-sort [showDropdown]="showDropdown" (clicked)="toggleDropdown()" (choose)="chooseMenu($event)">
+        </app-sort>
         <button (click)="showFilters()" type="button"
           class="-m-2 ml-4 p-2 text-gray-400 hover:text-gray-500 sm:ml-6 lg:hidden">
           <span class="sr-only">Filters</span>
@@ -37,11 +38,12 @@
         <div class="lg:col-span-3">
           <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
             <ng-container
-              *ngFor="let product of products  | paginate: { itemsPerPage: limit, currentPage: page,  totalItems: totalItems }">
+              *ngFor="let product of products | paginate: { itemsPerPage: limit, currentPage: page,  totalItems: totalItems }">
               <app-card-product-hover [product]="product"></app-card-product-hover>
             </ng-container>
           </div>
-          <app-pagination (pageChange)="onPageChanged($event)" [page]="products.length" [totalItems]="totalItems"></app-pagination>
+          <app-pagination (pageChange)="onPageChanged($event)" [page]="products.length!"
+            [totalItems]="totalItems"></app-pagination>
         </div>
       </div>
     </section>

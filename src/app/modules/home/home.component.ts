@@ -54,8 +54,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 		this.subscriptions.push(
 			this.overviewService.loadOverview().subscribe({
 				next: (overview: OverviewSection) => {
-					console.log(overview);
-
 					this.overview = overview;
 				},
 				error: (error) => {

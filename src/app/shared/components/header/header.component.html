@@ -56,7 +56,9 @@
       </div>
       <app-menu class="hidden lg:block" [items]="menuitems"></app-menu>
       <!-- <a routerLink="/login" class="login-btn">Login</a> -->
-      <app-dropdown-profile [showDropdown]="showDropdown" (clicked)="toggleDropdown()"></app-dropdown-profile>
+      <div #container clickOutside (clickOutside)="handleClickOutside()">
+        <app-dropdown-profile [showDropdown]="showDropdown" (clicked)="toggleDropdown()"></app-dropdown-profile>
+      </div>
     </div>
   </div>
 </header>

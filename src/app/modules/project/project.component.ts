@@ -8,6 +8,7 @@ import {
 } from 'src/app/core/services/project.service';
 import { Project, ProjectsArrayType } from '../../core/domain/project';
 import * as ProjectActions from '../../core/state/actions/project.actions';
+import { LoadingService } from 'src/app/core/services/loading.service';
 
 @Component({
 	selector: 'app-project',
@@ -25,9 +26,12 @@ export class ProjectComponent implements OnInit {
 	protected totalItems!: number;
 	protected limit: number = 6;
 
+  protected loadingIndicator: boolean = false;
+
 	constructor(
 		@Inject(Store<AppState>) private store: Store<AppState>,
-		private projectService: ProjectService
+		private projectService: ProjectService,
+    public loadingService: LoadingService
 	) {}
 
 	ngOnInit(): void {
@@ -35,6 +39,7 @@ export class ProjectComponent implements OnInit {
 		// this.loadProjects();
 	}
 
+  // load all the projects usng ngrx and mock data
 	private loadProjects() {
 		this.projects$ = this.store
 			.select((state) => Object.values(state.projects.entities))
