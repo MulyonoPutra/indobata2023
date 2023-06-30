@@ -11,32 +11,31 @@ import { StorageService } from 'src/app/core/services/storage.service';
 	styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-
 	protected isMenuScrolled: boolean = false;
 	protected isSidebarShowing: boolean = false;
-  protected isTokenAvailable: boolean = false;
+	protected isTokenAvailable: boolean = false;
 	protected showDropdown!: boolean;
 	protected iconOpen = pathAssets.iconOpened;
 	protected iconClosed = pathAssets.iconClosed;
 	protected iconArrowUp = pathAssets.iconArrowUp;
 	protected menuitems = MenuItems;
-  protected username!: string;
+	protected username!: string;
 
-  constructor(
+	constructor(
 		private storage: StorageService,
-    private authService: AuthService
+		private authService: AuthService
 	) {}
 
-  ngOnInit(): void {
-    this.setUsername();
-  }
+	ngOnInit(): void {
+		this.setUsername();
+	}
 
-  setUsername() {
-    this.isTokenAvailable = this.storage.getToken() ? true : false;
-    if(this.isTokenAvailable) {
-      this.username = this.storage.getUsername();
-    }
-  }
+	setUsername() {
+		this.isTokenAvailable = this.storage.getToken() ? true : false;
+		if (this.isTokenAvailable) {
+			this.username = this.storage.getUsername();
+		}
+	}
 
 	@HostListener('window:scroll', ['$event'])
 	scrollCheck() {
@@ -70,12 +69,12 @@ export class HeaderComponent implements OnInit {
 			: 'pt-2 lg:pt-0 md:lg-0';
 	}
 
-  logout() {
-    timer(2000)
-    .pipe(take(1))
-    .subscribe(() => {
-      this.authService.logout();
-      window.location.reload();
-    });
-  }
+	logout() {
+		timer(2000)
+			.pipe(take(1))
+			.subscribe(() => {
+				this.authService.logout();
+				window.location.reload();
+			});
+	}
 }

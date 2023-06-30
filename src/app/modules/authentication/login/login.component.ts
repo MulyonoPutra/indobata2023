@@ -20,13 +20,14 @@ import { ValidatorsService } from 'src/app/shared/services/validators.service';
 export class LoginComponent implements OnInit {
 	protected form!: FormGroup;
 	protected isSubmitting = false;
-	protected bgCover = 'https://www.hsimagazine.com/wp-content/uploads/2020/01/iStock-1028568006.jpg';
+	protected bgCover =
+		'https://www.hsimagazine.com/wp-content/uploads/2020/01/iStock-1028568006.jpg';
 
 	constructor(
 		private fb: FormBuilder,
 		private router: Router,
 		private validations: ValidatorsService,
-    private authService: AuthService
+		private authService: AuthService
 	) {}
 
 	ngOnInit(): void {
@@ -68,13 +69,13 @@ export class LoginComponent implements OnInit {
 		if (this.form.valid) {
 			this.isSubmitting = true;
 			this.onDelay();
-			this.onSubmit()
+			this.onSubmit();
 		} else {
 			this.markAllFormControlsAsTouched(this.form);
 		}
 	}
 
-  protected onSubmit(): void {
+	protected onSubmit(): void {
 		this.authService.login(this.formCtrlValue).subscribe({
 			next: () => {
 				timer(2000)

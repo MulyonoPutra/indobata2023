@@ -34,11 +34,11 @@ export class AuthService {
 				map((response) => {
 					const token = response.data.accessToken;
 					const id = response.data.user._id;
-          const name = response.data.user.username
+					const name = response.data.user.username;
 
 					this.storage.setToken(token);
 					this.storage.setId(id);
-          this.storage.setUsername(name);
+					this.storage.setUsername(name);
 
 					return {
 						id,

@@ -40,12 +40,12 @@ export class ProfileComponent implements OnInit {
 			error: (error: HttpErrorResponse) => {
 				alert(error.message);
 			},
-      complete: () => {
-        // Handle the case when user is undefined
-        if (!this.user) {
-          // Perform necessary actions (e.g., show error message, redirect, etc.)
-        }
-      },
+			complete: () => {
+				// Handle the case when user is undefined
+				if (!this.user) {
+					// Perform necessary actions (e.g., show error message, redirect, etc.)
+				}
+			},
 		});
 	}
 }

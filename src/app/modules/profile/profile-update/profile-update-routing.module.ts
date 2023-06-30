@@ -5,7 +5,7 @@ import { ProfileUpdateComponent } from './profile-update.component';
 const routes: Routes = [{ path: '', component: ProfileUpdateComponent }];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+	imports: [RouterModule.forChild(routes)],
+	exports: [RouterModule],
 })
-export class ProfileUpdateRoutingModule { }
+export class ProfileUpdateRoutingModule {}

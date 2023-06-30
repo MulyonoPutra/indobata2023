@@ -7,15 +7,14 @@ const USERNAME_KEY = 'AuthUsername';
 const AUTHORITIES_KEY = 'AuthAuthorities';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root',
 })
 export class StorageService {
+	private token!: string | null;
 
-  private token!: string | null;
+	constructor(private cookieService: CookieService) {}
 
-  constructor(private cookieService: CookieService) {}
-
-  public setToken(token: string): void {
+	public setToken(token: string): void {
 		this.token = token;
 		this.cookieService.delete(TOKEN_KEY, '/');
 		this.cookieService.set(TOKEN_KEY, token);
@@ -34,7 +33,7 @@ export class StorageService {
 		this.cookieService.set(USER_ID, id);
 	}
 
-  public setUsername(username: string): void {
+	public setUsername(username: string): void {
 		this.cookieService.delete(USERNAME_KEY);
 		this.cookieService.set(USERNAME_KEY, username);
 	}
@@ -43,7 +42,7 @@ export class StorageService {
 		return this.cookieService.get(USERNAME_KEY);
 	}
 
-  public clearCookies(): void {
+	public clearCookies(): void {
 		this.token = null;
 		this.cookieService.deleteAll('/');
 	}

@@ -6,11 +6,10 @@ import { HttpResponseEntity } from '../domain/http-response-entity';
 import { User } from '../domain/user';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root',
 })
 export class UserService {
-
-  private env = environment.apiUrl;
+	private env = environment.apiUrl;
 
 	constructor(private http: HttpClient) {}
 

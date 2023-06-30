@@ -57,7 +57,7 @@ export class RegisterComponent implements OnInit {
 	get formCtrlValue(): Register {
 		return {
 			username: this.form.get('username')?.value,
-			email:    this.form.get('email')?.value,
+			email: this.form.get('email')?.value,
 			password: this.form.get('password')?.value,
 		};
 	}

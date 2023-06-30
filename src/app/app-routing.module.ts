@@ -84,7 +84,7 @@ const routes: Routes = [
 					import(
 						'./modules/blog/pages/blog-create/blog-create.module'
 					).then((m) => m.BlogCreateModule),
-          canActivate: [AuthGuard],
+				canActivate: [AuthGuard],
 			},
 			{
 				path: 'profile',
@@ -92,7 +92,7 @@ const routes: Routes = [
 					import(
 						'./modules/profile/profile-view/profile.module'
 					).then((m) => m.ProfileModule),
-          canActivate: [AuthGuard],
+				canActivate: [AuthGuard],
 			},
 			{
 				path: 'profile-update/:id',
@@ -100,7 +100,7 @@ const routes: Routes = [
 					import(
 						'./modules/profile/profile-update/profile-update.module'
 					).then((m) => m.ProfileUpdateModule),
-          canActivate: [AuthGuard],
+				canActivate: [AuthGuard],
 			},
 		],
 	},
