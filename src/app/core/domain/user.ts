@@ -28,3 +28,7 @@ export interface Address {
   districts: string
   villages: string
 }
+
+export interface UserIdentity {
+	id: string;
+}

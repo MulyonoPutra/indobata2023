@@ -9,6 +9,7 @@ import { pathAssets } from 'src/app/configs/path-assets';
 })
 export class DropdownProfileComponent {
 	@Input() showDropdown!: boolean;
+  @Input() username!: string;
 	@Output() clicked = new EventEmitter<void>();
   @Output() logout = new EventEmitter<void>();
 

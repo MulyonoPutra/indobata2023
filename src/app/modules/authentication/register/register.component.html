@@ -13,13 +13,29 @@
         </div>
 
         <form [formGroup]="form">
-          <app-form-field label="Username" [control]="getFormControl('username')" controlName="username">
-          </app-form-field>
-          <app-form-field label="Email" [control]="getFormControl('email')" controlName="email"></app-form-field>
-          <app-form-field label="Password" [control]="getFormControl('password')" controlName="password">
+          <app-form-field
+            label="Username"
+            [control]="formCtrl('username')"
+            controlName="username">
           </app-form-field>
 
-          <app-submit-button [isLoading]="isSubmitting" (click)="onRegisterProcess()" [label]="'Register'" [isDisabled]="form.invalid">
+          <app-form-field
+            label="Email"
+            [control]="formCtrl('email')"
+            controlName="email">
+          </app-form-field>
+
+          <app-form-field
+            label="Password"
+            [control]="formCtrl('password')"
+            controlName="password">
+          </app-form-field>
+
+          <app-submit-button
+            (click)="onRegisterProcess()"
+            [isLoading]="isSubmitting"
+            [label]="'Register'"
+            [isDisabled]="form.invalid">
           </app-submit-button>
         </form>
         <p class="mt-6 text-sm text-center text-gray-400">

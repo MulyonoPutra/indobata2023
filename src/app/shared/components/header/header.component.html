@@ -52,9 +52,15 @@
         <img [src]="iconOpen" alt="hamburger" (click)="this.openSideBar()" class="w-8 h-8">
       </div>
       <app-menu class="hidden lg:block" [items]="menuitems"></app-menu>
-      <!-- <a routerLink="/login" class="login-btn">Login</a> -->
-      <div #container clickOutside (clickOutside)="handleClickOutside()">
-        <app-dropdown-profile [showDropdown]="showDropdown" (clicked)="toggleDropdown()" (logout)="logout()"></app-dropdown-profile>
+
+      <div *ngIf="!isTokenAvailable">
+        <a routerLink="/login" class="login-btn">Login</a>
+      </div>
+
+      <div *ngIf="isTokenAvailable">
+        <div #container clickOutside (clickOutside)="handleClickOutside()">
+          <app-dropdown-profile [username]="username" [showDropdown]="showDropdown" (clicked)="toggleDropdown()" (logout)="logout()"></app-dropdown-profile>
+        </div>
       </div>
     </div>
   </div>

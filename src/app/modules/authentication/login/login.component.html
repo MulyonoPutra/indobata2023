@@ -18,7 +18,7 @@
           </app-form-field>
           <app-form-field label="Confirm Password" [control]="getFormControl('confirmPassword')" controlName="confirmPassword">
           </app-form-field>
-          <app-submit-button [isLoading]="isSubmitting" (click)="save()" [label]="'Login'" [isDisabled]="form.invalid">
+          <app-submit-button [isLoading]="isSubmitting" (click)="onLoginProcess()" [label]="'Login'" [isDisabled]="form.invalid">
           </app-submit-button>
         </form>
         <p class="mt-6 text-sm text-center text-gray-400">

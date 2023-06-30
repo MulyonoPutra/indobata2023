@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { take, timer } from 'rxjs';
+import { Register } from 'src/app/core/domain/register';
 import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
@@ -53,15 +54,15 @@ export class RegisterComponent implements OnInit {
 		});
 	}
 
-	get formCtrlValue() {
+	get formCtrlValue(): Register {
 		return {
 			username: this.form.get('username')?.value,
-			email: this.form.get('email')?.value,
+			email:    this.form.get('email')?.value,
 			password: this.form.get('password')?.value,
 		};
 	}
 
-	getFormControl(form: string): FormControl {
+	formCtrl(form: string): FormControl {
 		return this.form.get(form) as FormControl;
 	}
 

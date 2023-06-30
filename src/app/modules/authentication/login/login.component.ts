@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {
 	FormBuilder,
@@ -7,6 +8,8 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { take, timer } from 'rxjs';
+import { Login } from 'src/app/core/domain/login';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { ValidatorsService } from 'src/app/shared/services/validators.service';
 
 @Component({
@@ -17,13 +20,13 @@ import { ValidatorsService } from 'src/app/shared/services/validators.service';
 export class LoginComponent implements OnInit {
 	protected form!: FormGroup;
 	protected isSubmitting = false;
-	protected bgCover =
-		'https://www.hsimagazine.com/wp-content/uploads/2020/01/iStock-1028568006.jpg';
+	protected bgCover = 'https://www.hsimagazine.com/wp-content/uploads/2020/01/iStock-1028568006.jpg';
 
 	constructor(
 		private fb: FormBuilder,
 		private router: Router,
-		private validations: ValidatorsService
+		private validations: ValidatorsService,
+    private authService: AuthService
 	) {}
 
 	ngOnInit(): void {
@@ -41,7 +44,7 @@ export class LoginComponent implements OnInit {
 		);
 	}
 
-	get formCtrlValue() {
+	get formCtrlValue(): Login {
 		return {
 			email: this.form.get('email')?.value,
 			password: this.form.get('password')?.value,
@@ -61,15 +64,27 @@ export class LoginComponent implements OnInit {
 			});
 	}
 
-	protected save(): void {
+	protected onLoginProcess(): void {
 		if (this.form.valid) {
 			this.isSubmitting = true;
-			console.log(this.formCtrlValue);
-
 			this.onDelay();
+			this.onSubmit()
 		} else {
 			this.markAllFormControlsAsTouched(this.form);
 		}
+	}
+
+  protected onSubmit(): void {
+		this.authService.login(this.formCtrlValue).subscribe({
+			next: () => {
+				timer(2000)
+					.pipe(take(1))
+					.subscribe(() => this.router.navigateByUrl('/'));
+			},
+			error: (error: HttpErrorResponse) => {
+				alert(error.message);
+			},
+		});
 	}
 
 	private markAllFormControlsAsTouched(formGroup: FormGroup) {
