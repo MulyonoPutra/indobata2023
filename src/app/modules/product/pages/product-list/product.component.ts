@@ -24,7 +24,7 @@ export class ProductComponent implements OnInit, OnDestroy {
 	protected products!: ProductsArrayType;
 	protected categories!: ProductCategoriesType;
 	protected subscriptions: Subscription[] = [];
-	public showDropdown: boolean = false;
+	protected showDropdown: boolean = false;
 	protected isFilterShown: boolean = false;
 	protected iconFilter: string = pathAssets.iconFilter;
 	protected iconClose: string = pathAssets.iconClosed;
@@ -65,7 +65,7 @@ export class ProductComponent implements OnInit, OnDestroy {
 		);
 	}
 
-	handleClickOutside() {
+	protected handleClickOutside() {
 		this.showDropdown = false;
 	}
 

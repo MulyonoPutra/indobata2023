@@ -10,6 +10,7 @@ import { pathAssets } from 'src/app/configs/path-assets';
 export class DropdownProfileComponent {
 	@Input() showDropdown!: boolean;
 	@Output() clicked = new EventEmitter<void>();
+  @Output() logout = new EventEmitter<void>();
 
 	protected avatar = pathAssets.emptyAvatar;
 
@@ -33,4 +34,8 @@ export class DropdownProfileComponent {
 	onClick(): void {
 		this.clicked.emit();
 	}
+
+  onLogout(): void {
+    this.logout.emit();
+  }
 }

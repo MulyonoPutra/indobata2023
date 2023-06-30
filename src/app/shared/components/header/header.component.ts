@@ -47,4 +47,8 @@ export class HeaderComponent {
 			? 'fixed top-0 w-full bg-white shadow-xl animate-slideInDown animate-faster'
 			: 'pt-2 lg:pt-0 md:lg-0';
 	}
+
+  logout() {
+    alert('logout');
+  }
 }

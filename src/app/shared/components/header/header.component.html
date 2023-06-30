@@ -30,12 +30,9 @@
     <div class="container text-white py-2">
       <ul class="flex justify-around  gap-4">
         <li>
-          <!-- <img src="../assets/shapes/shape-1.webp" alt="" /> -->
-        </li>
-        <li class="">
           <app-phone></app-phone>
         </li>
-        <li class="">
+        <li>
           <app-email></app-email>
         </li>
         <li>
@@ -57,7 +54,7 @@
       <app-menu class="hidden lg:block" [items]="menuitems"></app-menu>
       <!-- <a routerLink="/login" class="login-btn">Login</a> -->
       <div #container clickOutside (clickOutside)="handleClickOutside()">
-        <app-dropdown-profile [showDropdown]="showDropdown" (clicked)="toggleDropdown()"></app-dropdown-profile>
+        <app-dropdown-profile [showDropdown]="showDropdown" (clicked)="toggleDropdown()" (logout)="logout()"></app-dropdown-profile>
       </div>
     </div>
   </div>

@@ -84,6 +84,20 @@ const routes: Routes = [
 						'./modules/blog/pages/blog-create/blog-create.module'
 					).then((m) => m.BlogCreateModule),
 			},
+			{
+				path: 'profile',
+				loadChildren: () =>
+					import(
+						'./modules/profile/profile-view/profile.module'
+					).then((m) => m.ProfileModule),
+			},
+			{
+				path: 'profile-update/:id',
+				loadChildren: () =>
+					import(
+						'./modules/profile/profile-update/profile-update.module'
+					).then((m) => m.ProfileUpdateModule),
+			},
 		],
 	},
 ];
