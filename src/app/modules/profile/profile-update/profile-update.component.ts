@@ -32,6 +32,7 @@ export class ProfileUpdateComponent implements OnInit {
 	protected form!: FormGroup;
 	protected isSubmitting: boolean = false;
 	readonly defaultAvatar = pathAssets.emptyAvatar;
+  readonly iconUpload = pathAssets.iconUpload;
 
 	protected dropdownProvince!: Province[];
 	protected dropdownRegencies!: Regencies[];
@@ -49,10 +50,15 @@ export class ProfileUpdateComponent implements OnInit {
 	protected covers!: string;
 
 	protected selectedFile: File | null = null;
-	protected preview: string | ArrayBuffer | null = null;
+	protected coverPreview!: string;
+	protected avatarPreview!: string;
 
-	protected coverImage: File | null = null;
-	protected avatarImage: File | null = null;
+	// protected coverImage: File | null = null;
+
+	protected isCoverChanged: boolean = false;
+	protected isAvatarChanged: boolean = false;
+	readonly maxSize: number = 1048576;
+	readonly allowedFileTypes: string[] = ['image/jpeg', 'image/png'];
 
 	url: any = '';
 
@@ -78,10 +84,6 @@ export class ProfileUpdateComponent implements OnInit {
 		this.getProvinces();
 	}
 
-	/**
-	 * Form builder initialization
-	 *
-	 */
 	private formInitialized(): void {
 		this.form = this.fb.group({
 			username: ['', [Validators.required, Validators.minLength(6)]],
@@ -90,8 +92,8 @@ export class ProfileUpdateComponent implements OnInit {
 				[Validators.required, this.validator.indonesianPhoneNumber()],
 			],
 			dob: ['', Validators.required],
-			avatar: [null],
-			cover: [null],
+			avatar: [null, Validators.required],
+			cover: [null, Validators.required],
 			description: ['', [Validators.required, Validators.minLength(6)]],
 			street: ['', Validators.required],
 			provinces: ['', Validators.required],
@@ -163,10 +165,6 @@ export class ProfileUpdateComponent implements OnInit {
 		});
 	}
 
-	/**
-	 * Receive from child component (app-dropdown)
-	 * @param id = province id
-	 */
 	protected onReceiveProvinceId(region: Region) {
 		this.provinceIdentity = region.id;
 
@@ -175,10 +173,6 @@ export class ProfileUpdateComponent implements OnInit {
 		this.getRegencies(region.id);
 	}
 
-	/**
-	 * Receive from child component (app-dropdown)
-	 * @param id = regency id
-	 */
 	protected onReceiveRegencyId(region: Region) {
 		this.regencyIdentity = region.id;
 
@@ -187,10 +181,6 @@ export class ProfileUpdateComponent implements OnInit {
 		this.getDistricts(region.id);
 	}
 
-	/**
-	 * Receive from child component (app-dropdown)
-	 * @param id = district id
-	 */
 	protected onReceiveDistrictId(region: Region) {
 		this.districtIdentity = region.id;
 
@@ -199,10 +189,6 @@ export class ProfileUpdateComponent implements OnInit {
 		this.getVillages(region.id);
 	}
 
-	/**
-	 * Receive from child component (app-dropdown)
-	 * @param id = village id
-	 */
 	protected onReceiveVillageId(region: Region) {
 		this.villageIdentity = region.id;
 
@@ -210,9 +196,6 @@ export class ProfileUpdateComponent implements OnInit {
 		this.form.get('villages')?.setValue(regionName);
 	}
 
-	/**
-	 * Get form Control value
-	 */
 	get formCtrlValue() {
 		return {
 			username: this.form.get('username')?.value,
@@ -266,26 +249,38 @@ export class ProfileUpdateComponent implements OnInit {
 		}
 	}
 
-	onSelectFile(event: Event, imageType: string) {
+	onChangeCover(event: Event) {
 		const inputElement = event.target as HTMLInputElement;
-		const maxSize = 1048576;
-		const allowedFileTypes = ['image/jpeg', 'image/png'];
 
 		if (inputElement.files && inputElement.files.length > 0) {
 			const file = inputElement.files[0];
 
-			if (file.size <= maxSize && allowedFileTypes.includes(file.type)) {
-				this.selectedFile = file;
+			if (
+				file.size <= this.maxSize &&
+				this.allowedFileTypes.includes(file.type)
+			) {
+				this.coverPreview = URL.createObjectURL(file);
+				this.isCoverChanged = true;
+				this.form.get('cover')?.setValue(file);
+			} else {
+				alert('File size exceeds the maximum allowed size');
+			}
+		}
+	}
 
-				this.preview = URL.createObjectURL(file);
+	onChangeAvatar(event: Event) {
+		const inputElement = event.target as HTMLInputElement;
 
-				if (imageType === 'cover') {
-					this.coverImage = file;
-					this.form.get('cover')?.setValue(this.coverImage);
-				} else if (imageType === 'avatar') {
-					this.avatarImage = file;
-					this.form.get('avatar')?.setValue(this.avatarImage);
-				}
+		if (inputElement.files && inputElement.files.length > 0) {
+			const file = inputElement.files[0];
+
+			if (
+				file.size <= this.maxSize &&
+				this.allowedFileTypes.includes(file.type)
+			) {
+				this.avatarPreview = URL.createObjectURL(file);
+				this.isAvatarChanged = true;
+				this.form.get('avatar')?.setValue(file);
 			} else {
 				alert('File size exceeds the maximum allowed size');
 			}

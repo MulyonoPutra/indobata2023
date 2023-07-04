@@ -3,11 +3,12 @@
     <section class="cover">
       <div>
         <img [lazyLoad]="user.cover.url" alt="Background Image">
+        <img *ngIf="isCoverChanged" [lazyLoad]="coverPreview" alt="Background Image">
         <div class="button-wrapper absolute right-0">
           <div class="py-6 px-3 mt-32 sm:mt-0">
             <button type="button" class="edit" (click)="fileInput.click()">
               <span>Change Cover</span>
-              <input #fileInput type="file" (change)="onSelectFile($event, 'cover')"  style="display:none;" />
+              <input #fileInput type="file" (change)="onChangeCover($event)"  style="display:none;" />
             </button>
           </div>
         </div>
@@ -22,12 +23,13 @@
                 <div class="image-container absolute top-1">
                   <label class="hoverable" for="fileInput">
                     <!-- <img [src]="imagePreviewUrl" class="images" alt="Selected Image"> -->
-                    <img [lazyLoad]="user.avatar.url ? user.avatar.url : defaultAvatar" class="images" alt="avatar"/>
+                    <img *ngIf="!isAvatarChanged" [lazyLoad]="user.avatar.url ? user.avatar.url : defaultAvatar" class="images" alt="avatar"/>
+                    <img *ngIf="isAvatarChanged" [lazyLoad]="avatarPreview" class="images" alt="avatar"/>
                     <div class="background"></div>
                   </label>
                   <br />
-                  <input id="fileInput" type="file" class="select-profile-picture" (change)="onSelectFile($event, 'avatar')" />
-                  <span class="message">Tap here to select your picture</span>
+                  <img [src]="iconUpload" alt="" class="h-10 w-10 message cursor-pointer mb-7">
+                  <input id="fileInput" type="file" class="select-profile-picture" (change)="onChangeAvatar($event)" />
                 </div>
                 <br />
               </div>

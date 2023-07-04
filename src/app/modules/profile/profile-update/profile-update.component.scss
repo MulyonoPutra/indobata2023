@@ -2,7 +2,7 @@
 	@apply relative block h-[500px];
 
 	img {
-		@apply absolute top-0 w-full h-full bg-center bg-cover;
+		@apply absolute top-0 w-full h-full bg-center bg-cover object-center object-cover;
 	}
 
 	.button-wrapper {
@@ -32,7 +32,7 @@
 			}
 
 			.images {
-				@apply h-[150px] w-[150px] border-2 border-black rounded-full bg-white;
+				@apply h-[150px] w-[150px] border-2 border-black rounded-full bg-white object-cover;
 			}
 
 			.select-profile-picture {

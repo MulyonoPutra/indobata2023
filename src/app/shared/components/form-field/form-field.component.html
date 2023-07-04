@@ -1,6 +1,6 @@
 <div class="form-field">
-  <label class="block mb-2" [for]="controlName">{{ label }}</label>
-  <input [id]="controlName" class="form-input w-full" [formControl]="control"
+  <label class="block mb-2 text-sm font-bold leading-6 text-gray-900" [for]="controlName">{{ label }}</label>
+  <input [id]="controlName" class="form-input w-full " [formControl]="control"
     [class.border-red-500]="control.invalid && control.touched">
   <div class="error-message" *ngIf="control.invalid && control.touched && control.dirty">
     <span *ngIf="control.hasError('required')">Field is required</span>
