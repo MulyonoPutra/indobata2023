@@ -16,13 +16,13 @@ ul {
 	li {
 		@apply text-gray-900 relative cursor-default select-none py-2 pl-3 pr-9 hover:bg-green-600 hover:text-white;
 
-    div {
-      @apply flex items-center;
+		div {
+			@apply flex items-center;
 
-      span {
-        @apply font-normal ml-3 block truncate;
-      }
-    }
+			span {
+				@apply font-normal ml-3 block truncate;
+			}
+		}
 	}
 }
 

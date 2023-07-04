@@ -88,8 +88,6 @@ import { CapitalizePipe } from '../pipes/capitalize.pipe';
 		DropdownComponent,
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [
-    CapitalizePipe
-  ]
+	providers: [CapitalizePipe],
 })
 export class ComponentsModule {}

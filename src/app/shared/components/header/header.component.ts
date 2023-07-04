@@ -14,21 +14,19 @@ import { UserService } from 'src/app/core/services/user.service';
 	styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  
-  protected username!:  string;
-	protected avatar!:    string;
-	protected userId!:    string;
+	protected username!: string;
+	protected avatar!: string;
+	protected userId!: string;
 
-	protected showDropdown!:    boolean;
-	protected isMenuScrolled:   boolean = false;
+	protected showDropdown!: boolean;
+	protected isMenuScrolled: boolean = false;
 	protected isSidebarShowing: boolean = false;
 	protected isTokenAvailable: boolean = false;
 
-  protected iconOpen =    pathAssets.iconOpened;
-	protected iconClosed =  pathAssets.iconClosed;
+	protected iconOpen = pathAssets.iconOpened;
+	protected iconClosed = pathAssets.iconClosed;
 	protected iconArrowUp = pathAssets.iconArrowUp;
-	protected menuitems =   MenuItems;
-
+	protected menuitems = MenuItems;
 
 	constructor(
 		private storage: StorageService,
