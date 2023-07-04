@@ -10,6 +10,7 @@ import { HttpResponseEntity } from '../domain/http-response-entity';
 })
 export class ContactService {
 	private env = environment.apiUrl;
+	private mockContactInfo = 'assets/data/contact.json';
 
 	constructor(private http: HttpClient) {}
 
@@ -17,6 +18,12 @@ export class ContactService {
 		return this.http
 			.post<HttpResponseEntity<Contact>>(`${this.env}/contact`, contact)
 			.pipe(catchError(this.handleError));
+	}
+
+	contactInfo(): Observable<HttpResponseEntity<Partial<Contact>>> {
+		return this.http.get<HttpResponseEntity<Partial<Contact>>>(
+			this.mockContactInfo
+		);
 	}
 
 	private handleError(res: HttpErrorResponse | any) {

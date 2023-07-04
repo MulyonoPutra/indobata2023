@@ -1,3 +1,5 @@
+import { Address } from './address';
+
 export interface User {
 	_id: string;
 	username: string;
@@ -19,14 +21,6 @@ export interface Avatar {
 export interface Cover {
 	id: any;
 	url: string;
-}
-
-export interface Address {
-	street: string;
-	provinces: string;
-	regencies: string;
-	districts: string;
-	villages: string;
 }
 
 export interface UserIdentity {

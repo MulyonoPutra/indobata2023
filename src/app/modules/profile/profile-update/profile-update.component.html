@@ -1,1 +1,106 @@
-<p>profile-update works!</p>
+<ng-container *ngIf="user">
+  <main class="profile-page">
+    <section class="cover">
+      <div>
+        <img [lazyLoad]="user.cover.url" alt="Background Image">
+        <div class="button-wrapper absolute right-0">
+          <div class="py-6 px-3 mt-32 sm:mt-0">
+            <button class="edit" type="button">
+              Change Cover
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="wrapper">
+      <div class="container mx-auto width-card px-4">
+        <div class="card">
+          <div class="p-6">
+            <div class="avatar">
+              <div class="absolute top-[-290px]">
+                <div class="image-container absolute top-1">
+                  <label class="hoverable" for="fileInput">
+                    <img [lazyLoad]="user.avatar.url ? user.avatar.url : defaultAvatar" class="images" alt="avatar"/>
+                    <div class="background"></div>
+                  </label>
+                  <br />
+                  <input id="fileInput" type="file" class="select-profile-picture" (change)="onSelectFile($event)" />
+                  <span class="message">Tap here to select your picture</span>
+                </div>
+                <br />
+              </div>
+            </div>
+
+            <div class="my-10">
+              <form [formGroup]="form">
+                <app-form-field
+                              label="Username"
+                              [control]="getFormControl('username')"
+                              controlName="username">
+                </app-form-field>
+                <app-form-field
+                              label="Phone"
+                              [control]="getFormControl('phone')"
+                              controlName="phone">
+                </app-form-field>
+                <app-form-field
+                              label="Date of Birth"
+                              [control]="getFormControl('dob')"
+                              controlName="dob">
+                </app-form-field>
+                <app-form-field
+                            label="Street"
+                            [control]="getFormControl('street')"
+                            controlName="street">
+                </app-form-field>
+                <app-form-field
+                            label="description"
+                            [control]="getFormControl('description')"
+                            controlName="description">
+                </app-form-field>
+                <app-dropdown
+                            [options]="dropdownProvince"
+                            [label]="'Province'"
+                            (optionId)="onReceiveProvinceId($event)">
+                </app-dropdown>
+
+                <div *ngIf="provinceIdentity">
+                  <app-dropdown
+                            [options]="dropdownRegencies"
+                            [label]="'Regencies'"
+                            (optionId)="onReceiveRegencyId($event)">
+                  </app-dropdown>
+                </div>
+
+                <div *ngIf="regencyIdentity">
+                  <app-dropdown
+                            [options]="dropdownDistricts"
+                            [label]="'Districts'"
+                            (optionId)="onReceiveDistrictId($event)">
+                  </app-dropdown>
+                </div>
+
+                <div *ngIf="districtIdentity">
+                  <app-dropdown
+                            [options]="dropdownVillages"
+                            [label]="'Villages'"
+                            (optionId)="onReceiveVillageId($event)">
+                  </app-dropdown>
+                </div>
+
+                <app-submit-button
+                            [isLoading]="isSubmitting"
+                            (click)="onProcessSave()"
+                            [label]="'Save'"
+                            [isDisabled]="form.invalid">
+                </app-submit-button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+  </main>
+</ng-container>

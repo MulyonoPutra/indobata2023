@@ -13,6 +13,7 @@ import { CardProductHoverComponent } from './card-product-hover/card-product-hov
 import { CardProductComponent } from './card-product/card-product.component';
 import { CardProjectComponent } from './card-project/card-project.component';
 import { DropdownProfileComponent } from './dropdown-profile/dropdown-profile.component';
+import { DropdownComponent } from './dropdown/dropdown.component';
 import { EmailComponent } from './email/email.component';
 import { FooterComponent } from './footer/footer.component';
 import { FormFieldComponent } from './form-field/form-field.component';
@@ -26,6 +27,7 @@ import { SocialIconComponent } from './social-icon/social-icon.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { SubmitButtonComponent } from './submit-button/submit-button.component';
 import { TooltipComponent } from './tooltip/tooltip.component';
+import { CapitalizePipe } from '../pipes/capitalize.pipe';
 
 @NgModule({
 	declarations: [
@@ -50,6 +52,7 @@ import { TooltipComponent } from './tooltip/tooltip.component';
 		SpinnerComponent,
 		TooltipComponent,
 		DropdownProfileComponent,
+		DropdownComponent,
 	],
 	imports: [
 		CommonModule,
@@ -82,7 +85,11 @@ import { TooltipComponent } from './tooltip/tooltip.component';
 		SpinnerComponent,
 		TooltipComponent,
 		DropdownProfileComponent,
+		DropdownComponent,
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers: [
+    CapitalizePipe
+  ]
 })
 export class ComponentsModule {}

@@ -48,4 +48,8 @@ export class ProfileComponent implements OnInit {
 			},
 		});
 	}
+
+	edit() {
+		this.router.navigate(['profile-update/' + this.userId]);
+	}
 }

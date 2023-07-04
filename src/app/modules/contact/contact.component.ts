@@ -5,7 +5,7 @@ import {
 	FormGroup,
 	Validators,
 } from '@angular/forms';
-import { timer, take } from 'rxjs';
+import { Subject, take, takeUntil, timer } from 'rxjs';
 import { Contact } from 'src/app/core/domain/contact';
 import { HttpResponseEntity } from 'src/app/core/domain/http-response-entity';
 import { ContactService } from 'src/app/core/services/contact.service';
@@ -18,19 +18,26 @@ import { ValidatorsService } from 'src/app/shared/services/validators.service';
 })
 export class ContactComponent implements OnInit {
 	protected form!: FormGroup;
-	isSubmitting = false;
+	protected isSubmitting = false;
+	protected contactInformation!: Partial<Contact>;
+	private destroy$ = new Subject<void>();
 
 	constructor(
 		private fb: FormBuilder,
 		private validator: ValidatorsService,
-		private feedback: ContactService
+		private contactService: ContactService
 	) {}
 
 	ngOnInit(): void {
-		this.initForms();
+		this.initialized();
 	}
 
-	protected initForms(): void {
+	private initialized(): void {
+		this.formInit();
+		this.getContactInfo();
+	}
+
+	protected formInit(): void {
 		this.form = this.fb.group({
 			fullname: ['', Validators.required],
 			phone: [
@@ -56,7 +63,7 @@ export class ContactComponent implements OnInit {
 	}
 
 	private submit(): void {
-		this.feedback.submitFeedback(this.formCtrlValue).subscribe({
+		this.contactService.submitFeedback(this.formCtrlValue).subscribe({
 			next: (response: HttpResponseEntity<Contact>) => {
 				console.log(response.message);
 			},
@@ -66,20 +73,34 @@ export class ContactComponent implements OnInit {
 		});
 	}
 
-	private delay(): void {
+	protected getContactInfo(): void {
+		this.contactService
+			.contactInfo()
+			.pipe(takeUntil(this.destroy$))
+			.subscribe({
+				next: (response: HttpResponseEntity<Partial<Contact>>) => {
+					this.contactInformation = response.data;
+				},
+				error: (error) => {
+					console.error(error);
+				},
+			});
+	}
+
+	private loadingIndicator(): void {
+		this.isSubmitting = true;
 		timer(2000)
 			.pipe(take(1))
 			.subscribe(() => {
 				this.isSubmitting = false;
-				this.form.reset();
 			});
 	}
 
 	protected save(): void {
 		if (this.form.valid) {
-			this.isSubmitting = true;
 			this.submit();
-			this.delay();
+			this.loadingIndicator();
+			this.form.reset();
 		} else {
 			this.markAllFormControlsAsTouched(this.form);
 		}

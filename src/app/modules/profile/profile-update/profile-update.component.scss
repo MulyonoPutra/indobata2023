@@ -1,0 +1,68 @@
+.cover {
+	@apply relative block h-[500px];
+
+	img {
+		@apply absolute top-0 w-full h-full bg-center bg-cover;
+	}
+
+	.button-wrapper {
+		@apply w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center;
+
+		.edit {
+			@apply bg-gray-600 active:bg-gray-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2  outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150;
+		}
+	}
+}
+
+.wrapper {
+	@apply relative py-16 bg-gray-200 flex justify-center items-center;
+
+	.width-card {
+		@apply w-[800px];
+	}
+
+	.card {
+		@apply min-w-0 break-words bg-white mb-6 shadow-xl rounded-lg -mt-64 h-auto;
+
+		.avatar {
+			@apply w-full mb-[100px] flex justify-center;
+
+			.image-container {
+				@apply relative inline-block text-center mb-[200px];
+			}
+
+			.images {
+				@apply h-[150px] w-[150px] border-2 border-black rounded-full bg-white;
+			}
+
+			.select-profile-picture {
+				@apply absolute top-0 left-0 opacity-0 w-full h-full cursor-pointer mb-[200px];
+			}
+
+			.message {
+				@apply absolute w-[90%] top-1/2 left-1/2 -translate-x-1/2 translate-y-full transition-all duration-1000 opacity-0 text-white;
+			}
+
+			.image-container:hover .message {
+				transform: translate(-50%, -50%);
+				opacity: 1;
+			}
+		}
+
+		.username {
+			@apply text-4xl font-semibold leading-normal mb-2 text-gray-700;
+		}
+
+		.address {
+			@apply text-sm leading-normal mt-0 mb-2 text-gray-400 font-bold uppercase;
+
+			i {
+				@apply mr-2 text-lg text-gray-400;
+			}
+		}
+	}
+}
+
+.relative:hover .opacity-0 {
+	opacity: 1;
+}

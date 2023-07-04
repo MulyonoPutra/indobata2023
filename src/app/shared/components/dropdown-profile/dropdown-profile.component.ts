@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MenuItem } from 'src/app/configs/menu-items';
-import { pathAssets } from 'src/app/configs/path-assets';
 
 @Component({
 	selector: 'app-dropdown-profile',
@@ -10,10 +9,9 @@ import { pathAssets } from 'src/app/configs/path-assets';
 export class DropdownProfileComponent {
 	@Input() showDropdown!: boolean;
 	@Input() username!: string;
+	@Input() avatar!: string;
 	@Output() clicked = new EventEmitter<void>();
 	@Output() logout = new EventEmitter<void>();
-
-	protected avatar = pathAssets.emptyAvatar;
 
 	menuItems: MenuItem[] = [
 		{

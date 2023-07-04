@@ -59,7 +59,7 @@
 
       <div *ngIf="isTokenAvailable">
         <div #container clickOutside (clickOutside)="handleClickOutside()">
-          <app-dropdown-profile [username]="username" [showDropdown]="showDropdown" (clicked)="toggleDropdown()" (logout)="logout()"></app-dropdown-profile>
+          <app-dropdown-profile [avatar]="avatar" [username]="username" [showDropdown]="showDropdown" (clicked)="toggleDropdown()" (logout)="logout()"></app-dropdown-profile>
         </div>
       </div>
     </div>
