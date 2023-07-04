@@ -66,3 +66,17 @@
 .relative:hover .opacity-0 {
 	opacity: 1;
 }
+
+.file-upload {
+  display: flex;
+  align-items: center;
+}
+
+
+button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+}

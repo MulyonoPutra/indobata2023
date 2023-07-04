@@ -12,12 +12,14 @@ import {
 	Districts,
 	Province,
 	Regencies,
+	Region,
 	Villages,
 } from 'src/app/core/domain/address';
 import { HttpResponseEntity } from 'src/app/core/domain/http-response-entity';
 import { User } from 'src/app/core/domain/user';
 import { AddressService } from 'src/app/core/services/address.service';
 import { UserService } from 'src/app/core/services/user.service';
+import { CapitalizePipe } from 'src/app/shared/pipes/capitalize.pipe';
 import { ValidatorsService } from 'src/app/shared/services/validators.service';
 
 @Component({
@@ -31,15 +33,21 @@ export class ProfileUpdateComponent implements OnInit {
 	protected isSubmitting: boolean = false;
 	readonly defaultAvatar = pathAssets.emptyAvatar;
 
-	protected dropdownProvince!: Province[];
+	protected dropdownProvince!:  Province[];
 	protected dropdownRegencies!: Regencies[];
 	protected dropdownDistricts!: Districts[];
-	protected dropdownVillages!: Villages[];
+	protected dropdownVillages!:  Villages[];
 
-	protected provinceIdentity!: string;
-	protected regencyIdentity!: string;
-	protected districtIdentity!: string;
-	protected villageIdentity!: string;
+	protected provinceIdentity!:  string;
+	protected regencyIdentity!:   string;
+	protected districtIdentity!:  string;
+	protected villageIdentity!:   string;
+
+  protected selectedFile: File | null = null;
+  protected preview: string | ArrayBuffer | null = null;
+
+  protected coverImage: File  | null = null;
+  protected avatarImage: File | null = null;
 
 	url: any = '';
 
@@ -48,7 +56,8 @@ export class ProfileUpdateComponent implements OnInit {
 		private route: ActivatedRoute,
 		private userService: UserService,
 		private addressService: AddressService,
-		private validator: ValidatorsService
+		private validator: ValidatorsService,
+		private capitalize: CapitalizePipe
 	) {}
 
 	ngOnInit(): void {
@@ -59,6 +68,29 @@ export class ProfileUpdateComponent implements OnInit {
 		this.getUserInfo();
 		this.formInitialized();
 		this.getProvinces();
+	}
+
+	/**
+	 * Form builder initialization
+	 *
+	 */
+	private formInitialized(): void {
+		this.form = this.fb.group({
+			username: ['', [Validators.required, Validators.minLength(6)]],
+			phone: [
+				'',
+				[Validators.required, this.validator.indonesianPhoneNumber()],
+			],
+			dob: ['', Validators.required],
+			avatar: [''],
+			cover: [''],
+			description: ['', [Validators.required, Validators.minLength(6)]],
+			street: ['', Validators.required],
+			provinces: ['', Validators.required],
+			regencies: ['', Validators.required],
+			districts: ['', Validators.required],
+			villages: ['', Validators.required],
+		});
 	}
 
 	private getUserInfo(): void {
@@ -122,59 +154,47 @@ export class ProfileUpdateComponent implements OnInit {
 	 * Receive from child component (app-dropdown)
 	 * @param id = province id
 	 */
-	protected onReceiveProvinceId(id: string) {
-		this.provinceIdentity = id;
-		this.getRegencies(id);
+	protected onReceiveProvinceId(region: Region) {
+		this.provinceIdentity = region.id;
+
+		const regionName = this.capitalize.transform(region.name);
+		this.form.get('provinces')?.setValue(regionName);
+		this.getRegencies(region.id);
 	}
 
 	/**
 	 * Receive from child component (app-dropdown)
 	 * @param id = regency id
 	 */
-	protected onReceiveRegencyId(id: string) {
-		console.log(id);
-		this.regencyIdentity = id;
-		this.getDistricts(id);
+	protected onReceiveRegencyId(region: Region) {
+		this.regencyIdentity = region.id;
+
+		const regionName = this.capitalize.transform(region.name);
+		this.form.get('regencies')?.setValue(regionName);
+		this.getDistricts(region.id);
 	}
 
 	/**
 	 * Receive from child component (app-dropdown)
 	 * @param id = district id
 	 */
-	protected onReceiveDistrictId(id: string) {
-		this.districtIdentity = id;
-		this.getVillages(id);
+	protected onReceiveDistrictId(region: Region) {
+		this.districtIdentity = region.id;
+
+		const regionName = this.capitalize.transform(region.name);
+		this.form.get('districts')?.setValue(regionName);
+		this.getVillages(region.id);
 	}
 
 	/**
 	 * Receive from child component (app-dropdown)
 	 * @param id = village id
 	 */
-	protected onReceiveVillageId(id: string) {
-		this.villageIdentity = id;
-	}
+	protected onReceiveVillageId(region: Region) {
+		this.villageIdentity = region.id;
 
-	/**
-	 * Form builder initialization
-	 *
-	 */
-	private formInitialized(): void {
-		this.form = this.fb.group({
-			username: ['', [Validators.required, Validators.minLength(6)]],
-			phone: [
-				'',
-				[Validators.required, this.validator.indonesianPhoneNumber()],
-			],
-			dob: ['', Validators.required],
-			avatar: [''],
-			cover: [''],
-			description: ['', [Validators.required, Validators.minLength(6)]],
-			street: ['', Validators.required],
-			villages: ['', Validators.required],
-			regencies: ['', Validators.required],
-			districts: ['', Validators.required],
-			provinces: ['', Validators.required],
-		});
+		const regionName = this.capitalize.transform(region.name);
+		this.form.get('villages')?.setValue(regionName);
 	}
 
 	/**
@@ -196,17 +216,30 @@ export class ProfileUpdateComponent implements OnInit {
 		};
 	}
 
-	onSelectFile(event: Event) {
-		if (event.target instanceof HTMLInputElement) {
-			const file = event.target.files?.[0];
-			let reader = new FileReader();
+	onSelectFile(event: Event, imageType: string) {
 
-			reader.readAsDataURL(file!);
+		const inputElement = event.target as HTMLInputElement;
+    const maxSize = 1048576;
+    const allowedFileTypes = ['image/jpeg', 'image/png'];
 
-			reader.onload = (event) => {
-				this.url = event?.target?.result;
-				console.log(this.url);
-			};
+		if (inputElement.files && inputElement.files.length > 0) {
+			const file = inputElement.files[0];
+
+			if (file.size <= maxSize && allowedFileTypes.includes(file.type)) {
+				this.selectedFile = file;
+
+        this.preview = URL.createObjectURL(file);
+
+        if (imageType === 'cover') {
+          this.coverImage = file;
+          this.form.get('cover')?.setValue(this.coverImage);
+        } else if (imageType === 'avatar') {
+          this.avatarImage = file;
+          this.form.get('avatar')?.setValue(this.avatarImage);
+        }
+			} else {
+				alert('File size exceeds the maximum allowed size');
+			}
 		}
 	}
 
@@ -220,7 +253,9 @@ export class ProfileUpdateComponent implements OnInit {
 	protected onProcessSave(): void {
 		if (this.form.valid) {
 			this.loadingIndicator();
-			this.form.reset();
+			console.log(this.formCtrlValue);
+
+			// this.form.reset();
 		} else {
 			this.markAllFormControlsAsTouched(this.form);
 		}

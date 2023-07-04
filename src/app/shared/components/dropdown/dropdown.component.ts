@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { pathAssets } from 'src/app/configs/path-assets';
+import { Region } from 'src/app/core/domain/address';
 
 @Component({
 	selector: 'app-dropdown',
@@ -9,10 +10,10 @@ import { pathAssets } from 'src/app/configs/path-assets';
 export class DropdownComponent {
 	@Input() options!: any[];
 	@Input() label!: string;
-  @Output() optionId = new EventEmitter<string>();
+	@Output() optionId = new EventEmitter<Region>();
 
 	protected isOpen: boolean = false;
-	protected selectedOption!: any;
+	protected selectedOption!: string;
 	protected selectedOptionIndex!: number;
 
 	readonly icon = {
@@ -24,21 +25,16 @@ export class DropdownComponent {
 		this.isOpen = !this.isOpen;
 	}
 
-	protected selectOption(option: any, index: number) {
+	protected selectOption(option: Region, index: number) {
 		this.selectedOption = option.name;
 
 		this.selectedOptionIndex = index;
 		this.isOpen = false;
 
-    this.sendOptionId(option.id);
+		this.sendOptionId(option);
 	}
 
-  sendOptionId(id: string): void {
+	sendOptionId(id: Region): void {
 		this.optionId.emit(id);
 	}
-}
-
-export interface Region {
-  id: string;
-  name: string;
 }

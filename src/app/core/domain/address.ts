@@ -28,3 +28,8 @@ export interface Villages {
   name: string;
   district_id: string;
 }
+
+export interface Region {
+	id: string;
+	name: string;
+}

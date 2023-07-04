@@ -4,9 +4,11 @@ import { Pipe, PipeTransform } from '@angular/core';
 	name: 'capitalize',
 })
 export class CapitalizePipe implements PipeTransform {
-	transform(value: string): string {
-		if (!value) return '';
-
-		return value.charAt(0).toUpperCase() + value.slice(1);
-	}
+  transform(value: string): string {
+    const words = value?.split(' ');
+    for (let i = 0; i < words?.length; i++) {
+      words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1).toLowerCase();
+    }
+    return words?.join(' ');
+  }
 }

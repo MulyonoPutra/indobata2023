@@ -3,7 +3,7 @@
   <div class="relative mt-2">
     <button type="button" class="dropdown-btn" (click)="toggleDropdown()">
       <span class="flex items-center">
-        <span class="ml-3 block truncate" [class.text-gray-500]="!selectedOption">{{ selectedOption|| 'Select an option' }}</span>
+        <span class="ml-3 block truncate" [class.text-gray-500]="!selectedOption">{{ (selectedOption | capitalize) || 'Select an option' }}</span>
       </span>
       <span class="image-wrapper">
         <img [src]="icon.dropdown" alt="" class="icon-gray h-5 w-5" />
@@ -13,7 +13,7 @@
     <ul *ngIf="isOpen" tabindex="-1">
       <li role="option" *ngFor="let option of options; let i = index" (click)="selectOption(option, i)">
         <div class="flex items-center">
-          <span class="font-normal ml-3 block truncate">{{ option.name }}</span>
+          <span>{{ option.name | capitalize }}</span>
         </div>
         <span *ngIf="selectedOptionIndex === i" class="icon-wrapper">
           <img [src]="icon.checklist" alt="" class="checklist h-5 w-5" />

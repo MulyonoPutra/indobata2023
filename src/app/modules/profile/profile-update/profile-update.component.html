@@ -5,8 +5,9 @@
         <img [lazyLoad]="user.cover.url" alt="Background Image">
         <div class="button-wrapper absolute right-0">
           <div class="py-6 px-3 mt-32 sm:mt-0">
-            <button class="edit" type="button">
-              Change Cover
+            <button type="button" class="edit" (click)="fileInput.click()">
+              <span>Change Cover</span>
+              <input #fileInput type="file" (change)="onSelectFile($event, 'cover')"  style="display:none;" />
             </button>
           </div>
         </div>
@@ -20,11 +21,12 @@
               <div class="absolute top-[-290px]">
                 <div class="image-container absolute top-1">
                   <label class="hoverable" for="fileInput">
+                    <!-- <img [src]="imagePreviewUrl" class="images" alt="Selected Image"> -->
                     <img [lazyLoad]="user.avatar.url ? user.avatar.url : defaultAvatar" class="images" alt="avatar"/>
                     <div class="background"></div>
                   </label>
                   <br />
-                  <input id="fileInput" type="file" class="select-profile-picture" (change)="onSelectFile($event)" />
+                  <input id="fileInput" type="file" class="select-profile-picture" (change)="onSelectFile($event, 'avatar')" />
                   <span class="message">Tap here to select your picture</span>
                 </div>
                 <br />
