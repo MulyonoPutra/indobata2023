@@ -9,6 +9,7 @@ import { Subject, take, takeUntil, timer } from 'rxjs';
 import { Contact } from 'src/app/core/domain/contact';
 import { HttpResponseEntity } from 'src/app/core/domain/http-response-entity';
 import { ContactService } from 'src/app/core/services/contact.service';
+import { FormUtilService } from 'src/app/shared/services/form-util.service';
 import { ValidatorsService } from 'src/app/shared/services/validators.service';
 
 @Component({
@@ -25,7 +26,8 @@ export class ContactComponent implements OnInit {
 	constructor(
 		private fb: FormBuilder,
 		private validator: ValidatorsService,
-		private contactService: ContactService
+		private contactService: ContactService,
+    private formUtils: FormUtilService,
 	) {}
 
 	ngOnInit(): void {
@@ -102,16 +104,7 @@ export class ContactComponent implements OnInit {
 			this.loadingIndicator();
 			this.form.reset();
 		} else {
-			this.markAllFormControlsAsTouched(this.form);
+			this.formUtils.markAllFormControlsAsTouched(this.form);
 		}
-	}
-
-	private markAllFormControlsAsTouched(formGroup: FormGroup) {
-		Object.values(formGroup.controls).forEach((control) => {
-			control.markAsTouched();
-			if (control instanceof FormGroup) {
-				this.markAllFormControlsAsTouched(control);
-			}
-		});
 	}
 }

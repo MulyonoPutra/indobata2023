@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { take, timer } from 'rxjs';
 import { Register } from 'src/app/core/domain/register';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { FormUtilService } from 'src/app/shared/services/form-util.service';
 
 @Component({
 	selector: 'app-register',
@@ -25,7 +26,8 @@ export class RegisterComponent implements OnInit {
 	constructor(
 		private fb: FormBuilder,
 		private router: Router,
-		private authService: AuthService
+		private authService: AuthService,
+    private formUtils: FormUtilService,
 	) {}
 
 	ngOnInit(): void {
@@ -81,7 +83,7 @@ export class RegisterComponent implements OnInit {
 			this.onSubmit();
 			this.onDelay();
 		} else {
-			this.markAllFormControlsAsTouched(this.form);
+			this.formUtils.markAllFormControlsAsTouched(this.form);
 		}
 	}
 
@@ -95,15 +97,6 @@ export class RegisterComponent implements OnInit {
 			error: (error: HttpErrorResponse) => {
 				alert(error.message);
 			},
-		});
-	}
-
-	private markAllFormControlsAsTouched(formGroup: FormGroup) {
-		Object.values(formGroup.controls).forEach((control) => {
-			control.markAsTouched();
-			if (control instanceof FormGroup) {
-				this.markAllFormControlsAsTouched(control);
-			}
 		});
 	}
 }

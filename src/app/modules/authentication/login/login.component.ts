@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { take, timer } from 'rxjs';
 import { Login } from 'src/app/core/domain/login';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { FormUtilService } from 'src/app/shared/services/form-util.service';
 import { ValidatorsService } from 'src/app/shared/services/validators.service';
 
 @Component({
@@ -27,7 +28,8 @@ export class LoginComponent implements OnInit {
 		private fb: FormBuilder,
 		private router: Router,
 		private validations: ValidatorsService,
-		private authService: AuthService
+		private authService: AuthService,
+    private formUtils: FormUtilService,
 	) {}
 
 	ngOnInit(): void {
@@ -71,7 +73,7 @@ export class LoginComponent implements OnInit {
 			this.onDelay();
 			this.onSubmit();
 		} else {
-			this.markAllFormControlsAsTouched(this.form);
+			this.formUtils.markAllFormControlsAsTouched(this.form);
 		}
 	}
 
@@ -85,15 +87,6 @@ export class LoginComponent implements OnInit {
 			error: (error: HttpErrorResponse) => {
 				alert(error.message);
 			},
-		});
-	}
-
-	private markAllFormControlsAsTouched(formGroup: FormGroup) {
-		Object.values(formGroup.controls).forEach((control) => {
-			control.markAsTouched();
-			if (control instanceof FormGroup) {
-				this.markAllFormControlsAsTouched(control);
-			}
 		});
 	}
 }
