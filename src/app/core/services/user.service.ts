@@ -20,7 +20,7 @@ export class UserService {
 	}
 
 	update(body: FormData, id: string): Observable<HttpResponseEntity<User>> {
-		return this.http.post<HttpResponseEntity<User>>(
+		return this.http.put<HttpResponseEntity<User>>(
 			`${this.env}/user/${id}`,
 			body
 		);

@@ -5,7 +5,7 @@ import {
 	FormGroup,
 	Validators,
 } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { take, timer } from 'rxjs';
 import { pathAssets } from 'src/app/configs/path-assets';
 import {
@@ -33,32 +33,40 @@ export class ProfileUpdateComponent implements OnInit {
 	protected isSubmitting: boolean = false;
 	readonly defaultAvatar = pathAssets.emptyAvatar;
 
-	protected dropdownProvince!:  Province[];
+	protected dropdownProvince!: Province[];
 	protected dropdownRegencies!: Regencies[];
 	protected dropdownDistricts!: Districts[];
-	protected dropdownVillages!:  Villages[];
+	protected dropdownVillages!: Villages[];
 
-	protected provinceIdentity!:  string;
-	protected regencyIdentity!:   string;
-	protected districtIdentity!:  string;
-	protected villageIdentity!:   string;
+	protected provinceIdentity!: string;
+	protected regencyIdentity!: string;
+	protected districtIdentity!: string;
+	protected villageIdentity!: string;
 
-  protected selectedFile: File | null = null;
-  protected preview: string | ArrayBuffer | null = null;
+	protected userIdentity!: string;
 
-  protected coverImage: File  | null = null;
-  protected avatarImage: File | null = null;
+	protected avatars!: string;
+	protected covers!: string;
+
+	protected selectedFile: File | null = null;
+	protected preview: string | ArrayBuffer | null = null;
+
+	protected coverImage: File | null = null;
+	protected avatarImage: File | null = null;
 
 	url: any = '';
 
 	constructor(
 		private fb: FormBuilder,
+		private router: Router,
 		private route: ActivatedRoute,
 		private userService: UserService,
 		private addressService: AddressService,
 		private validator: ValidatorsService,
 		private capitalize: CapitalizePipe
-	) {}
+	) {
+		this.userIdentity = this.route.snapshot.paramMap.get('id')!;
+	}
 
 	ngOnInit(): void {
 		this.fetchData();
@@ -82,8 +90,8 @@ export class ProfileUpdateComponent implements OnInit {
 				[Validators.required, this.validator.indonesianPhoneNumber()],
 			],
 			dob: ['', Validators.required],
-			avatar: [''],
-			cover: [''],
+			avatar: [null],
+			cover: [null],
 			description: ['', [Validators.required, Validators.minLength(6)]],
 			street: ['', Validators.required],
 			provinces: ['', Validators.required],
@@ -98,6 +106,12 @@ export class ProfileUpdateComponent implements OnInit {
 		this.userService.findUserById(id).subscribe({
 			next: (response: HttpResponseEntity<User>) => {
 				this.user = response.data;
+				this.avatars = response.data.avatar.url;
+				this.covers = response.data.cover.url;
+
+				this.onCheckImages(this.avatars, this.covers);
+
+				this.prepopulateForms(response.data!);
 			},
 			error: (error) => {
 				console.error(error);
@@ -142,7 +156,6 @@ export class ProfileUpdateComponent implements OnInit {
 		this.addressService.findAllVillages(id).subscribe({
 			next: (response: HttpResponseEntity<Villages[]>) => {
 				this.dropdownVillages = response.data;
-				console.log(response.data);
 			},
 			error: (error) => {
 				console.error(error);
@@ -198,7 +211,7 @@ export class ProfileUpdateComponent implements OnInit {
 	}
 
 	/**
-	 * Get form builder value
+	 * Get form Control value
 	 */
 	get formCtrlValue() {
 		return {
@@ -216,11 +229,47 @@ export class ProfileUpdateComponent implements OnInit {
 		};
 	}
 
-	onSelectFile(event: Event, imageType: string) {
+	protected prepopulateForms(user: User): void {
+		this.form.patchValue({
+			username: user.username,
+			phone: user.phone,
+			dob: user.dob,
+			avatar: user.avatar.url,
+			cover: user.cover.url,
+			description: user.description,
+			street: user.address.street,
+			provinces: user.address.provinces,
+			regencies: user.address.regencies,
+			districts: user.address.districts,
+			villages: user.address.villages,
+		});
+	}
 
+	onCheckImages(cover: string, avatar: string): void {
+		const coverFormCtrl = this.form.get('cover')?.value;
+		const avatarFormCtrl = this.form.get('avatar')?.value;
+
+		console.log(coverFormCtrl);
+		console.log(avatarFormCtrl);
+
+		if (coverFormCtrl === null) {
+			console.log('triggered null cover');
+
+			this.form.get('cover')?.setValue(cover);
+		}
+
+		if (avatarFormCtrl === null) {
+			console.log('triggered null avatar');
+			console.log(avatar);
+
+			this.form.get('avatar')?.setValue(avatar);
+		}
+	}
+
+	onSelectFile(event: Event, imageType: string) {
 		const inputElement = event.target as HTMLInputElement;
-    const maxSize = 1048576;
-    const allowedFileTypes = ['image/jpeg', 'image/png'];
+		const maxSize = 1048576;
+		const allowedFileTypes = ['image/jpeg', 'image/png'];
 
 		if (inputElement.files && inputElement.files.length > 0) {
 			const file = inputElement.files[0];
@@ -228,15 +277,15 @@ export class ProfileUpdateComponent implements OnInit {
 			if (file.size <= maxSize && allowedFileTypes.includes(file.type)) {
 				this.selectedFile = file;
 
-        this.preview = URL.createObjectURL(file);
+				this.preview = URL.createObjectURL(file);
 
-        if (imageType === 'cover') {
-          this.coverImage = file;
-          this.form.get('cover')?.setValue(this.coverImage);
-        } else if (imageType === 'avatar') {
-          this.avatarImage = file;
-          this.form.get('avatar')?.setValue(this.avatarImage);
-        }
+				if (imageType === 'cover') {
+					this.coverImage = file;
+					this.form.get('cover')?.setValue(this.coverImage);
+				} else if (imageType === 'avatar') {
+					this.avatarImage = file;
+					this.form.get('avatar')?.setValue(this.avatarImage);
+				}
 			} else {
 				alert('File size exceeds the maximum allowed size');
 			}
@@ -253,16 +302,44 @@ export class ProfileUpdateComponent implements OnInit {
 	protected onProcessSave(): void {
 		if (this.form.valid) {
 			this.loadingIndicator();
-			console.log(this.formCtrlValue);
-
-			// this.form.reset();
+			this.submitToServer();
+			this.form.reset();
+			// this.router.navigate(['/']).then(() => {
+			//   window.location.reload();
+			// });
 		} else {
 			this.markAllFormControlsAsTouched(this.form);
 		}
 	}
 
-	submit(): void {
-		// this.userService.update()
+	submitToServer(): void {
+		const formData = this.setFormData();
+
+		this.userService.update(formData, this.userIdentity).subscribe({
+			next: (response: HttpResponseEntity<User>) => {
+				this.user = response.data;
+				this.prepopulateForms(response.data!);
+			},
+			error: (error) => {
+				console.error(error);
+			},
+		});
+	}
+
+	private setFormData() {
+		const formData = new FormData();
+		formData.append('username', this.formCtrlValue.username);
+		formData.append('phone', this.formCtrlValue.phone);
+		formData.append('dob', this.formCtrlValue.dob);
+		formData.append('avatar', this.formCtrlValue.avatar);
+		formData.append('cover', this.formCtrlValue.cover);
+		formData.append('description', this.formCtrlValue.description);
+		formData.append('address[street]', this.formCtrlValue.street);
+		formData.append('address[provinces]', this.formCtrlValue.provinces);
+		formData.append('address[regencies]', this.formCtrlValue.regencies);
+		formData.append('address[districts]', this.formCtrlValue.districts);
+		formData.append('address[villages]', this.formCtrlValue.villages);
+		return formData;
 	}
 
 	public delete() {

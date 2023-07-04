@@ -5,7 +5,7 @@ export interface User {
 	username: string;
 	email: string;
 	role: string;
-	phone: any;
+	phone: string;
 	dob: string;
 	description: string;
 	avatar: Avatar;
@@ -14,12 +14,12 @@ export interface User {
 }
 
 export interface Avatar {
-	id: any;
+	id: string;
 	url: string;
 }
 
 export interface Cover {
-	id: any;
+	id: string;
 	url: string;
 }
 
