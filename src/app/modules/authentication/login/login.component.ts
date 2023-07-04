@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
 		private router: Router,
 		private validations: ValidatorsService,
 		private authService: AuthService,
-    private formUtils: FormUtilService,
+		private formUtils: FormUtilService
 	) {}
 
 	ngOnInit(): void {

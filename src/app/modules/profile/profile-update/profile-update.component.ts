@@ -32,7 +32,7 @@ export class ProfileUpdateComponent implements OnInit {
 	protected form!: FormGroup;
 	protected isSubmitting: boolean = false;
 	readonly defaultAvatar = pathAssets.emptyAvatar;
-  readonly iconUpload = pathAssets.iconUpload;
+	readonly iconUpload = pathAssets.iconUpload;
 
 	protected dropdownProvince!: Province[];
 	protected dropdownRegencies!: Regencies[];

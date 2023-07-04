@@ -27,7 +27,7 @@ export class ContactComponent implements OnInit {
 		private fb: FormBuilder,
 		private validator: ValidatorsService,
 		private contactService: ContactService,
-    private formUtils: FormUtilService,
+		private formUtils: FormUtilService
 	) {}
 
 	ngOnInit(): void {
