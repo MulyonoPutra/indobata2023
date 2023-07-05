@@ -22,8 +22,7 @@
               <div class="absolute top-[-290px]">
                 <div class="image-container absolute top-1">
                   <label class="hoverable" for="fileInput">
-                    <!-- <img [src]="imagePreviewUrl" class="images" alt="Selected Image"> -->
-                    <img *ngIf="!isAvatarChanged" [lazyLoad]="user.avatar.url ? user.avatar.url : defaultAvatar" class="images" alt="avatar"/>
+                    <img *ngIf="!isAvatarChanged" [lazyLoad]="user.avatar.url" class="images" alt="avatar"/>
                     <img *ngIf="isAvatarChanged" [lazyLoad]="avatarPreview" class="images" alt="avatar"/>
                     <div class="background"></div>
                   </label>
