@@ -2,7 +2,7 @@
 	@apply relative block h-[500px];
 
 	img {
-		@apply absolute top-0 w-full h-full bg-center bg-cover;
+		@apply absolute top-0 w-full h-full bg-center bg-cover object-center object-cover;
 	}
 }
 
@@ -24,7 +24,7 @@
 			@apply w-full lg:w-3/12 px-4 lg:order-2 flex justify-center;
 
 			img {
-				@apply h-[150px] w-[200px] bg-white shadow-xl rounded-full align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-[150px];
+				@apply h-[150px] w-[200px] bg-white shadow-xl rounded-full align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-[150px] object-center object-cover;
 			}
 		}
 
@@ -33,10 +33,10 @@
 		}
 
 		.address {
-			@apply text-sm leading-normal mt-0 mb-2 text-gray-400 font-bold uppercase;
+			@apply text-sm leading-normal mt-0 mb-2 text-gray-400 font-bold;
 
 			i {
-				@apply mr-2 text-lg text-gray-400;
+				@apply mr-2 text-sm text-gray-400;
 			}
 		}
 	}
