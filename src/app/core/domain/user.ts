@@ -11,6 +11,8 @@ export interface User {
 	avatar: Avatar;
 	cover: Cover;
 	address: Address;
+	occupation: string;
+	company: string;
 }
 
 export interface Avatar {

@@ -6,6 +6,8 @@ export interface Address {
 	villages: string;
 }
 
+export interface AddressOptions extends Address {}
+
 export interface Province {
 	id: string;
 	name: string;

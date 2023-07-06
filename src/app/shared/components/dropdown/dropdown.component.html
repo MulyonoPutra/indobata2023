@@ -3,7 +3,9 @@
   <div class="relative mt-2">
     <button type="button" class="dropdown-btn" (click)="toggleDropdown()">
       <span class="flex items-center">
-        <span class="ml-3 block truncate" [class.text-gray-500]="!selectedOption">{{ (selectedOption | capitalize) || 'Select an option' }}</span>
+        <span class="ml-3 block truncate" [class.text-gray-500]="!selectedOption">
+          {{ (selectedOption | capitalize) || selectionOptions }}
+        </span>
       </span>
       <span class="image-wrapper">
         <img [src]="icon.dropdown" alt="" class="icon-gray h-5 w-5" />

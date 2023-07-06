@@ -8,7 +8,7 @@
           <div class="py-6 px-3 mt-32 sm:mt-0">
             <button type="button" class="edit" (click)="fileInput.click()">
               <span>Change Cover</span>
-              <input #fileInput type="file" (change)="onChangeCover($event)"  style="display:none;" />
+              <input #fileInput type="file" (change)="onChangeCover($event)" style="display:none;" />
             </button>
           </div>
         </div>
@@ -41,52 +41,73 @@
                               [control]="getFormControl('username')"
                               controlName="username">
                 </app-form-field>
+
                 <app-form-field
                               label="Phone"
                               [control]="getFormControl('phone')"
                               controlName="phone">
                 </app-form-field>
+
                 <app-form-field
                               label="Date of Birth"
                               [control]="getFormControl('dob')"
                               controlName="dob">
                 </app-form-field>
+
                 <app-form-field
                             label="Street"
                             [control]="getFormControl('street')"
                             controlName="street">
                 </app-form-field>
+
                 <app-form-field
                             label="description"
                             [control]="getFormControl('description')"
                             controlName="description">
                 </app-form-field>
+
+                <app-form-field
+                          label="occupation"
+                          [control]="getFormControl('occupation')"
+                          controlName="occupation">
+                </app-form-field>
+
+                <app-form-field
+                          label="company"
+                          [control]="getFormControl('company')"
+                          controlName="company">
+                </app-form-field>
+
                 <app-dropdown
                             [options]="dropdownProvince"
                             [label]="'Province'"
+                            [selectionOptions]="provinceSelected"
                             (optionId)="onReceiveProvinceId($event)">
                 </app-dropdown>
 
-                <div *ngIf="provinceIdentity">
+                <div *ngIf="provinceSelected">
                   <app-dropdown
                             [options]="dropdownRegencies"
                             [label]="'Regencies'"
+                            [selectionOptions]="regencySelected"
                             (optionId)="onReceiveRegencyId($event)">
                   </app-dropdown>
                 </div>
 
-                <div *ngIf="regencyIdentity">
+                <div *ngIf="regencySelected">
                   <app-dropdown
                             [options]="dropdownDistricts"
                             [label]="'Districts'"
+                            [selectionOptions]="districtSelected"
                             (optionId)="onReceiveDistrictId($event)">
                   </app-dropdown>
                 </div>
 
-                <div *ngIf="districtIdentity">
+                <div *ngIf="districtSelected">
                   <app-dropdown
                             [options]="dropdownVillages"
                             [label]="'Villages'"
+                            [selectionOptions]="villageSelected"
                             (optionId)="onReceiveVillageId($event)">
                   </app-dropdown>
                 </div>

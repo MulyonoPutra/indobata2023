@@ -20,6 +20,7 @@ import { User } from 'src/app/core/domain/user';
 import { AddressService } from 'src/app/core/services/address.service';
 import { UserService } from 'src/app/core/services/user.service';
 import { CapitalizePipe } from 'src/app/shared/pipes/capitalize.pipe';
+import { FormUtilService } from 'src/app/shared/services/form-util.service';
 import { ValidatorsService } from 'src/app/shared/services/validators.service';
 
 @Component({
@@ -28,12 +29,12 @@ import { ValidatorsService } from 'src/app/shared/services/validators.service';
 	styleUrls: ['./profile-update.component.scss'],
 })
 export class ProfileUpdateComponent implements OnInit {
-	protected user!: User;
 	protected form!: FormGroup;
 	protected isSubmitting: boolean = false;
 	readonly defaultAvatar = pathAssets.emptyAvatar;
 	readonly iconUpload = pathAssets.iconUpload;
 
+	protected user!: User;
 	protected dropdownProvince!: Province[];
 	protected dropdownRegencies!: Regencies[];
 	protected dropdownDistricts!: Districts[];
@@ -55,6 +56,11 @@ export class ProfileUpdateComponent implements OnInit {
 
 	// protected coverImage: File | null = null;
 
+	protected provinceSelected!: string;
+	protected regencySelected!: string;
+	protected districtSelected!: string;
+	protected villageSelected!: string;
+
 	protected isCoverChanged: boolean = false;
 	protected isAvatarChanged: boolean = false;
 	readonly maxSize: number = 1048576;
@@ -69,6 +75,7 @@ export class ProfileUpdateComponent implements OnInit {
 		private userService: UserService,
 		private addressService: AddressService,
 		private validator: ValidatorsService,
+		private formUtils: FormUtilService,
 		private capitalize: CapitalizePipe
 	) {
 		this.userIdentity = this.route.snapshot.paramMap.get('id')!;
@@ -100,6 +107,8 @@ export class ProfileUpdateComponent implements OnInit {
 			regencies: ['', Validators.required],
 			districts: ['', Validators.required],
 			villages: ['', Validators.required],
+			occupation: ['', Validators.required],
+			company: ['', Validators.required],
 		});
 	}
 
@@ -110,8 +119,6 @@ export class ProfileUpdateComponent implements OnInit {
 				this.user = response.data;
 				this.avatars = response.data.avatar.url;
 				this.covers = response.data.cover.url;
-
-				this.onCheckImages(this.avatars, this.covers);
 
 				this.prepopulateForms(response.data!);
 			},
@@ -167,16 +174,24 @@ export class ProfileUpdateComponent implements OnInit {
 
 	protected onReceiveProvinceId(region: Region) {
 		this.provinceIdentity = region.id;
+		console.log(region.id);
+		const regionName = this.capitalized(region?.name);
+		console.log(regionName);
 
-		const regionName = this.capitalize.transform(region.name);
-		this.form.get('provinces')?.setValue(regionName);
+		if (!region.id) {
+			this.form.get('provinces')?.setValue(regionName);
+		} else {
+			this.form.patchValue({
+				provinces: region.name,
+			});
+		}
 		this.getRegencies(region.id);
 	}
 
 	protected onReceiveRegencyId(region: Region) {
 		this.regencyIdentity = region.id;
 
-		const regionName = this.capitalize.transform(region.name);
+		const regionName = this.capitalized(region.name);
 		this.form.get('regencies')?.setValue(regionName);
 		this.getDistricts(region.id);
 	}
@@ -184,7 +199,7 @@ export class ProfileUpdateComponent implements OnInit {
 	protected onReceiveDistrictId(region: Region) {
 		this.districtIdentity = region.id;
 
-		const regionName = this.capitalize.transform(region.name);
+		const regionName = this.capitalized(region.name);
 		this.form.get('districts')?.setValue(regionName);
 		this.getVillages(region.id);
 	}
@@ -192,8 +207,12 @@ export class ProfileUpdateComponent implements OnInit {
 	protected onReceiveVillageId(region: Region) {
 		this.villageIdentity = region.id;
 
-		const regionName = this.capitalize.transform(region.name);
+		const regionName = this.capitalized(region.name);
 		this.form.get('villages')?.setValue(regionName);
+	}
+
+	capitalized(name: string) {
+		this.capitalize.transform(name);
 	}
 
 	get formCtrlValue() {
@@ -209,6 +228,8 @@ export class ProfileUpdateComponent implements OnInit {
 			regencies: this.form.get('regencies')?.value,
 			districts: this.form.get('districts')?.value,
 			provinces: this.form.get('provinces')?.value,
+			occupation: this.form.get('occupation')?.value,
+			company: this.form.get('company')?.value,
 		};
 	}
 
@@ -221,32 +242,13 @@ export class ProfileUpdateComponent implements OnInit {
 			cover: user.cover.url,
 			description: user.description,
 			street: user.address.street,
-			provinces: user.address.provinces,
-			regencies: user.address.regencies,
-			districts: user.address.districts,
-			villages: user.address.villages,
+			provinces: (this.provinceSelected = user.address.provinces),
+			regencies: (this.regencySelected = user.address.regencies),
+			districts: (this.districtSelected = user.address.districts),
+			villages: (this.villageSelected = user.address.villages),
+			occupation: user.occupation,
+			company: user.company,
 		});
-	}
-
-	onCheckImages(cover: string, avatar: string): void {
-		const coverFormCtrl = this.form.get('cover')?.value;
-		const avatarFormCtrl = this.form.get('avatar')?.value;
-
-		console.log(coverFormCtrl);
-		console.log(avatarFormCtrl);
-
-		if (coverFormCtrl === null) {
-			console.log('triggered null cover');
-
-			this.form.get('cover')?.setValue(cover);
-		}
-
-		if (avatarFormCtrl === null) {
-			console.log('triggered null avatar');
-			console.log(avatar);
-
-			this.form.get('avatar')?.setValue(avatar);
-		}
 	}
 
 	onChangeCover(event: Event) {
@@ -291,25 +293,30 @@ export class ProfileUpdateComponent implements OnInit {
 		this.isSubmitting = true;
 		timer(2000)
 			.pipe(take(1))
-			.subscribe(() => (this.isSubmitting = false));
+			.subscribe(() => (this.isSubmitting = !this.isSubmitting));
 	}
 
 	protected onProcessSave(): void {
+		console.log(this.formCtrlValue);
 		if (this.form.valid) {
 			this.loadingIndicator();
-			this.submitToServer();
-			this.form.reset();
-			// this.router.navigate(['/']).then(() => {
-			//   window.location.reload();
-			// });
+
+			// this.submitToServer();
+			// this.form.reset();
+      // this.navigateAfterSucceed();
 		} else {
-			this.markAllFormControlsAsTouched(this.form);
+			this.formUtils.markAllFormControlsAsTouched(this.form);
 		}
+	}
+
+	navigateAfterSucceed(): void {
+		this.router.navigate(['/']).then(() => {
+			window.location.reload();
+		});
 	}
 
 	submitToServer(): void {
 		const formData = this.setFormData();
-
 		this.userService.update(formData, this.userIdentity).subscribe({
 			next: (response: HttpResponseEntity<User>) => {
 				this.user = response.data;
@@ -334,23 +341,13 @@ export class ProfileUpdateComponent implements OnInit {
 		formData.append('address[regencies]', this.formCtrlValue.regencies);
 		formData.append('address[districts]', this.formCtrlValue.districts);
 		formData.append('address[villages]', this.formCtrlValue.villages);
-		return formData;
-	}
+		formData.append('occupation', this.formCtrlValue.occupation);
+		formData.append('company', this.formCtrlValue.company);
 
-	public delete() {
-		this.url = null;
+		return formData;
 	}
 
 	protected getFormControl(form: string): FormControl {
 		return this.form.get(form) as FormControl;
-	}
-
-	private markAllFormControlsAsTouched(formGroup: FormGroup) {
-		Object.values(formGroup.controls).forEach((control) => {
-			control.markAsTouched();
-			if (control instanceof FormGroup) {
-				this.markAllFormControlsAsTouched(control);
-			}
-		});
 	}
 }

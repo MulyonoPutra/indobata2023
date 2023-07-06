@@ -8,6 +8,11 @@ import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
 	declarations: [ProfileComponent],
-	imports: [CommonModule, ProfileRoutingModule, LazyLoadImageModule, SharedModule],
+	imports: [
+		CommonModule,
+		ProfileRoutingModule,
+		LazyLoadImageModule,
+		SharedModule,
+	],
 })
 export class ProfileModule {}
