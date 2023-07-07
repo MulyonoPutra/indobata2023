@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Project } from 'src/app/core/domain/project';
 
 @Component({
@@ -8,4 +8,5 @@ import { Project } from 'src/app/core/domain/project';
 })
 export class CardProjectComponent {
 	@Input() project!: Project;
+	@Output() callParentEvent = new EventEmitter<void>();
 }

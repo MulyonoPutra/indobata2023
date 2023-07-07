@@ -6,7 +6,7 @@
   <div class="wrapper">
     <div>
       <ng-container *ngFor="let project of projects | paginate: { itemsPerPage: limit, currentPage: page,  totalItems: totalItems }">
-        <app-card-project [project]="project"></app-card-project>
+        <app-card-project [project]="project" (callParentEvent)="openDialog()"></app-card-project>
       </ng-container>
     </div>
     <app-pagination (pageChange)="onPageChanged($event)" [page]="projects.length" [totalItems]="totalItems"></app-pagination>

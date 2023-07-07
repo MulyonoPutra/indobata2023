@@ -1,3 +1,27 @@
 .arrow {
 	filter: invert(27%) sepia(3%) saturate(4839%) hue-rotate(180deg) brightness(104%) contrast(86%);
 }
+
+section {
+	@apply bg-white dark:bg-gray-900;
+
+	.container {
+		@apply gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6;
+
+		.wrapper {
+			@apply font-light text-gray-500 sm:text-lg dark:text-gray-400;
+
+			.title {
+				@apply mb-4 text-4xl tracking-tight font-extrabold text-gray-900;
+			}
+		}
+
+		.images {
+			@apply grid grid-cols-2 gap-4 mt-8;
+
+			img {
+				@apply w-full rounded-lg;
+			}
+		}
+	}
+}

@@ -13,7 +13,7 @@
                         </div>
                     </div>
                 </div>
-                <app-more-button [label]="'Learn'" [url]="'/product'"></app-more-button>
+                <app-more-button [label]="'Learn'" (navigate)="onNavigate()"></app-more-button>
             </div>
         </div>
     </div>

@@ -5,6 +5,7 @@ export const pathAssets = {
 	iconArrowUp: '../../../../assets/icons/arrow-up.svg',
 	iconArrowDown: '../../../../assets/icons/arrow-down.svg',
 	iconArrowLeft: '../../../../assets/icons/icon-arrow-left.svg',
+	iconArrowRight: '../../../../../assets/icons/arrow-right.svg',
 	iconEmail: '../../../../assets/icons/icon-email.svg',
 	iconLinkedin: '../../../../assets/icons/icon-linkedin.svg',
 	iconYoutube: '../../../../assets/icons/icon-youtube.svg',
@@ -16,5 +17,6 @@ export const pathAssets = {
 	iconDropdown: '../../../../assets/icons/icon-dropdown.svg',
 	iconChecklist: '../../../../assets/icons/icon-checklist.svg',
 	iconUpload: '../../../../assets/icons/icon-upload.svg',
+
 	emptyAvatar: 'https://t3.ftcdn.net/jpg/02/43/51/48/360_F_243514868_XDIMJHNNJYKLRST05XnnTj0MBpC4hdT5.jpg',
 };

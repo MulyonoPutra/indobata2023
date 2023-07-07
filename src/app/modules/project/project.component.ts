@@ -1,11 +1,14 @@
+import { Dialog } from '@angular/cdk/dialog';
 import { Component, Inject, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, map } from 'rxjs';
 import { AppState } from 'src/app/app.state';
+import { LoadingService } from 'src/app/core/services/loading.service';
 import { ProjectResponseEntity, ProjectService } from 'src/app/core/services/project.service';
+import { SharedService } from 'src/app/shared/services/shared.service';
 import { Project, ProjectsArrayType } from '../../core/domain/project';
 import * as ProjectActions from '../../core/state/actions/project.actions';
-import { LoadingService } from 'src/app/core/services/loading.service';
+import { ProjectDetailDialogComponent } from './project-detail-dialog/project-detail-dialog.component';
 
 @Component({
 	selector: 'app-project',
@@ -28,7 +31,9 @@ export class ProjectComponent implements OnInit {
 	constructor(
 		@Inject(Store<AppState>) private store: Store<AppState>,
 		private projectService: ProjectService,
-		public loadingService: LoadingService
+		public loadingService: LoadingService,
+		public dialog: Dialog,
+		private sharedService: SharedService
 	) {}
 
 	ngOnInit(): void {
@@ -63,5 +68,14 @@ export class ProjectComponent implements OnInit {
 	protected onPageChanged(page: number): void {
 		this.page = page;
 		this.loadAll();
+	}
+
+	openDialog(): void {
+		this.dialog.open<string>(ProjectDetailDialogComponent);
+	}
+
+	parentFunction() {
+		console.log('Function called in parent component');
+		// Perform desired actions in the parent component
 	}
 }

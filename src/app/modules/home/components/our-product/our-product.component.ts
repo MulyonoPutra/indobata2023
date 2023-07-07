@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { ProductsArrayType } from 'src/app/core/domain/product';
 
 @Component({
@@ -8,4 +9,10 @@ import { ProductsArrayType } from 'src/app/core/domain/product';
 })
 export class OurProductComponent {
 	@Input() products!: ProductsArrayType;
+
+	constructor(public router: Router) {}
+
+	onNavigate() {
+		this.router.navigateByUrl(`/product`);
+	}
 }

@@ -1,5 +1,17 @@
-<a [routerLink]="[url]"
-  class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-gray-900 rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
-  <span class="tracking-tight font-extrabold text-gray-900">{{label}} more</span>
-  <img src="../../../../../assets/icons/arrow-right.svg" alt="" class="ml-2 w-5 h-5 arrow">
-</a>
+<div *ngIf="isOpenDialog">
+  <div>
+    <a (click)="openDialog()">
+      <span>{{label}} more</span>
+      <img [src]="icon" alt="" class="ml-2 w-5 h-5 arrow">
+    </a>
+  </div>
+</div>
+
+<div *ngIf="!isOpenDialog">
+  <div>
+    <a (click)="onNavigate()">
+      <span>{{label}} more</span>
+      <img [src]="icon" alt="" class="ml-2 w-5 h-5 arrow">
+    </a>
+  </div>
+</div>

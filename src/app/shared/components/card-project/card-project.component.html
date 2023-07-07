@@ -2,6 +2,7 @@
   <img class="h-[10%] w-full object-cover" [lazyLoad]="project.images" alt={{project.title}}>
   <div class="p-4" [ngClass]="{'hover': true}">
     <h3 class="text-lg font-bold text-gray-900">{{ project.title | shortenerText: 20 }}</h3>
-    <p class="text-gray-500">{{ project.description | shortenerText: 70 }}</p>
+    <p class="text-gray-500 mb-4">{{ project.description | shortenerText: 70 }}</p>
+    <app-more-button [label]="'Read'" (callParentEvent)="callParentEvent.emit()" [isOpenDialog]="true"> </app-more-button>
   </div>
 </div>

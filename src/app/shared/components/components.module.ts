@@ -28,6 +28,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { SubmitButtonComponent } from './submit-button/submit-button.component';
 import { TooltipComponent } from './tooltip/tooltip.component';
 import { CapitalizePipe } from '../pipes/capitalize.pipe';
+import { MaterialModule } from '../config/material.module';
 
 @NgModule({
 	declarations: [
@@ -62,6 +63,7 @@ import { CapitalizePipe } from '../pipes/capitalize.pipe';
 		LazyLoadImageModule,
 		NgxPaginationModule,
 		SharedModule,
+		MaterialModule,
 	],
 	exports: [
 		HeaderComponent,
