@@ -8,7 +8,7 @@ import { ProjectResponseEntity, ProjectService } from 'src/app/core/services/pro
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { Project, ProjectsArrayType } from '../../core/domain/project';
 import * as ProjectActions from '../../core/state/actions/project.actions';
-import { ProjectDetailDialogComponent } from './project-detail-dialog/project-detail-dialog.component';
+import { ProjectDetailDialogComponent } from './components/project-detail-dialog/project-detail-dialog.component';
 
 @Component({
 	selector: 'app-project',
