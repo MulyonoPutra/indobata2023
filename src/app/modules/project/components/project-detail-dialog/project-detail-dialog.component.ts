@@ -1,5 +1,6 @@
-import { DialogRef } from '@angular/cdk/dialog';
-import { Component } from '@angular/core';
+import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
+import { Component, Inject } from '@angular/core';
+import { Project } from 'src/app/core/domain/project';
 
 @Component({
 	selector: 'app-project-detail-dialog',
@@ -7,5 +8,8 @@ import { Component } from '@angular/core';
 	styleUrls: ['./project-detail-dialog.component.scss'],
 })
 export class ProjectDetailDialogComponent {
-	constructor(public dialogRef: DialogRef) {}
+	project: Project;
+	constructor(public dialogRef: DialogRef, @Inject(DIALOG_DATA) public data: Project) {
+		this.project = data;
+	}
 }

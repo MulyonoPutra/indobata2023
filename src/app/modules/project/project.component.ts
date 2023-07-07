@@ -1,7 +1,7 @@
 import { Dialog } from '@angular/cdk/dialog';
 import { Component, Inject, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable, map } from 'rxjs';
+import { Observable, map, take, timer } from 'rxjs';
 import { AppState } from 'src/app/app.state';
 import { LoadingService } from 'src/app/core/services/loading.service';
 import { ProjectResponseEntity, ProjectService } from 'src/app/core/services/project.service';
@@ -9,6 +9,7 @@ import { SharedService } from 'src/app/shared/services/shared.service';
 import { Project, ProjectsArrayType } from '../../core/domain/project';
 import * as ProjectActions from '../../core/state/actions/project.actions';
 import { ProjectDetailDialogComponent } from './components/project-detail-dialog/project-detail-dialog.component';
+import { HttpResponseEntity } from 'src/app/core/domain/http-response-entity';
 
 @Component({
 	selector: 'app-project',
@@ -21,6 +22,7 @@ export class ProjectComponent implements OnInit {
 	error$!: Observable<any>;
 
 	protected projects!: ProjectsArrayType;
+	protected project!: Project;
 	protected page: number = 0;
 	protected totalPages!: number;
 	protected totalItems!: number;
@@ -32,8 +34,7 @@ export class ProjectComponent implements OnInit {
 		@Inject(Store<AppState>) private store: Store<AppState>,
 		private projectService: ProjectService,
 		public loadingService: LoadingService,
-		public dialog: Dialog,
-		private sharedService: SharedService
+		public dialog: Dialog
 	) {}
 
 	ngOnInit(): void {
@@ -65,17 +66,33 @@ export class ProjectComponent implements OnInit {
 		});
 	}
 
+	findById(id: string) {
+		this.projectService.findById(id).subscribe({
+			next: (response: HttpResponseEntity<Project>) => {
+				this.project = response.data;
+			},
+			error: (error) => {
+				console.log(error);
+			},
+		});
+	}
+
 	protected onPageChanged(page: number): void {
 		this.page = page;
 		this.loadAll();
 	}
 
-	openDialog(): void {
-		this.dialog.open<string>(ProjectDetailDialogComponent);
-	}
+	openDialog(id: string | undefined): void {
+		if (id) {
+			this.findById(id);
+		}
 
-	parentFunction() {
-		console.log('Function called in parent component');
-		// Perform desired actions in the parent component
+		timer(400)
+			.pipe(take(1))
+			.subscribe(() => {
+				this.dialog.open<string>(ProjectDetailDialogComponent, {
+					data: this.project,
+				});
+			});
 	}
 }

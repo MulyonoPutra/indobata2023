@@ -27,6 +27,12 @@ export class ProjectService {
 			.pipe(catchError(this.handleError));
 	}
 
+	findById(id: string): Observable<HttpResponseEntity<Project>> {
+		return this.http
+			.get<HttpResponseEntity<Project>>(`${this.env}/project/${id}`)
+			.pipe(catchError(this.handleError));
+	}
+
 	private handleError(res: HttpErrorResponse | any) {
 		console.error(res.error || res.body.error);
 		return throwError(() => new Error('Internal Server Error'));
