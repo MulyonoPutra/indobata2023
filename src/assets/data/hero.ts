@@ -16,9 +16,6 @@ export const hero: Hero[] = [
         using the latest technology and the highest quality materials. We take great pride in our commitment to
         sustainability and environmental responsibility, and all of our products are designed to meet the
         highest standards for safety, durability, and performance.`,
-		images: [
-			'../../../assets/images/about-section-1.webp',
-			'../../../assets/images/about-section-2.webp',
-		],
+		images: ['../../../assets/images/about-section-1.webp', '../../../assets/images/about-section-2.webp'],
 	},
 ];

@@ -11,18 +11,7 @@ import { ProductRoutingModule } from './product-routing.module';
 import { ProductComponent } from './product.component';
 
 @NgModule({
-	declarations: [
-		ProductComponent,
-		ViewGridButtonComponent,
-		SortComponent,
-		SidebarFilterComponent,
-	],
-	imports: [
-		SharedModule,
-		CommonModule,
-		ProductRoutingModule,
-		ComponentsModule,
-		NgxPaginationModule,
-	],
+	declarations: [ProductComponent, ViewGridButtonComponent, SortComponent, SidebarFilterComponent],
+	imports: [SharedModule, CommonModule, ProductRoutingModule, ComponentsModule, NgxPaginationModule],
 })
 export class ProductModule {}

@@ -6,22 +6,15 @@ import * as ProjectActions from '../actions/project.actions';
 
 @Injectable()
 export class ProjectEffects {
-	constructor(
-		private actions$: Actions,
-		private projectService: ProjectService
-	) {}
+	constructor(private actions$: Actions, private projectService: ProjectService) {}
 
 	loadProjects$ = createEffect(() =>
 		this.actions$.pipe(
 			ofType(ProjectActions.loadProjects),
 			mergeMap(() =>
 				this.projectService.getProjects().pipe(
-					map((projects) =>
-						ProjectActions.loadProjectsSuccess({ projects })
-					),
-					catchError((error) =>
-						of(ProjectActions.loadProjectsFailure({ error }))
-					)
+					map((projects) => ProjectActions.loadProjectsSuccess({ projects })),
+					catchError((error) => of(ProjectActions.loadProjectsFailure({ error })))
 				)
 			)
 		)

@@ -1,10 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-	FormBuilder,
-	FormControl,
-	FormGroup,
-	Validators,
-} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { take, timer } from 'rxjs';
 import { Contact } from 'src/app/core/domain/contact';
 import { HttpResponseEntity } from 'src/app/core/domain/http-response-entity';
@@ -20,11 +15,7 @@ export class ContactSectionComponent implements OnInit {
 	protected form!: FormGroup;
 	isSubmitting = false;
 
-	constructor(
-		private fb: FormBuilder,
-		private validator: ValidatorsService,
-		private feedback: ContactService
-	) {}
+	constructor(private fb: FormBuilder, private validator: ValidatorsService, private feedback: ContactService) {}
 
 	ngOnInit(): void {
 		this.initForms();
@@ -33,10 +24,7 @@ export class ContactSectionComponent implements OnInit {
 	protected initForms(): void {
 		this.form = this.fb.group({
 			fullname: ['', [Validators.required, Validators.minLength(3)]],
-			phone: [
-				'',
-				[Validators.required, this.validator.indonesianPhoneNumber()],
-			],
+			phone: ['', [Validators.required, this.validator.indonesianPhoneNumber()]],
 			email: ['', [Validators.required, Validators.email]],
 			message: ['', Validators.required],
 		});

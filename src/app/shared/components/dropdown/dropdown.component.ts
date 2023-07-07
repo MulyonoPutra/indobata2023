@@ -11,7 +11,7 @@ export class DropdownComponent {
 	@Input() options!: any[];
 	@Input() label!: string;
 	@Output() optionId = new EventEmitter<Region>();
-	@Input() selectionOptions!: any;
+	@Input() value!: any;
 
 	protected isOpen: boolean = false;
 	protected selectedOption!: string;

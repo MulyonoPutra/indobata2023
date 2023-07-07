@@ -18,16 +18,12 @@ export class ProjectService {
 
 	// mock data
 	getProjects(): Observable<Project[]> {
-		return this.http
-			.get<Project[]>(this.mockData)
-			.pipe(catchError(this.handleError));
+		return this.http.get<Project[]>(this.mockData).pipe(catchError(this.handleError));
 	}
 
 	loadAll(page: number, limit: number): Observable<ProjectResponseEntity> {
 		return this.http
-			.get<ProjectResponseEntity>(
-				`${this.env}/project?page=${page}&limit=${limit}`
-			)
+			.get<ProjectResponseEntity>(`${this.env}/project?page=${page}&limit=${limit}`)
 			.pipe(catchError(this.handleError));
 	}
 

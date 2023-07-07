@@ -26,11 +26,7 @@ describe('OurProductComponent', () => {
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			declarations: [
-				OurProductComponent,
-				CardProductComponent,
-				ShortLineComponent,
-			],
+			declarations: [OurProductComponent, CardProductComponent, ShortLineComponent],
 		}).compileComponents();
 	});
 
@@ -48,8 +44,7 @@ describe('OurProductComponent', () => {
 	// Add more unit tests as needed
 
 	it('should render the product cards', () => {
-		const productCards =
-			fixture.nativeElement.querySelectorAll('app-card-product');
+		const productCards = fixture.nativeElement.querySelectorAll('app-card-product');
 		expect(productCards.length).toBe(products.length);
 	});
 });

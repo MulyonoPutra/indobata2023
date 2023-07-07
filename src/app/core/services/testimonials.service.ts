@@ -14,9 +14,7 @@ export class TestimonialsService {
 
 	loadAll(): Observable<HttpResponseEntity<TestimonialsArrayType>> {
 		return this.http
-			.get<HttpResponseEntity<TestimonialsArrayType>>(
-				`${this.env}/testimonials`
-			)
+			.get<HttpResponseEntity<TestimonialsArrayType>>(`${this.env}/testimonials`)
 			.pipe(catchError(this.handleError));
 	}
 

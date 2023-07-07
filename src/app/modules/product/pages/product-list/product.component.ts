@@ -2,11 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { pathAssets } from 'src/app/configs/path-assets';
-import {
-	Category,
-	ProductCategoriesType,
-	ProductsArrayType,
-} from 'src/app/core/domain/product';
+import { Category, ProductCategoriesType, ProductsArrayType } from 'src/app/core/domain/product';
 import { LoadingService } from 'src/app/core/services/loading.service';
 import {
 	ProductCategoriesResponseEntity,
@@ -36,10 +32,7 @@ export class ProductComponent implements OnInit, OnDestroy {
 
 	protected loadingIndicator: boolean = false;
 
-	constructor(
-		private productService: ProductService,
-		public loadingService: LoadingService
-	) {}
+	constructor(private productService: ProductService, public loadingService: LoadingService) {}
 
 	ngOnInit(): void {
 		this.fetch();
@@ -101,18 +94,16 @@ export class ProductComponent implements OnInit, OnDestroy {
 
 	protected getProductsByCategoryId(id: string): void {
 		this.subscriptions.push(
-			this.productService
-				.findProductsByCategoryId(id, this.page, this.limit)
-				.subscribe({
-					next: (response: ProductResponseEntity) => {
-						this.products = response.data;
-						this.totalPages = response.totalPages!;
-						this.totalItems = response.totalItems!;
-					},
-					error: (error: HttpErrorResponse) => {
-						alert(error.message);
-					},
-				})
+			this.productService.findProductsByCategoryId(id, this.page, this.limit).subscribe({
+				next: (response: ProductResponseEntity) => {
+					this.products = response.data;
+					this.totalPages = response.totalPages!;
+					this.totalItems = response.totalItems!;
+				},
+				error: (error: HttpErrorResponse) => {
+					alert(error.message);
+				},
+			})
 		);
 	}
 

@@ -21,9 +21,7 @@ export class ContactService {
 	}
 
 	contactInfo(): Observable<HttpResponseEntity<Partial<Contact>>> {
-		return this.http.get<HttpResponseEntity<Partial<Contact>>>(
-			this.mockContactInfo
-		);
+		return this.http.get<HttpResponseEntity<Partial<Contact>>>(this.mockContactInfo);
 	}
 
 	private handleError(res: HttpErrorResponse | any) {

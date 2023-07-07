@@ -12,14 +12,7 @@
 			"_id": "648c3258906d80b4954319c2",
 			"name": "Precast Concrete Beam",
 			"description": "Factory-made concrete beams used to support loads in various structural applications, offering strength and efficiency.",
-			"ingredients": [
-				"Portland cement",
-				"Coarse aggregates",
-				"Admixtures",
-				"Fibers",
-				"Water",
-				"Fine aggregates"
-			],
+			"ingredients": ["Portland cement", "Coarse aggregates", "Admixtures", "Fibers", "Water", "Fine aggregates"],
 			"features": [
 				"High load-bearing capacity",
 				"Customizable lengths and cross-sections",

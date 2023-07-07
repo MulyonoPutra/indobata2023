@@ -16,35 +16,28 @@ export class AuthService {
 
 	constructor(private http: HttpClient, private storage: StorageService) {}
 
-	register(
-		body: Register
-	): Observable<HttpResponseEntity<Partial<Register>>> {
+	register(body: Register): Observable<HttpResponseEntity<Partial<Register>>> {
 		return this.http
-			.post<HttpResponseEntity<Partial<Register>>>(
-				`${this.env}/auth/register`,
-				body
-			)
+			.post<HttpResponseEntity<Partial<Register>>>(`${this.env}/auth/register`, body)
 			.pipe(catchError(this.handleError));
 	}
 
 	login(body: Login): Observable<UserIdentity> {
-		return this.http
-			.post<HttpResponseEntity<LoginDTO>>(`${this.env}/auth/login`, body)
-			.pipe(
-				map((response) => {
-					const token = response.data.accessToken;
-					const id = response.data.user._id;
-					const name = response.data.user.username;
+		return this.http.post<HttpResponseEntity<LoginDTO>>(`${this.env}/auth/login`, body).pipe(
+			map((response) => {
+				const token = response.data.accessToken;
+				const id = response.data.user._id;
+				const name = response.data.user.username;
 
-					this.storage.setToken(token);
-					this.storage.setId(id);
-					this.storage.setUsername(name);
+				this.storage.setToken(token);
+				this.storage.setId(id);
+				this.storage.setUsername(name);
 
-					return {
-						id,
-					};
-				})
-			);
+				return {
+					id,
+				};
+			})
+		);
 	}
 
 	logout() {

@@ -23,6 +23,39 @@
 }
 
 .icon-gray {
-	filter: invert(48%) sepia(6%) saturate(856%) hue-rotate(182deg)
-		brightness(91%) contrast(93%);
+	filter: invert(48%) sepia(6%) saturate(856%) hue-rotate(182deg) brightness(91%) contrast(93%);
+}
+
+html,
+body {
+	height: 100%;
+}
+
+body {
+	margin: 0;
+}
+
+/* Angular Material Input Form  */
+.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field .mdc-notched-outline__notch {
+}
+
+.mat-mdc-text-field-wrapper.mdc-text-field--outlined .mdc-text-field__input {
+	display: inline-block;
+	background: white;
+	color: #5d6064;
+
+	border-color: black;
+}
+
+.mat-mdc-text-field-wrapper.mdc-text-field--outlined .mat-mdc-form-field-infix {
+	padding-top: 13px;
+	padding-bottom: 13px;
+	height: 20px !important;
+	color: #5d6064;
+}
+
+.mat-mdc-text-field-wrapper {
+	width: 100%;
+	background: white;
+	color: #5d6064;
 }

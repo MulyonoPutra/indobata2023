@@ -1,20 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {
-	FormBuilder,
-	FormControl,
-	FormGroup,
-	Validators,
-} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { take, timer } from 'rxjs';
 import { pathAssets } from 'src/app/configs/path-assets';
-import {
-	Districts,
-	Province,
-	Regencies,
-	Region,
-	Villages,
-} from 'src/app/core/domain/address';
+import { Districts, Province, Regencies, Region, Villages } from 'src/app/core/domain/address';
 import { HttpResponseEntity } from 'src/app/core/domain/http-response-entity';
 import { User } from 'src/app/core/domain/user';
 import { AddressService } from 'src/app/core/services/address.service';
@@ -94,10 +83,7 @@ export class ProfileUpdateComponent implements OnInit {
 	private formInitialized(): void {
 		this.form = this.fb.group({
 			username: ['', [Validators.required, Validators.minLength(6)]],
-			phone: [
-				'',
-				[Validators.required, this.validator.indonesianPhoneNumber()],
-			],
+			phone: ['', [Validators.required, this.validator.indonesianPhoneNumber()]],
 			dob: ['', Validators.required],
 			avatar: [null, Validators.required],
 			cover: [null, Validators.required],
@@ -172,13 +158,11 @@ export class ProfileUpdateComponent implements OnInit {
 		});
 	}
 
-	protected onReceiveProvinceId(region: Region) {
+	protected onUpdateProvinceForm(region: Region) {
 		this.provinceIdentity = region.id;
-		console.log(region.id);
 		const regionName = this.capitalized(region?.name);
-		console.log(regionName);
 
-		if (!region.id) {
+		if (!this.provinceIdentity) {
 			this.form.get('provinces')?.setValue(regionName);
 		} else {
 			this.form.patchValue({
@@ -188,27 +172,49 @@ export class ProfileUpdateComponent implements OnInit {
 		this.getRegencies(region.id);
 	}
 
-	protected onReceiveRegencyId(region: Region) {
+	protected onUpdateRegencyForm(region: Region) {
 		this.regencyIdentity = region.id;
-
 		const regionName = this.capitalized(region.name);
-		this.form.get('regencies')?.setValue(regionName);
+
+		if (!this.regencyIdentity) {
+			this.form.get('regencies')?.setValue(regionName);
+		} else {
+			this.form.patchValue({
+				regencies: region.name,
+			});
+		}
+
 		this.getDistricts(region.id);
 	}
 
-	protected onReceiveDistrictId(region: Region) {
+	protected onUpdateDistrictForm(region: Region) {
 		this.districtIdentity = region.id;
-
 		const regionName = this.capitalized(region.name);
-		this.form.get('districts')?.setValue(regionName);
+
+		this.updateValue('districts', regionName, region);
+
 		this.getVillages(region.id);
 	}
 
-	protected onReceiveVillageId(region: Region) {
-		this.villageIdentity = region.id;
+	private updateValue(form: string, regionName: void, region: Region) {
+		if (!this.districtIdentity) {
+			this.form.get(form)?.setValue(regionName);
+		} else {
+			this.form.patchValue({
+				districts: region.name,
+			});
+		}
+	}
 
+	protected onUpdateVillageForm(region: Region) {
+		this.villageIdentity = region.id;
 		const regionName = this.capitalized(region.name);
-		this.form.get('villages')?.setValue(regionName);
+
+		if (!this.villageIdentity) {
+			this.form.get('villages')?.setValue(regionName);
+		} else {
+			this.form.patchValue({ villages: region.name });
+		}
 	}
 
 	capitalized(name: string) {
@@ -257,10 +263,7 @@ export class ProfileUpdateComponent implements OnInit {
 		if (inputElement.files && inputElement.files.length > 0) {
 			const file = inputElement.files[0];
 
-			if (
-				file.size <= this.maxSize &&
-				this.allowedFileTypes.includes(file.type)
-			) {
+			if (file.size <= this.maxSize && this.allowedFileTypes.includes(file.type)) {
 				this.coverPreview = URL.createObjectURL(file);
 				this.isCoverChanged = true;
 				this.form.get('cover')?.setValue(file);
@@ -276,10 +279,7 @@ export class ProfileUpdateComponent implements OnInit {
 		if (inputElement.files && inputElement.files.length > 0) {
 			const file = inputElement.files[0];
 
-			if (
-				file.size <= this.maxSize &&
-				this.allowedFileTypes.includes(file.type)
-			) {
+			if (file.size <= this.maxSize && this.allowedFileTypes.includes(file.type)) {
 				this.avatarPreview = URL.createObjectURL(file);
 				this.isAvatarChanged = true;
 				this.form.get('avatar')?.setValue(file);
@@ -303,7 +303,7 @@ export class ProfileUpdateComponent implements OnInit {
 
 			// this.submitToServer();
 			// this.form.reset();
-      // this.navigateAfterSucceed();
+			// this.navigateAfterSucceed();
 		} else {
 			this.formUtils.markAllFormControlsAsTouched(this.form);
 		}

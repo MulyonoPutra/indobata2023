@@ -1,10 +1,10 @@
 <div class="py-4">
-  <label id="listbox-label" class="label font-bold">{{label}}</label>
+  <label id="listbox-label" class="label">{{label}}</label>
   <div class="relative mt-2">
-    <button type="button" class="dropdown-btn" (click)="toggleDropdown()">
-      <span class="flex items-center">
+    <button type="button" class="dropdown" (click)="toggleDropdown()">
+      <span class="centered">
         <span class="ml-3 block truncate" [class.text-gray-500]="!selectedOption">
-          {{ (selectedOption | capitalize) || selectionOptions }}
+          {{ (selectedOption | capitalize) || (value | capitalize) }}
         </span>
       </span>
       <span class="image-wrapper">
@@ -14,7 +14,7 @@
 
     <ul *ngIf="isOpen" tabindex="-1">
       <li role="option" *ngFor="let option of options; let i = index" (click)="selectOption(option, i)">
-        <div class="flex items-center">
+        <div class="centered">
           <span>{{ option.name | capitalize }}</span>
         </div>
         <span *ngIf="selectedOptionIndex === i" class="icon-wrapper">

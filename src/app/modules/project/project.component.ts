@@ -2,10 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, map } from 'rxjs';
 import { AppState } from 'src/app/app.state';
-import {
-	ProjectResponseEntity,
-	ProjectService,
-} from 'src/app/core/services/project.service';
+import { ProjectResponseEntity, ProjectService } from 'src/app/core/services/project.service';
 import { Project, ProjectsArrayType } from '../../core/domain/project';
 import * as ProjectActions from '../../core/state/actions/project.actions';
 import { LoadingService } from 'src/app/core/services/loading.service';

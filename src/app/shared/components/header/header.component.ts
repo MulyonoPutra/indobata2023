@@ -28,11 +28,7 @@ export class HeaderComponent implements OnInit {
 	protected iconArrowUp = pathAssets.iconArrowUp;
 	protected menuitems = MenuItems;
 
-	constructor(
-		private storage: StorageService,
-		private authService: AuthService,
-		private userService: UserService
-	) {}
+	constructor(private storage: StorageService, private authService: AuthService, private userService: UserService) {}
 
 	ngOnInit(): void {
 		this.setUsername();

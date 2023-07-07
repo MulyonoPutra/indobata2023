@@ -15,11 +15,7 @@ export class ProfileComponent implements OnInit {
 	protected userId!: string;
 	protected user!: User;
 
-	constructor(
-		public router: Router,
-		private userService: UserService,
-		private storage: StorageService
-	) {}
+	constructor(public router: Router, private userService: UserService, private storage: StorageService) {}
 
 	ngOnInit(): void {
 		this.getUserId();

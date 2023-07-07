@@ -14,15 +14,10 @@ export class UserService {
 	constructor(private http: HttpClient) {}
 
 	findUserById(id: string): Observable<HttpResponseEntity<User>> {
-		return this.http.get<HttpResponseEntity<User>>(
-			`${this.env}/user/${id}`
-		);
+		return this.http.get<HttpResponseEntity<User>>(`${this.env}/user/${id}`);
 	}
 
 	update(body: FormData, id: string): Observable<HttpResponseEntity<User>> {
-		return this.http.put<HttpResponseEntity<User>>(
-			`${this.env}/user/${id}`,
-			body
-		);
+		return this.http.put<HttpResponseEntity<User>>(`${this.env}/user/${id}`, body);
 	}
 }

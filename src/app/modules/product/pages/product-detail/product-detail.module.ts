@@ -8,11 +8,6 @@ import { ProductDetailComponent } from './product-detail.component';
 
 @NgModule({
 	declarations: [ProductDetailComponent],
-	imports: [
-		CommonModule,
-		ProductDetailRoutingModule,
-		ComponentsModule,
-		LazyLoadImageModule,
-	],
+	imports: [CommonModule, ProductDetailRoutingModule, ComponentsModule, LazyLoadImageModule],
 })
 export class ProductDetailModule {}

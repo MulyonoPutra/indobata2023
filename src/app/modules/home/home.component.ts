@@ -9,10 +9,7 @@ import { OverviewService } from 'src/app/core/services/overview.service';
 import { TestimonialsService } from 'src/app/core/services/testimonials.service';
 import { Features, FeaturesArrayType } from '../../core/domain/features';
 import { HomeService } from '../../core/services/home.service';
-import {
-	ProductResponseEntity,
-	ProductService,
-} from 'src/app/core/services/product.service';
+import { ProductResponseEntity, ProductService } from 'src/app/core/services/product.service';
 import { ProductsArrayType } from 'src/app/core/domain/product';
 
 @Component({

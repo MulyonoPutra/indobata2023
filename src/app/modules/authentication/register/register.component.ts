@@ -1,11 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import {
-	FormBuilder,
-	FormControl,
-	FormGroup,
-	Validators,
-} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { take, timer } from 'rxjs';
 import { Register } from 'src/app/core/domain/register';
@@ -20,8 +15,7 @@ import { FormUtilService } from 'src/app/shared/services/form-util.service';
 export class RegisterComponent implements OnInit {
 	protected form!: FormGroup;
 	protected isSubmitting = false;
-	protected bgCover =
-		'https://www.hsimagazine.com/wp-content/uploads/2020/01/iStock-1028568006.jpg';
+	protected bgCover = 'https://www.hsimagazine.com/wp-content/uploads/2020/01/iStock-1028568006.jpg';
 
 	constructor(
 		private fb: FormBuilder,
@@ -36,23 +30,9 @@ export class RegisterComponent implements OnInit {
 
 	initForm(): void {
 		this.form = this.fb.group({
-			username: [
-				'',
-				[
-					Validators.required,
-					Validators.minLength(3),
-					Validators.maxLength(20),
-				],
-			],
+			username: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
 			email: ['', [Validators.required, Validators.email]],
-			password: [
-				'',
-				[
-					Validators.required,
-					Validators.min(6),
-					Validators.maxLength(20),
-				],
-			],
+			password: ['', [Validators.required, Validators.min(6), Validators.maxLength(20)]],
 		});
 	}
 
@@ -90,13 +70,17 @@ export class RegisterComponent implements OnInit {
 	protected onSubmit(): void {
 		this.authService.register(this.formCtrlValue).subscribe({
 			next: () => {
-				timer(2000)
-					.pipe(take(1))
-					.subscribe(() => this.router.navigateByUrl('/login'));
+				this.navigateAfterSucceed();
 			},
 			error: (error: HttpErrorResponse) => {
 				alert(error.message);
 			},
 		});
+	}
+
+	navigateAfterSucceed(): void {
+		timer(2000)
+			.pipe(take(1))
+			.subscribe(() => this.router.navigateByUrl('/login'));
 	}
 }

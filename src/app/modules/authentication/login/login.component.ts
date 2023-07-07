@@ -1,11 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import {
-	FormBuilder,
-	FormControl,
-	FormGroup,
-	Validators,
-} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { take, timer } from 'rxjs';
 import { Login } from 'src/app/core/domain/login';
@@ -21,8 +16,7 @@ import { ValidatorsService } from 'src/app/shared/services/validators.service';
 export class LoginComponent implements OnInit {
 	protected form!: FormGroup;
 	protected isSubmitting = false;
-	protected bgCover =
-		'https://www.hsimagazine.com/wp-content/uploads/2020/01/iStock-1028568006.jpg';
+	protected bgCover = 'https://www.hsimagazine.com/wp-content/uploads/2020/01/iStock-1028568006.jpg';
 
 	constructor(
 		private fb: FormBuilder,

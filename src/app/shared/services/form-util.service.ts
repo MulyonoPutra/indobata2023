@@ -8,13 +8,11 @@ export class FormUtilService {
 	constructor() {}
 
 	markAllFormControlsAsTouched(formGroup: FormGroup): void {
-		Object.values(formGroup.controls).forEach(
-			(control: AbstractControl) => {
-				control.markAsTouched();
-				if (control instanceof FormGroup) {
-					this.markAllFormControlsAsTouched(control);
-				}
+		Object.values(formGroup.controls).forEach((control: AbstractControl) => {
+			control.markAsTouched();
+			if (control instanceof FormGroup) {
+				this.markAllFormControlsAsTouched(control);
 			}
-		);
+		});
 	}
 }

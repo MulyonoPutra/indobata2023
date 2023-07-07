@@ -1,13 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {
-	Observable,
-	catchError,
-	combineLatest,
-	map,
-	of,
-	throwError,
-} from 'rxjs';
+import { Observable, catchError, combineLatest, map, of, throwError } from 'rxjs';
 import { HttpResponseEntity } from 'src/app/core/domain/http-response-entity';
 import { hero } from 'src/assets/data/hero';
 import { marketplace } from 'src/assets/data/marketplace';
@@ -42,9 +35,7 @@ export class HomeService {
 
 	getFeatures(): Observable<Features[]> {
 		const icons = this.http.get(this.iconPath);
-		const features = this.http.get<HttpResponseEntity<FeaturesArrayType>>(
-			`${this.env}/features`
-		);
+		const features = this.http.get<HttpResponseEntity<FeaturesArrayType>>(`${this.env}/features`);
 
 		return combineLatest([icons, features]).pipe(
 			map(([icons, response]) => {

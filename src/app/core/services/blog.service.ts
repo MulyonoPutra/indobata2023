@@ -13,9 +13,7 @@ export class BlogService {
 	constructor(private http: HttpClient) {}
 
 	loadAll(): Observable<BlogArrayType> {
-		return this.http
-			.get<BlogArrayType>(this.mockData)
-			.pipe(catchError(this.handleError));
+		return this.http.get<BlogArrayType>(this.mockData).pipe(catchError(this.handleError));
 	}
 
 	loadBlogById(id: string): Observable<Blog> {

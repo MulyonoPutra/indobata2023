@@ -8,12 +8,6 @@ import { BlogCreateComponent } from './blog-create.component';
 
 @NgModule({
 	declarations: [BlogCreateComponent],
-	imports: [
-		CommonModule,
-		BlogCreateRoutingModule,
-		FormsModule,
-		ReactiveFormsModule,
-		CKEditorModule,
-	],
+	imports: [CommonModule, BlogCreateRoutingModule, FormsModule, ReactiveFormsModule, CKEditorModule],
 })
 export class BlogCreateModule {}

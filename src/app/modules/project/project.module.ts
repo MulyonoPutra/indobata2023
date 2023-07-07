@@ -8,11 +8,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
 	declarations: [ProjectComponent],
-	imports: [
-		CommonModule,
-		ProjectRoutingModule,
-		ComponentsModule,
-		NgxPaginationModule,
-	],
+	imports: [CommonModule, ProjectRoutingModule, ComponentsModule, NgxPaginationModule],
 })
 export class ProjectModule {}

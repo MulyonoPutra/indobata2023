@@ -16,6 +16,5 @@ export const pathAssets = {
 	iconDropdown: '../../../../assets/icons/icon-dropdown.svg',
 	iconChecklist: '../../../../assets/icons/icon-checklist.svg',
 	iconUpload: '../../../../assets/icons/icon-upload.svg',
-	emptyAvatar:
-		'https://t3.ftcdn.net/jpg/02/43/51/48/360_F_243514868_XDIMJHNNJYKLRST05XnnTj0MBpC4hdT5.jpg',
+	emptyAvatar: 'https://t3.ftcdn.net/jpg/02/43/51/48/360_F_243514868_XDIMJHNNJYKLRST05XnnTj0MBpC4hdT5.jpg',
 };

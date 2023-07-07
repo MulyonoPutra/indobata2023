@@ -4,8 +4,8 @@
       <div>
         <img [lazyLoad]="user.cover.url" alt="Background Image">
         <img *ngIf="isCoverChanged" [lazyLoad]="coverPreview" alt="Background Image">
-        <div class="button-wrapper absolute right-0">
-          <div class="py-6 px-3 mt-32 sm:mt-0">
+        <div class="button-wrapper">
+          <div>
             <button type="button" class="edit" (click)="fileInput.click()">
               <span>Change Cover</span>
               <input #fileInput type="file" (change)="onChangeCover($event)" style="display:none;" />
@@ -15,19 +15,19 @@
       </div>
     </section>
     <section class="wrapper">
-      <div class="container mx-auto width-card px-4">
+      <div class="width-card">
         <div class="card">
           <div class="p-6">
             <div class="avatar">
               <div class="absolute top-[-290px]">
                 <div class="image-container absolute top-1">
                   <label class="hoverable" for="fileInput">
-                    <img *ngIf="!isAvatarChanged" [lazyLoad]="user.avatar.url" class="images" alt="avatar"/>
-                    <img *ngIf="isAvatarChanged" [lazyLoad]="avatarPreview" class="images" alt="avatar"/>
+                    <img *ngIf="!isAvatarChanged" [lazyLoad]="user.avatar.url" class="images" alt="avatar" />
+                    <img *ngIf="isAvatarChanged" [lazyLoad]="avatarPreview" class="images" alt="avatar" />
                     <div class="background"></div>
                   </label>
                   <br />
-                  <img [src]="iconUpload" alt="" class="h-10 w-10 message cursor-pointer mb-7">
+                  <img [src]="iconUpload" alt="Upload Icons" class="h-10 w-10 message cursor-pointer mb-7">
                   <input id="fileInput" type="file" class="select-profile-picture" (change)="onChangeAvatar($event)" />
                 </div>
                 <br />
@@ -36,87 +36,51 @@
 
             <div class="my-10">
               <form [formGroup]="form">
-                <app-form-field
-                              label="Username"
-                              [control]="getFormControl('username')"
-                              controlName="username">
+                <app-form-field label="Username" [control]="getFormControl('username')" controlName="username">
                 </app-form-field>
 
-                <app-form-field
-                              label="Phone"
-                              [control]="getFormControl('phone')"
-                              controlName="phone">
+                <app-form-field label="Phone" [control]="getFormControl('phone')" controlName="phone">
                 </app-form-field>
 
-                <app-form-field
-                              label="Date of Birth"
-                              [control]="getFormControl('dob')"
-                              controlName="dob">
+                <app-form-field label="Date of Birth" [control]="getFormControl('dob')" controlName="dob">
                 </app-form-field>
 
-                <app-form-field
-                            label="Street"
-                            [control]="getFormControl('street')"
-                            controlName="street">
+                <app-form-field label="Street" [control]="getFormControl('street')" controlName="street">
                 </app-form-field>
 
-                <app-form-field
-                            label="description"
-                            [control]="getFormControl('description')"
-                            controlName="description">
+                <app-form-field label="description" [control]="getFormControl('description')" controlName="description">
                 </app-form-field>
 
-                <app-form-field
-                          label="occupation"
-                          [control]="getFormControl('occupation')"
-                          controlName="occupation">
+                <app-form-field label="occupation" [control]="getFormControl('occupation')" controlName="occupation">
                 </app-form-field>
 
-                <app-form-field
-                          label="company"
-                          [control]="getFormControl('company')"
-                          controlName="company">
+                <app-form-field label="company" [control]="getFormControl('company')" controlName="company">
                 </app-form-field>
 
-                <app-dropdown
-                            [options]="dropdownProvince"
-                            [label]="'Province'"
-                            [selectionOptions]="provinceSelected"
-                            (optionId)="onReceiveProvinceId($event)">
+                <app-dropdown [options]="dropdownProvince" [label]="'Province'" [value]="provinceSelected"
+                  (optionId)="onUpdateProvinceForm($event)">
                 </app-dropdown>
 
-                <div *ngIf="provinceSelected">
-                  <app-dropdown
-                            [options]="dropdownRegencies"
-                            [label]="'Regencies'"
-                            [selectionOptions]="regencySelected"
-                            (optionId)="onReceiveRegencyId($event)">
+                <div *ngIf="provinceSelected || provinceIdentity">
+                  <app-dropdown [options]="dropdownRegencies" [label]="'Regencies'" [value]="regencySelected"
+                    (optionId)="onUpdateRegencyForm($event)">
                   </app-dropdown>
                 </div>
 
-                <div *ngIf="regencySelected">
-                  <app-dropdown
-                            [options]="dropdownDistricts"
-                            [label]="'Districts'"
-                            [selectionOptions]="districtSelected"
-                            (optionId)="onReceiveDistrictId($event)">
+                <div *ngIf="regencySelected || regencyIdentity">
+                  <app-dropdown [options]="dropdownDistricts" [label]="'Districts'" [value]="districtSelected"
+                    (optionId)="onUpdateDistrictForm($event)">
                   </app-dropdown>
                 </div>
 
-                <div *ngIf="districtSelected">
-                  <app-dropdown
-                            [options]="dropdownVillages"
-                            [label]="'Villages'"
-                            [selectionOptions]="villageSelected"
-                            (optionId)="onReceiveVillageId($event)">
+                <div *ngIf="districtSelected || districtIdentity">
+                  <app-dropdown [options]="dropdownVillages" [label]="'Villages'" [value]="villageSelected"
+                    (optionId)="onUpdateVillageForm($event)">
                   </app-dropdown>
                 </div>
 
-                <app-submit-button
-                            [isLoading]="isSubmitting"
-                            (click)="onProcessSave()"
-                            [label]="'Save'"
-                            [isDisabled]="form.invalid">
+                <app-submit-button [isLoading]="isSubmitting" (click)="onProcessSave()" [label]="'Save'"
+                  [isDisabled]="form.invalid">
                 </app-submit-button>
               </form>
             </div>
@@ -124,7 +88,5 @@
         </div>
       </div>
     </section>
-
-
   </main>
 </ng-container>

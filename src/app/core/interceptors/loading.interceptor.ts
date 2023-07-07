@@ -1,10 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-	HttpInterceptor,
-	HttpRequest,
-	HttpHandler,
-	HttpEvent,
-} from '@angular/common/http';
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { LoadingService } from '../services/loading.service';
@@ -13,10 +8,7 @@ import { LoadingService } from '../services/loading.service';
 export class LoadingInterceptor implements HttpInterceptor {
 	constructor(private loadingService: LoadingService) {}
 
-	intercept(
-		request: HttpRequest<any>,
-		next: HttpHandler
-	): Observable<HttpEvent<any>> {
+	intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 		this.loadingService.show(); // Show loading indicator
 
 		return next.handle(request).pipe(

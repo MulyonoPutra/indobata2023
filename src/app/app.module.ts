@@ -12,6 +12,7 @@ import { projectReducer } from './core/state/reducers/project.reducer';
 import { LayoutComponent } from './modules/layout/layout.component';
 import { ComponentsModule } from './shared/components/components.module';
 import { SharedModule } from './shared/shared.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
 	declarations: [AppComponent, LayoutComponent],
@@ -25,6 +26,7 @@ import { SharedModule } from './shared/shared.module';
 		StoreModule.forRoot({ projects: projectReducer }),
 		EffectsModule.forRoot([ProjectEffects]),
 		StoreDevtoolsModule.instrument({}),
+		BrowserAnimationsModule,
 	],
 	exports: [AppComponent, LayoutComponent],
 	bootstrap: [AppComponent],

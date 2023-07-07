@@ -67,12 +67,7 @@ export class BlogCreateComponent implements OnInit {
 		},
 		language: 'en',
 		image: {
-			toolbar: [
-				'imageTextAlternative',
-				'imageStyle:full',
-				'imageStyle:side',
-				'linkImage',
-			],
+			toolbar: ['imageTextAlternative', 'imageStyle:full', 'imageStyle:side', 'linkImage'],
 		},
 		table: {
 			contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells'],

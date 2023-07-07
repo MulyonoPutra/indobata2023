@@ -2,7 +2,7 @@
 	@apply block text-sm font-bold leading-6 text-gray-900;
 }
 
-.dropdown-btn {
+.dropdown {
 	@apply relative w-full cursor-default bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6 h-[45px] rounded-[15px];
 }
 
@@ -26,11 +26,14 @@ ul {
 	}
 }
 
+.centered {
+	@apply flex items-center;
+}
+
 .icon-wrapper {
 	@apply absolute inset-y-0 right-0 flex items-center pr-4;
 
 	.checklist {
-		filter: invert(33%) sepia(92%) saturate(668%) hue-rotate(79deg)
-			brightness(101%) contrast(82%);
+		filter: invert(33%) sepia(92%) saturate(668%) hue-rotate(79deg) brightness(101%) contrast(82%);
 	}
 }

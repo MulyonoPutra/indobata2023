@@ -1,12 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-	Event,
-	NavigationCancel,
-	NavigationEnd,
-	NavigationError,
-	NavigationStart,
-	Router,
-} from '@angular/router';
+import { Event, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
 import { take, timer } from 'rxjs';
 
 @Component({

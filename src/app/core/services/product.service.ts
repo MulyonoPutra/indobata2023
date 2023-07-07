@@ -3,15 +3,10 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 import { HttpResponseEntity } from '../domain/http-response-entity';
-import {
-	Product,
-	ProductCategoriesType,
-	ProductsArrayType,
-} from '../domain/product';
+import { Product, ProductCategoriesType, ProductsArrayType } from '../domain/product';
 
 export type ProductResponseEntity = HttpResponseEntity<ProductsArrayType>;
-export type ProductCategoriesResponseEntity =
-	HttpResponseEntity<ProductCategoriesType>;
+export type ProductCategoriesResponseEntity = HttpResponseEntity<ProductCategoriesType>;
 
 @Injectable({
 	providedIn: 'root',
@@ -23,9 +18,7 @@ export class ProductService {
 
 	loadAll(page: number, limit: number): Observable<ProductResponseEntity> {
 		return this.http
-			.get<ProductResponseEntity>(
-				`${this.env}/product?page=${page}&limit=${limit}`
-			)
+			.get<ProductResponseEntity>(`${this.env}/product?page=${page}&limit=${limit}`)
 			.pipe(catchError(this.handleError));
 	}
 
@@ -37,21 +30,13 @@ export class ProductService {
 
 	findProductCategories(): Observable<ProductCategoriesResponseEntity> {
 		return this.http
-			.get<ProductCategoriesResponseEntity>(
-				`${this.env}/product-category`
-			)
+			.get<ProductCategoriesResponseEntity>(`${this.env}/product-category`)
 			.pipe(catchError(this.handleError));
 	}
 
-	findProductsByCategoryId(
-		id: string,
-		page: number,
-		limit: number
-	): Observable<ProductResponseEntity> {
+	findProductsByCategoryId(id: string, page: number, limit: number): Observable<ProductResponseEntity> {
 		return this.http
-			.get<ProductResponseEntity>(
-				`${this.env}/product/category/${id}?page=${page}&limit=${limit}`
-			)
+			.get<ProductResponseEntity>(`${this.env}/product/category/${id}?page=${page}&limit=${limit}`)
 			.pipe(catchError(this.handleError));
 	}
 
@@ -59,10 +44,7 @@ export class ProductService {
 		console.log('Caught an error: ', error);
 
 		let errorMessage: string;
-		if (
-			error instanceof HttpErrorResponse &&
-			error.error instanceof ErrorEvent
-		) {
+		if (error instanceof HttpErrorResponse && error.error instanceof ErrorEvent) {
 			// Client-side error
 			errorMessage = `An error occurred: ${error.error.message}`;
 		} else if (error instanceof HttpErrorResponse && error.status === 400) {

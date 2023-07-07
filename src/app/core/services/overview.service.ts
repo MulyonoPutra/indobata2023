@@ -16,25 +16,21 @@ export class OverviewService {
 	constructor(private http: HttpClient) {}
 
 	loadOverview(): Observable<OverviewSection> {
-		return this.http
-			.get<OverviewResponseEntity>(`${this.env}/overview`)
-			.pipe(
-				map((response) => {
-					let overview = {
-						content: response.data.content.paragraph1,
-						images: response.data.images.slice(0, 2),
-					};
+		return this.http.get<OverviewResponseEntity>(`${this.env}/overview`).pipe(
+			map((response) => {
+				let overview = {
+					content: response.data.content.paragraph1,
+					images: response.data.images.slice(0, 2),
+				};
 
-					return overview;
-				}),
-				catchError(this.handleError)
-			);
+				return overview;
+			}),
+			catchError(this.handleError)
+		);
 	}
 
 	loadAll(): Observable<OverviewResponseEntity> {
-		return this.http
-			.get<OverviewResponseEntity>(`${this.env}/overview`)
-			.pipe(catchError(this.handleError));
+		return this.http.get<OverviewResponseEntity>(`${this.env}/overview`).pipe(catchError(this.handleError));
 	}
 
 	private handleError(res: HttpErrorResponse | any) {

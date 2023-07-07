@@ -14,26 +14,18 @@ export class AddressService {
 	constructor(private http: HttpClient) {}
 
 	findAllProvinces(): Observable<HttpResponseEntity<Province[]>> {
-		return this.http.get<HttpResponseEntity<Province[]>>(
-			`${this.env}/address/province`
-		);
+		return this.http.get<HttpResponseEntity<Province[]>>(`${this.env}/address/province`);
 	}
 
 	findAllRegencies(id: string): Observable<HttpResponseEntity<Regencies[]>> {
-		return this.http.get<HttpResponseEntity<Regencies[]>>(
-			`${this.env}/address/regencies/${id}`
-		);
+		return this.http.get<HttpResponseEntity<Regencies[]>>(`${this.env}/address/regencies/${id}`);
 	}
 
 	findAllDistricts(id: string): Observable<HttpResponseEntity<Districts[]>> {
-		return this.http.get<HttpResponseEntity<Districts[]>>(
-			`${this.env}/address/districts/${id}`
-		);
+		return this.http.get<HttpResponseEntity<Districts[]>>(`${this.env}/address/districts/${id}`);
 	}
 
 	findAllVillages(id: string): Observable<HttpResponseEntity<Villages[]>> {
-		return this.http.get<HttpResponseEntity<Villages[]>>(
-			`${this.env}/address/villages/${id}`
-		);
+		return this.http.get<HttpResponseEntity<Villages[]>>(`${this.env}/address/villages/${id}`);
 	}
 }

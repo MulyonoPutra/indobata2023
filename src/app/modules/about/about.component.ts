@@ -1,10 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { Overview } from 'src/app/core/domain/overview';
-import {
-	OverviewResponseEntity,
-	OverviewService,
-} from 'src/app/core/services/overview.service';
+import { OverviewResponseEntity, OverviewService } from 'src/app/core/services/overview.service';
 
 @Component({
 	selector: 'app-about',

@@ -4,11 +4,7 @@ import { Component, Input } from '@angular/core';
 	selector: 'app-brand-logo',
 	template: `
 		<a routerLink="/">
-			<img
-				[src]="logo"
-				alt="Logo"
-				height="{{ height }}"
-				width="{{ width }}" />
+			<img [src]="logo" alt="Logo" height="{{ height }}" width="{{ width }}" />
 		</a>
 	`,
 })
