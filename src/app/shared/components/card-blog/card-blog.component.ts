@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+
+import { pathAssets } from 'src/app/configs/path-assets';
+import { Article } from 'src/app/core/domain/article';
 
 @Component({
 	selector: 'app-card-blog',
@@ -6,9 +9,9 @@ import { Component } from '@angular/core';
 	styleUrls: ['./card-blog.component.scss'],
 })
 export class CardBlogComponent {
-	showTooltipFlag = false;
-	word =
-		'loremipsum dolor sit amet, consectetur adipis text, sed do eius maxim venenatis vel aug tellus et dolore magna aliqu';
+	@Input() article!: Article;
+	iconTime = pathAssets.iconTime;
+	showTooltipFlag: boolean = false;
 
 	showTooltip() {
 		this.showTooltipFlag = true;

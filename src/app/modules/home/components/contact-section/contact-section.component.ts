@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { take, timer } from 'rxjs';
+
 import { Contact } from 'src/app/core/domain/contact';
-import { HttpResponseEntity } from 'src/app/core/domain/http-response-entity';
 import { ContactService } from 'src/app/core/services/contact.service';
+import { HttpResponseEntity } from 'src/app/core/domain/http-response-entity';
+import { StaticText } from 'src/app/shared/constants/static-text';
 import { ValidatorsService } from 'src/app/shared/services/validators.service';
 
 @Component({
@@ -14,6 +16,7 @@ import { ValidatorsService } from 'src/app/shared/services/validators.service';
 export class ContactSectionComponent implements OnInit {
 	protected form!: FormGroup;
 	isSubmitting = false;
+	greetings = StaticText.contact;
 
 	constructor(private fb: FormBuilder, private validator: ValidatorsService, private feedback: ContactService) {}
 

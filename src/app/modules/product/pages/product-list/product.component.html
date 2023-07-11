@@ -7,14 +7,14 @@
     (clicked)="showFilters()" (categoryId)="onReceive($event)">
   </app-sidebar-filter>
 
-  <main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-4">
+  <main class="containers">
+    <div class="wrapper">
       <app-view-grid-button (clicked)="getProducts()"></app-view-grid-button>
       <div class="flex items-center" #container clickOutside (clickOutside)="handleClickOutside()">
         <app-sort [showDropdown]="showDropdown" (clicked)="toggleDropdown()" (choose)="chooseMenu($event)">
         </app-sort>
         <button (click)="showFilters()" type="button"
-          class="-m-2 ml-4 p-2 text-gray-400 hover:text-gray-500 sm:ml-6 lg:hidden">
+          class="sidebar">
           <span class="sr-only">Filters</span>
           <img [src]="iconFilter" alt="Filter" height="24" width="24" class="icon-gray" />
         </button>
@@ -23,20 +23,20 @@
 
     <section aria-labelledby="products-heading" class="pb-24 pt-6">
       <h2 id="products-heading" class="sr-only">Products</h2>
-      <div class="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
-        <form class="hidden lg:block">
+      <div class="product-wrapper">
+        <form>
           <h3 class="sr-only">Categories</h3>
-          <ul role="list" class="space-y-4 border-b border-gray-200 pb-6 text-sm font-medium text-gray-900">
+          <ul role="list">
             <ng-container *ngFor="let item of categories; trackById">
               <li>
-                <span class="hover:font-bold cursor-pointer" (click)="filterBy(item._id)">{{item.name}}</span>
+                <span class="list" (click)="filterBy(item._id)">{{item.name}}</span>
               </li>
             </ng-container>
           </ul>
         </form>
 
         <div class="lg:col-span-3">
-          <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+          <div class="card-grid">
             <ng-container
               *ngFor="let product of products | paginate: { itemsPerPage: limit, currentPage: page,  totalItems: totalItems }">
               <app-card-product-hover [product]="product"></app-card-product-hover>

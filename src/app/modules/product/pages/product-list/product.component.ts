@@ -1,14 +1,16 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { pathAssets } from 'src/app/configs/path-assets';
-import { Category, ProductCategoriesType, ProductsArrayType } from 'src/app/core/domain/product';
-import { LoadingService } from 'src/app/core/services/loading.service';
 import {
 	ProductCategoriesResponseEntity,
 	ProductResponseEntity,
 	ProductService,
 } from '../../../../core/services/product.service';
+import { ProductCategoriesType, ProductsArrayType } from 'src/app/core/domain/product';
+
+import { Category } from 'src/app/core/domain/category';
+import { HttpErrorResponse } from '@angular/common/http';
+import { LoadingService } from 'src/app/core/services/loading.service';
+import { Subscription } from 'rxjs';
+import { pathAssets } from 'src/app/configs/path-assets';
 
 @Component({
 	selector: 'app-product',
@@ -16,12 +18,15 @@ import {
 	styleUrls: ['./product.component.scss'],
 })
 export class ProductComponent implements OnInit, OnDestroy {
-	protected iconArrowLeft = pathAssets.iconArrowLeft;
 	protected products!: ProductsArrayType;
 	protected categories!: ProductCategoriesType;
+
 	protected subscriptions: Subscription[] = [];
+
 	protected showDropdown: boolean = false;
 	protected isFilterShown: boolean = false;
+
+	protected iconArrowLeft = pathAssets.iconArrowLeft;
 	protected iconFilter: string = pathAssets.iconFilter;
 	protected iconClose: string = pathAssets.iconClosed;
 
@@ -48,8 +53,8 @@ export class ProductComponent implements OnInit, OnDestroy {
 			this.productService.loadAll(this.page, this.limit).subscribe({
 				next: (response: ProductResponseEntity) => {
 					this.products = response.data;
-					this.totalPages = response.totalPages!;
-					this.totalItems = response.totalItems!;
+					this.totalPages = response.paging.totalPages!;
+					this.totalItems = response.paging.total!;
 				},
 				error: (error) => {
 					console.log(error);
@@ -97,8 +102,8 @@ export class ProductComponent implements OnInit, OnDestroy {
 			this.productService.findProductsByCategoryId(id, this.page, this.limit).subscribe({
 				next: (response: ProductResponseEntity) => {
 					this.products = response.data;
-					this.totalPages = response.totalPages!;
-					this.totalItems = response.totalItems!;
+					this.totalPages = response.paging.totalPages!;
+					this.totalItems = response.paging.total!;
 				},
 				error: (error: HttpErrorResponse) => {
 					alert(error.message);

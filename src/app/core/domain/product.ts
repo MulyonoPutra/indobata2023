@@ -1,3 +1,5 @@
+import { Category } from './category';
+
 export type ProductsArrayType = Product[];
 export type ProductCategoriesType = Category[];
 
@@ -22,11 +24,4 @@ export interface TechnicalSpecifications {
 	waterCementRatio: string;
 	density: string;
 	maximumAggregateSize: string;
-}
-
-export interface Category {
-	_id: string;
-	name: string;
-	description: string;
-	__v: number;
 }

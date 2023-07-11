@@ -1,16 +1,17 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ProductResponseEntity, ProductService } from 'src/app/core/services/product.service';
+import { Features, FeaturesArrayType } from '../../core/domain/features';
+
 import { Subscription } from 'rxjs';
 import { Hero } from 'src/app/core/domain/hero';
 import { HttpResponseEntity } from 'src/app/core/domain/http-response-entity';
 import { Marketplace } from 'src/app/core/domain/marketplace';
 import { OverviewSection } from 'src/app/core/domain/overview';
+import { ProductsArrayType } from 'src/app/core/domain/product';
 import { TestimonialsArrayType } from 'src/app/core/domain/testimonials';
 import { OverviewService } from 'src/app/core/services/overview.service';
 import { TestimonialsService } from 'src/app/core/services/testimonials.service';
-import { Features, FeaturesArrayType } from '../../core/domain/features';
 import { HomeService } from '../../core/services/home.service';
-import { ProductResponseEntity, ProductService } from 'src/app/core/services/product.service';
-import { ProductsArrayType } from 'src/app/core/domain/product';
 
 @Component({
 	selector: 'app-home',

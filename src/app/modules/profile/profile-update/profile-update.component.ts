@@ -85,8 +85,8 @@ export class ProfileUpdateComponent implements OnInit {
 			username: ['', [Validators.required, Validators.minLength(6)]],
 			phone: ['', [Validators.required, this.validator.indonesianPhoneNumber()]],
 			dob: ['', Validators.required],
-			avatar: [null, Validators.required],
-			cover: [null, Validators.required],
+			avatar: [null],
+			cover: [null],
 			description: ['', [Validators.required, Validators.minLength(6)]],
 			street: ['', Validators.required],
 			provinces: ['', Validators.required],
@@ -301,8 +301,8 @@ export class ProfileUpdateComponent implements OnInit {
 		if (this.form.valid) {
 			this.loadingIndicator();
 
-			// this.submitToServer();
-			// this.form.reset();
+			this.submitToServer();
+			this.form.reset();
 			// this.navigateAfterSucceed();
 		} else {
 			this.formUtils.markAllFormControlsAsTouched(this.form);
@@ -333,8 +333,8 @@ export class ProfileUpdateComponent implements OnInit {
 		formData.append('username', this.formCtrlValue.username);
 		formData.append('phone', this.formCtrlValue.phone);
 		formData.append('dob', this.formCtrlValue.dob);
-		formData.append('avatar', this.formCtrlValue.avatar);
-		formData.append('cover', this.formCtrlValue.cover);
+		// formData.append('avatar', this.formCtrlValue.avatar);
+		// formData.append('cover', this.formCtrlValue.cover);
 		formData.append('description', this.formCtrlValue.description);
 		formData.append('address[street]', this.formCtrlValue.street);
 		formData.append('address[provinces]', this.formCtrlValue.provinces);

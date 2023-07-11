@@ -1,10 +1,18 @@
-<div class="bg-gray-100 py-8">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grids">
-      <ng-container *ngFor="let project of [0, 1, 2, 3, 4]">
-        <app-card-blog></app-card-blog>
-      </ng-container>
-    </div>
-    <app-pagination></app-pagination>
-  </div>
+<div *ngIf="(loadingService.loading$ | async)" class="loading-indicator">
+  <app-spinner [loadingIndicator]="!loadingIndicator"></app-spinner>
 </div>
+
+<ng-container *ngIf="!(loadingService.loading$ | async)">
+  <div class="bg-gray-100 py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grids">
+        <ng-container
+          *ngFor="let article of articles | paginate: { itemsPerPage: limit, currentPage: page,  totalItems: totalItems }; trackBy: trackById">
+          <app-card-blog [article]="article"></app-card-blog>
+        </ng-container>
+      </div>
+      <app-pagination (pageChange)="onPageChanged($event)" [page]="articles.length"
+        [totalItems]="totalItems"></app-pagination>
+    </div>
+  </div>
+</ng-container>

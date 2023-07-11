@@ -1,0 +1,27 @@
+.container {
+	@apply max-w-screen-lg mx-auto;
+
+	.header {
+		@apply mb-4 md:mb-0 w-full mx-auto relative;
+
+		.title {
+			@apply text-2xl lg:text-4xl font-semibold text-[#0e2038] leading-tight capitalize;
+		}
+
+		.category {
+			@apply py-2 text-[#b0a99f] inline-flex items-center justify-center mb-2;
+		}
+
+		img {
+			@apply w-full object-cover lg:rounded lg:h-[28em];
+		}
+	}
+
+	.content {
+		@apply flex flex-col lg:flex-row lg:space-x-12;
+
+		.articles {
+			@apply px-4 lg:px-0 mx-auto md:px-2 py-4 mt-4 text-gray-700 text-lg leading-relaxed lg:w-3/4 w-full;
+		}
+	}
+}

@@ -1,1 +1,50 @@
-<p>blog-detail works!</p>
+<ng-container *ngIf="article">
+  <div class="container">
+    <main class="mt-10">
+      <div class="header">
+        <div class="flex justify-center">
+          <app-author [author]="article?.author!"></app-author>
+        </div>
+        <div class="px-4 lg:px-0">
+          <h2
+            class="title">
+            {{ article?.title }}
+          </h2>
+          <span
+            class="category">
+            {{ article?.category?.name }}
+          </span>
+        </div>
+
+        <img
+          [src]="article?.images?.url" />
+      </div>
+
+      <div class="content">
+        <div
+          class="articles">
+          <p class="pb-6" [innerHTML]="article?.content"></p>
+        </div>
+      </div>
+      <!-- <div
+        class="mx-auto py-4 w-full text-gray-700 text-lg leading-relaxed lg:w-3/4 px-4 lg:px-0 md:px-0">
+        <h1 class="px-2 font-bold text-3xl pt-4">Related</h1>
+        <hr />
+        <div class="w-full overflow-hidden mt-2">
+          <div class="mr-2 md:mr-4 ml-2">
+            <div class="flex flex-wrap overflow-hidden mb-10">
+              <div
+                *ngFor="
+                  let item of articleCollections;
+                  let i = index
+                ">
+                <app-card-article
+                  [article]="item"></app-card-article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+    </main>
+  </div>
+</ng-container>

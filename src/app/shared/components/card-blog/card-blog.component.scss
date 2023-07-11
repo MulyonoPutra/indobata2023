@@ -4,6 +4,7 @@
 	transform: translateX(-50%);
 	width: 300px;
 	height: auto;
+	z-index: 999;
 }
 
 .tooltip::after {
@@ -16,4 +17,36 @@
 	border-width: 5px;
 	border-style: solid;
 	border-color: transparent transparent #2d3748 transparent;
+}
+
+.card-blog {
+	@apply rounded overflow-hidden shadow-lg flex flex-col cursor-pointer;
+
+	.images {
+		@apply w-full h-[300px];
+	}
+
+	.on-hover {
+		@apply hover:bg-transparent transition duration-300 absolute bottom-0 top-0 right-0 left-0 bg-gray-900 opacity-25;
+	}
+
+	.category {
+		@apply text-xs absolute top-0 right-0 bg-green-600 px-4 py-2 text-white mt-3 mr-3 hover:bg-white hover:text-green-600 transition duration-500 ease-in-out;
+	}
+
+	.title {
+		@apply font-medium text-lg inline-block hover:text-indigo-600 transition duration-500 ease-in-out mb-2;
+	}
+
+	.subtitle {
+		@apply text-gray-500 text-sm focus:outline-none cursor-pointer;
+	}
+
+	.content {
+		@apply px-6 py-3 flex flex-row items-center justify-between bg-gray-100;
+
+		.time-wrapper {
+			@apply py-1 text-xs font-medium text-gray-900 flex flex-row items-center;
+		}
+	}
 }

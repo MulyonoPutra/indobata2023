@@ -57,8 +57,8 @@ export class ProjectComponent implements OnInit {
 		this.projectService.loadAll(this.page, this.limit).subscribe({
 			next: (response: ProjectResponseEntity) => {
 				this.projects = response.data;
-				this.totalPages = response.totalPages!;
-				this.totalItems = response.totalItems!;
+				this.totalPages = response.paging.totalPages!;
+				this.totalItems = response.paging.total!;
 			},
 			error: (error) => {
 				console.log(error);

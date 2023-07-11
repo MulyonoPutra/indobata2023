@@ -1,11 +1,15 @@
-import { CommonModule } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { MaterialModule } from '../config/material.module';
+import { CapitalizePipe } from '../pipes/capitalize.pipe';
 import { SharedModule } from '../shared.module';
 import { AuthLinkComponent } from './auth-link/auth-link.component';
+import { AuthorComponent } from './author/author.component';
 import { BrandLogoComponent } from './brand-logo/brand-logo.component';
 import { ButtonComponent } from './button/button.component';
 import { CardBlogComponent } from './card-blog/card-blog.component';
@@ -27,8 +31,6 @@ import { SocialIconComponent } from './social-icon/social-icon.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { SubmitButtonComponent } from './submit-button/submit-button.component';
 import { TooltipComponent } from './tooltip/tooltip.component';
-import { CapitalizePipe } from '../pipes/capitalize.pipe';
-import { MaterialModule } from '../config/material.module';
 
 @NgModule({
 	declarations: [
@@ -54,6 +56,7 @@ import { MaterialModule } from '../config/material.module';
 		TooltipComponent,
 		DropdownProfileComponent,
 		DropdownComponent,
+		AuthorComponent,
 	],
 	imports: [
 		CommonModule,
@@ -88,6 +91,7 @@ import { MaterialModule } from '../config/material.module';
 		TooltipComponent,
 		DropdownProfileComponent,
 		DropdownComponent,
+		AuthorComponent,
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 	providers: [CapitalizePipe],

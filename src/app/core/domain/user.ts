@@ -1,4 +1,6 @@
 import { Address } from './address';
+import { Avatar } from './avatar';
+import { Cover } from './cover';
 
 export interface User {
 	_id: string;
@@ -13,16 +15,6 @@ export interface User {
 	address: Address;
 	occupation: string;
 	company: string;
-}
-
-export interface Avatar {
-	id: string;
-	url: string;
-}
-
-export interface Cover {
-	id: string;
-	url: string;
 }
 
 export interface UserIdentity {

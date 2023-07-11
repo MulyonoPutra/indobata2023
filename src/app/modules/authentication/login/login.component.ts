@@ -1,8 +1,9 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { take, timer } from 'rxjs';
+
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { Login } from 'src/app/core/domain/login';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { FormUtilService } from 'src/app/shared/services/form-util.service';
