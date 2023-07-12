@@ -1,9 +1,10 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+
+import { HttpErrorResponse } from '@angular/common/http';
 import { HttpResponseEntity } from 'src/app/core/domain/http-response-entity';
-import { User } from 'src/app/core/domain/user';
+import { Router } from '@angular/router';
 import { StorageService } from 'src/app/core/services/storage.service';
+import { User } from 'src/app/core/domain/user';
 import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
@@ -19,7 +20,7 @@ export class ProfileComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.getUserId();
-		this.fetchUser();
+		this.getUserInfo();
 	}
 
 	getUserId() {
@@ -28,7 +29,7 @@ export class ProfileComponent implements OnInit {
 		}
 	}
 
-	fetchUser(): void {
+	getUserInfo(): void {
 		this.userService.findUserById(this.userId).subscribe({
 			next: (response: HttpResponseEntity<User>) => {
 				this.user = response.data;

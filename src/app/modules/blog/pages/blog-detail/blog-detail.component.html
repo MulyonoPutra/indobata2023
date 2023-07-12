@@ -3,27 +3,27 @@
     <main class="mt-10">
       <div class="header">
         <div class="flex justify-center">
-          <app-author [author]="article?.author!"></app-author>
+          <app-author [author]="article.author!"></app-author>
         </div>
         <div class="px-4 lg:px-0">
           <h2
             class="title">
-            {{ article?.title }}
+            {{ article.title }}
           </h2>
           <span
             class="category">
-            {{ article?.category?.name }}
+            {{ article.category.name }}
           </span>
         </div>
 
         <img
-          [src]="article?.images?.url" />
+          [src]="article.images.url" />
       </div>
 
       <div class="content">
         <div
           class="articles">
-          <p class="pb-6" [innerHTML]="article?.content"></p>
+          <p class="pb-6" [innerHTML]="article.content"></p>
         </div>
       </div>
       <!-- <div
