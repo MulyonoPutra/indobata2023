@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { take, timer } from 'rxjs';
-import { pathAssets } from 'src/app/configs/path-assets';
 import { Districts, Province, Regencies, Region, Villages } from 'src/app/core/domain/address';
+
+import { pathAssets } from 'src/app/configs/path-assets';
 import { HttpResponseEntity } from 'src/app/core/domain/http-response-entity';
 import { User } from 'src/app/core/domain/user';
 import { AddressService } from 'src/app/core/services/address.service';
@@ -333,8 +334,15 @@ export class ProfileUpdateComponent implements OnInit {
 		formData.append('username', this.formCtrlValue.username);
 		formData.append('phone', this.formCtrlValue.phone);
 		formData.append('dob', this.formCtrlValue.dob);
-		// formData.append('avatar', this.formCtrlValue.avatar);
-		// formData.append('cover', this.formCtrlValue.cover);
+
+		if (this.isAvatarChanged === true) {
+			formData.append('avatar', this.formCtrlValue.avatar);
+		}
+
+		if (this.isCoverChanged === true) {
+			formData.append('cover', this.formCtrlValue.cover);
+		}
+
 		formData.append('description', this.formCtrlValue.description);
 		formData.append('address[street]', this.formCtrlValue.street);
 		formData.append('address[provinces]', this.formCtrlValue.provinces);
