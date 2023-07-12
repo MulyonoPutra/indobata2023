@@ -6,10 +6,7 @@
         <img *ngIf="isCoverChanged" [lazyLoad]="coverPreview" alt="Background Image">
         <div class="button-wrapper">
           <div>
-            <button type="button" class="edit" (click)="fileInput.click()">
-              <span>Change Cover</span>
-              <input #fileInput type="file" (change)="onChangeCover($event)" style="display:none;" />
-            </button>
+            <app-fancy-button (fileSelected)="onChangeCover($event)"></app-fancy-button>
           </div>
         </div>
       </div>

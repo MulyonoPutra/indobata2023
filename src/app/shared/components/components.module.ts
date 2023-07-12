@@ -19,6 +19,7 @@ import { CardProjectComponent } from './card-project/card-project.component';
 import { DropdownProfileComponent } from './dropdown-profile/dropdown-profile.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
 import { EmailComponent } from './email/email.component';
+import { FancyButtonComponent } from './fancy-button/fancy-button.component';
 import { FooterComponent } from './footer/footer.component';
 import { FormFieldComponent } from './form-field/form-field.component';
 import { HeaderComponent } from './header/header.component';
@@ -57,6 +58,7 @@ import { TooltipComponent } from './tooltip/tooltip.component';
 		DropdownProfileComponent,
 		DropdownComponent,
 		AuthorComponent,
+		FancyButtonComponent,
 	],
 	imports: [
 		CommonModule,
@@ -92,6 +94,7 @@ import { TooltipComponent } from './tooltip/tooltip.component';
 		DropdownProfileComponent,
 		DropdownComponent,
 		AuthorComponent,
+		FancyButtonComponent,
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 	providers: [CapitalizePipe],

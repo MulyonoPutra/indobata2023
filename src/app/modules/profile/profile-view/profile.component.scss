@@ -2,7 +2,7 @@
 	@apply relative block h-[500px];
 
 	img {
-		@apply absolute top-0 w-full h-full bg-center bg-cover object-center object-cover;
+		@apply absolute top-0 w-full h-full bg-center object-center object-cover bg-contain;
 	}
 }
 

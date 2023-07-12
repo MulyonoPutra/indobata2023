@@ -1,0 +1,6 @@
+<button class="button" (click)="fileInput.click()">
+  Change Cover
+  <div class="button__horizontal"></div>
+  <div class="button__vertical"></div>
+  <input #fileInput type="file" (change)="onChange($event)" style="display:none;" />
+</button>
