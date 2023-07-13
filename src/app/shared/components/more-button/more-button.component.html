@@ -1,17 +1,17 @@
 <div *ngIf="isOpenDialog">
   <div>
-    <a (click)="openDialog()">
+    <button (click)="openDialog()">
       <span>{{label}} more</span>
       <img [src]="icon" alt="" class="ml-2 w-5 h-5 arrow">
-    </a>
+    </button>
   </div>
 </div>
 
 <div *ngIf="!isOpenDialog">
   <div>
-    <a (click)="onNavigate()">
+    <button (click)="onNavigate()">
       <span>{{label}} more</span>
       <img [src]="icon" alt="" class="ml-2 w-5 h-5 arrow">
-    </a>
+    </button>
   </div>
 </div>

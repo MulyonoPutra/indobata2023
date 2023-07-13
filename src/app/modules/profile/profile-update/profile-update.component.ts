@@ -25,28 +25,28 @@ export class ProfileUpdateComponent implements OnInit {
 	readonly iconUpload = pathAssets.iconUpload;
 
 	protected user!: User;
-	protected dropdownProvince!:  Province[];
+	protected dropdownProvince!: Province[];
 	protected dropdownRegencies!: Regencies[];
 	protected dropdownDistricts!: Districts[];
-	protected dropdownVillages!:  Villages[];
+	protected dropdownVillages!: Villages[];
 
-	protected provinceIdentity!:  string;
-	protected regencyIdentity!:   string;
-	protected districtIdentity!:  string;
-	protected villageIdentity!:   string;
+	protected provinceIdentity!: string;
+	protected regencyIdentity!: string;
+	protected districtIdentity!: string;
+	protected villageIdentity!: string;
 
 	protected userIdentity!: string;
 
 	protected selectedFile: File | null = null;
-	protected coverPreview!:  string;
+	protected coverPreview!: string;
 	protected avatarPreview!: string;
 
 	// protected coverImage: File | null = null;
 
-	protected provinceSelected!:  string;
-	protected regencySelected!:   string;
-	protected districtSelected!:  string;
-	protected villageSelected!:   string;
+	protected provinceSelected!: string;
+	protected regencySelected!: string;
+	protected districtSelected!: string;
+	protected villageSelected!: string;
 
 	protected isCoverChanged: boolean = false;
 	protected isAvatarChanged: boolean = false;

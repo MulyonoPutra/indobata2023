@@ -1,6 +1,6 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable, map } from 'rxjs';
+import { Observable, Subject, map, take, takeUntil, timer } from 'rxjs';
 import { AppState } from 'src/app/app.state';
 import { HttpResponseEntity } from 'src/app/core/domain/http-response-entity';
 import { LoadingService } from 'src/app/core/services/loading.service';
@@ -13,7 +13,7 @@ import * as ProjectActions from '../../core/state/actions/project.actions';
 	templateUrl: './project.component.html',
 	styleUrls: ['./project.component.scss'],
 })
-export class ProjectComponent implements OnInit {
+export class ProjectComponent implements OnInit, OnDestroy {
 	projects$: Observable<Project[]> | undefined;
 	loading$!: Observable<boolean>;
 	error$!: Observable<any>;
@@ -25,7 +25,12 @@ export class ProjectComponent implements OnInit {
 	protected totalItems!: number;
 	protected limit: number = 6;
 
+	protected projectIdentity!: string;
+
 	protected loadingIndicator: boolean = false;
+	dialogVisible: boolean = false;
+
+	private destroy$ = new Subject<void>();
 
 	constructor(
 		@Inject(Store<AppState>) private store: Store<AppState>,
@@ -50,27 +55,47 @@ export class ProjectComponent implements OnInit {
 	}
 
 	loadAll() {
-		this.projectService.loadAll(this.page, this.limit).subscribe({
-			next: (response: ProjectResponseEntity) => {
-				this.projects = response.data;
-				this.totalPages = response.paging.totalPages!;
-				this.totalItems = response.paging.total!;
-			},
-			error: (error) => {
-				console.log(error);
-			},
-		});
+		this.projectService
+			.loadAll(this.page, this.limit)
+			.pipe(takeUntil(this.destroy$))
+			.subscribe({
+				next: (response: ProjectResponseEntity) => {
+					this.projects = response.data;
+					this.totalPages = response.paging.totalPages!;
+					this.totalItems = response.paging.total!;
+				},
+				error: (error) => {
+					console.log(error);
+				},
+			});
+	}
+
+	showDialog(id: string) {
+		this.findById(id);
+		timer(500)
+			.pipe(take(1))
+			.subscribe(() => {
+				this.dialogVisible = true;
+			});
+		this.dialogVisible = false;
+	}
+
+	hideDialog() {
+		this.dialogVisible = false;
 	}
 
 	findById(id: string) {
-		this.projectService.findById(id).subscribe({
-			next: (response: HttpResponseEntity<Project>) => {
-				this.project = response.data;
-			},
-			error: (error) => {
-				console.log(error);
-			},
-		});
+		this.projectService
+			.findById(id)
+			.pipe(takeUntil(this.destroy$))
+			.subscribe({
+				next: (response: HttpResponseEntity<Project>) => {
+					this.project = response.data;
+				},
+				error: (error) => {
+					console.log(error);
+				},
+			});
 	}
 
 	protected onPageChanged(page: number): void {
@@ -82,5 +107,14 @@ export class ProjectComponent implements OnInit {
 		if (id) {
 			this.findById(id);
 		}
+	}
+
+	open() {
+		console.log('open dialog');
+	}
+
+	ngOnDestroy(): void {
+		this.destroy$.next();
+		this.destroy$.complete();
 	}
 }

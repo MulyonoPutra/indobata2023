@@ -7,10 +7,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class FancyButtonComponent {
 	@Input() label!: string;
-  @Input() value!: any;
-  @Output() fileSelected: EventEmitter<Event> = new EventEmitter<Event>();
+	@Input() value!: any;
+	@Output() fileSelected: EventEmitter<Event> = new EventEmitter<Event>();
 
-  onChange(event: Event) {
-    this.fileSelected.emit(event);
-  }
+	onChange(event: Event) {
+		this.fileSelected.emit(event);
+	}
 }

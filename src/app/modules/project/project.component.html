@@ -6,13 +6,14 @@
   <div class="wrapper">
     <div>
       <ng-container *ngFor="let project of projects | paginate: { itemsPerPage: limit, currentPage: page,  totalItems: totalItems }">
-        <app-card-project [project]="project" (callParentEvent)="openDialog(project._id)"></app-card-project>
+        <app-card-project [project]="project" (callParentEvent)="showDialog(project._id)"></app-card-project>
       </ng-container>
     </div>
-    <app-pagination (pageChange)="onPageChanged($event)" [page]="projects.length" [totalItems]="totalItems"></app-pagination>
+    <app-pagination (pageChange)="onPageChanged($event)" [page]="projects.length!" [totalItems]="totalItems"></app-pagination>
   </div>
 </div>
 
-
-
+<app-content-dialog [visible]="dialogVisible" (close)="hideDialog()">
+  <app-project-detail-content [project]="project"></app-project-detail-content>
+</app-content-dialog>
 

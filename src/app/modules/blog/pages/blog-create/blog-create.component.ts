@@ -19,12 +19,12 @@ export class BlogCreateComponent implements OnInit {
 		});
 	}
 
-  get formCtrlValue() {
-    return {
-      title: this.form.get('title')?.value,
-      content: this.form.get('content')?.value
-    }
-  }
+	get formCtrlValue() {
+		return {
+			title: this.form.get('title')?.value,
+			content: this.form.get('content')?.value,
+		};
+	}
 
 	get title() {
 		return this.form.get('title');
@@ -34,6 +34,6 @@ export class BlogCreateComponent implements OnInit {
 	}
 
 	onSubmit() {
-    console.log(this.formCtrlValue)
+		console.log(this.formCtrlValue);
 	}
 }

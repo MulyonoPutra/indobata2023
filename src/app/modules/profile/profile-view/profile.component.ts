@@ -14,7 +14,6 @@ import { UserService } from 'src/app/core/services/user.service';
 	styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-  
 	protected userId!: string;
 	protected user!: User;
 	protected address!: string;
@@ -56,9 +55,11 @@ export class ProfileComponent implements OnInit {
 	}
 
 	capitalized(city: string) {
-    const [firstWord, ...restWords] = city.split(' ');
-    const capitalizedSecondWord = restWords.map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
-    const transform = `${firstWord} ${capitalizedSecondWord}`;
-    return transform;
-  }
+		const [firstWord, ...restWords] = city.split(' ');
+		const capitalizedSecondWord = restWords
+			.map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+			.join(' ');
+		const transform = `${firstWord} ${capitalizedSecondWord}`;
+		return transform;
+	}
 }
