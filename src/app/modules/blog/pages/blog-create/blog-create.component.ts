@@ -19,6 +19,13 @@ export class BlogCreateComponent implements OnInit {
 		});
 	}
 
+  get formCtrlValue() {
+    return {
+      title: this.form.get('title')?.value,
+      content: this.form.get('content')?.value
+    }
+  }
+
 	get title() {
 		return this.form.get('title');
 	}
@@ -27,11 +34,6 @@ export class BlogCreateComponent implements OnInit {
 	}
 
 	onSubmit() {
-		if (this.form.valid) {
-			// Process the blog post data here
-			console.log('Blog post created');
-		} else {
-			console.log('Invalid form');
-		}
+    console.log(this.formCtrlValue)
 	}
 }

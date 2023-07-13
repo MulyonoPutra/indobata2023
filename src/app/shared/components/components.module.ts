@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { PrimeNgModule } from '../config/primeng.module';
 import { CapitalizePipe } from '../pipes/capitalize.pipe';
 import { SharedModule } from '../shared.module';
 import { AuthLinkComponent } from './auth-link/auth-link.component';
@@ -22,6 +23,7 @@ import { FancyButtonComponent } from './fancy-button/fancy-button.component';
 import { FooterComponent } from './footer/footer.component';
 import { FormFieldComponent } from './form-field/form-field.component';
 import { HeaderComponent } from './header/header.component';
+import { InputTextComponent } from './input-text/input-text.component';
 import { MenuComponent } from './menu/menu.component';
 import { MoreButtonComponent } from './more-button/more-button.component';
 import { PaginationComponent } from './pagination/pagination.component';
@@ -58,6 +60,7 @@ import { TooltipComponent } from './tooltip/tooltip.component';
 		DropdownComponent,
 		AuthorComponent,
 		FancyButtonComponent,
+		InputTextComponent,
 	],
 	imports: [
 		CommonModule,
@@ -67,6 +70,7 @@ import { TooltipComponent } from './tooltip/tooltip.component';
 		LazyLoadImageModule,
 		NgxPaginationModule,
 		SharedModule,
+		PrimeNgModule,
 	],
 	exports: [
 		HeaderComponent,
@@ -93,6 +97,7 @@ import { TooltipComponent } from './tooltip/tooltip.component';
 		DropdownComponent,
 		AuthorComponent,
 		FancyButtonComponent,
+		InputTextComponent,
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 	providers: [CapitalizePipe],

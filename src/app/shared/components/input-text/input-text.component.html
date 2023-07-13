@@ -1,0 +1,12 @@
+<div [formGroup]="formGroup">
+  <span class="p-float-label">
+    <input
+      pInputText
+      type="text"
+      [formControlName]="fieldName"
+      class="w-full"
+      [ngClass]="{ 'g-invalid ng-dirty': isInvalid }" />
+    <label>{{ label }}</label>
+  </span>
+  <div *ngIf="isInvalid" class="error-message">{{ getErrorMessage }}</div>
+</div>
