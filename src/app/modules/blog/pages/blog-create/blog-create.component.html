@@ -1,14 +1,13 @@
 <div class="max-w-4xl mx-auto">
   <h2 class="text-2xl font-semibold mb-4">Create Blog Post</h2>
-  <form [formGroup]="blogPostForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="mb-4">
       <label for="title" class="block font-medium">Title</label>
       <input type="text" id="title" formControlName="title" class="border rounded px-3 py-2 w-full" required>
     </div>
     <div class="mb-4">
       <label for="content" class="block font-medium">Content</label>
-      <ckeditor [(ngModel)]="contents" [config]="editorConfig" [editor]="Editor" formControlName="content"></ckeditor>
     </div>
-    <button type="submit" [disabled]="blogPostForm.invalid" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">Create</button>
+    <button type="submit" [disabled]="form.invalid" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">Create</button>
   </form>
 </div>

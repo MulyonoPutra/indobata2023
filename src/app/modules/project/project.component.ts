@@ -1,15 +1,12 @@
-import { Dialog } from '@angular/cdk/dialog';
 import { Component, Inject, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable, map, take, timer } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { AppState } from 'src/app/app.state';
+import { HttpResponseEntity } from 'src/app/core/domain/http-response-entity';
 import { LoadingService } from 'src/app/core/services/loading.service';
 import { ProjectResponseEntity, ProjectService } from 'src/app/core/services/project.service';
-import { SharedService } from 'src/app/shared/services/shared.service';
 import { Project, ProjectsArrayType } from '../../core/domain/project';
 import * as ProjectActions from '../../core/state/actions/project.actions';
-import { ProjectDetailDialogComponent } from './components/project-detail-dialog/project-detail-dialog.component';
-import { HttpResponseEntity } from 'src/app/core/domain/http-response-entity';
 
 @Component({
 	selector: 'app-project',
@@ -33,8 +30,7 @@ export class ProjectComponent implements OnInit {
 	constructor(
 		@Inject(Store<AppState>) private store: Store<AppState>,
 		private projectService: ProjectService,
-		public loadingService: LoadingService,
-		public dialog: Dialog
+		public loadingService: LoadingService
 	) {}
 
 	ngOnInit(): void {
@@ -86,13 +82,5 @@ export class ProjectComponent implements OnInit {
 		if (id) {
 			this.findById(id);
 		}
-
-		timer(400)
-			.pipe(take(1))
-			.subscribe(() => {
-				this.dialog.open<string>(ProjectDetailDialogComponent, {
-					data: this.project,
-				});
-			});
 	}
 }

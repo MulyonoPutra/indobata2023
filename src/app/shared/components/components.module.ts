@@ -5,7 +5,6 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { MaterialModule } from '../config/material.module';
 import { CapitalizePipe } from '../pipes/capitalize.pipe';
 import { SharedModule } from '../shared.module';
 import { AuthLinkComponent } from './auth-link/auth-link.component';
@@ -68,7 +67,6 @@ import { TooltipComponent } from './tooltip/tooltip.component';
 		LazyLoadImageModule,
 		NgxPaginationModule,
 		SharedModule,
-		MaterialModule,
 	],
 	exports: [
 		HeaderComponent,
