@@ -1,7 +1,9 @@
-import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LayoutComponent } from './modules/layout/layout.component';
+
 import { AuthGuard } from './core/guard/auth.guard';
+import { LayoutComponent } from './modules/layout/layout.component';
+import { NgModule } from '@angular/core';
+import { createArticleGuard } from './core/guard/create-article.guard';
 
 const routes: Routes = [
 	{
@@ -58,6 +60,7 @@ const routes: Routes = [
 				loadChildren: () =>
 					import('./modules/blog/pages/blog-create/blog-create.module').then((m) => m.BlogCreateModule),
 				canActivate: [AuthGuard],
+				canDeactivate: [createArticleGuard],
 			},
 			{
 				path: 'profile',

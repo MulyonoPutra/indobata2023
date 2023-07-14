@@ -35,5 +35,6 @@ export class BlogCreateComponent implements OnInit {
 
 	onSubmit() {
 		console.log(this.formCtrlValue);
+    console.log(this.form.dirty);
 	}
 }
