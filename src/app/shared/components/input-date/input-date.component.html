@@ -1,0 +1,7 @@
+<div [formGroup]="formGroup" class="py-4">
+  <span class="p-float-label w-full">
+    <p-calendar class="w-full" [formControlName]="fieldName" [readonlyInput]="true" [showIcon]="true"></p-calendar>
+    <label>{{ label }}</label>
+  </span>
+  <div *ngIf="isInvalid" class="error-message">{{ getErrorMessage }}</div>
+</div>

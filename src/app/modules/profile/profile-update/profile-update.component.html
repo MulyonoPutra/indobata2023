@@ -33,26 +33,14 @@
 
             <div class="my-10">
               <form [formGroup]="form">
-                <app-form-field label="Username" [control]="getFormControl('username')" controlName="username">
-                </app-form-field>
+                <app-input-text label="Username" fieldName="username" [formGroup]="form"></app-input-text>
+                <app-input-date label="Date of Birth" fieldName="dob" [formGroup]="form"></app-input-date>
+                <app-input-number label="Phone" fieldName="phone" [formGroup]="form"></app-input-number>
 
-                <app-form-field label="Phone" [control]="getFormControl('phone')" controlName="phone">
-                </app-form-field>
-
-                <app-form-field label="Date of Birth" [control]="getFormControl('dob')" controlName="dob">
-                </app-form-field>
-
-                <app-form-field label="Street" [control]="getFormControl('street')" controlName="street">
-                </app-form-field>
-
-                <app-form-field label="description" [control]="getFormControl('description')" controlName="description">
-                </app-form-field>
-
-                <app-form-field label="occupation" [control]="getFormControl('occupation')" controlName="occupation">
-                </app-form-field>
-
-                <app-form-field label="company" [control]="getFormControl('company')" controlName="company">
-                </app-form-field>
+                <app-input-text label="Description" fieldName="description" [formGroup]="form"></app-input-text>
+                <app-input-text label="Occupation" fieldName="occupation" [formGroup]="form"></app-input-text>
+                <app-input-text label="Company" fieldName="company" [formGroup]="form"></app-input-text>
+                <app-input-text label="Street" fieldName="street" [formGroup]="form"></app-input-text>
 
                 <app-dropdown [options]="dropdownProvince" [label]="'Province'" [value]="provinceSelected"
                   (optionId)="onUpdateProvinceForm($event)">

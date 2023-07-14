@@ -1,4 +1,4 @@
-import { AbstractControl, FormGroup, ValidatorFn } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidatorFn } from '@angular/forms';
 
 import { Injectable } from '@angular/core';
 
@@ -26,4 +26,26 @@ export class ValidatorsService {
 			confirmPassword.setErrors(null);
 		}
 	}
+
+  isInvalid(control: FormControl): boolean {
+    return control && control.touched && control.invalid;
+  }
+
+  getErrorMessage(control: FormControl): string {
+    if (control.errors?.['required']) {
+      return 'This field is required.';
+    }
+    if (control.errors?.['email']) {
+      return 'Invalid email format.';
+    }
+    if (control.errors?.['minlength']) {
+      const requiredLength = control.errors['minlength'].requiredLength;
+      return `Password should be at least ${requiredLength} characters long.`;
+    }
+    if (control.errors?.['passwordMismatch']) {
+      return 'Passwords do not match.';
+    }
+
+    return '';
+  }
 }

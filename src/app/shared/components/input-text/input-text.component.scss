@@ -1,20 +1,10 @@
-.error-message {
-	color: red;
-	font-size: 0.875rem;
-	margin-top: 0.25rem;
-}
+:host ::ng-deep {
+  .p-inputtext.ng-dirty.ng-invalid {
+    border: 2px solid red;
+    border-radius: 14px;
+  }
 
-.p-inputtext.ng-dirty.ng-invalid {
-	border: 2px solid red;
-}
-
-.p-float-label input:focus ~ label,
-.p-float-label input.p-filled ~ label,
-.p-float-label textarea:focus ~ label,
-.p-float-label textarea.p-filled ~ label,
-.p-float-label .p-inputwrapper-focus ~ label,
-.p-float-label .p-inputwrapper-filled ~ label {
-	top: -0.75rem;
-	left: 0;
-	font-weight: 700;
+  .p-inputtext {
+    border-radius: 15px;
+  }
 }
