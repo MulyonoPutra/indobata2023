@@ -1,0 +1,9 @@
+<div [formGroup]="formGroup" class="py-4">
+  <span class="p-float-label">
+    <textarea id="float-input" rows="5" cols="30" pInputTextarea [formControlName]="fieldName" class="w-full"
+      [ngClass]="{ 'g-invalid ng-dirty': isInvalid }">
+    </textarea>
+    <label for="float-input">{{ label }}</label>
+  </span>
+  <div *ngIf="isInvalid" class="error-message">{{ getErrorMessage }}</div>
+</div>

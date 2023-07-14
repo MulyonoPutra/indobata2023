@@ -1,7 +1,7 @@
 <div [formGroup]="formGroup" class="py-4">
   <span class="p-float-label w-full">
-    <p-inputMask mask="999999999999" [formControlName]="fieldName" placeholder="(999) 999-9999"></p-inputMask>
-    <label htmlFor="number-input">Number</label>
+    <p-inputMask mask="999999999999" [formControlName]="fieldName" placeholder="(999) 999-9999" [ngClass]="{ 'g-invalid ng-dirty': isInvalid }"></p-inputMask>
+    <label htmlFor="number-input">{{label}}</label>
   </span>
   <div *ngIf="isInvalid" class="error-message">{{ getErrorMessage }}</div>
 </div>

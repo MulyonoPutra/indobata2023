@@ -10,7 +10,8 @@ export class ValidatorsService {
 
 	indonesianPhoneNumber(): ValidatorFn {
 		return (control: AbstractControl): { [key: string]: any } | null => {
-			const phoneNumberPattern = /^0\d{9,15}$/; // Indonesian phone number pattern with "0" as the starting digit
+      // Indonesian phone number pattern with "0" as the starting digit
+			const phoneNumberPattern = /^0\d{9,15}$/;
 			const valid = phoneNumberPattern.test(control.value);
 			return valid ? null : { invalidPhoneNumber: true };
 		};
@@ -44,6 +45,9 @@ export class ValidatorsService {
     }
     if (control.errors?.['passwordMismatch']) {
       return 'Passwords do not match.';
+    }
+    if(control.errors?.['invalidPhoneNumber']){
+      return 'Invalid phone number format.';
     }
 
     return '';

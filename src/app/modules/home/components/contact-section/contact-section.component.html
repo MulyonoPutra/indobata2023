@@ -11,13 +11,10 @@
         <h2>Contact Us</h2>
         <p>{{greetings}}</p>
 
-        <app-form-field label="Name" [control]="getFormControl('fullname')" controlName="fullname"></app-form-field>
-        <app-form-field label="Phone" [control]="getFormControl('phone')" controlName="phone"></app-form-field>
-        <app-form-field label="Email" [control]="getFormControl('email')" controlName="email"></app-form-field>
-        <div class="relative mb-4">
-          <label for="message">Message</label>
-          <textarea id="message" name="message" formControlName="message"></textarea>
-        </div>
+        <app-input-text label="Name" fieldName="fullname" [formGroup]="form"></app-input-text>
+        <app-input-number label="Phone" fieldName="phone" [formGroup]="form"></app-input-number>
+        <app-input-text label="Email" fieldName="email" [formGroup]="form"></app-input-text>
+        <app-input-textarea label="Messages" fieldName="email" [formGroup]="form"></app-input-textarea>
 
         <app-submit-button
             [isLoading]="isSubmitting"
