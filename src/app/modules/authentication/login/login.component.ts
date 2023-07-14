@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { take, timer } from 'rxjs';
 
-import { HttpErrorResponse } from '@angular/common/http';
-import { Router } from '@angular/router';
-import { Login } from 'src/app/core/domain/login';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { FormUtilService } from 'src/app/shared/services/form-util.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Login } from 'src/app/core/domain/login';
+import { Router } from '@angular/router';
+import { StaticImages } from 'src/app/shared/constants/static-images';
+import { StaticText } from 'src/app/shared/constants/static-text';
 import { ValidatorsService } from 'src/app/shared/services/validators.service';
 
 @Component({
@@ -17,7 +19,8 @@ import { ValidatorsService } from 'src/app/shared/services/validators.service';
 export class LoginComponent implements OnInit {
 	protected form!: FormGroup;
 	protected isSubmitting = false;
-	protected bgCover = 'https://www.hsimagazine.com/wp-content/uploads/2020/01/iStock-1028568006.jpg';
+	protected cover = StaticImages.loginCover;
+	protected greetings = StaticText.login;
 
 	constructor(
 		private fb: FormBuilder,
@@ -28,10 +31,10 @@ export class LoginComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
-		this.initForm();
+		this.formInitialized();
 	}
 
-	initForm(): void {
+	formInitialized(): void {
 		this.form = this.fb.group(
 			{
 				email: ['', [Validators.required, Validators.email]],

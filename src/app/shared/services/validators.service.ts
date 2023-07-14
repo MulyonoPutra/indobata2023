@@ -1,5 +1,6 @@
+import { AbstractControl, FormGroup, ValidatorFn } from '@angular/forms';
+
 import { Injectable } from '@angular/core';
-import { ValidatorFn, AbstractControl, FormGroup } from '@angular/forms';
 
 @Injectable({
 	providedIn: 'root',
@@ -20,7 +21,7 @@ export class ValidatorsService {
 		const confirmPassword = formGroup.get('confirmPassword')!;
 
 		if (password.value !== confirmPassword.value) {
-			confirmPassword.setErrors({ mustMatch: true });
+			confirmPassword.setErrors({ passwordMismatch: true });
 		} else {
 			confirmPassword.setErrors(null);
 		}

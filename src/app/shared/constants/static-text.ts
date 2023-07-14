@@ -6,4 +6,6 @@ export class StaticText {
 
 	public static services =
 		'At Indobata, we specialize in delivering top-quality concrete services that meet the unique needs of our clients. Our team of experienced professionals is dedicated to providing exceptional craftsmanship, superior customer service, and reliable solutions for all your concrete projects. Whether you are a homeowner, a contractor, or a property manager, we have the expertise to handle your concrete needs. Our services include:';
+
+    public static login = 'Welcome to Indobata, Please log in to access exclusive features and information.'
 }

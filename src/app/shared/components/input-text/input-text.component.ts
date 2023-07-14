@@ -29,7 +29,9 @@ export class InputTextComponent {
 			const requiredLength = control.errors['minlength'].requiredLength;
 			return `Password should be at least ${requiredLength} characters long.`;
 		}
-		// Add more error messages for other validation rules as needed
+    if (control?.errors?.['passwordMismatch']) {
+      return 'Passwords do not match.';
+    }
 
 		return '';
 	}
