@@ -1,8 +1,12 @@
-<div *ngIf="(loadingService.loading$ | async)" class="loading-indicator">
-  <app-spinner [loadingIndicator]="!loadingIndicator"></app-spinner>
+<div *ngIf="(loadingService.loading$ | async); else content" class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+  <div class="grid grid-cols-3 gap-2">
+    <div *ngFor="let item of [0,1,2,3]">
+      <app-card-shimmer-effect></app-card-shimmer-effect>
+    </div>
+  </div>
 </div>
 
-<ng-container *ngIf="!(loadingService.loading$ | async)">
+<ng-template #content>
   <div class="bg-gray-100 py-8">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grids">
@@ -15,4 +19,4 @@
         [totalItems]="totalItems"></app-pagination>
     </div>
   </div>
-</ng-container>
+</ng-template>

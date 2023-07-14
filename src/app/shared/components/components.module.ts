@@ -17,6 +17,7 @@ import { CardBlogComponent } from './card-blog/card-blog.component';
 import { CardProductHoverComponent } from './card-product-hover/card-product-hover.component';
 import { CardProductComponent } from './card-product/card-product.component';
 import { CardProjectComponent } from './card-project/card-project.component';
+import { CardShimmerEffectComponent } from './card-shimmer-effect/card-shimmer-effect.component';
 import { ContentDialogComponent } from './content-dialog/content-dialog.component';
 import { DropdownProfileComponent } from './dropdown-profile/dropdown-profile.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
@@ -71,6 +72,7 @@ import { TooltipComponent } from './tooltip/tooltip.component';
 		InputNumberComponent,
 		AlertComponent,
 		InputTextareaComponent,
+		CardShimmerEffectComponent,
 	],
 	imports: [
 		CommonModule,
@@ -113,6 +115,7 @@ import { TooltipComponent } from './tooltip/tooltip.component';
 		InputNumberComponent,
 		AlertComponent,
 		InputTextareaComponent,
+		CardShimmerEffectComponent,
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 	providers: [CapitalizePipe],

@@ -1,19 +1,26 @@
-<div *ngIf="(loadingService.loading$ | async)" class="loading-indicator">
-  <app-spinner [loadingIndicator]="!loadingIndicator"></app-spinner>
-</div>
-
-<div *ngIf="!(loadingService.loading$ | async)" class="py-8">
-  <div class="wrapper">
-    <div>
-      <ng-container *ngFor="let project of projects | paginate: { itemsPerPage: limit, currentPage: page,  totalItems: totalItems }">
-        <app-card-project [project]="project" (callParentEvent)="showDialog(project._id)"></app-card-project>
-      </ng-container>
+<div *ngIf="(loadingService.loading$ | async); else content" class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+  <div class="grid grid-cols-3 gap-2">
+    <div *ngFor="let item of [0,1,2,3]">
+      <app-card-shimmer-effect></app-card-shimmer-effect>
     </div>
-    <app-pagination (pageChange)="onPageChanged($event)" [page]="projects.length!" [totalItems]="totalItems"></app-pagination>
   </div>
 </div>
+
+<ng-template #content>
+  <div class="py-8">
+    <div class="wrapper">
+      <div>
+        <ng-container
+          *ngFor="let project of projects | paginate: { itemsPerPage: limit, currentPage: page,  totalItems: totalItems }">
+          <app-card-project [project]="project" (callParentEvent)="showDialog(project._id)"></app-card-project>
+        </ng-container>
+      </div>
+      <app-pagination (pageChange)="onPageChanged($event)" [page]="projects.length!"
+        [totalItems]="totalItems"></app-pagination>
+    </div>
+  </div>
+</ng-template>
 
 <app-content-dialog [visible]="dialogVisible" (close)="hideDialog()">
   <app-project-detail-content [project]="project"></app-project-detail-content>
 </app-content-dialog>
-
