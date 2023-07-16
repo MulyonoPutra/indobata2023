@@ -29,8 +29,7 @@
 .loading polygon {
 	stroke-dasharray: 22;
 	stroke-dashoffset: 1;
-	animation: dash 4s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite
-		alternate-reverse;
+	animation: dash 4s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite alternate-reverse;
 }
 
 @keyframes dash {

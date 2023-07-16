@@ -6,5 +6,14 @@
 
 	.p-inputtext {
 		border-radius: 15px;
+		width: 100%;
+	}
+
+	p-dropdown.ng-dirty.ng-invalid > .p-dropdown {
+		border: 2px solid red;
+	}
+
+	.p-dropdown {
+		width: 100%;
 	}
 }

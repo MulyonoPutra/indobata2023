@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subject, takeUntil } from 'rxjs';
+import { Observable, Subject, takeUntil } from 'rxjs';
 import { OverviewResponseEntity, OverviewService } from 'src/app/core/services/overview.service';
 
 import { Overview } from 'src/app/core/domain/overview';
+import { LoadingService } from 'src/app/core/services/loading.service';
 import { StaticText } from 'src/app/shared/constants/static-text';
 
 @Component({
@@ -13,10 +14,11 @@ import { StaticText } from 'src/app/shared/constants/static-text';
 export class AboutComponent implements OnInit, OnDestroy {
 	private destroy$ = new Subject<void>();
 	protected overview!: Overview;
+	protected loading$!: Observable<boolean>;
 
 	protected title = StaticText.header;
 
-	constructor(private overviewService: OverviewService) {}
+	constructor(private overviewService: OverviewService, public loadingService: LoadingService) {}
 
 	ngOnInit(): void {
 		this.getOverview();

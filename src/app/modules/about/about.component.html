@@ -1,45 +1,51 @@
-<div class="containers" *ngIf="overview">
-  <div class="header">
-    <p class="header-title">About</p>
-    <h2>{{ title }}</h2>
-    <p class="subtitle">
-      {{ overview.content.paragraph1 }}
-    </p>
-  </div>
+<div *ngIf="(loadingService.loading$ | async);" class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+  <app-content-shimmer-effect></app-content-shimmer-effect>
+</div>
 
-  <div class="content">
-    <div class="images-wrapper">
-      <ng-container *ngFor="let image of overview.images; let i = index">
-        <img class="images-lg"  [lazyLoad]="image" alt="images" *ngIf="i === 2" />
-        <img class="images-sm"  [lazyLoad]="image" alt="images" *ngIf="i === 2" />
-        <img class="images"     [lazyLoad]="image" alt="images" *ngIf="i === 2" />
-      </ng-container>
-    </div>
-    <div class="wrapper-text">
-      <p class="text mt-4">
-        {{ overview.content.paragraph2 }}
-      </p>
-      <p class="text mt-6">
-        {{ overview.content.paragraph3 }}
+<div class="containers" *ngIf="!(loadingService.loading$ | async);">
+  <div *ngIf="overview">
+    <div class="header">
+      <p class="header-title">About</p>
+      <h2>{{ title }}</h2>
+      <p class="subtitle">
+        {{ overview.content.paragraph1 }}
       </p>
     </div>
-  </div>
 
-  <div class="content">
-    <div class="wrapper-text">
-      <p class="text mt-4">
-        {{ overview.content.paragraph4 }}
-      </p>
-      <p class="text mt-6">
-        {{ overview.content.paragraph5 }}
-      </p>
+    <div class="content">
+      <div class="images-wrapper">
+        <ng-container *ngFor="let image of overview.images; let i = index">
+          <img class="images-lg" [lazyLoad]="image" alt="images" *ngIf="i === 2" />
+          <img class="images-sm" [lazyLoad]="image" alt="images" *ngIf="i === 2" />
+          <img class="images" [lazyLoad]="image" alt="images" *ngIf="i === 2" />
+        </ng-container>
+      </div>
+      <div class="wrapper-text">
+        <p class="text mt-4">
+          {{ overview.content.paragraph2 }}
+        </p>
+        <p class="text mt-6">
+          {{ overview.content.paragraph3 }}
+        </p>
+      </div>
     </div>
-    <div class="images-wrapper">
-      <ng-container *ngFor="let image of overview.images; let i = index">
-        <img class="images-lg"  [lazyLoad]="image" alt="images" *ngIf="i === 3" />
-        <img class="images-sm"  [lazyLoad]="image" alt="images" *ngIf="i === 3" />
-        <img class="images"     [lazyLoad]="image" alt="images" *ngIf="i === 3" />
-      </ng-container>
+
+    <div class="content">
+      <div class="wrapper-text">
+        <p class="text mt-4">
+          {{ overview.content.paragraph4 }}
+        </p>
+        <p class="text mt-6">
+          {{ overview.content.paragraph5 }}
+        </p>
+      </div>
+      <div class="images-wrapper">
+        <ng-container *ngFor="let image of overview.images; let i = index">
+          <img class="images-lg" [lazyLoad]="image" alt="images" *ngIf="i === 3" />
+          <img class="images-sm" [lazyLoad]="image" alt="images" *ngIf="i === 3" />
+          <img class="images" [lazyLoad]="image" alt="images" *ngIf="i === 3" />
+        </ng-container>
+      </div>
     </div>
   </div>
 </div>

@@ -1,29 +1,28 @@
 :host ::ng-deep {
+	.p-inputmask.ng-dirty.ng-invalid {
+		border: 2px solid red;
+		animation: blinker 1s linear infinite;
+	}
 
-  .p-inputmask.ng-dirty.ng-invalid {
-    border: 2px solid red;
-  }
+	.p-inputtext {
+		border-radius: 15px;
+		width: 100%;
+	}
 
-  .p-inputtext {
-    border-radius: 15px;
-    width: 100%;
-  }
+	p-inputmask.ng-dirty.ng-invalid > .p-inputtext {
+		border: 2px solid red;
+	}
 
-  p-inputmask.ng-dirty.ng-invalid > .p-inputtext {
-    border: 2px solid red;
-  }
+	p-inputmask.p-input-filled {
+		border: 2px solid blue;
+	}
 
-  p-inputmask.p-input-filled {
-    border: 2px solid blue;
-  }
+	.p-float-label label {
+		left: 0.75rem;
+		transition-duration: 0.2s;
+	}
 
-
-  .p-float-label label {
-    left: 0.75rem;
-    transition-duration: 0.2s;
-  }
-
-  .p-float-label.ng-dirty.ng-invalid label {
-    color: red;
-  }
+	.p-float-label.ng-dirty.ng-invalid label {
+		color: red;
+	}
 }

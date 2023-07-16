@@ -1,0 +1,27 @@
+.articles {
+	@apply flex flex-col items-center justify-center pt-9 sm:pt-12 pb-4 lg:pt-16 w-full bg-no-repeat md:bg-cover lg:bg-cover bg-top;
+
+	.section {
+		@apply flex flex-col items-center justify-center space-y-4 px-4 sm:pb-12 md:px-6 lg:pb-0 2xl:container 2xl:mx-auto 2xl:px-0;
+	}
+
+	.title {
+		@apply text-center text-3xl font-semibold leading-9 text-gray-800 lg:text-4xl;
+	}
+
+	.title-sm {
+		@apply text-sm text-[#0e2038] font-bold mb-4;
+	}
+
+	.subtitle {
+		@apply text-center text-base leading-relaxed text-[#213A5C] sm:leading-none tracking-normal;
+	}
+}
+
+.card-containers {
+	@apply lg:mb-4;
+
+	.card-grid {
+		@apply grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-2 lg:grid-cols-4;
+	}
+}

@@ -3,19 +3,19 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { InputTextareaComponent } from './input-textarea.component';
 
 describe('InputTextareaComponent', () => {
-  let component: InputTextareaComponent;
-  let fixture: ComponentFixture<InputTextareaComponent>;
+	let component: InputTextareaComponent;
+	let fixture: ComponentFixture<InputTextareaComponent>;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [InputTextareaComponent]
-    });
-    fixture = TestBed.createComponent(InputTextareaComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+	beforeEach(() => {
+		TestBed.configureTestingModule({
+			declarations: [InputTextareaComponent],
+		});
+		fixture = TestBed.createComponent(InputTextareaComponent);
+		component = fixture.componentInstance;
+		fixture.detectChanges();
+	});
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+	it('should create', () => {
+		expect(component).toBeTruthy();
+	});
 });

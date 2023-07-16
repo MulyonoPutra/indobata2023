@@ -4,11 +4,11 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ValidatorsService } from '../../services/validators.service';
 
 @Component({
-	selector: 'app-input-textarea',
-	templateUrl: './input-textarea.component.html',
-	styleUrls: ['./input-textarea.component.scss'],
+	selector: 'app-editor',
+	templateUrl: './editor.component.html',
+	styleUrls: ['./editor.component.scss'],
 })
-export class InputTextareaComponent {
+export class EditorComponent {
 	@Input() label!: string;
 	@Input() fieldName!: string;
 	@Input() formGroup!: FormGroup;

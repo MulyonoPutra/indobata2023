@@ -1,6 +1,9 @@
 import { Component, Input } from '@angular/core';
-import { Router } from '@angular/router';
+
+import { LoadingService } from 'src/app/core/services/loading.service';
+import { Observable } from 'rxjs';
 import { OverviewSection } from 'src/app/core/domain/overview';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-about-section',
@@ -9,8 +12,9 @@ import { OverviewSection } from 'src/app/core/domain/overview';
 })
 export class AboutSectionComponent {
 	@Input() overview!: OverviewSection;
+	protected loading$!: Observable<boolean>;
 
-	constructor(public router: Router) {}
+	constructor(public router: Router, public loadingService: LoadingService) {}
 
 	onNavigate() {
 		this.router.navigateByUrl(`/about`);

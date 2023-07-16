@@ -10,7 +10,7 @@ export class ValidatorsService {
 
 	indonesianPhoneNumber(): ValidatorFn {
 		return (control: AbstractControl): { [key: string]: any } | null => {
-      // Indonesian phone number pattern with "0" as the starting digit
+			// Indonesian phone number pattern with "0" as the starting digit
 			const phoneNumberPattern = /^0\d{9,15}$/;
 			const valid = phoneNumberPattern.test(control.value);
 			return valid ? null : { invalidPhoneNumber: true };
@@ -28,28 +28,28 @@ export class ValidatorsService {
 		}
 	}
 
-  isInvalid(control: FormControl): boolean {
-    return control && control.touched && control.invalid;
-  }
+	isInvalid(control: FormControl): boolean {
+		return control && control.touched && control.invalid;
+	}
 
-  getErrorMessage(control: FormControl): string {
-    if (control.errors?.['required']) {
-      return 'This field is required.';
-    }
-    if (control.errors?.['email']) {
-      return 'Invalid email format.';
-    }
-    if (control.errors?.['minlength']) {
-      const requiredLength = control.errors['minlength'].requiredLength;
-      return `Password should be at least ${requiredLength} characters long.`;
-    }
-    if (control.errors?.['passwordMismatch']) {
-      return 'Passwords do not match.';
-    }
-    if(control.errors?.['invalidPhoneNumber']){
-      return 'Invalid phone number format.';
-    }
+	getErrorMessage(control: FormControl): string {
+		if (control.errors?.['required']) {
+			return 'This field is required.';
+		}
+		if (control.errors?.['email']) {
+			return 'Invalid email format.';
+		}
+		if (control.errors?.['minlength']) {
+			const requiredLength = control.errors['minlength'].requiredLength;
+			return `Password should be at least ${requiredLength} characters long.`;
+		}
+		if (control.errors?.['passwordMismatch']) {
+			return 'Passwords do not match.';
+		}
+		if (control.errors?.['invalidPhoneNumber']) {
+			return 'Invalid phone number format.';
+		}
 
-    return '';
-  }
+		return '';
+	}
 }

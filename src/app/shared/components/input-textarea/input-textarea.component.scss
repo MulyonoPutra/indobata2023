@@ -1,10 +1,10 @@
 :host ::ng-deep {
-  .p-inputtext.ng-dirty.ng-invalid {
-    border: 2px solid red;
-    border-radius: 14px;
-  }
+	.p-inputtext.ng-dirty.ng-invalid {
+		border: 2px solid red;
+		border-radius: 14px;
+	}
 
-  .p-inputtext {
-    border-radius: 15px;
-  }
+	.p-inputtext {
+		border-radius: 15px;
+	}
 }

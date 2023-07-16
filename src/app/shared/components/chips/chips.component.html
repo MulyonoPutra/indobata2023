@@ -1,0 +1,7 @@
+<div [formGroup]="formGroup" class="py-4">
+  <span class="p-float-label">
+    <p-chips [formControlName]="fieldName" class="w-full" [ngClass]="{ 'g-invalid ng-dirty': isInvalid }"></p-chips>
+    <label>{{ label }}</label>
+  </span>
+  <div *ngIf="isInvalid" class="error-message">{{ getErrorMessage }}</div>
+</div>

@@ -1,23 +1,23 @@
 .login-form {
-  @apply flex justify-center min-h-screen;
+	@apply flex justify-center min-h-screen;
 
-  .wrapper {
-    @apply flex items-center w-full max-w-3xl p-8 mx-auto lg:px-12 lg:w-2/5;
+	.wrapper {
+		@apply flex items-center w-full max-w-3xl p-8 mx-auto lg:px-12 lg:w-2/5;
 
-    .header {
-      @apply text-[#213a5c] text-base font-semibold text-center;
-    }
+		.header {
+			@apply text-[#213a5c] text-base font-semibold text-center;
+		}
 
-    .messages {
-      @apply mt-6 text-sm text-center text-gray-400;
+		.messages {
+			@apply mt-6 text-sm text-center text-gray-400;
 
-      a {
-        @apply underline text-[#213a5c] font-semibold;
-      }
-    }
-  }
+			a {
+				@apply underline text-[#213a5c] font-semibold;
+			}
+		}
+	}
 
-  .cover {
-    @apply hidden bg-cover lg:block lg:w-2/3;
-  }
+	.cover {
+		@apply hidden bg-cover lg:block lg:w-2/3;
+	}
 }

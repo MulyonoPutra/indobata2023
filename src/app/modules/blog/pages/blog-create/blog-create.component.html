@@ -1,10 +1,38 @@
-<div class="max-w-4xl mx-auto">
-  <h2 class="text-2xl font-semibold mb-4">Create Blog Post</h2>
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <app-input-text label="Title" fieldName="title" [formGroup]="form"></app-input-text>
-    <div class="mb-4">
-      <label for="content" class="block font-medium">Content</label>
+<div class="pb-16 w-full">
+  <div class="articles">
+    <div class="section">
+      <div>
+        <h1 class="title">Create New Articles</h1>
+      </div>
+      <div>
+        <p class="text-left text-[#758D93] text-base px-2 lg:px-6 lg:w-3/5 mx-auto">
+          {{ header }}
+      </div>
     </div>
-    <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">Create</button>
-  </form>
+  </div>
+  <div class="card-containers">
+    <div class="px-2 lg:px-6 lg:w-3/5 mx-auto">
+      <div
+        class="px-2 py-6 relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-100 border-2">
+        <div class="flex-auto lg:px-10 py-10 pt-0">
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <app-input-text label="Title" fieldName="title" [formGroup]="form"></app-input-text>
+            <app-input-text label="Subtitle" fieldName="subtitle" [formGroup]="form"></app-input-text>
+            <app-chips label="Tags" fieldName="tags" [formGroup]="form"></app-chips>
+            <app-editor label="Content" fieldName="content" [formGroup]="form"></app-editor>
+            <app-single-upload (fileUploaded)="handleFileUploaded($event)"></app-single-upload>
+            <app-input-dropdown
+              [formGroup]="form"
+              [placeholder]="'Select Category'"
+              label="Category"
+              fieldName="category"
+              [optionLabel]="'name'"
+              [options]="categories">
+            </app-input-dropdown>
+            <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">Create</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

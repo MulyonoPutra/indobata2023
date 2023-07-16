@@ -4,14 +4,17 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ValidatorsService } from '../../services/validators.service';
 
 @Component({
-	selector: 'app-input-textarea',
-	templateUrl: './input-textarea.component.html',
-	styleUrls: ['./input-textarea.component.scss'],
+	selector: 'app-input-dropdown',
+	templateUrl: './input-dropdown.component.html',
+	styleUrls: ['./input-dropdown.component.scss'],
 })
-export class InputTextareaComponent {
+export class InputDropdownComponent {
 	@Input() label!: string;
 	@Input() fieldName!: string;
 	@Input() formGroup!: FormGroup;
+	@Input() options!: any[];
+	@Input() placeholder!: string;
+	@Input() optionLabel!: string;
 
 	constructor(private validation: ValidatorsService) {}
 

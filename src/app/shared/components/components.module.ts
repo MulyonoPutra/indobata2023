@@ -18,15 +18,19 @@ import { CardProductHoverComponent } from './card-product-hover/card-product-hov
 import { CardProductComponent } from './card-product/card-product.component';
 import { CardProjectComponent } from './card-project/card-project.component';
 import { CardShimmerEffectComponent } from './card-shimmer-effect/card-shimmer-effect.component';
+import { ChipsComponent } from './chips/chips.component';
 import { ContentDialogComponent } from './content-dialog/content-dialog.component';
+import { ContentShimmerEffectComponent } from './content-shimmer-effect/content-shimmer-effect.component';
 import { DropdownProfileComponent } from './dropdown-profile/dropdown-profile.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
+import { EditorComponent } from './editor/editor.component';
 import { EmailComponent } from './email/email.component';
 import { FancyButtonComponent } from './fancy-button/fancy-button.component';
 import { FooterComponent } from './footer/footer.component';
 import { FormFieldComponent } from './form-field/form-field.component';
 import { HeaderComponent } from './header/header.component';
 import { InputDateComponent } from './input-date/input-date.component';
+import { InputDropdownComponent } from './input-dropdown/input-dropdown.component';
 import { InputNumberComponent } from './input-number/input-number.component';
 import { InputTextComponent } from './input-text/input-text.component';
 import { InputTextareaComponent } from './input-textarea/input-textarea.component';
@@ -35,6 +39,7 @@ import { MoreButtonComponent } from './more-button/more-button.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { PhoneComponent } from './phone/phone.component';
 import { ShortLineComponent } from './short-line/short-line.component';
+import { SingleUploadComponent } from './single-upload/single-upload.component';
 import { SocialIconComponent } from './social-icon/social-icon.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { SubmitButtonComponent } from './submit-button/submit-button.component';
@@ -73,6 +78,11 @@ import { TooltipComponent } from './tooltip/tooltip.component';
 		AlertComponent,
 		InputTextareaComponent,
 		CardShimmerEffectComponent,
+		ContentShimmerEffectComponent,
+		ChipsComponent,
+		EditorComponent,
+		SingleUploadComponent,
+		InputDropdownComponent,
 	],
 	imports: [
 		CommonModule,
@@ -116,6 +126,11 @@ import { TooltipComponent } from './tooltip/tooltip.component';
 		AlertComponent,
 		InputTextareaComponent,
 		CardShimmerEffectComponent,
+		ContentShimmerEffectComponent,
+		ChipsComponent,
+		EditorComponent,
+		SingleUploadComponent,
+		InputDropdownComponent,
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 	providers: [CapitalizePipe],

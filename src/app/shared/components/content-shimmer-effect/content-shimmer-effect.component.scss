@@ -1,0 +1,48 @@
+.loader {
+	height: calc(100vh);
+	padding: 60px 60px 73px;
+	position: relative;
+	background: white;
+	box-sizing: border-box;
+	z-index: 1;
+}
+.loader .wrapper {
+	overflow: hidden;
+	height: 100%;
+}
+.loader .bar {
+	height: 16px;
+	margin-bottom: 16px;
+	animation: shimmer 4s infinite linear;
+	background: linear-gradient(to right, #fafafa 4%, #eeeeee 50%, #fafafa 86%);
+	background-size: 1000px 100%;
+}
+.loader .bar:nth-child(4),
+.loader .bar:nth-child(12) {
+	width: 60%;
+	margin-bottom: 66px;
+}
+.sr-only {
+	position: absolute;
+	clip: rect(0 0 0 0);
+	border: 0;
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	width: 1px;
+	white-space: nowrap;
+}
+@media (min-width: 0px) and (max-width: 899px) {
+	.loader {
+		padding: 20px 17px;
+	}
+}
+@keyframes shimmer {
+	0% {
+		background-position: -1000px 0;
+	}
+	100% {
+		background-position: 1000px 0;
+	}
+}

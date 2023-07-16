@@ -1,32 +1,32 @@
 :host ::ng-deep {
-  .p-button {
-    color: #ffffff;
-    background: #5a5656;
-    border: 1px solid #f4eeee;
-    padding: 0.75rem 1.25rem;
-    font-size: 1rem;
-    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
-    border-radius: 6px;
+	.p-button {
+		color: #ffffff;
+		background: #5a5656;
+		border: 1px solid #f4eeee;
+		padding: 0.75rem 1.25rem;
+		font-size: 1rem;
+		transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+		border-radius: 6px;
 
-    &:hover {
-      color: #ffffff;
-      background: #a2a0a0;
-      border: 1px solid #f4eeee;
-    }
-  }
+		&:hover {
+			color: #ffffff;
+			background: #a2a0a0;
+			border: 1px solid #f4eeee;
+		}
+	}
 
-  .p-calendar {
-    width: 100%;
-  }
+	.p-calendar {
+		width: 100%;
+	}
 
-  .p-calendar .p-datepicker {
-    min-width: 0%;
-  }
+	.p-calendar .p-datepicker {
+		min-width: 0%;
+	}
 
-  .p-calendar-w-btn .p-inputtext {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
-}
+	.p-calendar-w-btn .p-inputtext {
+		border-top-right-radius: 0;
+		border-bottom-right-radius: 0;
+		border-top-left-radius: 15px;
+		border-bottom-left-radius: 15px;
+	}
 }

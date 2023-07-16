@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AlertComponent } from './alert.component';
+import { EditorComponent } from './editor.component';
 
-describe('AlertComponent', () => {
-	let component: AlertComponent;
-	let fixture: ComponentFixture<AlertComponent>;
+describe('EditorComponent', () => {
+	let component: EditorComponent;
+	let fixture: ComponentFixture<EditorComponent>;
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [AlertComponent],
+			declarations: [EditorComponent],
 		});
-		fixture = TestBed.createComponent(AlertComponent);
+		fixture = TestBed.createComponent(EditorComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});

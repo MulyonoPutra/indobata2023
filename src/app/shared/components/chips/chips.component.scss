@@ -1,10 +1,16 @@
 :host ::ng-deep {
-	.p-inputtext.ng-dirty.ng-invalid {
+	p-chips.ng-dirty.ng-invalid > .p-chips > .p-inputtext {
 		border: 2px solid red;
+		width: 100%;
 		animation: blinker 1s linear infinite;
 	}
 
 	.p-inputtext {
 		border-radius: 15px;
+		width: 100%;
+	}
+
+	.p-chips {
+		width: 100%;
 	}
 }
