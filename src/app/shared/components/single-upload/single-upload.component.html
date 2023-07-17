@@ -1,35 +1,40 @@
-<div class="w-full lg:w-full py-4">
-  <div
-    class="flex justify-center items-center w-full">
-    <label
-      htmlFor="dropzone-file"
-      class="flex flex-col justify-center items-center w-full h-64 bg-white rounded-lg border-2 border-gray-300 border-dashed cursor-pointer hover:bg-gray-100">
-      <div
-        class="flex flex-col justify-center items-center text-center p-5">
-        <img
-          [src]="icon"
-          alt=""
-          class="h-14 w-14 imgSrc" />
-        <p
-          class="mb-2 text-sm text-gray-500 dark:text-gray-400">
-          <span class="font-semibold">
-            Click to upload
-          </span>
-          or drag and drop
-        </p>
-        <p
-          class="text-xs text-gray-500 dark:text-gray-400">
-          SVG, PNG, JPG or GIF (MAX.
-          800x400px)
-        </p>
+<div class="uploaded">
+  <div class="card-dashed">
+    <label htmlFor="dropzone-file" class="w-full">
+      <div *ngIf="images; else noImages">
+        <div class="relative">
+          <div class="flex flex-wrap justify-center py-4">
+            <div class="relative">
+              <figure class="max-w-lg">
+                <img class="h-auto max-w-full rounded-lg" [src]="images.preview" alt="image description">
+                <button class="remove-btn" (click)="remove($event)">
+                  <img [src]="closeIcon" alt="" class="w-5 h-5 close-icon">
+                </button>
+                <figcaption class="caption">{{images.name}}</figcaption>
+                <figcaption class="caption">{{images.size | sizeFormat }}</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
       </div>
-      <input
-        id="dropzone-file"
-        class="hidden"
-        type="file"
-        accept=".png, .jpg, .jpeg"
-        (change)="onUpload($event)"
-        />
+
+      <ng-template #noImages>
+        <div class="flex flex-col justify-center items-center text-center p-5">
+          <img class="has-mask h-36 object-center" [src]="uploadImages" alt="Upload">
+          <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">
+            <span class="font-semibold">
+              Click to upload
+            </span>
+            or drag and drop
+          </p>
+          <p class="text-xs text-gray-500 dark:text-gray-400">
+            PNG, JPG or JPEG (MAX.
+            800x400px)
+          </p>
+        </div>
+        <input id="dropzone-file" class="hidden" type="file" accept=".png, .jpg, .jpeg" (change)="upload($event)" />
+      </ng-template>
+
     </label>
   </div>
 </div>

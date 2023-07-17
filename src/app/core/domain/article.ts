@@ -4,13 +4,13 @@ import { Images } from './images';
 
 export interface Article {
 	images: Images;
-	_id: string;
+	_id?: string;
 	title: string;
 	subtitle: string;
 	content: string;
-	author: Author;
+	author?: Author;
 	tags: string[];
 	category: Category;
-	createdAt: string;
-	updatedAt: string;
+	createdAt?: string;
+	updatedAt?: string;
 }

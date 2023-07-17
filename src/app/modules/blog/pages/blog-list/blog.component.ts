@@ -45,7 +45,7 @@ export class BlogComponent implements OnInit {
 	}
 
 	trackById(index: number, item: Article): string {
-		return item._id;
+		return item._id!;
 	}
 
 	protected onPageChanged(page: number): void {

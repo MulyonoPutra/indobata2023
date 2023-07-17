@@ -1,4 +1,4 @@
-<a [routerLink]="['/blog-detail', article._id]" class="card-blog">
+<a [routerLink]="['/blog-detail', article._id!]" class="card-blog">
   <div class="relative">
     <img class="images" [lazyLoad]="article.images.url" alt="Article Images" />
     <div class="on-hover">
@@ -22,7 +22,7 @@
   <div class="content">
     <span class="time-wrapper">
       <img [src]="iconTime" alt="time" class="h-5 w-5" />
-      <span class="ml-1">{{article.createdAt | timeAgo }}</span>
+      <span class="ml-1">{{article.createdAt! | timeAgo }}</span>
     </span>
     <!-- <span class="py-1 text-xs font-regular text-gray-900 mr-1 flex flex-row items-center">
       <svg class="h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

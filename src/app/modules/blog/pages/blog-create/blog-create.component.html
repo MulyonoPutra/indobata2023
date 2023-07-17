@@ -20,7 +20,7 @@
             <app-input-text label="Subtitle" fieldName="subtitle" [formGroup]="form"></app-input-text>
             <app-chips label="Tags" fieldName="tags" [formGroup]="form"></app-chips>
             <app-editor label="Content" fieldName="content" [formGroup]="form"></app-editor>
-            <app-single-upload (fileUploaded)="handleFileUploaded($event)"></app-single-upload>
+            <app-single-upload (fileUploaded)="onUpload($event)"></app-single-upload>
             <app-input-dropdown
               [formGroup]="form"
               [placeholder]="'Select Category'"
@@ -29,7 +29,11 @@
               [optionLabel]="'name'"
               [options]="categories">
             </app-input-dropdown>
-            <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">Create</button>
+            <div class="flex space-x-2">
+              <div><button type="submit" class="text-gray-800 bg-white hover:bg-gray-600 hover:text-white px-4 py-2 rounded">Cancel</button></div>
+              <div><button type="submit" class="text-white bg-gray-800 hover:bg-gray-600 px-4 py-2 rounded">Create</button></div>
+            </div>
+
           </form>
         </div>
       </div>

@@ -1,3 +1,26 @@
-img {
+.icon {
 	filter: invert(11%) sepia(22%) saturate(1783%) hue-rotate(173deg) brightness(96%) contrast(97%);
+}
+
+.close-icon {
+  filter: invert(85%) sepia(2%) saturate(0%) hue-rotate(53deg) brightness(100%) contrast(93%);
+  &:hover {
+    filter: invert(99%) sepia(7%) saturate(470%) hue-rotate(268deg) brightness(119%) contrast(100%);
+  }
+}
+
+.uploaded {
+  @apply w-full py-4;
+
+  .card-dashed {
+    @apply flex justify-center items-center w-auto h-auto bg-white rounded-lg border-2 border-gray-300 border-dashed cursor-pointer;
+
+    .remove-btn {
+      @apply absolute top-0 right-0 m-2 p-2 bg-gray-700 hover:text-white rounded-full;
+    }
+
+    .caption {
+      @apply mt-2 text-sm text-center text-gray-500 dark:text-gray-400;
+    }
+  }
 }
