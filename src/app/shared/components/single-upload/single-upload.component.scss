@@ -22,5 +22,21 @@
 		.caption {
 			@apply mt-2 text-sm text-center text-gray-500 dark:text-gray-400;
 		}
+
+		.flex__center {
+			@apply flex flex-wrap justify-center py-4;
+		}
+
+		.max__round {
+			@apply h-auto max-w-full rounded-lg;
+		}
+
+		.upload-wrapper {
+			@apply flex flex-col justify-center items-center text-center p-5;
+
+			img {
+				@apply h-36 object-center;
+			}
+		}
 	}
 }

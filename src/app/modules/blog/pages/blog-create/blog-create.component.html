@@ -14,29 +14,56 @@
     <div class="px-2 lg:px-6 lg:w-3/5 mx-auto">
       <div class="card">
         <div class="flex-auto lg:px-10 py-10 pt-0">
-          <form [formGroup]="form" (ngSubmit)="onProcessSave()">
-            <app-input-text label="Title" fieldName="title" [formGroup]="form"></app-input-text>
-            <app-input-text label="Subtitle" fieldName="subtitle" [formGroup]="form"></app-input-text>
-            <app-chips label="Tags" fieldName="tags" [formGroup]="form"></app-chips>
-            <app-editor label="Content" fieldName="content" [formGroup]="form"></app-editor>
-            <app-single-upload (fileUploaded)="onUpload($event)" [isSubmitting]="isSubmitting"></app-single-upload>
-            <app-input-dropdown
+          <form [formGroup]="form">
+            <app-input-text
               [formGroup]="form"
-              [placeholder]="'Select Category'"
-              label="Category"
-              fieldName="category"
-              [optionLabel]="'name'"
-              [optionValue]="'name'"
-              [options]="categories">
+              label="Title"
+              fieldName="title">
+            </app-input-text>
+
+            <app-input-text
+              [formGroup]="form"
+              label="Subtitle"
+              fieldName="subtitle">
+            </app-input-text>
+
+            <app-chips
+              [formGroup]="form"
+              label="Tags"
+              fieldName="tags">
+            </app-chips>
+
+            <app-editor
+              [formGroup]="form"
+              label="Content"
+              fieldName="content">
+            </app-editor>
+
+            <app-single-upload
+                (fileUploaded)="onUpload($event)"
+                [isSubmitting]="isSubmitting"
+                [imagesForm]="imagesForm">
+            </app-single-upload>
+
+            <app-input-dropdown
+                [formGroup]="form"
+                [placeholder]="'Select Category'"
+                label="Category"
+                fieldName="category"
+                [optionLabel]="'name'"
+                [optionValue]="'_id'"
+                [options]="categories">
             </app-input-dropdown>
+
             <div class="flex space-x-2">
               <div>
                 <button type="submit" class="cancel">Cancel</button>
               </div>
               <div>
-                <button type="submit" class="save">Create</button>
+                <button type="button" class="save" (click)="onSubmit()">Create</button>
               </div>
             </div>
+
           </form>
         </div>
       </div>

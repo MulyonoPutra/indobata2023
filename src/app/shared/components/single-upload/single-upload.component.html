@@ -1,17 +1,32 @@
 <div class="uploaded">
   <div class="card-dashed">
     <label htmlFor="dropzone-file" class="w-full">
-      <div *ngIf="images; else noImages">
+      <div *ngIf="imagesForm">
         <div class="relative">
-          <div class="flex flex-wrap justify-center py-4">
+          <div class="flex__center">
             <div class="relative">
               <figure class="max-w-lg">
-                <img class="h-auto max-w-full rounded-lg" [src]="images.preview" alt="image description">
+                <img class="max__round" [src]="imagesForm" alt="image description">
                 <button class="remove-btn" (click)="remove($event)">
                   <img [src]="closeIcon" alt="" class="w-5 h-5 close-icon">
                 </button>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="images; else noImages">
+        <div class="relative">
+          <div class="flex__center">
+            <div class="relative">
+              <figure class="max-w-lg">
+                <img class="max__round" [src]="images.preview" alt="image description">
+                <button class="remove-btn" (click)="remove($event)">
+                  <img [src]="closeIcon" alt="icon" class="w-5 h-5 close-icon">
+                </button>
                 <figcaption class="caption">{{images.name}}</figcaption>
-                <figcaption class="caption">{{images.size | sizeFormat }}</figcaption>
+                <figcaption class="caption">{{images.size! | sizeFormat }}</figcaption>
               </figure>
             </div>
           </div>
@@ -19,22 +34,20 @@
       </div>
 
       <ng-template #noImages>
-        <div class="flex flex-col justify-center items-center text-center p-5">
-          <img class="has-mask h-36 object-center" [src]="uploadImages" alt="Upload">
+        <div *ngIf="!imagesForm" class="upload-wrapper">
+          <img [src]="uploadImages" alt="Upload">
           <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">
             <span class="font-semibold">
               Click to upload
             </span>
-            or drag and drop
+              or drag and drop
           </p>
           <p class="text-xs text-gray-500 dark:text-gray-400">
-            PNG, JPG or JPEG (MAX.
-            800x400px)
+            PNG, JPG or JPEG (MAX. 800x400px)
           </p>
         </div>
         <input id="dropzone-file" class="hidden" type="file" accept=".png, .jpg, .jpeg" (change)="upload($event)" />
       </ng-template>
-
     </label>
   </div>
 </div>

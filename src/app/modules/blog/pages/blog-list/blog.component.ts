@@ -2,14 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, Subject, takeUntil } from 'rxjs';
 
 import { Article } from 'src/app/core/domain/article';
-import { HttpResponseEntity } from 'src/app/core/domain/http-response-entity';
 import { ArticleService } from 'src/app/core/services/article.service';
+import { HttpResponseEntity } from 'src/app/core/domain/http-response-entity';
 import { LoadingService } from 'src/app/core/services/loading.service';
+import { MessageService } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-blog',
 	templateUrl: './blog.component.html',
 	styleUrls: ['./blog.component.scss'],
+	providers: [MessageService],
 })
 export class BlogComponent implements OnInit {
 	private destroySubject = new Subject<void>();
@@ -26,7 +29,12 @@ export class BlogComponent implements OnInit {
 		this.findAll();
 	}
 
-	constructor(private articleService: ArticleService, public loadingService: LoadingService) {}
+	constructor(
+		private articleService: ArticleService,
+		public loadingService: LoadingService,
+		private messageService: MessageService,
+		private router: Router
+	) {}
 
 	findAll(): void {
 		this.articleService
@@ -39,13 +47,17 @@ export class BlogComponent implements OnInit {
 					this.totalItems = response.paging.total!;
 				},
 				error: (error) => {
-					console.log(error);
+					this.messageService.add({ severity: 'error', summary: 'Error', detail: error });
 				},
 			});
 	}
 
 	trackById(index: number, item: Article): string {
 		return item._id!;
+	}
+
+	protected navigate(id: string) {
+		this.router.navigate(['blog-detail/' + id]);
 	}
 
 	protected onPageChanged(page: number): void {

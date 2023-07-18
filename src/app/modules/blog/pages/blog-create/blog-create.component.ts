@@ -1,19 +1,21 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpResponseEntity, ResponseMessageEntity } from 'src/app/core/domain/http-response-entity';
 import { Subject, take, takeUntil, timer } from 'rxjs';
 
 import { Article } from 'src/app/core/domain/article';
 import { ArticleService } from 'src/app/core/services/article.service';
 import { Category } from 'src/app/core/domain/category';
 import { FormUtilService } from 'src/app/shared/services/form-util.service';
-import { HttpResponseEntity } from 'src/app/core/domain/http-response-entity';
+import { MessageService } from 'primeng/api';
 import { StaticText } from 'src/app/shared/constants/static-text';
 
 @Component({
 	selector: 'app-blog-create',
 	templateUrl: './blog-create.component.html',
 	styleUrls: ['./blog-create.component.scss'],
+	providers: [MessageService],
 })
 export class BlogCreateComponent implements OnInit, OnDestroy {
 	public form!: FormGroup;
@@ -22,33 +24,35 @@ export class BlogCreateComponent implements OnInit, OnDestroy {
 	protected categories!: Category[];
 	protected article!: Article;
 	protected isSubmitting: boolean = false;
+	protected imagesForm!: string;
 
 	constructor(
 		private formBuilder: FormBuilder,
 		private articleService: ArticleService,
 		private formUtils: FormUtilService,
 		private router: Router,
-		private route: ActivatedRoute
+		private route: ActivatedRoute,
+		private messageService: MessageService
 	) {}
 
 	ngOnInit(): void {
 		this.initialize();
 	}
 
+	get articleIdentity(): string {
+		return this.route.snapshot.paramMap.get('id')!;
+	}
+
 	private initialize() {
 		this.formInitialized();
 		this.findCategories();
-		if (this.articleId) {
+		if (this.articleIdentity) {
 			timer(500)
 				.pipe(take(1))
 				.subscribe(() => {
 					this.findById();
 				});
 		}
-	}
-
-	get articleId(): string {
-		return this.route.snapshot.paramMap.get('id')!;
 	}
 
 	private formInitialized() {
@@ -74,13 +78,14 @@ export class BlogCreateComponent implements OnInit, OnDestroy {
 	}
 
 	protected prepopulateForms(article: Article): void {
+		this.imagesForm = article.images.url;
 		this.form.patchValue({
 			title: article.title,
 			subtitle: article.subtitle,
 			content: article.content,
 			tags: article.tags,
-			category: article.category.name,
-			images: article.images,
+			category: article.category && article.category.name && article.category._id,
+			images: article.images.url,
 		});
 	}
 
@@ -96,18 +101,40 @@ export class BlogCreateComponent implements OnInit, OnDestroy {
 				next: (response: HttpResponseEntity<Category[]>) => {
 					this.categories = response.data;
 				},
+				error: (error) => this.messageService.add({ severity: 'error', summary: 'Error', detail: error }),
+				complete: () => {},
 			});
 	}
 
 	private findById() {
 		this.articleService
-			.findById(this.articleId)
+			.findById(this.articleIdentity)
 			.pipe(takeUntil(this.destroySubject))
 			.subscribe({
 				next: (response: HttpResponseEntity<Article>) => {
 					this.prepopulateForms(response.data);
 				},
+				error: (error) => this.messageService.add({ severity: 'error', summary: 'Error', detail: error }),
+				complete: () => {},
 			});
+	}
+
+	protected onSubmit(): void {
+		console.log(this.formCtrlValue.category);
+		if (this.form.valid) {
+			this.onProcessSave();
+		} else {
+			this.formUtils.markAllFormControlsAsTouched(this.form);
+		}
+	}
+
+	onProcessSave(): void {
+		if (this.articleIdentity) {
+			this.update();
+		} else {
+			this.loadingIndicator();
+			this.save();
+		}
 	}
 
 	private setFormData() {
@@ -116,35 +143,31 @@ export class BlogCreateComponent implements OnInit, OnDestroy {
 		formData.append('subtitle', this.formCtrlValue.subtitle);
 		formData.append('content', this.formCtrlValue.content);
 		formData.append('tags', this.formCtrlValue.tags);
-		formData.append('category[id]', this.formCtrlValue.category?._id);
+		formData.append('category[id]', this.formCtrlValue.category);
 		formData.append('images', this.formCtrlValue.images);
 		return formData;
 	}
 
-	protected onProcessSave(): void {
-		if (this.form.valid) {
-			this.loadingIndicator();
-			this.submitToServer();
-			this.form.reset();
-			this.navigateAfterSucceed();
-		} else {
-			this.formUtils.markAllFormControlsAsTouched(this.form);
-		}
+	private update() {
+		console.log(this.formCtrlValue.category);
 	}
 
-	private submitToServer(): void {
+	private save(): void {
 		const formData = this.setFormData();
 		this.articleService.create(formData).subscribe({
-			next: () => {},
-			error: (error) => console.error(error),
-			complete: () => {},
+			next: (response: ResponseMessageEntity) => {
+				this.messageService.add({ severity: 'success', summary: 'Success', detail: response.message });
+			},
+			error: (error) => this.messageService.add({ severity: 'error', summary: 'Error', detail: error }),
+			complete: () => {
+				this.form.reset();
+				this.navigateAfterSucceed();
+			},
 		});
 	}
 
 	private navigateAfterSucceed(): void {
-		this.router.navigate(['/']).then(() => {
-			window.location.reload();
-		});
+		this.router.navigate(['/blog']).then(() => window.location.reload());
 	}
 
 	private loadingIndicator(): void {

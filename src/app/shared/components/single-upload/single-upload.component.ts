@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
+import { pathAssets } from 'src/app/configs/path-assets';
 import { ImagesPreview } from 'src/app/core/domain/images-preview';
 import { StaticImages } from '../../constants/static-images';
-import { pathAssets } from 'src/app/configs/path-assets';
 
 @Component({
 	selector: 'app-single-upload',
@@ -11,6 +11,8 @@ import { pathAssets } from 'src/app/configs/path-assets';
 })
 export class SingleUploadComponent {
 	@Output() fileUploaded = new EventEmitter<File>();
+
+	@Input() imagesForm!: string | null;
 	@Input() isSubmitting!: boolean;
 
 	readonly icon = pathAssets.iconUpload;
@@ -43,5 +45,6 @@ export class SingleUploadComponent {
 	remove(event: Event): void {
 		event?.preventDefault();
 		this.images = null;
+		this.imagesForm = null;
 	}
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { take, timer } from 'rxjs';
@@ -10,7 +10,6 @@ import { HttpResponseEntity } from 'src/app/core/domain/http-response-entity';
 import { User } from 'src/app/core/domain/user';
 import { AddressService } from 'src/app/core/services/address.service';
 import { UserService } from 'src/app/core/services/user.service';
-import { AlertComponent } from 'src/app/shared/components/alert/alert.component';
 import { CapitalizePipe } from 'src/app/shared/pipes/capitalize.pipe';
 import { FormUtilService } from 'src/app/shared/services/form-util.service';
 import { ValidatorsService } from 'src/app/shared/services/validators.service';
@@ -258,8 +257,6 @@ export class ProfileUpdateComponent implements OnInit {
 			company: user.company,
 		});
 	}
-
-	@ViewChild('alerts', { static: false }) alerts!: AlertComponent;
 
 	onChangeCover(event: Event) {
 		const inputElement = event.target as HTMLInputElement;

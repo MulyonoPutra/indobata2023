@@ -1,14 +1,14 @@
 import { Component, OnDestroy, OnInit, TemplateRef } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { HttpResponseEntity, ResponseMessageEntity } from 'src/app/core/domain/http-response-entity';
 import { Observable, Subject, takeUntil } from 'rxjs';
+import { HttpResponseEntity, ResponseMessageEntity } from 'src/app/core/domain/http-response-entity';
 
+import { Router } from '@angular/router';
 import { Article } from 'src/app/core/domain/article';
 import { ArticleService } from 'src/app/core/services/article.service';
-import { ConfirmDialogService } from 'src/app/shared/services/confirm-dialog.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
-import { Router } from '@angular/router';
 import { StorageService } from 'src/app/core/services/storage.service';
+import { ConfirmDialogService } from 'src/app/shared/services/confirm-dialog.service';
 
 @Component({
 	selector: 'app-my-articles',
@@ -57,7 +57,7 @@ export class MyArticlesComponent implements OnInit, OnDestroy {
 					this.articles = response.data;
 				},
 				error: (error) => {
-					console.log(error);
+					this.messageService.add({ severity: 'error', summary: 'Error', detail: error });
 				},
 				complete: () => {
 					// Do Nothing
