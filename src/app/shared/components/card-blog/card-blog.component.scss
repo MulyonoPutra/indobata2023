@@ -20,7 +20,7 @@
 }
 
 .card-blog {
-	@apply rounded overflow-hidden shadow-lg flex flex-col cursor-pointer;
+	@apply rounded overflow-hidden shadow-lg flex flex-col cursor-pointer h-[450px];
 
 	.images {
 		@apply w-full h-[300px];
@@ -31,7 +31,7 @@
 	}
 
 	.category {
-		@apply text-xs absolute top-0 right-0 bg-green-600 px-4 py-2 text-white mt-3 mr-3 hover:bg-white hover:text-green-600 transition duration-500 ease-in-out;
+		@apply text-xs bg-green-600 px-4 py-2 text-white mr-3 hover:bg-white hover:text-green-600 transition duration-500 ease-in-out;
 	}
 
 	.title {
@@ -47,6 +47,24 @@
 
 		.time-wrapper {
 			@apply py-1 text-xs font-medium text-gray-900 flex flex-row items-center;
+		}
+	}
+
+	.remove-btn {
+		@apply mr-2 p-2 bg-gray-700 hover:text-white rounded-full;
+
+		.remove-icon {
+			&:hover {
+				filter: invert(43%) sepia(53%) saturate(624%) hue-rotate(71deg) brightness(90%) contrast(102%);
+			}
+		}
+	}
+
+	.read-more {
+		@apply focus:outline-none focus:underline flex items-center mt-4 cursor-pointer text-white hover:text-gray-200 hover:underline;
+
+		p {
+			@apply pr-2 text-sm font-medium leading-none cursor-pointer;
 		}
 	}
 }

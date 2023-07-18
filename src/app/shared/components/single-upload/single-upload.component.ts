@@ -10,13 +10,12 @@ import { pathAssets } from 'src/app/configs/path-assets';
 	styleUrls: ['./single-upload.component.scss'],
 })
 export class SingleUploadComponent {
-  
 	@Output() fileUploaded = new EventEmitter<File>();
-  @Input() isSubmitting!: boolean;
+	@Input() isSubmitting!: boolean;
 
 	readonly icon = pathAssets.iconUpload;
 	readonly closeIcon = pathAssets.iconClosed;
-  readonly uploadImages = StaticImages.upload;
+	readonly uploadImages = StaticImages.upload;
 	readonly maxSize: number = 1048576;
 	readonly allowedFileTypes: string[] = ['image/jpeg', 'image/png'];
 
@@ -43,6 +42,6 @@ export class SingleUploadComponent {
 
 	remove(event: Event): void {
 		event?.preventDefault();
-    this.images = null;
+		this.images = null;
 	}
 }

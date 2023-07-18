@@ -12,3 +12,21 @@ export const headerItems: MenuItem[] = [
 	{ id: '5', title: 'Articles', route: 'blog' },
 	{ id: '6', title: 'Contact', route: 'contact' },
 ];
+
+export const dropdownProfileItems: MenuItem[] = [
+	{
+		id: '1',
+		title: 'Profile',
+		route: 'profile',
+	},
+	{
+		id: '2',
+		title: 'Create Article',
+		route: 'blog-create',
+	},
+	{
+		id: '3',
+		title: 'My Article',
+		route: 'my-articles',
+	},
+];

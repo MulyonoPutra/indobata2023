@@ -63,6 +63,13 @@ const routes: Routes = [
 				canDeactivate: [createArticleGuard],
 			},
 			{
+				path: 'blog-update/:id',
+				loadChildren: () =>
+					import('./modules/blog/pages/blog-create/blog-create.module').then((m) => m.BlogCreateModule),
+				canActivate: [AuthGuard],
+				canDeactivate: [createArticleGuard],
+			},
+			{
 				path: 'profile',
 				loadChildren: () =>
 					import('./modules/profile/profile-view/profile.module').then((m) => m.ProfileModule),
@@ -73,6 +80,11 @@ const routes: Routes = [
 				loadChildren: () =>
 					import('./modules/profile/profile-update/profile-update.module').then((m) => m.ProfileUpdateModule),
 				canActivate: [AuthGuard],
+			},
+			{
+				path: 'my-articles',
+				loadChildren: () =>
+					import('./modules/blog/pages/my-articles/my-articles.module').then((m) => m.MyArticlesModule),
 			},
 		],
 	},

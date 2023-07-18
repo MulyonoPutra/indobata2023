@@ -1,13 +1,13 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { take, timer } from 'rxjs';
 
-import { AuthService } from 'src/app/core/services/auth.service';
-import { HttpResponseEntity } from 'src/app/core/domain/http-response-entity';
-import { StorageService } from 'src/app/core/services/storage.service';
-import { User } from 'src/app/core/domain/user';
-import { UserService } from 'src/app/core/services/user.service';
 import { headerItems } from 'src/app/configs/menu-items';
 import { pathAssets } from 'src/app/configs/path-assets';
+import { HttpResponseEntity } from 'src/app/core/domain/http-response-entity';
+import { User } from 'src/app/core/domain/user';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { StorageService } from 'src/app/core/services/storage.service';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
 	selector: 'app-header',

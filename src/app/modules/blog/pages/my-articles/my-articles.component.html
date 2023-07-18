@@ -1,0 +1,30 @@
+<div *ngIf="(loadingService.loading$ | async); else content" class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+  <div class="grid grid-cols-3 gap-2">
+    <div *ngFor="let item of [0,1,2,3]">
+      <app-card-shimmer-effect></app-card-shimmer-effect>
+    </div>
+  </div>
+</div>
+
+<ng-template #content>
+  <div class="bg-gray-100 py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grids">
+        <ng-container *ngFor="let article of articles; trackBy: trackById">
+          <app-card-blog
+            [article]="article"
+            [editable]="true"
+            (edit)="edit(article._id!)"
+            (remove)="confirm(modalTemplate, article._id!)"
+            (navigate)="navigate(article._id!)">
+          </app-card-blog>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<p-toast></p-toast>
+<ng-template #modalTemplate>
+  <h2 class="text-gray-500 text-sm focus:outline-none cursor-pointer">Are you sure want to delete this article?</h2>
+</ng-template>

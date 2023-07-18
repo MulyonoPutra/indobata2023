@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
+import { Router } from '@angular/router';
 import { pathAssets } from 'src/app/configs/path-assets';
 import { Article } from 'src/app/core/domain/article';
 
@@ -10,8 +11,19 @@ import { Article } from 'src/app/core/domain/article';
 })
 export class CardBlogComponent {
 	@Input() article!: Article;
-	iconTime = pathAssets.iconTime;
+	@Input() editable!: boolean;
+	@Output() remove = new EventEmitter<Event>();
+	@Output() edit = new EventEmitter<Event>();
+	@Output() navigate = new EventEmitter<string>();
+
+	readonly removeIcon = pathAssets.iconTrash;
+	readonly editIcon = pathAssets.iconEdit;
+	readonly leftIcon = pathAssets.iconArrowLeft;
+	readonly iconTime = pathAssets.iconTime;
+
 	showTooltipFlag: boolean = false;
+
+	constructor(public router: Router) {}
 
 	showTooltip() {
 		this.showTooltipFlag = true;
@@ -19,5 +31,17 @@ export class CardBlogComponent {
 
 	hideTooltip() {
 		this.showTooltipFlag = false;
+	}
+
+	onRemove(): void {
+		this.remove.emit();
+	}
+
+	onEdit(): void {
+		this.edit.emit();
+	}
+
+	onNavigate(): void {
+		this.navigate.emit();
 	}
 }

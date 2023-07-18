@@ -12,7 +12,7 @@
       <div class="grids">
         <ng-container
           *ngFor="let article of articles | paginate: { itemsPerPage: limit, currentPage: page,  totalItems: totalItems }; trackBy: trackById">
-          <app-card-blog [article]="article"></app-card-blog>
+          <app-card-blog [article]="article" [editable]="false"></app-card-blog>
         </ng-container>
       </div>
       <app-pagination (pageChange)="onPageChanged($event)" [page]="articles.length"

@@ -15,6 +15,7 @@ export class InputDropdownComponent {
 	@Input() options!: any[];
 	@Input() placeholder!: string;
 	@Input() optionLabel!: string;
+	@Input() optionValue!: string;
 
 	constructor(private validation: ValidatorsService) {}
 

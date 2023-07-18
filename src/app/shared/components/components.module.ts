@@ -19,6 +19,7 @@ import { CardProductComponent } from './card-product/card-product.component';
 import { CardProjectComponent } from './card-project/card-project.component';
 import { CardShimmerEffectComponent } from './card-shimmer-effect/card-shimmer-effect.component';
 import { ChipsComponent } from './chips/chips.component';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { ContentDialogComponent } from './content-dialog/content-dialog.component';
 import { ContentShimmerEffectComponent } from './content-shimmer-effect/content-shimmer-effect.component';
 import { DropdownProfileComponent } from './dropdown-profile/dropdown-profile.component';
@@ -32,6 +33,7 @@ import { HeaderComponent } from './header/header.component';
 import { InputDateComponent } from './input-date/input-date.component';
 import { InputDropdownComponent } from './input-dropdown/input-dropdown.component';
 import { InputNumberComponent } from './input-number/input-number.component';
+import { InputPasswordComponent } from './input-password/input-password.component';
 import { InputTextComponent } from './input-text/input-text.component';
 import { InputTextareaComponent } from './input-textarea/input-textarea.component';
 import { MenuComponent } from './menu/menu.component';
@@ -44,7 +46,6 @@ import { SocialIconComponent } from './social-icon/social-icon.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { SubmitButtonComponent } from './submit-button/submit-button.component';
 import { TooltipComponent } from './tooltip/tooltip.component';
-import { InputPasswordComponent } from './input-password/input-password.component';
 
 @NgModule({
 	declarations: [
@@ -84,7 +85,8 @@ import { InputPasswordComponent } from './input-password/input-password.componen
 		EditorComponent,
 		SingleUploadComponent,
 		InputDropdownComponent,
-  InputPasswordComponent,
+		InputPasswordComponent,
+		ConfirmDialogComponent,
 	],
 	imports: [
 		CommonModule,
@@ -133,7 +135,8 @@ import { InputPasswordComponent } from './input-password/input-password.componen
 		EditorComponent,
 		SingleUploadComponent,
 		InputDropdownComponent,
-  InputPasswordComponent,
+		InputPasswordComponent,
+		ConfirmDialogComponent,
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 	providers: [CapitalizePipe],

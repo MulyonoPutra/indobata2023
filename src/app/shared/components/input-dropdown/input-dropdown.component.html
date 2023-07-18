@@ -1,7 +1,15 @@
 <div [formGroup]="formGroup" class="py-4">
   <span class="p-float-label">
-    <p-dropdown [formControlName]="fieldName" [options]="options" class="w-full" [placeholder]="placeholder"
-      [editable]="false" [optionLabel]="optionLabel" [ngClass]="{ 'g-invalid ng-dirty': isInvalid }"></p-dropdown>
+    <p-dropdown
+      class="w-full"
+      [formControlName]="fieldName"
+      [options]="options"
+      [placeholder]="placeholder"
+      [editable]="false"
+      [optionLabel]="optionLabel"
+      [optionValue]="optionValue"
+      [ngClass]="{ 'g-invalid ng-dirty': isInvalid }">
+    </p-dropdown>
     <label>{{ label }}</label>
   </span>
   <div *ngIf="isInvalid" class="error-message">{{ getErrorMessage }}</div>

@@ -1,12 +1,13 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subject, take, takeUntil, timer } from 'rxjs';
 
+import { Article } from 'src/app/core/domain/article';
 import { ArticleService } from 'src/app/core/services/article.service';
 import { Category } from 'src/app/core/domain/category';
 import { FormUtilService } from 'src/app/shared/services/form-util.service';
 import { HttpResponseEntity } from 'src/app/core/domain/http-response-entity';
-import { Router } from '@angular/router';
 import { StaticText } from 'src/app/shared/constants/static-text';
 
 @Component({
@@ -19,40 +20,68 @@ export class BlogCreateComponent implements OnInit, OnDestroy {
 	private destroySubject = new Subject<void>();
 	protected header = StaticText.articlesHeader;
 	protected categories!: Category[];
+	protected article!: Article;
 	protected isSubmitting: boolean = false;
 
 	constructor(
 		private formBuilder: FormBuilder,
 		private articleService: ArticleService,
 		private formUtils: FormUtilService,
-		private router: Router
+		private router: Router,
+		private route: ActivatedRoute
 	) {}
 
 	ngOnInit(): void {
+		this.initialize();
+	}
+
+	private initialize() {
 		this.formInitialized();
 		this.findCategories();
+		if (this.articleId) {
+			timer(500)
+				.pipe(take(1))
+				.subscribe(() => {
+					this.findById();
+				});
+		}
+	}
+
+	get articleId(): string {
+		return this.route.snapshot.paramMap.get('id')!;
 	}
 
 	private formInitialized() {
 		this.form = this.formBuilder.group({
-			title:    ['', Validators.required],
+			title: ['', Validators.required],
 			subtitle: ['', Validators.required],
-			content:  ['', Validators.required],
-			tags:     ['', Validators.required],
+			content: ['', Validators.required],
+			tags: ['', Validators.required],
 			category: ['', Validators.required],
-			images:   [null, Validators.required],
+			images: [null, Validators.required],
 		});
 	}
 
 	get formCtrlValue() {
 		return {
-			title:    this.form.get('title')?.value,
+			title: this.form.get('title')?.value,
 			subtitle: this.form.get('title')?.value,
-			content:  this.form.get('content')?.value,
-			tags:     this.form.get('tags')?.value,
+			content: this.form.get('content')?.value,
+			tags: this.form.get('tags')?.value,
 			category: this.form.get('category')?.value,
-			images:   this.form.get('images')?.value,
+			images: this.form.get('images')?.value,
 		};
+	}
+
+	protected prepopulateForms(article: Article): void {
+		this.form.patchValue({
+			title: article.title,
+			subtitle: article.subtitle,
+			content: article.content,
+			tags: article.tags,
+			category: article.category.name,
+			images: article.images,
+		});
 	}
 
 	protected onUpload(file: File): void {
@@ -66,6 +95,17 @@ export class BlogCreateComponent implements OnInit, OnDestroy {
 			.subscribe({
 				next: (response: HttpResponseEntity<Category[]>) => {
 					this.categories = response.data;
+				},
+			});
+	}
+
+	private findById() {
+		this.articleService
+			.findById(this.articleId)
+			.pipe(takeUntil(this.destroySubject))
+			.subscribe({
+				next: (response: HttpResponseEntity<Article>) => {
+					this.prepopulateForms(response.data);
 				},
 			});
 	}

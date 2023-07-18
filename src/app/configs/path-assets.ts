@@ -18,6 +18,8 @@ export const pathAssets = {
 	iconChecklist: '../../../../assets/icons/icon-checklist.svg',
 	iconUpload: '../../../../assets/icons/icon-upload.svg',
 	iconTime: '../../../../assets/icons/icon-time.svg',
+	iconTrash: '../../../../assets/icons/icon-trash.svg',
+	iconEdit: '../../../../assets/icons/icon-edit.svg',
 
 	emptyAvatar: 'https://t3.ftcdn.net/jpg/02/43/51/48/360_F_243514868_XDIMJHNNJYKLRST05XnnTj0MBpC4hdT5.jpg',
 };

@@ -1,0 +1,17 @@
+.grids {
+	@apply grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3;
+}
+
+:host {
+	.p-confirm-popup {
+		position: absolute;
+		margin-top: 10px;
+		top: 50% !important;
+		left: 50% !important;
+	}
+
+	.p-confirm-popup .p-confirm-popup-footer button:last-child {
+		margin: 0;
+		color: red !important;
+	}
+}

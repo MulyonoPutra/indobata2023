@@ -1,26 +1,44 @@
-<a [routerLink]="['/blog-detail', article._id!]" class="card-blog">
+<div class="card-blog">
   <div class="relative">
-    <img class="images" [lazyLoad]="article.images.url" alt="Article Images" />
-    <div class="on-hover">
+    <div (click)="onNavigate()">
+      <a href="javascript: void(0);">
+        <img class="images" [lazyLoad]="article.images.url" alt="Article Images" />
+      </a>
+      <div class="on-hover">
+      </div>
     </div>
-    <div class="category">
-      {{article.category.name}}
+    <div class="absolute top-0 right-0 mt-3">
+      <div *ngIf="editable else notEditable">
+        <button class="remove-btn" (click)="onEdit()">
+
+          <img [src]="editIcon" alt="Remove Button" class="edit-icon">
+        </button>
+        <button class="remove-btn" (click)="onRemove()">
+          <img [src]="removeIcon" alt="Remove Button" class="remove-icon">
+        </button>
+      </div>
+      <ng-template #notEditable>
+        <span class="category">
+          {{ article.category.name }}
+        </span>
+      </ng-template>
     </div>
+
   </div>
   <div class="px-6 py-4 mb-auto">
     <span class="title">
-      {{article.title | shortenerText: 20 }}
+      {{article.title | shortenerText: 30 }}
     </span>
 
     <div class="relative inline-block">
       <p class="subtitle" (mouseenter)="showTooltip()" (mouseleave)="hideTooltip()">
         {{ article.subtitle | shortenerText: 80 }}
       </p>
-      <app-tooltip [flag]="!showTooltipFlag" [text]="article.subtitle"></app-tooltip>
     </div>
   </div>
-  <div class="content">
-    <span class="time-wrapper">
+
+  <div class="content relative">
+    <span class="time-wrapper absolute bottom-1">
       <img [src]="iconTime" alt="time" class="h-5 w-5" />
       <span class="ml-1">{{article.createdAt! | timeAgo }}</span>
     </span>
@@ -32,4 +50,4 @@
       <span class="ml-1">39 Comments</span>
     </span> -->
   </div>
-</a>
+</div>

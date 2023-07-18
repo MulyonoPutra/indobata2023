@@ -1,11 +1,11 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, catchError, throwError } from 'rxjs';
 import { HttpResponseEntity, ResponseMessageEntity } from '../domain/http-response-entity';
+import { Observable, catchError, throwError } from 'rxjs';
 
-import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment.development';
 import { Article } from '../domain/article';
 import { Category } from '../domain/category';
+import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
 	providedIn: 'root',
@@ -33,6 +33,18 @@ export class ArticleService {
 
 	create(body: FormData): Observable<ResponseMessageEntity> {
 		return this.http.post<ResponseMessageEntity>(`${this.env}/article`, body).pipe(catchError(this.handleError));
+	}
+
+	findArticlesByUserId(id: string): Observable<HttpResponseEntity<Article[]>> {
+		return this.http
+			.get<HttpResponseEntity<Article[]>>(`${this.env}/article/user/${id}`)
+			.pipe(catchError(this.handleError));
+	}
+
+	remove(id: string): Observable<ResponseMessageEntity> {
+		return this.http
+			.delete<ResponseMessageEntity>(`${this.env}/article/user/${id}`)
+			.pipe(catchError(this.handleError));
 	}
 
 	private handleError(res: HttpErrorResponse | any) {
