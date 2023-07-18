@@ -8,6 +8,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { MessagesModule } from 'primeng/messages';
 import { NgModule } from '@angular/core';
+import { PasswordModule } from 'primeng/password';
 
 @NgModule({
 	exports: [
@@ -20,6 +21,7 @@ import { NgModule } from '@angular/core';
 		ChipsModule,
 		EditorModule,
 		DropdownModule,
+    PasswordModule
 	],
 	providers: [],
 })

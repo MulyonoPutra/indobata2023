@@ -12,8 +12,8 @@
         </div>
         <form [formGroup]="form">
           <app-input-text label="Email" fieldName="email" [formGroup]="form"></app-input-text>
-          <app-input-text label="Password" fieldName="password" [formGroup]="form"></app-input-text>
-          <app-input-text label="Confirm Password" fieldName="confirmPassword" [formGroup]="form"></app-input-text>
+          <app-input-password label="Password" fieldName="password" [formGroup]="form"></app-input-password>
+          <app-input-password label="Confirm Password" fieldName="confirmPassword" [formGroup]="form"></app-input-password>
           <app-submit-button [isLoading]="isSubmitting" (click)="onLoginProcess()" [label]="'Login'"
             [isDisabled]="form.invalid">
           </app-submit-button>

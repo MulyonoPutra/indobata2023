@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, Subject, takeUntil } from 'rxjs';
 
 import { Article } from 'src/app/core/domain/article';
-import { ArticleService } from 'src/app/core/services/article.service';
 import { HttpResponseEntity } from 'src/app/core/domain/http-response-entity';
+import { ArticleService } from 'src/app/core/services/article.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
 
 @Component({
@@ -12,7 +12,7 @@ import { LoadingService } from 'src/app/core/services/loading.service';
 	styleUrls: ['./blog.component.scss'],
 })
 export class BlogComponent implements OnInit {
-	private destroy$ = new Subject<void>();
+	private destroySubject = new Subject<void>();
 	protected loading$!: Observable<boolean>;
 
 	protected articles!: Article[];
@@ -31,7 +31,7 @@ export class BlogComponent implements OnInit {
 	findAll(): void {
 		this.articleService
 			.findAll()
-			.pipe(takeUntil(this.destroy$))
+			.pipe(takeUntil(this.destroySubject))
 			.subscribe({
 				next: (response: HttpResponseEntity<Article[]>) => {
 					this.articles = response.data;
@@ -54,7 +54,7 @@ export class BlogComponent implements OnInit {
 	}
 
 	ngOnDestroy(): void {
-		this.destroy$.next();
-		this.destroy$.complete();
+		this.destroySubject.next();
+		this.destroySubject.complete();
 	}
 }

@@ -7,3 +7,7 @@ export interface HttpResponseEntity<T> {
 		current: number;
 	};
 }
+
+export interface ResponseMessageEntity {
+  message: string;
+}

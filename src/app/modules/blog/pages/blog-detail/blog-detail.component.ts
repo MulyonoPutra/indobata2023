@@ -13,7 +13,7 @@ import { ArticleService } from 'src/app/core/services/article.service';
 })
 export class BlogDetailComponent implements OnInit, OnDestroy {
 	protected article?: Article;
-	private destroy$ = new Subject<void>();
+	private destroySubject = new Subject<void>();
 
 	constructor(private articleService: ArticleService, private route: ActivatedRoute) {}
 
@@ -25,7 +25,7 @@ export class BlogDetailComponent implements OnInit, OnDestroy {
 		const id = this.route.snapshot.paramMap.get('id')!;
 		this.articleService
 			.findById(id)
-			.pipe(takeUntil(this.destroy$))
+			.pipe(takeUntil(this.destroySubject))
 			.subscribe({
 				next: (response: HttpResponseEntity<Article>) => {
 					this.article = response.data;
@@ -37,7 +37,7 @@ export class BlogDetailComponent implements OnInit, OnDestroy {
 	}
 
 	ngOnDestroy(): void {
-		this.destroy$.next();
-		this.destroy$.complete();
+		this.destroySubject.next();
+		this.destroySubject.complete();
 	}
 }

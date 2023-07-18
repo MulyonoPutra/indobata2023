@@ -5,22 +5,21 @@
         <h1 class="title">Create New Articles</h1>
       </div>
       <div>
-        <p class="text-left text-[#758D93] text-base px-2 lg:px-6 lg:w-3/5 mx-auto">
+        <p class="subtitle">
           {{ header }}
       </div>
     </div>
   </div>
   <div class="card-containers">
     <div class="px-2 lg:px-6 lg:w-3/5 mx-auto">
-      <div
-        class="px-2 py-6 relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-100 border-2">
+      <div class="card">
         <div class="flex-auto lg:px-10 py-10 pt-0">
-          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <form [formGroup]="form" (ngSubmit)="onProcessSave()">
             <app-input-text label="Title" fieldName="title" [formGroup]="form"></app-input-text>
             <app-input-text label="Subtitle" fieldName="subtitle" [formGroup]="form"></app-input-text>
             <app-chips label="Tags" fieldName="tags" [formGroup]="form"></app-chips>
             <app-editor label="Content" fieldName="content" [formGroup]="form"></app-editor>
-            <app-single-upload (fileUploaded)="onUpload($event)"></app-single-upload>
+            <app-single-upload (fileUploaded)="onUpload($event)" [isSubmitting]="isSubmitting"></app-single-upload>
             <app-input-dropdown
               [formGroup]="form"
               [placeholder]="'Select Category'"
@@ -30,10 +29,13 @@
               [options]="categories">
             </app-input-dropdown>
             <div class="flex space-x-2">
-              <div><button type="submit" class="text-gray-800 bg-white hover:bg-gray-600 hover:text-white px-4 py-2 rounded">Cancel</button></div>
-              <div><button type="submit" class="text-white bg-gray-800 hover:bg-gray-600 px-4 py-2 rounded">Create</button></div>
+              <div>
+                <button type="submit" class="cancel">Cancel</button>
+              </div>
+              <div>
+                <button type="submit" class="save">Create</button>
+              </div>
             </div>
-
           </form>
         </div>
       </div>

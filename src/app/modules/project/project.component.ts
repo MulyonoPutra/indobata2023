@@ -30,7 +30,7 @@ export class ProjectComponent implements OnInit, OnDestroy {
 	protected loadingIndicator: boolean = false;
 	dialogVisible: boolean = false;
 
-	private destroy$ = new Subject<void>();
+	private destroySubject = new Subject<void>();
 
 	constructor(
 		@Inject(Store<AppState>) private store: Store<AppState>,
@@ -57,7 +57,7 @@ export class ProjectComponent implements OnInit, OnDestroy {
 	loadAll() {
 		this.projectService
 			.loadAll(this.page, this.limit)
-			.pipe(takeUntil(this.destroy$))
+			.pipe(takeUntil(this.destroySubject))
 			.subscribe({
 				next: (response: ProjectResponseEntity) => {
 					this.projects = response.data;
@@ -87,7 +87,7 @@ export class ProjectComponent implements OnInit, OnDestroy {
 	findById(id: string) {
 		this.projectService
 			.findById(id)
-			.pipe(takeUntil(this.destroy$))
+			.pipe(takeUntil(this.destroySubject))
 			.subscribe({
 				next: (response: HttpResponseEntity<Project>) => {
 					this.project = response.data;
@@ -114,7 +114,7 @@ export class ProjectComponent implements OnInit, OnDestroy {
 	}
 
 	ngOnDestroy(): void {
-		this.destroy$.next();
-		this.destroy$.complete();
+		this.destroySubject.next();
+		this.destroySubject.complete();
 	}
 }

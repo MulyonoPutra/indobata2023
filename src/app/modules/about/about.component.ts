@@ -12,7 +12,7 @@ import { StaticText } from 'src/app/shared/constants/static-text';
 	styleUrls: ['./about.component.scss'],
 })
 export class AboutComponent implements OnInit, OnDestroy {
-	private destroy$ = new Subject<void>();
+	private destroySubject = new Subject<void>();
 	protected overview!: Overview;
 	protected loading$!: Observable<boolean>;
 
@@ -27,7 +27,7 @@ export class AboutComponent implements OnInit, OnDestroy {
 	getOverview(): void {
 		this.overviewService
 			.loadAll()
-			.pipe(takeUntil(this.destroy$))
+			.pipe(takeUntil(this.destroySubject))
 			.subscribe({
 				next: (response: OverviewResponseEntity) => {
 					this.overview = response.data;
@@ -36,7 +36,7 @@ export class AboutComponent implements OnInit, OnDestroy {
 	}
 
 	ngOnDestroy(): void {
-		this.destroy$.next();
-		this.destroy$.complete();
+		this.destroySubject.next();
+		this.destroySubject.complete();
 	}
 }

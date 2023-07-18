@@ -13,23 +13,9 @@
         </div>
 
         <form [formGroup]="form">
-          <app-form-field
-            label="Username"
-            [control]="formCtrl('username')"
-            controlName="username">
-          </app-form-field>
-
-          <app-form-field
-            label="Email"
-            [control]="formCtrl('email')"
-            controlName="email">
-          </app-form-field>
-
-          <app-form-field
-            label="Password"
-            [control]="formCtrl('password')"
-            controlName="password">
-          </app-form-field>
+          <app-input-text label="Username" fieldName="username" [formGroup]="form"></app-input-text>
+          <app-input-text label="Email" fieldName="email" [formGroup]="form"></app-input-text>
+          <app-input-password label="Password" fieldName="password" [formGroup]="form"></app-input-password>
 
           <app-submit-button
             (click)="onRegisterProcess()"
@@ -39,12 +25,11 @@
           </app-submit-button>
         </form>
         <p class="mt-6 text-sm text-center text-gray-400">
-          If you are new here, please <a routerLink="/login" class="underline text-[#213a5c] font-semibold">
-            create an account
-          </a> to enjoy our services.
+          If you already have account, please <a routerLink="/login" class="underline text-[#213a5c] font-semibold">
+            signin
+          </a> here.
         </p>
       </div>
-    </div>
-
+    </div>x
   </div>
 </section>

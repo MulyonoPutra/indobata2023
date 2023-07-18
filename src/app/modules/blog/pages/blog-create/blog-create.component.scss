@@ -14,14 +14,22 @@
 	}
 
 	.subtitle {
-		@apply text-center text-base leading-relaxed text-[#213A5C] sm:leading-none tracking-normal;
+		@apply text-left text-[#758D93] text-base px-2 lg:px-6 lg:w-3/5 mx-auto;
 	}
 }
 
 .card-containers {
 	@apply lg:mb-4;
 
-	.card-grid {
-		@apply grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-2 lg:grid-cols-4;
+	.card {
+		@apply px-2 py-6 relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-100 border-2;
 	}
+
+  .cancel {
+    @apply text-gray-800 bg-white hover:bg-gray-600 hover:text-white px-4 py-2 rounded;
+  }
+
+  .save {
+    @apply text-white bg-gray-800 hover:bg-gray-600 px-4 py-2 rounded;
+  }
 }

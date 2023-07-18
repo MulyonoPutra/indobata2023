@@ -44,6 +44,7 @@ import { SocialIconComponent } from './social-icon/social-icon.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { SubmitButtonComponent } from './submit-button/submit-button.component';
 import { TooltipComponent } from './tooltip/tooltip.component';
+import { InputPasswordComponent } from './input-password/input-password.component';
 
 @NgModule({
 	declarations: [
@@ -83,6 +84,7 @@ import { TooltipComponent } from './tooltip/tooltip.component';
 		EditorComponent,
 		SingleUploadComponent,
 		InputDropdownComponent,
+  InputPasswordComponent,
 	],
 	imports: [
 		CommonModule,
@@ -131,6 +133,7 @@ import { TooltipComponent } from './tooltip/tooltip.component';
 		EditorComponent,
 		SingleUploadComponent,
 		InputDropdownComponent,
+  InputPasswordComponent,
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 	providers: [CapitalizePipe],

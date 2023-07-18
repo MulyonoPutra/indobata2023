@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+
 import { MenuItem } from 'src/app/configs/menu-items';
 
 @Component({
@@ -22,6 +23,11 @@ export class DropdownProfileComponent {
 		{
 			id: '2',
 			title: 'Create Article',
+			route: 'blog-create',
+		},
+    {
+			id: '3',
+			title: 'My Article',
 			route: 'blog-create',
 		},
 	];

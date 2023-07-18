@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subject, take, takeUntil, timer } from 'rxjs';
+
 import { Contact } from 'src/app/core/domain/contact';
 import { HttpResponseEntity } from 'src/app/core/domain/http-response-entity';
 import { ContactService } from 'src/app/core/services/contact.service';
@@ -16,7 +17,7 @@ export class ContactComponent implements OnInit {
 	protected form!: FormGroup;
 	protected isSubmitting = false;
 	protected contactInformation!: Partial<Contact>;
-	private destroy$ = new Subject<void>();
+	private destroySubject = new Subject<void>();
 
 	constructor(
 		private fb: FormBuilder,
@@ -70,7 +71,7 @@ export class ContactComponent implements OnInit {
 	protected getContactInfo(): void {
 		this.contactService
 			.contactInfo()
-			.pipe(takeUntil(this.destroy$))
+			.pipe(takeUntil(this.destroySubject))
 			.subscribe({
 				next: (response: HttpResponseEntity<Partial<Contact>>) => {
 					this.contactInformation = response.data;

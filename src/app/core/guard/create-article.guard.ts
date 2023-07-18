@@ -12,5 +12,5 @@ export const createArticleGuard: CanDeactivateFn<BlogCreateComponent> = (
 	if (!component?.form?.dirty) {
 		return confirm('are you sure you want to discard this article?');
 	}
-	return true;
+	return false;
 };
