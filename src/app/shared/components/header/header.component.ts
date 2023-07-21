@@ -1,13 +1,13 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { take, timer } from 'rxjs';
 
+import { AuthService } from 'src/app/core/services/auth.service';
+import { HttpResponseEntity } from 'src/app/core/domain/http-response-entity';
+import { StorageService } from 'src/app/core/services/storage.service';
+import { User } from 'src/app/core/domain/user';
+import { UserService } from 'src/app/core/services/user.service';
 import { headerItems } from 'src/app/configs/menu-items';
 import { pathAssets } from 'src/app/configs/path-assets';
-import { HttpResponseEntity } from 'src/app/core/domain/http-response-entity';
-import { User } from 'src/app/core/domain/user';
-import { AuthService } from 'src/app/core/services/auth.service';
-import { StorageService } from 'src/app/core/services/storage.service';
-import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
 	selector: 'app-header',
@@ -21,8 +21,8 @@ export class HeaderComponent implements OnInit {
 
 	protected showDropdown!: boolean;
 	protected isMenuScrolled: boolean = false;
-	protected isSidebarShowing: boolean = false;
 	protected isTokenAvailable: boolean = false;
+	protected isIconChanged: boolean = false;
 
 	protected iconOpen = pathAssets.iconOpened;
 	protected iconClosed = pathAssets.iconClosed;
@@ -61,16 +61,12 @@ export class HeaderComponent implements OnInit {
 		else this.isMenuScrolled = false;
 	}
 
-	protected openSideBar() {
-		this.isSidebarShowing = true;
-	}
-
-	protected closeSideBar() {
-		this.isSidebarShowing = false;
-	}
-
 	protected scrollToTop() {
 		document.body.scrollIntoView({ behavior: 'smooth' });
+	}
+
+	protected changeMenuIcon() {
+		this.isIconChanged = !this.isIconChanged;
 	}
 
 	public toggleDropdown() {

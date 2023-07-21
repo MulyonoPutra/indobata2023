@@ -60,14 +60,14 @@ const routes: Routes = [
 				loadChildren: () =>
 					import('./modules/blog/pages/blog-create/blog-create.module').then((m) => m.BlogCreateModule),
 				canActivate: [AuthGuard],
-				canDeactivate: [createArticleGuard],
+				// canDeactivate: [createArticleGuard],
 			},
 			{
 				path: 'blog-update/:id',
 				loadChildren: () =>
 					import('./modules/blog/pages/blog-create/blog-create.module').then((m) => m.BlogCreateModule),
 				canActivate: [AuthGuard],
-				canDeactivate: [createArticleGuard],
+				// canDeactivate: [createArticleGuard],
 			},
 			{
 				path: 'profile',

@@ -14,19 +14,12 @@ export const headerItems: MenuItem[] = [
 ];
 
 export const dropdownProfileItems: MenuItem[] = [
-	{
-		id: '1',
-		title: 'Profile',
-		route: 'profile',
-	},
-	{
-		id: '2',
-		title: 'Create Article',
-		route: 'blog-create',
-	},
-	{
-		id: '3',
-		title: 'My Article',
-		route: 'my-articles',
-	},
+	{ id: '1', title: 'Profile', route: 'profile' },
+	{ id: '2', title: 'Create Article', route: 'blog-create' },
+	{ id: '3', title: 'My Article', route: 'my-articles' },
+];
+
+export const countries = [
+	{ code: 'en', name: 'English' },
+	{ code: 'id', name: 'Indonesia' },
 ];

@@ -12,7 +12,6 @@
 	position: absolute;
 	bottom: 100%;
 	left: 50%;
-
 	transform: translateX(-50%);
 	border-width: 5px;
 	border-style: solid;
@@ -20,7 +19,7 @@
 }
 
 .card-blog {
-	@apply rounded overflow-hidden shadow-lg flex flex-col cursor-pointer h-[450px];
+	@apply rounded overflow-hidden shadow-lg flex flex-col cursor-pointer h-[500px];
 
 	.images {
 		@apply w-full h-[300px];
@@ -58,6 +57,10 @@
 				filter: invert(43%) sepia(53%) saturate(624%) hue-rotate(71deg) brightness(90%) contrast(102%);
 			}
 		}
+	}
+
+	.tags {
+		@apply inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2;
 	}
 
 	.read-more {

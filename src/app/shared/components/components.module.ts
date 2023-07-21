@@ -22,6 +22,7 @@ import { ChipsComponent } from './chips/chips.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { ContentDialogComponent } from './content-dialog/content-dialog.component';
 import { ContentShimmerEffectComponent } from './content-shimmer-effect/content-shimmer-effect.component';
+import { DropdownFlagsComponent } from './dropdown-flags/dropdown-flags.component';
 import { DropdownProfileComponent } from './dropdown-profile/dropdown-profile.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
 import { EditorComponent } from './editor/editor.component';
@@ -87,6 +88,7 @@ import { TooltipComponent } from './tooltip/tooltip.component';
 		InputDropdownComponent,
 		InputPasswordComponent,
 		ConfirmDialogComponent,
+		DropdownFlagsComponent,
 	],
 	imports: [
 		CommonModule,
@@ -137,6 +139,7 @@ import { TooltipComponent } from './tooltip/tooltip.component';
 		InputDropdownComponent,
 		InputPasswordComponent,
 		ConfirmDialogComponent,
+		DropdownFlagsComponent,
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 	providers: [CapitalizePipe],

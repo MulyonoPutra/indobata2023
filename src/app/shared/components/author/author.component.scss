@@ -1,0 +1,15 @@
+.wrapper {
+	@apply flex py-5;
+
+	img {
+		@apply w-20 h-20 rounded-full;
+	}
+
+	div {
+		@apply flex flex-col justify-center px-4;
+
+		span {
+			@apply font-bold text-[#213a5c] hover:text-gray-600 capitalize;
+		}
+	}
+}

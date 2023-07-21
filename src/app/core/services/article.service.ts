@@ -35,6 +35,12 @@ export class ArticleService {
 		return this.http.post<ResponseMessageEntity>(`${this.env}/article`, body).pipe(catchError(this.handleError));
 	}
 
+	update(body: FormData, id: string): Observable<ResponseMessageEntity> {
+		return this.http
+			.put<ResponseMessageEntity>(`${this.env}/article/${id}`, body)
+			.pipe(catchError(this.handleError));
+	}
+
 	findArticlesByUserId(id: string): Observable<HttpResponseEntity<Article[]>> {
 		return this.http
 			.get<HttpResponseEntity<Article[]>>(`${this.env}/article/user/${id}`)

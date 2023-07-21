@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+
+import { AuthService } from '../services/auth.service';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
-import { AuthService } from '../services/auth.service';
 import { StorageService } from '../services/storage.service';
+import { catchError } from 'rxjs/operators';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -20,6 +21,7 @@ export class AuthInterceptor implements HttpInterceptor {
 				setHeaders: { Authorization: `Bearer ${token}` },
 			});
 		}
+
 		return next.handle(request).pipe(
 			catchError((err) => {
 				if (err.status >= 400) {

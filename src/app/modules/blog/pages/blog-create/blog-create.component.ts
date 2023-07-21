@@ -24,6 +24,7 @@ export class BlogCreateComponent implements OnInit, OnDestroy {
 	protected categories!: Category[];
 	protected article!: Article;
 	protected isSubmitting: boolean = false;
+	protected isUploaded: boolean = false;
 	protected imagesForm!: string;
 
 	constructor(
@@ -60,7 +61,7 @@ export class BlogCreateComponent implements OnInit, OnDestroy {
 			title: ['', Validators.required],
 			subtitle: ['', Validators.required],
 			content: ['', Validators.required],
-			tags: ['', Validators.required],
+			tags: [[], Validators.required],
 			category: ['', Validators.required],
 			images: [null, Validators.required],
 		});
@@ -69,7 +70,7 @@ export class BlogCreateComponent implements OnInit, OnDestroy {
 	get formCtrlValue() {
 		return {
 			title: this.form.get('title')?.value,
-			subtitle: this.form.get('title')?.value,
+			subtitle: this.form.get('subtitle')?.value,
 			content: this.form.get('content')?.value,
 			tags: this.form.get('tags')?.value,
 			category: this.form.get('category')?.value,
@@ -90,6 +91,7 @@ export class BlogCreateComponent implements OnInit, OnDestroy {
 	}
 
 	protected onUpload(file: File): void {
+		this.isUploaded = true;
 		this.form.get('images')?.setValue(file);
 	}
 
@@ -101,7 +103,9 @@ export class BlogCreateComponent implements OnInit, OnDestroy {
 				next: (response: HttpResponseEntity<Category[]>) => {
 					this.categories = response.data;
 				},
-				error: (error) => this.messageService.add({ severity: 'error', summary: 'Error', detail: error }),
+				error: (error) => {
+					this.messageService.add({ severity: 'error', summary: 'Error', detail: error });
+				},
 				complete: () => {},
 			});
 	}
@@ -114,13 +118,14 @@ export class BlogCreateComponent implements OnInit, OnDestroy {
 				next: (response: HttpResponseEntity<Article>) => {
 					this.prepopulateForms(response.data);
 				},
-				error: (error) => this.messageService.add({ severity: 'error', summary: 'Error', detail: error }),
+				error: (error) => {
+					this.messageService.add({ severity: 'error', summary: 'Error', detail: error });
+				},
 				complete: () => {},
 			});
 	}
 
 	protected onSubmit(): void {
-		console.log(this.formCtrlValue.category);
 		if (this.form.valid) {
 			this.onProcessSave();
 		} else {
@@ -142,14 +147,33 @@ export class BlogCreateComponent implements OnInit, OnDestroy {
 		formData.append('title', this.formCtrlValue.title);
 		formData.append('subtitle', this.formCtrlValue.subtitle);
 		formData.append('content', this.formCtrlValue.content);
-		formData.append('tags', this.formCtrlValue.tags);
+
+		if (Array.isArray(this.formCtrlValue.tags)) {
+			this.formCtrlValue.tags.forEach((tag) => {
+				formData.append('tags[]', tag);
+			});
+		}
 		formData.append('category[id]', this.formCtrlValue.category);
-		formData.append('images', this.formCtrlValue.images);
+
+		if (this.isUploaded === true) {
+			formData.append('images', this.formCtrlValue.images);
+		}
+
 		return formData;
 	}
 
 	private update() {
-		console.log(this.formCtrlValue.category);
+		const formData = this.setFormData();
+		this.articleService.update(formData, this.articleIdentity).subscribe({
+			next: (response: ResponseMessageEntity) => {
+				this.messageService.add({ severity: 'success', summary: 'Success', detail: response.message });
+			},
+			error: (error) => this.messageService.add({ severity: 'error', summary: 'Error', detail: error }),
+			complete: () => {
+				// this.form.reset();
+				// this.navigateAfterSucceed();
+			},
+		});
 	}
 
 	private save(): void {
@@ -182,3 +206,6 @@ export class BlogCreateComponent implements OnInit, OnDestroy {
 		this.destroySubject.complete();
 	}
 }
+
+// FIX ME:
+// - tags value from array string, become string when value binding / prepopulate
