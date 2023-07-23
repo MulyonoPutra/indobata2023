@@ -15,7 +15,7 @@ export class DropdownProfileComponent {
 
 	menuItems: MenuItem[] = dropdownProfileItems;
 
-	trackBy(index: number, item: MenuItem): string {
+	trackBy(item: MenuItem): string {
 		return item.id;
 	}
 

@@ -34,8 +34,13 @@
         </ng-template>
       </div>
 
-      <button (click)="changeMenuIcon()" data-collapse-toggle="navbar-language" type="button" class="hamburger-btn"
-        aria-controls="navbar-language" aria-expanded="false">
+      <button
+          (click)="changeMenuIcon()"
+          data-collapse-toggle="navbar-language"
+          type="button"
+          class="hamburger-btn"
+          aria-controls="navbar-language"
+          aria-expanded="false">
         <span class="sr-only">Open main menu</span>
         <img *ngIf="!isIconChanged" [src]="iconOpen" alt="hamburger" class="w-8 h-8" />
         <img *ngIf="isIconChanged" [src]="iconClosed" alt="close" class="w-8 h-8">

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subject, take, takeUntil, timer } from 'rxjs';
 
+import { TranslateService } from '@ngx-translate/core';
 import { Contact } from 'src/app/core/domain/contact';
 import { HttpResponseEntity } from 'src/app/core/domain/http-response-entity';
 import { ContactService } from 'src/app/core/services/contact.service';
@@ -23,7 +24,8 @@ export class ContactComponent implements OnInit {
 		private fb: FormBuilder,
 		private validator: ValidatorsService,
 		private contactService: ContactService,
-		private formUtils: FormUtilService
+		private formUtils: FormUtilService,
+		public translate: TranslateService
 	) {}
 
 	ngOnInit(): void {

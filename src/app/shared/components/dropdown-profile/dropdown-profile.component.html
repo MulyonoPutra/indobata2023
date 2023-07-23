@@ -6,20 +6,19 @@
     </button>
   </div>
 
-  <!-- Dropdown menu -->
   <div *ngIf="showDropdown" class="dropdown">
     <div class="username">
       <span>{{ username }}</span>
     </div>
     <ul class="py-2 text-sm text-gray-700">
       <li *ngFor="let menu of menuItems">
-        <a [routerLink]="menu.route"
-          class="block px-4 py-2 hover:bg-gray-100 hover:font-bold">
-          {{ menu.title }}</a>
+        <a [routerLink]="menu.route" class="block px-4 py-2 hover:bg-gray-100 hover:font-bold">
+          {{ menu.title }}
+        </a>
       </li>
     </ul>
     <div class="py-2">
-      <button type="button" (click)="onLogout()" class="block px-4 py-2 text-sm text-gray-700 hover:font-bold">Sign out</button>
+      <button type="button" (click)="onLogout()" class="logout">Sign out</button>
     </div>
   </div>
 </div>

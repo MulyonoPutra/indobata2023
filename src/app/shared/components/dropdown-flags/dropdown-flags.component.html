@@ -1,26 +1,19 @@
 <div>
-  <button type="button" data-dropdown-toggle="language-dropdown-menu"
-    class="inline-flex items-center font-medium justify-center px-4 py-2 text-sm text-gray-900 dark:text-white rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
-    <img [src]="language.flagUrl" class="w-5 h-5 mr-2 rounded-full" />
+  <button type="button" (click)="openDropdown()">
+    <img [src]="language.flagUrl" />
     {{ language.name }}
   </button>
 
-  <div
-    class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow"
-    id="language-dropdown-menu">
-    <ul class="py-2 font-medium" role="none">
+  <div *ngIf="isShowDropdown" class="dropdown">
+    <ul>
       <li *ngFor="let language of languageOptions">
-        <a href="javascript: void(0);" (click)="onLanguageChange(language)"
-          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-          role="menuitem">
-          <div class="inline-flex items-center">
-            <img [src]="language.flagUrl" class="w-5 h-5 mr-2 rounded-full">
+        <a href="javascript: void(0);" (click)="onLanguageChange(language)">
+          <div>
+            <img [src]="language.flagUrl">
             {{ language.name }}
           </div>
         </a>
       </li>
     </ul>
   </div>
-
-
 </div>

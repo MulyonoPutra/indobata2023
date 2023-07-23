@@ -1,5 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -99,6 +100,7 @@ import { TooltipComponent } from './tooltip/tooltip.component';
 		NgxPaginationModule,
 		SharedModule,
 		PrimeNgModule,
+		TranslateModule,
 	],
 	exports: [
 		HeaderComponent,

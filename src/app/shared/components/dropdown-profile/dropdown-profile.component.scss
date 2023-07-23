@@ -14,4 +14,8 @@
 	.username {
 		@apply px-4 py-3 text-sm text-gray-900;
 	}
+
+  .logout {
+    @apply block px-4 py-2 text-sm text-gray-700 hover:font-bold;
+  }
 }

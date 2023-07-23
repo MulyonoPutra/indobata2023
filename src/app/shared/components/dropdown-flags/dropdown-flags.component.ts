@@ -1,10 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-interface LanguageOptions {
-	name: string;
-	code: string;
-	flagUrl: string;
-}
+import { LanguageOptions } from 'src/app/core/domain/language-options';
+import { TranslateService } from '@ngx-translate/core';
+import { languageOptions } from '../../constants/static-value';
 
 @Component({
 	selector: 'app-dropdown-flags',
@@ -12,42 +10,49 @@ interface LanguageOptions {
 	styleUrls: ['./dropdown-flags.component.scss'],
 })
 export class DropdownFlagsComponent implements OnInit {
-	language!: LanguageOptions;
-	@Input() selectedLanguage!: string;
-	@Output() selectedLanguageChange: EventEmitter<any> = new EventEmitter<any>();
+	protected language!: LanguageOptions;
+	protected languageOptions = languageOptions;
+	protected isShowDropdown: boolean = false;
 
-	ngOnInit(): void {
+  constructor(public translate: TranslateService) {}
+
+  ngOnInit(): void {
 		this.setDefaultLanguage();
 	}
 
-	setDefaultLanguage() {
-		this.language = {
-			name: 'English',
-			code: 'en',
-			flagUrl: 'https://upload.wikimedia.org/wikipedia/commons/1/13/United-kingdom_flag_icon_round.svg',
-		};
+
+	protected changeLanguage(lang: string): void {
+		this.translate.use(lang);
 	}
 
-	languageOptions: LanguageOptions[] = [
-		{
-			code: 'en',
-			name: 'English',
-			flagUrl: 'https://upload.wikimedia.org/wikipedia/commons/1/13/United-kingdom_flag_icon_round.svg',
-		},
-		{
-			code: 'id',
-			name: 'Indonesia',
-			flagUrl: 'https://upload.wikimedia.org/wikipedia/commons/9/9f/Flag_of_Indonesia.svg',
-		},
-	];
+	protected setDefaultLanguage(): void {
+		this.translate.addLangs(['en', 'in']);
+		this.translate.setDefaultLang('in');
+		const browserLang = this.translate.getBrowserLang()!;
+		this.translate.use(browserLang.match(/en|in/) ? browserLang : 'in');
 
-	onLanguageChange(language: LanguageOptions) {
+		if (this.languageOptions.length > 0) {
+			const [defaultLang] = this.languageOptions;
+			this.language = {
+				name: defaultLang.name,
+				code: defaultLang.code,
+				flagUrl: defaultLang.flagUrl,
+			};
+		}
+	}
+
+	protected onLanguageChange(language: LanguageOptions): void {
 		this.language = {
 			name: language.name,
 			code: language.code,
 			flagUrl: language.flagUrl,
 		};
 
-		this.selectedLanguageChange.emit(language);
+		this.isShowDropdown = false;
+		this.translate.use(language.code);
+	}
+
+	protected openDropdown(): void {
+		this.isShowDropdown = !this.isShowDropdown;
 	}
 }
