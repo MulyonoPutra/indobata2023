@@ -3,11 +3,13 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { Observable, Subject, takeUntil } from 'rxjs';
 import { HttpResponseEntity, ResponseMessageEntity } from 'src/app/core/domain/http-response-entity';
 
+import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Article } from 'src/app/core/domain/article';
 import { ArticleService } from 'src/app/core/services/article.service';
 import { LoadingService } from 'src/app/core/services/loading.service';
 import { StorageService } from 'src/app/core/services/storage.service';
+import { AlertService } from 'src/app/shared/services/alert.service';
 import { ConfirmDialogService } from 'src/app/shared/services/confirm-dialog.service';
 
 @Component({
@@ -36,7 +38,7 @@ export class MyArticlesComponent implements OnInit, OnDestroy {
 		public loadingService: LoadingService,
 		private storage: StorageService,
 		private router: Router,
-		private messageService: MessageService,
+		private alertService: AlertService,
 		private dialog: ConfirmDialogService
 	) {}
 
@@ -56,8 +58,8 @@ export class MyArticlesComponent implements OnInit, OnDestroy {
 				next: (response: HttpResponseEntity<Article[]>) => {
 					this.articles = response.data;
 				},
-				error: (error) => {
-					this.messageService.add({ severity: 'error', summary: 'Error', detail: error });
+				error: (error: HttpErrorResponse) => {
+					this.alertService.errors('Error', error.message);
 				},
 				complete: () => {
 					// Do Nothing
@@ -67,7 +69,6 @@ export class MyArticlesComponent implements OnInit, OnDestroy {
 
 	protected confirm(modalTemplate: TemplateRef<any>, id: string): void {
 		this.dialog.open(modalTemplate, { size: 'lg', title: 'Delete Confirmation' }).subscribe((action) => {
-			console.log('modalAction', action);
 			this.remove(id);
 		});
 	}
@@ -78,10 +79,10 @@ export class MyArticlesComponent implements OnInit, OnDestroy {
 			.pipe(takeUntil(this.destroySubject))
 			.subscribe({
 				next: (response: ResponseMessageEntity) => {
-					this.messageService.add({ severity: 'success', summary: 'Success', detail: response.message });
+					this.alertService.success('Success', response.message);
 				},
-				error: (error) => {
-					this.messageService.add({ severity: 'error', summary: 'Error', detail: error });
+				error: (error: HttpErrorResponse) => {
+					this.alertService.errors('Error', error.message);
 				},
 				complete: () => {
 					this.loadAll();

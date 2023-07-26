@@ -1,12 +1,13 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
 import { Observable, catchError, combineLatest, map, of, throwError } from 'rxjs';
+import { Features, FeaturesArrayType } from '../domain/features';
+
+import { Injectable } from '@angular/core';
 import { HttpResponseEntity } from 'src/app/core/domain/http-response-entity';
 import { hero } from 'src/assets/data/hero';
 import { marketplace } from 'src/assets/data/marketplace';
 import { testimonials } from 'src/assets/data/testimonials';
 import { environment } from 'src/environments/environment.development';
-import { Features, FeaturesArrayType } from '../domain/features';
 import { Hero } from '../domain/hero';
 import { Marketplace } from '../domain/marketplace';
 import { Testimonials } from '../domain/testimonials';
@@ -25,12 +26,7 @@ export class HomeService {
 	constructor(private http: HttpClient) {}
 
 	getHeroSection(): Observable<Hero[]> {
-		return of(this.mockHeros).pipe(
-			catchError((error) => {
-				console.error('Error occurred:', error);
-				return throwError(() => error);
-			})
-		);
+		return of(this.mockHeros).pipe(catchError(this.handleError));
 	}
 
 	getFeatures(): Observable<Features[]> {
@@ -46,26 +42,16 @@ export class HomeService {
 						icon: iconsArray[index]?.icon || '',
 					};
 				});
-			})
+			}, catchError(this.handleError))
 		);
 	}
 
 	getMarketplaceLogo(): Observable<Marketplace[]> {
-		return of(this.mockLogo).pipe(
-			catchError((error) => {
-				console.error('Error occurred:', error);
-				return throwError(() => error);
-			})
-		);
+		return of(this.mockLogo).pipe(catchError(this.handleError));
 	}
 
 	getTestimonials(): Observable<Testimonials[]> {
-		return of(this.mockTestimonials).pipe(
-			catchError((error) => {
-				console.error('Error occurred:', error);
-				return throwError(() => error);
-			})
-		);
+		return of(this.mockTestimonials).pipe(catchError(this.handleError));
 	}
 
 	private handleError(res: HttpErrorResponse | any) {

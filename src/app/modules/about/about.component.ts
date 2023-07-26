@@ -5,6 +5,7 @@ import { OverviewResponseEntity, OverviewService } from 'src/app/core/services/o
 import { Overview } from 'src/app/core/domain/overview';
 import { LoadingService } from 'src/app/core/services/loading.service';
 import { StaticText } from 'src/app/shared/constants/static-text';
+import { AlertService } from 'src/app/shared/services/alert.service';
 
 @Component({
 	selector: 'app-about',
@@ -18,7 +19,11 @@ export class AboutComponent implements OnInit, OnDestroy {
 
 	protected title = StaticText.header;
 
-	constructor(private overviewService: OverviewService, public loadingService: LoadingService) {}
+	constructor(
+		private overviewService: OverviewService,
+		public loadingService: LoadingService,
+		private alertService: AlertService
+	) {}
 
 	ngOnInit(): void {
 		this.getOverview();
@@ -31,6 +36,9 @@ export class AboutComponent implements OnInit, OnDestroy {
 			.subscribe({
 				next: (response: OverviewResponseEntity) => {
 					this.overview = response.data;
+				},
+				error: (error) => {
+					this.alertService.errors('Error', error);
 				},
 			});
 	}

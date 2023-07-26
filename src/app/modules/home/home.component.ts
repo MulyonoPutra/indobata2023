@@ -1,17 +1,19 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ProductResponseEntity, ProductService } from 'src/app/core/services/product.service';
 import { Features, FeaturesArrayType } from '../../core/domain/features';
+import { ProductResponseEntity, ProductService } from 'src/app/core/services/product.service';
 
-import { Subscription } from 'rxjs';
+import { AlertService } from 'src/app/shared/services/alert.service';
 import { Hero } from 'src/app/core/domain/hero';
+import { HomeService } from '../../core/services/home.service';
+import { HttpErrorResponse } from '@angular/common/http';
 import { HttpResponseEntity } from 'src/app/core/domain/http-response-entity';
 import { Marketplace } from 'src/app/core/domain/marketplace';
 import { OverviewSection } from 'src/app/core/domain/overview';
-import { ProductsArrayType } from 'src/app/core/domain/product';
-import { TestimonialsArrayType } from 'src/app/core/domain/testimonials';
 import { OverviewService } from 'src/app/core/services/overview.service';
+import { ProductsArrayType } from 'src/app/core/domain/product';
+import { Subscription } from 'rxjs';
+import { TestimonialsArrayType } from 'src/app/core/domain/testimonials';
 import { TestimonialsService } from 'src/app/core/services/testimonials.service';
-import { HomeService } from '../../core/services/home.service';
 
 @Component({
 	selector: 'app-home',
@@ -32,7 +34,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 		private homeService: HomeService,
 		private testimonialService: TestimonialsService,
 		private overviewService: OverviewService,
-		private productService: ProductService
+		private productService: ProductService,
+		private alertService: AlertService
 	) {}
 
 	ngOnInit(): void {
@@ -54,8 +57,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 				next: (overview: OverviewSection) => {
 					this.overview = overview;
 				},
-				error: (error) => {
-					console.error(error);
+				error: (error: HttpErrorResponse) => {
+					this.alertService.errors('Error', error.message);
 				},
 			})
 		);
@@ -67,8 +70,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 				next: (data: Hero[]) => {
 					this.heros = data;
 				},
-				error: () => {
-					console.log('error');
+				error: (error: HttpErrorResponse) => {
+					this.alertService.errors('Error', error.message);
 				},
 			})
 		);
@@ -80,8 +83,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 				next: (response: FeaturesArrayType) => {
 					this.features = response;
 				},
-				error: (error) => {
-					console.error(error);
+				error: (error: HttpErrorResponse) => {
+					this.alertService.errors('Error', error.message);
 				},
 			})
 		);
@@ -93,8 +96,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 				next: (response: ProductResponseEntity) => {
 					this.products = response.data;
 				},
-				error: (error) => {
-					console.log(error);
+				error: (error: HttpErrorResponse) => {
+					this.alertService.errors('Error', error.message);
 				},
 			})
 		);
@@ -106,8 +109,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 				next: (data: Marketplace[]) => {
 					this.logo = data;
 				},
-				error: (error) => {
-					console.log(error);
+				error: (error: HttpErrorResponse) => {
+					this.alertService.errors('Error', error.message);
 				},
 			})
 		);
@@ -119,8 +122,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 				next: (response: HttpResponseEntity<TestimonialsArrayType>) => {
 					this.testimonials = response.data;
 				},
-				error: (error) => {
-					console.log(error);
+				error: (error: HttpErrorResponse) => {
+					this.alertService.errors('Error', error.message);
 				},
 			})
 		);

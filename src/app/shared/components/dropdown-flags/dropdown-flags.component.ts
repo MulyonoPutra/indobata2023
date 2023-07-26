@@ -20,7 +20,6 @@ export class DropdownFlagsComponent implements OnInit {
 		this.setDefaultLanguage();
 	}
 
-
 	protected changeLanguage(lang: string): void {
 		this.translate.use(lang);
 	}

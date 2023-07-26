@@ -6,6 +6,7 @@ import {
 } from '../../../../core/services/product.service';
 import { ProductCategoriesType, ProductsArrayType } from 'src/app/core/domain/product';
 
+import { AlertService } from 'src/app/shared/services/alert.service';
 import { Category } from 'src/app/core/domain/category';
 import { HttpErrorResponse } from '@angular/common/http';
 import { LoadingService } from 'src/app/core/services/loading.service';
@@ -37,7 +38,11 @@ export class ProductComponent implements OnInit, OnDestroy {
 
 	protected loadingIndicator: boolean = false;
 
-	constructor(private productService: ProductService, public loadingService: LoadingService) {}
+	constructor(
+		private productService: ProductService,
+		public loadingService: LoadingService,
+		private alertService: AlertService
+	) {}
 
 	ngOnInit(): void {
 		this.fetch();
@@ -56,9 +61,9 @@ export class ProductComponent implements OnInit, OnDestroy {
 					this.totalPages = response.paging.totalPages!;
 					this.totalItems = response.paging.total!;
 				},
-				error: (error) => {
-					console.log(error);
-				},
+        error: (error: HttpErrorResponse) => {
+          this.alertService.errors('Error', error.message);
+        },
 			})
 		);
 	}
@@ -78,9 +83,9 @@ export class ProductComponent implements OnInit, OnDestroy {
 				next: (response: ProductCategoriesResponseEntity) => {
 					this.categories = response.data;
 				},
-				error: (error) => {
-					console.log(error);
-				},
+        error: (error: HttpErrorResponse) => {
+          this.alertService.errors('Error', error.message);
+        },
 			})
 		);
 	}
@@ -105,9 +110,9 @@ export class ProductComponent implements OnInit, OnDestroy {
 					this.totalPages = response.paging.totalPages!;
 					this.totalItems = response.paging.total!;
 				},
-				error: (error: HttpErrorResponse) => {
-					alert(error.message);
-				},
+        error: (error: HttpErrorResponse) => {
+          this.alertService.errors('Error', error.message);
+        },
 			})
 		);
 	}

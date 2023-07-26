@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { take, timer } from 'rxjs';
 
+import { AlertService } from 'src/app/shared/services/alert.service';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { FormUtilService } from 'src/app/shared/services/form-util.service';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -27,7 +28,8 @@ export class LoginComponent implements OnInit {
 		private router: Router,
 		private validations: ValidatorsService,
 		private authService: AuthService,
-		private formUtils: FormUtilService
+		private formUtils: FormUtilService,
+    private alertService: AlertService
 	) {}
 
 	ngOnInit(): void {
@@ -83,7 +85,7 @@ export class LoginComponent implements OnInit {
 					.subscribe(() => this.router.navigateByUrl('/'));
 			},
 			error: (error: HttpErrorResponse) => {
-				alert(error.message);
+				this.alertService.errors('Error', error.message);
 			},
 		});
 	}

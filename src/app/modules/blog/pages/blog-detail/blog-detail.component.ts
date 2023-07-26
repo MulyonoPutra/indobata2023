@@ -2,9 +2,11 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 
 import { ActivatedRoute } from '@angular/router';
+import { AlertService } from 'src/app/shared/services/alert.service';
 import { Article } from 'src/app/core/domain/article';
-import { HttpResponseEntity } from 'src/app/core/domain/http-response-entity';
 import { ArticleService } from 'src/app/core/services/article.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { HttpResponseEntity } from 'src/app/core/domain/http-response-entity';
 
 @Component({
 	selector: 'app-blog-detail',
@@ -15,7 +17,11 @@ export class BlogDetailComponent implements OnInit, OnDestroy {
 	protected article?: Article;
 	private destroySubject = new Subject<void>();
 
-	constructor(private articleService: ArticleService, private route: ActivatedRoute) {}
+	constructor(
+		private articleService: ArticleService,
+		private route: ActivatedRoute,
+		private alertService: AlertService
+	) {}
 
 	ngOnInit(): void {
 		this.findById();
@@ -30,8 +36,8 @@ export class BlogDetailComponent implements OnInit, OnDestroy {
 				next: (response: HttpResponseEntity<Article>) => {
 					this.article = response.data;
 				},
-				error: (error) => {
-					console.log(error);
+				error: (error: HttpErrorResponse) => {
+					this.alertService.errors('Error', error.message);
 				},
 			});
 	}

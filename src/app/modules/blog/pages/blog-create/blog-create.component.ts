@@ -4,10 +4,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpResponseEntity, ResponseMessageEntity } from 'src/app/core/domain/http-response-entity';
 import { Subject, take, takeUntil, timer } from 'rxjs';
 
+import { AlertService } from 'src/app/shared/services/alert.service';
 import { Article } from 'src/app/core/domain/article';
 import { ArticleService } from 'src/app/core/services/article.service';
 import { Category } from 'src/app/core/domain/category';
 import { FormUtilService } from 'src/app/shared/services/form-util.service';
+import { HttpErrorResponse } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
 import { StaticText } from 'src/app/shared/constants/static-text';
 
@@ -33,7 +35,7 @@ export class BlogCreateComponent implements OnInit, OnDestroy {
 		private formUtils: FormUtilService,
 		private router: Router,
 		private route: ActivatedRoute,
-		private messageService: MessageService
+		private alertService: AlertService
 	) {}
 
 	ngOnInit(): void {
@@ -103,8 +105,8 @@ export class BlogCreateComponent implements OnInit, OnDestroy {
 				next: (response: HttpResponseEntity<Category[]>) => {
 					this.categories = response.data;
 				},
-				error: (error) => {
-					this.messageService.add({ severity: 'error', summary: 'Error', detail: error });
+				error: (error: HttpErrorResponse) => {
+					this.alertService.errors('Error', error.message);
 				},
 				complete: () => {},
 			});
@@ -118,8 +120,8 @@ export class BlogCreateComponent implements OnInit, OnDestroy {
 				next: (response: HttpResponseEntity<Article>) => {
 					this.prepopulateForms(response.data);
 				},
-				error: (error) => {
-					this.messageService.add({ severity: 'error', summary: 'Error', detail: error });
+				error: (error: HttpErrorResponse) => {
+					this.alertService.errors('Error', error.message);
 				},
 				complete: () => {},
 			});
@@ -166,9 +168,9 @@ export class BlogCreateComponent implements OnInit, OnDestroy {
 		const formData = this.setFormData();
 		this.articleService.update(formData, this.articleIdentity).subscribe({
 			next: (response: ResponseMessageEntity) => {
-				this.messageService.add({ severity: 'success', summary: 'Success', detail: response.message });
+        this.alertService.success('success', response.message);
 			},
-			error: (error) => this.messageService.add({ severity: 'error', summary: 'Error', detail: error }),
+			error: (error: HttpErrorResponse) => this.alertService.errors('Error', error.message),
 			complete: () => {
 				// this.form.reset();
 				// this.navigateAfterSucceed();
@@ -180,9 +182,9 @@ export class BlogCreateComponent implements OnInit, OnDestroy {
 		const formData = this.setFormData();
 		this.articleService.create(formData).subscribe({
 			next: (response: ResponseMessageEntity) => {
-				this.messageService.add({ severity: 'success', summary: 'Success', detail: response.message });
+        this.alertService.success('success', response.message);
 			},
-			error: (error) => this.messageService.add({ severity: 'error', summary: 'Error', detail: error }),
+			error: (error: HttpErrorResponse) => this.alertService.errors('Error', error.message),
 			complete: () => {
 				this.form.reset();
 				this.navigateAfterSucceed();
@@ -206,6 +208,3 @@ export class BlogCreateComponent implements OnInit, OnDestroy {
 		this.destroySubject.complete();
 	}
 }
-
-// FIX ME:
-// - tags value from array string, become string when value binding / prepopulate

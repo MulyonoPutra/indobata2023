@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subject, take, takeUntil, timer } from 'rxjs';
 
+import { HttpErrorResponse } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
 import { Contact } from 'src/app/core/domain/contact';
 import { HttpResponseEntity } from 'src/app/core/domain/http-response-entity';
 import { ContactService } from 'src/app/core/services/contact.service';
+import { AlertService } from 'src/app/shared/services/alert.service';
 import { FormUtilService } from 'src/app/shared/services/form-util.service';
 import { ValidatorsService } from 'src/app/shared/services/validators.service';
 
@@ -25,7 +27,8 @@ export class ContactComponent implements OnInit {
 		private validator: ValidatorsService,
 		private contactService: ContactService,
 		private formUtils: FormUtilService,
-		public translate: TranslateService
+		public translate: TranslateService,
+		private alertService: AlertService
 	) {}
 
 	ngOnInit(): void {
@@ -62,10 +65,10 @@ export class ContactComponent implements OnInit {
 	private submit(): void {
 		this.contactService.submitFeedback(this.formCtrlValue).subscribe({
 			next: (response: HttpResponseEntity<Contact>) => {
-				console.log(response.message);
+				this.alertService.success('success', response.message);
 			},
-			error: (error) => {
-				console.error(error);
+			error: (error: HttpErrorResponse) => {
+				this.alertService.errors('Error', error.message);
 			},
 		});
 	}
@@ -78,8 +81,8 @@ export class ContactComponent implements OnInit {
 				next: (response: HttpResponseEntity<Partial<Contact>>) => {
 					this.contactInformation = response.data;
 				},
-				error: (error) => {
-					console.error(error);
+				error: (error: HttpErrorResponse) => {
+					this.alertService.errors('Error', error.message);
 				},
 			});
 	}

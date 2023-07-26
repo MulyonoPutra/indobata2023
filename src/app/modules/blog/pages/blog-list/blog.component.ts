@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subject, takeUntil } from 'rxjs';
 
-import { Article } from 'src/app/core/domain/article';
-import { ArticleService } from 'src/app/core/services/article.service';
-import { HttpResponseEntity } from 'src/app/core/domain/http-response-entity';
-import { LoadingService } from 'src/app/core/services/loading.service';
-import { MessageService } from 'primeng/api';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
+import { Article } from 'src/app/core/domain/article';
+import { HttpResponseEntity } from 'src/app/core/domain/http-response-entity';
+import { ArticleService } from 'src/app/core/services/article.service';
+import { LoadingService } from 'src/app/core/services/loading.service';
+import { AlertService } from 'src/app/shared/services/alert.service';
 
 @Component({
 	selector: 'app-blog',
@@ -32,7 +34,7 @@ export class BlogComponent implements OnInit {
 	constructor(
 		private articleService: ArticleService,
 		public loadingService: LoadingService,
-		private messageService: MessageService,
+		private alertService: AlertService,
 		private router: Router
 	) {}
 
@@ -46,8 +48,8 @@ export class BlogComponent implements OnInit {
 					this.totalPages = response.paging.totalPages!;
 					this.totalItems = response.paging.total!;
 				},
-				error: (error) => {
-					this.messageService.add({ severity: 'error', summary: 'Error', detail: error });
+				error: (error: HttpErrorResponse) => {
+					this.alertService.errors('Error', error.message);
 				},
 			});
 	}

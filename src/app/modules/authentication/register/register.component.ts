@@ -1,10 +1,13 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { take, timer } from 'rxjs';
+
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { Register } from 'src/app/core/domain/register';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { StaticImages } from 'src/app/shared/constants/static-images';
+import { AlertService } from 'src/app/shared/services/alert.service';
 import { FormUtilService } from 'src/app/shared/services/form-util.service';
 
 @Component({
@@ -15,13 +18,14 @@ import { FormUtilService } from 'src/app/shared/services/form-util.service';
 export class RegisterComponent implements OnInit {
 	protected form!: FormGroup;
 	protected isSubmitting = false;
-	protected bgCover = 'https://www.hsimagazine.com/wp-content/uploads/2020/01/iStock-1028568006.jpg';
+	protected bgCover = StaticImages.bgCover;
 
 	constructor(
 		private fb: FormBuilder,
 		private router: Router,
 		private authService: AuthService,
-		private formUtils: FormUtilService
+		private formUtils: FormUtilService,
+		private alertService: AlertService
 	) {}
 
 	ngOnInit(): void {
@@ -73,7 +77,7 @@ export class RegisterComponent implements OnInit {
 				this.navigateAfterSucceed();
 			},
 			error: (error: HttpErrorResponse) => {
-				alert(error.message);
+				this.alertService.errors('Error', error.message);
 			},
 		});
 	}

@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { HttpResponseEntity } from 'src/app/core/domain/http-response-entity';
 import { Product } from 'src/app/core/domain/product';
+import { LoadingService } from 'src/app/core/services/loading.service';
 import { Accordion } from '../../../../core/domain/accordion';
 import { ProductService } from '../../../../core/services/product.service';
-import { HttpResponseEntity } from 'src/app/core/domain/http-response-entity';
-import { LoadingService } from 'src/app/core/services/loading.service';
 
 @Component({
 	selector: 'app-product-detail',

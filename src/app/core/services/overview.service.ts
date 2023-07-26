@@ -1,9 +1,10 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
 import { Observable, catchError, map, throwError } from 'rxjs';
-import { environment } from 'src/environments/environment.development';
-import { HttpResponseEntity } from '../domain/http-response-entity';
 import { Overview, OverviewSection } from '../domain/overview';
+
+import { HttpResponseEntity } from '../domain/http-response-entity';
+import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment.development';
 
 export type OverviewResponseEntity = HttpResponseEntity<Overview>;
 
@@ -34,7 +35,7 @@ export class OverviewService {
 	}
 
 	private handleError(res: HttpErrorResponse | any) {
-		console.error(res.error || res.body.error);
+		console.error(res.error || res.body?.error);
 		return throwError(() => new Error('Internal Server Error'));
 	}
 }
