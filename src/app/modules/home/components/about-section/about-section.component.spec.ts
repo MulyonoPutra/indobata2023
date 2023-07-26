@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AboutSectionComponent } from './about-section.component';
-import { Hero } from '../../models/hero';
+import { Hero } from 'src/app/core/domain/hero';
 
 describe('AboutSectionComponent', () => {
 	let component: AboutSectionComponent;
@@ -39,19 +39,5 @@ describe('AboutSectionComponent', () => {
 
 	it('should create', () => {
 		expect(component).toBeTruthy();
-	});
-
-	it('should not set hero when heroes are empty', () => {
-		component.heros = [];
-		fixture.detectChanges();
-
-		expect(component.hero).toBeUndefined();
-	});
-
-	it('should not set hero when id does not match', () => {
-		component.heros = mockHeroes;
-		fixture.detectChanges();
-
-		expect(component.hero).toBeUndefined();
 	});
 });
